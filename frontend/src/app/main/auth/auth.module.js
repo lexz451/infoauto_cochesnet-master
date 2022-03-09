@@ -51,7 +51,7 @@
         msApiProvider.register('auth.currentUser', ['user/current_user/']);
         msApiProvider.register('auth.reset', ['authentication/reset_password/']);
         // msApiProvider.register('auth.resetConfirm', ['roles/reset_confirm_password/']);
-        msApiProvider.register('auth.register', ['user/']);
+        msApiProvider.register('auth.register', ['user']);
         // msApiProvider.register('auth.permissions', ['pydrfpermissions/pydrfpermissions/']);
 
     }

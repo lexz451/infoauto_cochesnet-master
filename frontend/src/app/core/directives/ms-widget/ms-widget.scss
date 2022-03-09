@@ -50,6 +50,7 @@ $widgetPadding: 12px;
     font-size: $font-size-base;
     perspective: 3000px;
     padding: $widgetPadding;
+    border-radius: 0.428rem;
 
     .ms-widget-front {
         display: flex;

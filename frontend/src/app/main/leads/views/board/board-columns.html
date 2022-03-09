@@ -68,8 +68,8 @@
                                 <div>
                                     <div>
                                         <i class="icon-account s16"></i>
-                                        <span ng-if="lead.client_name">{{lead.client_name}} {{lead.client_surname}}</span>
-                                        <span ng-if="!lead.client_name">{{'No definido' | translate}}</span>
+                                        <span style="font-weight: bold;" ng-if="lead.client_name">{{lead.client_name}} {{lead.client_surname}}</span>
+                                        <span style="font-weight: bold;" ng-if="!lead.client_name">{{'No definido' | translate}}</span>
                                     </div>
 
                                     <div ng-if="lead.client_business_name">
@@ -88,27 +88,27 @@
 
                                             <span class="list-card-footer-item" layout="row" layout-align="start center" data-translate>Canal:</span>
 
-                                            <span class="list-card-footer-item" ng-if="lead.channel==='email' || lead.channel==='both'"
+                                            <span class="list-card-footer-item" style="margin-left: 3px;" ng-if="lead.channel==='email' || lead.channel==='both'"
                                                   layout="row" layout-align="start center">
                                                 <i class="icon-email s18"></i>
                                             </span>
 
-                                            <span class="list-card-footer-item" ng-if="lead.channel==='phone' || lead.channel==='both'"
+                                            <span class="list-card-footer-item" style="margin-left: 3px;" ng-if="lead.channel==='phone' || lead.channel==='both'"
                                                   layout="row" layout-align="start center">
                                                 <i class="icon-phone s18"></i>
                                             </span>
 
-                                            <span class="list-card-footer-item" ng-if="lead.channel==='chat' || lead.channel==='both'"
+                                            <span class="list-card-footer-item" style="margin-left: 3px;" ng-if="lead.channel==='chat' || lead.channel==='both'"
                                                   layout="row" layout-align="start center">
                                                 <i class="icon-comment s18"></i>
                                             </span>
 
-                                            <span class="list-card-footer-item" ng-if="lead.channel==='exposition' || lead.channel==='both'"
+                                            <span class="list-card-footer-item" style="margin-left: 3px;" ng-if="lead.channel==='exposition' || lead.channel==='both'"
                                                   layout="row" layout-align="start center">
                                                 <i class="icon-map-marker s18"></i>
                                             </span>
 
-                                            <span class="list-card-footer-item" ng-if="lead.channel==='web_home' || lead.channel==='both'"
+                                            <span class="list-card-footer-item" style="margin-left: 3px;" ng-if="lead.channel==='web_home' || lead.channel==='both'"
                                                   layout="row" layout-align="start center">
                                                 <i class="icon-web s18"></i>
                                             </span>

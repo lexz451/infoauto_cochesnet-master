@@ -3,7 +3,7 @@
     <md-toolbar class="md-grey-300-bg black-fg">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <h2 class="md-flex text-uppercase">
-                <md-icon md-font-icon="icon-car" class="black-fg no-margin"></md-icon>
+                <md-icon md-font-icon="icon-car" class="white-fg no-margin"></md-icon>
                 <span data-translate>Vehículos actuales</span>
             </h2>
             <md-icon ng-hide="vm.isDisabled()" ng-click="vm.addAppraisal()" md-font-icon="icon-plus-circle-outline" class="pointer black-fg no-margin"></md-icon>
@@ -15,7 +15,7 @@
         <div ng-repeat="appraisal in vm.lead.appraisals" flex layout-padding data-layout-xs="column" data-layout="row"
              data-layout-align="space-between start" layout-wrap class="fullwidth" ng-init="appraisal.field={}">
 
-            <div layout-margin-lg flex="80" data-layout-xs="column" data-layout="row" layout-wrap>
+            <div layout-margin-lg flex="100" data-layout-xs="column" data-layout="row" layout-wrap>
                 <div class="h-30" data-layout="column" data-layout-align="center start"
                      ng-init="appraisal.field['brand']='appraisals___'+$index+'___brand'">
                     <md-autocomplete md-floating-label="{{'Marca' | translate }}" md-delay="300" md-input-name="{{appraisal.field['brand']}}"

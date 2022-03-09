@@ -1,29 +1,28 @@
 <div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
-
     <md-toolbar class="md-grey-300-bg black-fg">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <h2 class="md-flex text-uppercase">
-                <md-icon md-font-icon="icon-account" class="black-fg no-margin"></md-icon>
+                <md-icon md-font-icon="icon-account" class="white-fg no-margin"></md-icon>
                 <span data-translate>Cliente</span>
             </h2>
         </div>
     </md-toolbar>
 
-    <md-content flex data-layout-xs="column" data-layout="row"
-                data-layout-align="start start" layout-wrap class="fullwidth">
+    <md-content flex data-layout-sm="column" data-layout="row" data-layout-align="start start" layout-wrap
+        class="fullwidth">
 
         <div style="max-width: 250px" layout-margin layout-padding>
             <div data-layout="row" data-layout-align="center center">
                 <md-input-container ng-if="!vm.isDisabled()">
                     <div class="mt-10 tag pointer" layout="row" layout-align="start center">
                         <md-icon ng-click="vm.lead.score=1" class="amber-fg"
-                                 md-font-icon="{{vm.lead.score >0 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                            md-font-icon="{{vm.lead.score >0 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
                         <md-icon ng-click="vm.lead.score=2" class="amber-fg"
-                                 md-font-icon="{{vm.lead.score >1 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                            md-font-icon="{{vm.lead.score >1 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
                         <md-icon ng-click="vm.lead.score=3" class="amber-fg"
-                                 md-font-icon="{{vm.lead.score >2 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                            md-font-icon="{{vm.lead.score >2 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
                         <md-icon ng-click="vm.lead.score=4" class="amber-fg"
-                                 md-font-icon="{{vm.lead.score >3 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                            md-font-icon="{{vm.lead.score >3 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
                     </div>
                     <input type="hidden" name="score" ng-model="vm.lead.score">
                     <error-messages field="leadForm.score" server-errors="vm.serverErrors"></error-messages>
@@ -35,351 +34,282 @@
             </div>
             <div id="extra-button"></div>
             <div id="has-changes" ng-show="false">
-              {{leadForm.$dirty}}
+                {{leadForm.$dirty}}
             </div>
             <input type="text" id="psa-id" name="psa_id" data-ng-model="vm.lead.psa_id" ng-show="false">
+
+            <div>
+                <md-button data-debouce-click ng-if="vm.lead.channel2_data.id!==vm.getExposicion().id"
+                    data-ng-click="vm.lead.channel2_data=vm.getExposicion()" class="md-raised"
+                    aria-label="{{'Exposición' | translate}}">
+                    <md-icon md-font-icon="icon-map-marker" class="mr-4"></md-icon>
+                    <span data-translate>Exposición</span>
+                </md-button>
+
+                <div class="green-700-bg white-fg p-5" ng-if="vm.lead.channel2_data.id===vm.getExposicion().id">
+                    <md-icon md-font-icon="icon-check" class="white-fg mr-4"></md-icon>
+                    <span data-translate>Exposición</span>
+                </div>
+            </div>
         </div>
 
-        <div flex layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
-             data-layout-align-xs="start start" layout-wrap layout-margin>
+        <div flex flex-xs="100" style="align-items: stretch;" data-layout="row" data-layout-align="start end"
+            data-layout-align-xs="start start" layout-wrap layout-padding>
 
-            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
-                 data-layout-align-xs="start start" layout-wrap layout-margin class="fullwidth">
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Tipo</label>
-                        <md-select data-ng-model="vm.lead.client.client_type" name="client___client_type" class="w-200">
-                            <md-option data-ng-repeat="type in vm.clientTypes" data-ng-value="type.id">
-                                {{ type.name }}
-                            </md-option>
-                        </md-select>
-                        <error-messages field="leadForm.client___client_type" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
+            <md-input-container flex="25" flex-sm="50" flex-xs="100">
+                <label data-translate>Tipo</label>
+                <md-select data-ng-model="vm.lead.client.client_type" name="client___client_type">
+                    <md-option data-ng-repeat="type in vm.clientTypes" data-ng-value="type.id">
+                        {{ type.name }}
+                    </md-option>
+                </md-select>
+                <error-messages field="leadForm.client___client_type" server-errors="vm.serverErrors"></error-messages>
+            </md-input-container>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>CIF/NIF/DNI/PASAPORTE</label>
-                        <input type="text" name="client___identification" data-ng-model="vm.lead.client.identification" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___identification" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
+            <md-input-container flex="25" flex-sm="50" flex-xs="100">
+                <label data-translate>CIF/NIF/DNI/PASAPORTE</label>
+                <input type="text" name="client___identification" data-ng-model="vm.lead.client.identification"
+                    ng-disabled="vm.isDisabled()">
+                <error-messages field="leadForm.client___identification" server-errors="vm.serverErrors">
+                </error-messages>
+            </md-input-container>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Nombre de empresa</label>
-                        <input type="text" name="client___business_name" data-ng-model="vm.lead.client.business_name" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___business_name" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
+            <md-input-container flex="25" flex-sm="50" flex-xs="100">
+                <label data-translate>Nombre de empresa</label>
+                <input type="text" name="client___business_name" data-ng-model="vm.lead.client.business_name"
+                    ng-disabled="vm.isDisabled()">
+                <error-messages field="leadForm.client___business_name" server-errors="vm.serverErrors">
+                </error-messages>
+            </md-input-container>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Cargo</label>
-                        <input type="text" name="client___position" data-ng-model="vm.lead.client.position" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___position" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
+            <md-input-container flex="25" flex-sm="50" flex-xs="100">
+                <label data-translate>Cargo</label>
+                <input type="text" name="client___position" data-ng-model="vm.lead.client.position"
+                    ng-disabled="vm.isDisabled()">
+                <error-messages field="leadForm.client___position" server-errors="vm.serverErrors">
+                </error-messages>
+            </md-input-container>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-autocomplete md-floating-label="{{'Sector' | translate }}" md-delay="300" md-input-name="sector"
-                                     md-no-cache="true" ng-disabled="vm.isDisabled()"
-                                     md-selected-item="vm.lead.client.sector_data" md-search-text="searchTextSector"
-                                     md-items="sector in vm.getSectors(searchTextSector)" md-min-length="0"
-                                     md-item-text="sector.name">
-                        <md-item-template>
-                            <span md-highlight-text="searchTextSector">{{sector.name}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            <span data-translate>No hay ningun sector con ese nombre</span>
-                        </md-not-found>
-                    </md-autocomplete>
-                    <md-input-container flex="100" class="no-margin">
-                        <error-messages field="leadForm.client___sector" server-errors="vm.serverErrors" required></error-messages>
-                    </md-input-container>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-autocomplete md-floating-label="{{'Actividad' | translate }}" md-delay="300" md-input-name="business_activity"
-                                     md-no-cache="true" ng-disabled="vm.isDisabled() || !vm.lead.client.sector_data.id"
-                                     md-selected-item="vm.lead.client.business_activity_data" md-search-text="searchTextActivity"
-                                     md-items="activity in vm.getBusinessActivity(vm.lead.client.sector_data.id, searchTextActivity)" md-min-length="0"
-                                     md-item-text="activity.activity">
-                        <md-item-template>
-                            <span md-highlight-text="searchTextActivity">{{activity.activity}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            <span data-translate>No hay ninguna actividad con ese nombre</span>
-                        </md-not-found>
-                    </md-autocomplete>
-                    <md-input-container flex="100" class="no-margin">
-                        <error-messages field="leadForm.client___business_activity" server-errors="vm.serverErrors" required></error-messages>
-                    </md-input-container>
-                </div>
-
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-autocomplete md-floating-label="{{'Sector' | translate }}" md-delay="300" md-input-name="sector"
+                    md-no-cache="true" ng-disabled="vm.isDisabled()" md-selected-item="vm.lead.client.sector_data"
+                    md-search-text="searchTextSector" md-items="sector in vm.getSectors(searchTextSector)"
+                    md-min-length="0" md-item-text="sector.name">
+                    <md-item-template>
+                        <span md-highlight-text="searchTextSector">{{sector.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        <span data-translate>No hay ningun sector con ese nombre</span>
+                    </md-not-found>
+                </md-autocomplete>
+                <md-input-container flex="100" class="no-margin">
+                    <error-messages field="leadForm.client___sector" server-errors="vm.serverErrors" required>
+                    </error-messages>
+                </md-input-container>
             </div>
 
-            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
-                 data-layout-align-xs="start start" layout-wrap layout-margin class="fullwidth">
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-autocomplete md-floating-label="{{'Actividad' | translate }}" md-delay="300"
+                    md-input-name="business_activity" md-no-cache="true"
+                    ng-disabled="vm.isDisabled() || !vm.lead.client.sector_data.id"
+                    md-selected-item="vm.lead.client.business_activity_data" md-search-text="searchTextActivity"
+                    md-items="activity in vm.getBusinessActivity(vm.lead.client.sector_data.id, searchTextActivity)"
+                    md-min-length="0" md-item-text="activity.activity">
+                    <md-item-template>
+                        <span md-highlight-text="searchTextActivity">{{activity.activity}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        <span data-translate>No hay ninguna actividad con ese nombre</span>
+                    </md-not-found>
+                </md-autocomplete>
+                <md-input-container flex="100" class="no-margin">
+                    <error-messages field="leadForm.client___business_activity" server-errors="vm.serverErrors"
+                        required></error-messages>
+                </md-input-container>
+            </div>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Nombre</label>
+                    <input id="client-name" type="text" name="client___name" data-ng-model="vm.lead.client.name"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___name" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Apellidos</label>
+                    <input id="client-surname" type="text" name="client___surname"
+                        data-ng-model="vm.lead.client.surname" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___surname" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <div id="client-phone" data-layout="row" layout-align="start center">
                     <md-input-container>
-                        <label data-translate>Nombre</label>
-                        <input id="client-name" type="text" name="client___name" data-ng-model="vm.lead.client.name" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___name" server-errors="vm.serverErrors"></error-messages>
+                        <label data-translate>Teléfono</label>
+                        <input type="text" ng-focus="vm.setExtension()" ng-blur="vm.eventClientBlur()"
+                            name="client___phone" data-ng-model="vm.lead.client.phone" ng-disabled="vm.isDisabled()">
+                        <error-messages field="leadForm.client___phone" server-errors="vm.serverErrors">
+                        </error-messages>
                     </md-input-container>
-                </div>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Apellidos</label>
-                        <input id="client-surname" type="text" name="client___surname" data-ng-model="vm.lead.client.surname" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___surname" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
+                    <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
+                        data-ng-if="vm.lead.id && vm.lead.client.phone" data-ng-click="vm.call(vm.lead)">
+                        <md-icon title="{{'LLamar' | translate}}" md-font-icon="icon-phone"></md-icon>
+                    </md-button>
 
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <div id="client-phone" data-layout="row" layout-align="start center" layout-margin>
-                        <md-input-container>
-                          <label data-translate>Teléfono</label>
-                          <input type="text" ng-focus="vm.setExtension()" ng-blur="vm.eventClientBlur()"
-                                 name="client___phone" data-ng-model="vm.lead.client.phone" ng-disabled="vm.isDisabled()">
-                          <error-messages field="leadForm.client___phone" server-errors="vm.serverErrors"></error-messages>
+                    <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
+                        data-ng-if="vm.lead.id && vm.lead.client.phone" data-ng-click="vm.sendWhatsapp($event)">
+                        <md-icon class="green-400-fg" title="{{'Whatsapp' | translate}}" md-font-icon="icon-whatsapp">
+                        </md-icon>
+                    </md-button>
+                </div>
+                <error-messages field="leadForm.client___phone" server-errors="vm.serverErrors"></error-messages>
+            </div>
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Email</label>
+                    <input id="client-email" type="text" name="client___email" data-ng-model="vm.lead.client.email"
+                        ng-disabled="vm.isDisabled()" ng-blur="vm.eventClientEmailBlur()">
+                    <error-messages field="leadForm.client___email" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+
+                <div>
+                    <a ng-href="mailto:{{vm.lead.client.email}}?bcc=vomotorscoring@info-auto.es"
+                        ng-click="vm.sendMail(vm.lead)" data-ng-if="vm.lead.id && vm.lead.client.email"
+                        class="md-raised md-accent" data-debouce-click aria-label="{{'Enviar' | translate}}">
+                        <md-icon title="{{'Enviar email' | translate}}" class="md-warn" md-font-icon="icon-gmail">
+                        </md-icon>
+                    </a>
+                </div>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Teléfono alternativo</label>
+                    <input type="text" name="client___desk_phone" data-ng-model="vm.lead.client.desk_phone"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___desk_phone" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Código postal</label>
+                    <input id="client-postal-code" type="text" name="client___postal_code"
+                        ng-blur="vm.completeAddress()" data-ng-model="vm.lead.client.postal_code"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___postal_code" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100"  id="client-province">
+                <md-autocomplete md-floating-label="{{'Provincia' | translate }}" md-delay="300"
+                    md-input-name="province" md-no-cache="true" ng-disabled="vm.isDisabled()"
+                    md-selected-item="vm.lead.client.province_data" md-search-text="searchTextProvince"
+                    md-items="province in vm.getProvinces(searchTextProvince)" md-min-length="0"
+                    md-item-text="province.name">
+                    <md-item-template>
+                        <span md-highlight-text="searchTextProvince">{{province.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        <span data-translate>No hay ningun provincia con ese nombre</span>
+                    </md-not-found>
+                </md-autocomplete>
+                <md-input-container flex="100" class="no-margin">
+                    <error-messages field="leadForm.client___province" server-errors="vm.serverErrors" required>
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100"  id="client-location">
+                <md-autocomplete md-floating-label="{{'Localidad' | translate }}" md-delay="300"
+                    md-input-name="location" md-no-cache="true" ng-disabled="vm.isDisabled()"
+                    md-selected-item="vm.lead.client.location_data" md-search-text="searchTextLocation"
+                    md-items="location in vm.getLocalities(searchTextLocation)" md-min-length="0"
+                    md-item-text="location.name">
+                    <md-item-template>
+                        <span md-highlight-text="searchTextLocation">{{location.name}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        <span data-translate>No hay ninguna localidad</span>
+                    </md-not-found>
+                </md-autocomplete>
+                <md-input-container flex="100" class="no-margin">
+                    <error-messages field="leadForm.client___location" server-errors="vm.serverErrors" required>
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <div flex="25" flex-sm="50" flex-xs="100" >
+                <md-input-container>
+                    <label data-translate>Dirección</label>
+                    <input type="text" name="client___address1" data-ng-model="vm.lead.client.address1"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___address1" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>
+
+            <!--<div class="h-60" data-layout="column" data-layout-align="center start">
+                <md-input-container>
+                    <label data-translate>Dirección 2</label>
+                    <input type="text" name="client___address2" data-ng-model="vm.lead.client.address2"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___address2" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>-->
+            <div flex="100" ></div>
+
+            <div data-layout="row" flex="25" flex-sm="50" flex-xs="100" >
+                <div flex style="min-width: 150px" class="mr-0">
+                    <label class="input-label" data-translate>Usuario</label>
+                    <div class="bb" id="client-seller">
+                        {{vm.getFullUserName(vm.lead.user_data)}}
+                    </div>
+                </div>
+                <div class="ml-0">
+                    <md-button type="button" data-layout="column" class="md-icon-button md-accent"
+                        data-layout-align="start center" ng-if="vm.lead.cur_user_can_assign || !vm.lead.id"
+                        data-ng-click="vm.openLeadDialog($event,vm.lead,'tracing')">
+                        <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-account-box"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+
+            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row"
+                data-layout-align="start start" data-layout-align-xs="start start" layout-wrap layout-margin
+                class="fullwidth">
+            
+
+                <!--<div class="h-60 mr-100" data-layout-xs="column" data-layout="row" data-layout-align="center start">
+                    <div class="mr-30" data-layout-xs="column" data-layout="row">
+                        <md-autocomplete md-floating-label="{{'Origen publicidad' | translate }}" md-delay="300"
+                            md-input-name="origin2" md-no-cache="true" md-min-length="0"
+                            md-selected-item="vm.lead.origin2_data" md-search-text="searchTextAllOrigin"
+                            md-items="origin in vm.getAllOrigins(searchTextAllOrigin)" md-item-text="origin.name">
+                            <md-item-template>
+                                <span md-highlight-text="searchTextAllOrigin">{{origin.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                <span data-translate>No hay ningún origen con ese nombre</span>
+                            </md-not-found>
+                        </md-autocomplete>
+                        <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
+                            <error-messages field="leadForm.origin2" server-errors="vm.serverErrors" required>
+                            </error-messages>
                         </md-input-container>
-
-                        <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
-                                   data-ng-if="vm.lead.id && vm.lead.client.phone" data-ng-click="vm.call(vm.lead)">
-                            <md-icon title="{{'LLamar' | translate}}" md-font-icon="icon-phone"></md-icon>
-                        </md-button>
-
-                        <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
-                                   data-ng-if="vm.lead.id && vm.lead.client.phone" data-ng-click="vm.sendWhatsapp($event)">
-                            <md-icon class="green-400-fg" title="{{'Whatsapp' | translate}}" md-font-icon="icon-whatsapp"></md-icon>
-                        </md-button>
-                    </div>
-                    <error-messages field="leadForm.client___phone" server-errors="vm.serverErrors"></error-messages>
-                </div>
-
-                <div data-layout="row" layout-align="start center"  layout-margin  class="h-60">
-                    <md-input-container>
-                        <label data-translate>Email</label>
-                        <input id="client-email" type="text" name="client___email" data-ng-model="vm.lead.client.email"
-                               ng-disabled="vm.isDisabled()" ng-blur="vm.eventClientEmailBlur()">
-                        <error-messages field="leadForm.client___email" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-
-                    <div>
-                        <a ng-href="mailto:{{vm.lead.client.email}}?bcc=vomotorscoring@info-auto.es"
-                           ng-click="vm.sendMail(vm.lead)"
-                                   data-ng-if="vm.lead.id && vm.lead.client.email"
-                                   class="md-raised md-accent" data-debouce-click
-                                   aria-label="{{'Enviar' | translate}}">
-                            <md-icon title="{{'Enviar email' | translate}}" class="md-warn" md-font-icon="icon-gmail"></md-icon>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Teléfono alternativo</label>
-                        <input type="text" name="client___desk_phone" data-ng-model="vm.lead.client.desk_phone" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___desk_phone" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
-            </div>
-
-            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
-                 data-layout-align-xs="start start" layout-wrap layout-margin class="fullwidth">
-
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Código postal</label>
-                        <input id="client-postal-code" type="text" name="client___postal_code" ng-blur="vm.completeAddress()"
-                               data-ng-model="vm.lead.client.postal_code" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___postal_code" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start" id="client-province">
-                    <md-autocomplete md-floating-label="{{'Provincia' | translate }}" md-delay="300" md-input-name="province"
-                                     md-no-cache="true" ng-disabled="vm.isDisabled()"
-                                     md-selected-item="vm.lead.client.province_data" md-search-text="searchTextProvince"
-                                     md-items="province in vm.getProvinces(searchTextProvince)" md-min-length="0"
-                                     md-item-text="province.name">
-                        <md-item-template>
-                            <span md-highlight-text="searchTextProvince">{{province.name}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            <span data-translate>No hay ningun provincia con ese nombre</span>
-                        </md-not-found>
-                    </md-autocomplete>
-                    <md-input-container flex="100" class="no-margin">
-                        <error-messages field="leadForm.client___province" server-errors="vm.serverErrors" required></error-messages>
-                    </md-input-container>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start" id="client-location">
-                    <md-autocomplete md-floating-label="{{'Localidad' | translate }}" md-delay="300" md-input-name="location"
-                                     md-no-cache="true"
-                                     ng-disabled="vm.isDisabled()"
-                                     md-selected-item="vm.lead.client.location_data" md-search-text="searchTextLocation"
-                                     md-items="location in vm.getLocalities(searchTextLocation)" md-min-length="0"
-                                     md-item-text="location.name">
-                        <md-item-template>
-                            <span md-highlight-text="searchTextLocation">{{location.name}}</span>
-                        </md-item-template>
-                        <md-not-found>
-                            <span data-translate>No hay ninguna localidad</span>
-                        </md-not-found>
-                    </md-autocomplete>
-                    <md-input-container flex="100" class="no-margin">
-                        <error-messages field="leadForm.client___location" server-errors="vm.serverErrors" required></error-messages>
-                    </md-input-container>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Dirección</label>
-                        <input type="text" name="client___address1" data-ng-model="vm.lead.client.address1" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___address1" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
-
-                <div class="h-60" data-layout="column" data-layout-align="center start">
-                    <md-input-container>
-                        <label data-translate>Dirección 2</label>
-                        <input type="text" name="client___address2" data-ng-model="vm.lead.client.address2" ng-disabled="vm.isDisabled()">
-                        <error-messages field="leadForm.client___address2" server-errors="vm.serverErrors"></error-messages>
-                    </md-input-container>
-                </div>
-
-            </div>
-
-            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start start"
-                 data-layout-align-xs="start start" layout-wrap layout-margin class="fullwidth">
-                <div data-layout="row" layout-align="start center" class="mb-25 h-60" layout-margin>
-                    <div flex style="min-width: 150px" class="mr-0">
-                        <label class="input-label" data-translate>Usuario</label>
-                        <div class="bb" id="client-seller">
-                            {{vm.getFullUserName(vm.lead.user_data)}}
-                        </div>
-                    </div>
-                    <div class="ml-0">
-                        <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
-                                   ng-if="vm.lead.cur_user_can_assign || !vm.lead.id" data-ng-click="vm.openLeadDialog($event,vm.lead,'tracing')">
-                            <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-account-box"></md-icon>
-
-                        </md-button>
-                    </div>
-                </div>
-
-                <div data-layout="column" data-layout-align="center start">
-                    <div layout="row">
-
-                        <div class="mr-30">
-                            <md-autocomplete md-floating-label="{{'Concesionario' | translate }}" md-delay="300" md-input-name="concessionaire"
-                                             md-no-cache="true" md-min-length="0" flex="100" md-selected-item-change="vm.lead.source_data_prov=null;vm.lead.source_data.origin_data=null"
-                                             md-selected-item="vm.lead.concessionaire_data" md-search-text="searchTextConcessionaire"
-                                             md-items="concessionaire in vm.getConcessionaires(searchTextConcessionaire)"
-                                             md-item-text="concessionaire.name">
-                                <md-item-template>
-                                    <span md-highlight-text="searchTextConcessionaire">{{concessionaire.name}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    <span data-translate>No hay ningún concesionario con ese nombre</span>
-                                </md-not-found>
-                            </md-autocomplete>
-                            <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
-                              <error-messages field="leadForm.concessionaire" server-errors="vm.serverErrors" required></error-messages>
-                            </md-input-container>
-                        </div>
-
-                        <div class="mr-30">
-                            <md-autocomplete md-floating-label="{{'Origen' | translate }}" md-delay="300" md-input-name="origin"
-                                             md-no-cache="true" md-min-length="0" ng-disabled="!vm.lead.concessionaire_data.id"
-                                             md-selected-item-change="vm.lead.source_data_prov=null;vm.lead.source_data.channel_data=null"
-                                             md-selected-item="vm.lead.source_data.origin_data" md-search-text="searchTextOrigin"
-                                             md-items="origin in vm.getOrigins(searchTextOrigin, vm.lead.concessionaire_data)"
-                                             md-item-text="origin.name">
-                                <md-item-template>
-                                    <span md-highlight-text="searchTextOrigin">{{origin.name}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    <span data-translate>No hay ningún origen con ese nombre</span>
-                                </md-not-found>
-                            </md-autocomplete>
-                            <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
-                              <error-messages field="leadForm.origin" server-errors="vm.serverErrors" required></error-messages>
-                            </md-input-container>
-                        </div>
-
-                        <div class="mr-30">
-                            <md-autocomplete md-floating-label="{{'Canal' | translate }}" md-delay="300" md-input-name="channel"
-                                             md-no-cache="true" md-min-length="0" ng-disabled="!vm.lead.source_data.origin_data.id"
-                                             md-selected-item-change="vm.lead.source_data_prov=null;vm.lead.source=null;vm.changeChannel(vm.lead.concessionaire_data,vm.lead.source_data.origin_data, vm.lead.source_data.channel_data)"
-                                             md-selected-item="vm.lead.source_data.channel_data" md-search-text="searchTextChannel"
-                                             md-items="channel in vm.getChannels(searchTextChannel, vm.lead.concessionaire_data,vm.lead.source_data.origin_data)"
-                                             md-item-text="channel.name">
-                                <md-item-template>
-                                    <span md-highlight-text="searchTextChannel">{{channel.name}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    <span data-translate>No hay ningún canal con ese nombre</span>
-                                </md-not-found>
-                            </md-autocomplete>
-                            <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
-                              <error-messages field="leadForm.channel" server-errors="vm.serverErrors" required></error-messages>
-                            </md-input-container>
-                        </div>
-
-                        <div class="mr-30" data-layout="column">
-                            <md-autocomplete ng-if="vm.lead.source_data.channel_data.id"
-                                             md-floating-label="{{'Fuente' | translate }}" md-delay="300" md-input-name="source"
-                                             md-no-cache="true" md-min-length="0" ng-disabled="!vm.lead.source_data.channel_data.id"
-                                             md-selected-item="vm.lead.source_data_prov" md-search-text="searchTextSource"
-                                             md-items="source in vm.getSources(searchTextSource, vm.lead.concessionaire_data ,vm.lead.source_data.origin_data, vm.lead.source_data.channel_data)"
-                                             md-item-text="source.data">
-                                <md-item-template>
-                                    <span md-highlight-text="searchTextSource">{{source.data}}</span>
-                                </md-item-template>
-                                <md-not-found>
-                                    <span data-translate>No hay ninguna fuente con ese nombre</span>
-                                </md-not-found>
-                            </md-autocomplete>
-                            <md-input-container ng-if="!vm.lead.source_data.channel_data.id">
-                                <label data-translate>Fuente</label>
-                                <input type="text" name="source" ng-model="vm.lead.source" ng-disabled="!vm.lead.source_data.channel_data.id">
-                            </md-input-container>
-                            <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
-                              <error-messages field="leadForm.source" server-errors="vm.serverErrors" required></error-messages>
-                            </md-input-container>
-
-                        </div>
-
                     </div>
 
-                </div>
-
-                <div class="h-60 mr-100" data-layout="row" data-layout-align="center start">
-                  <div class="mr-30">
-                    <md-autocomplete md-floating-label="{{'Origen publicidad' | translate }}" md-delay="300" md-input-name="origin2"
-                                     md-no-cache="true" md-min-length="0"
-                                     md-selected-item="vm.lead.origin2_data" md-search-text="searchTextAllOrigin"
-                                     md-items="origin in vm.getAllOrigins(searchTextAllOrigin)"
-                                     md-item-text="origin.name">
-                      <md-item-template>
-                        <span md-highlight-text="searchTextAllOrigin">{{origin.name}}</span>
-                      </md-item-template>
-                      <md-not-found>
-                        <span data-translate>No hay ningún origen con ese nombre</span>
-                      </md-not-found>
-                    </md-autocomplete>
-                    <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
-                      <error-messages field="leadForm.origin2" server-errors="vm.serverErrors" required></error-messages>
-                    </md-input-container>
-                  </div>
-
-                  <!--<div class="mr-30">
+                    <div class="mr-30">
                     <md-autocomplete md-floating-label="{{'Canal 2' | translate }}" md-delay="300" md-input-name="channel2"
                                      md-no-cache="true" md-min-length="0" ng-disabled="!vm.lead.origin2_data.id"
                                      md-selected-item="vm.lead.channel2_data" md-search-text="searchTextAllChannel"
@@ -395,39 +325,49 @@
                     <md-input-container flex="100" class="no-margin" ng-if="vm.serverErrors">
                       <error-messages field="leadForm.channel2" server-errors="vm.serverErrors" required></error-messages>
                     </md-input-container>
-                  </div>-->
-
-                  <div>
-                    <md-button data-debouce-click
-                               ng-if="vm.lead.channel2_data.id!==vm.getExposicion().id"
-                               data-ng-click="vm.lead.channel2_data=vm.getExposicion()"
-                               class="md-raised"
-                               aria-label="{{'Exposición' | translate}}">
-                      <md-icon md-font-icon="icon-map-marker" class="mr-4"></md-icon>
-                      <span data-translate>Exposición</span>
-                    </md-button>
-
-                    <div class="green-700-bg white-fg p-5" ng-if="vm.lead.channel2_data.id===vm.getExposicion().id">
-                      <md-icon md-font-icon="icon-check" class="white-fg mr-4"></md-icon>
-                      <span data-translate>Exposición</span>
-                    </div>
                   </div>
-                </div>
+
+
+                </div>-->
+
+
+                <md-input-container>
+                    <label data-translate>Tipo de vehículo</label>
+                    <md-select data-ng-model="vm.lead.client.segment" name="client___client_segment"
+                        class="w-200">
+                        <md-option data-ng-repeat="type in vm.clientSegments" data-ng-value="type.id">
+                            {{ type.name }}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="leadForm.client___client_segment" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+
+                <md-input-container>
+                    <label data-translate>Flota</label>
+                    <input id="client-vehicle-fleet" type="number" name="client___client_fleet"
+                        data-ng-model="vm.lead.client.fleet" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm.client___client_fleet" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+
 
             </div>
 
-            <div data-layout-xs="column" data-layout="row" data-layout-align="space-between center"
-                 layout-wrap class="fullwidth" ng-if="vm.serverErrors">
+            <div data-layout-xs="column" data-layout="row" data-layout-align="space-between center" layout-wrap
+                class="fullwidth" ng-if="vm.serverErrors">
 
                 <md-input-container flex="100" class="no-margin">
-                    <input type="hidden" name="client___non_field_errors" data-ng-model="vm.lead.client.non_field_errors">
-                    <error-messages field="leadForm.client___non_field_errors" server-errors="vm.serverErrors"></error-messages>
+                    <input type="hidden" name="client___non_field_errors"
+                        data-ng-model="vm.lead.client.non_field_errors">
+                    <error-messages field="leadForm.client___non_field_errors" server-errors="vm.serverErrors">
+                    </error-messages>
                 </md-input-container>
 
             </div>
+
         </div>
 
     </md-content>
 
 </div>
-

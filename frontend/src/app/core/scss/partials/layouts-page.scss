@@ -14,16 +14,6 @@ $card-header-height-sm: $header-height-xs - $card-toolbar-height;
     position: relative;
     overflow: hidden;
 
-    .top-bg {
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        left: 0;
-        min-height: $header-height;
-        background-image: url('/assets/images/backgrounds/header-bg.png');
-        background-size: cover;
-    }
 
     md-backdrop {
         z-index: 50;

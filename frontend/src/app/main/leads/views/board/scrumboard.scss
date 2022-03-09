@@ -12,7 +12,10 @@
         .header-content {
 
             .header-boards-button {
-                margin: 0;
+                margin-right: 5px !important;
+                .icon {
+                    color: #6e6b7b;
+                }
             }
 
             .header-board-name {

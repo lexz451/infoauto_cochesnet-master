@@ -2,14 +2,16 @@
 @mixin list-card {
     position: relative;
     width: 100%;
-    margin: 16px 0;
+    margin: 12px 0 10px;
     background-color: white;
     color: #000;
-    border-radius: 2px;
+    border-radius: 6px;
     transition: box-shadow 150ms ease;
     cursor: pointer;
     display: block;
     text-decoration: none;
+    box-shadow: 0 4px 24px 0 rgba(34, 41, 47, 0.10);
+    padding: 5px;
 
     .origin-icon img{
         max-width: 30px;
@@ -57,6 +59,8 @@
 
     .list-card-details {
         padding: 16px 16px 0 16px;
+        background: #fff;
+        border-radius: 6px;
 
         .list-card-labels {
             margin-bottom: 6px;
@@ -122,7 +126,6 @@
     }
 
     .list-card-footer {
-        border-top: 1px solid rgba(0, 0, 0, 0.12);
         padding: 0 16px;
 
         .list-card-footer-item {
@@ -192,6 +195,7 @@
         max-width: 344px;
         padding-right: 24px;
         height: 100%;
+        border-radius: 0.428rem;
 
         &.ui-sortable-helper .list {
             box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
@@ -199,7 +203,7 @@
 
         .list {
             max-height: 100%;
-            background-color: #EEF0F2;
+            box-shadow: none;
             color: #000;
             border-radius: 2px;
             transition: box-shadow 150ms ease;
@@ -208,7 +212,12 @@
                 height: 64px;
                 min-height: 64px;
                 padding: 0 0 0 16px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                background-color: transparent;
+                color: #5e5873;
+                .p-20 {
+                    color: #7367f0;
+                    font-size: 16px;
+                }
 
                 .list-header-name {
                     max-width: 80%;
@@ -230,11 +239,13 @@
                 overflow: hidden;
                 overflow-y: auto;
                 min-height: 0;
+                background-color: transparent;
 
                 .list-cards {
                     position: relative;
                     min-height: 32px;
                     padding: 0 16px;
+                    
 
                     .card-sortable-placeholder {
                         background: rgba(0, 0, 0, 0.06);

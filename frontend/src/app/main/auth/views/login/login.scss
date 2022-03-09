@@ -2,7 +2,7 @@
     height: 100%;
     background: #f1f1f1;
     background-size: cover;
-    background-position:center;
+    background-position: center;
 
     #login-form-wrapper {
         flex: 1 0 auto;
@@ -14,6 +14,9 @@
             padding: 32px;
             background: #FFFFFF;
             text-align: center;
+            border: none;
+            border-radius: 0.358rem;
+            
 
             .logo {
                 width: 128px;
@@ -58,6 +61,14 @@
                     width: 220px;
                     margin: 16px auto;
                     display: block;
+                    
+                    md-progress-circular{
+                         position: absolute;
+                         top: calc(50% - 8px);
+                         svg path{
+                           stroke: rgb(255,255,255) !important;
+                         }
+                    }
                 }
             }
 
@@ -68,10 +79,6 @@
 
                 .text {
                     margin-right: 8px;
-                }
-
-                .link {
-
                 }
             }
 
@@ -91,7 +98,8 @@
                     padding: 0 8px;
                     z-index: 9999;
 
-                    &:before, &:after {
+                    &:before,
+                    &:after {
                         content: '';
                         display: block;
                         width: 30px;
@@ -111,6 +119,18 @@
             }
 
             .md-button {
+                border: none;
+                padding: 0.786rem 1.5rem;
+                font-size: 1.2rem;
+                line-height: 1;
+                border-radius: 0.358rem;
+                border-color: #7367f0 !important;
+                background-color: #7367f0 !important;
+                color: #fff !important;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
+            }
+
+
 
                 &.google,
                 &.facebook {
@@ -132,7 +152,7 @@
                 &.facebook {
                     background-color: rgb(63, 92, 154);
                 }
-            }
+            
         }
     }
 }
@@ -160,11 +180,17 @@
 
                     &.google,
                     &.facebook {
-                        width: 80%;
+                        width: auto;
                     }
                 }
             }
         }
     }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-button {
+    transition: none;
+  }
 }

@@ -948,6 +948,10 @@ md-icon[md-font-icon]{
 .icon-close:before {
     content: "\e72b";
 }
+.icon-close-black:before {
+    content: "\e72b";
+    color: #000 !important;
+}
 .icon-closed-caption:before {
     content: "\e72c";
 }
@@ -2291,6 +2295,9 @@ md-icon[md-font-icon]{
 }
 .icon-magnify:before {
     content: "\e8eb";
+    z-index: 2;
+    position: relative;
+    color: rgb(33,33,33);
 }
 .icon-mail-ru:before {
     content: "\e8ec";
@@ -2855,6 +2862,11 @@ md-icon[md-font-icon]{
 }
 .icon-plus-circle-outline:before {
     content: "\e9a7";
+    color: #737080 !important;
+}
+.icon-plus-circle-outline-primero:before {
+    content: "\e9a7";
+    color: #000 !important;
 }
 .icon-plus-circle:before {
     content: "\e9a8";

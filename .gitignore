@@ -9,9 +9,11 @@ venv
 frontend/node_modules
 frontend/bower_components
 frontend/.tmp/
+frontend/dist
 frontend/.bower-tmp/
 /backend/infoauto/config/settings/local.py
 /backend/infoauto/celerybeat-schedule
 /backend/infoauto/celerybeat.pid
 
 /backend/infoauto/infoauto/media/
+frontend.old

@@ -33,12 +33,14 @@ body.ms-navigation-folded {
     overflow-x: hidden;
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2), width 0.1s linear, min-width 0.1s linear, max-width 0.1s linear;
     box-shadow: $whiteframe-shadow-6dp;
+    background:white;
 
     .navigation-header {
         height: 64px;
         min-height: 64px;
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgb(255, 255, 255);
         padding: 0 16px 0 24px;
+        box-shadow: none !important;
 
         img{
           height:60px;
@@ -55,6 +57,8 @@ body.ms-navigation-folded {
             width: 34px !important;
             height: 34px !important;
             cursor: pointer;
+            color: rgb(23, 21, 44) !important;
+            fill: rgb(23, 21, 44) !important;
         }
     }
 

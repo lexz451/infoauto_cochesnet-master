@@ -312,6 +312,7 @@ img {
 
   .height-#{$i * 5},
   .h-#{$i * 5} {
+    //margin: auto;
     height: #{($i * 5) + 'px'} !important;
     min-height: #{($i * 5) + 'px'} !important;
     max-height: #{($i * 5) + 'px'} !important;
@@ -319,6 +320,7 @@ img {
 
   .width-#{$i * 5},
   .w-#{$i * 5} {
+    //margin: auto;
     width: #{($i * 5) + 'px'} !important;
     min-width: #{($i * 5) + 'px'} !important;
     max-width: #{($i * 5) + 'px'} !important;
@@ -333,6 +335,7 @@ img {
 
     .height-#{$i * 8},
     .h-#{$i * 8} {
+      //margin: auto;
       height: #{($i * 8) + 'px'} !important;
       min-height: #{($i * 8) + 'px'} !important;
       max-height: #{($i * 8) + 'px'} !important;
@@ -340,6 +343,7 @@ img {
 
     .width-#{$i * 8},
     .w-#{$i * 8} {
+      //margin: auto;
       width: #{($i * 8) + 'px'} !important;
       min-width: #{($i * 8) + 'px'} !important;
       max-width: #{($i * 8) + 'px'} !important;
@@ -352,39 +356,39 @@ $border-style: 1px solid rgba(0, 0, 0, 0.12);
 
 .border,
 .b {
-  border: $border-style;
+  border: none;
 }
 
 .border-top,
 .bt {
-  border-top: $border-style;
+  border-top: none;
 }
 
 .border-right,
 .br {
-  border-right: $border-style;
+  border-right: none;
 }
 
 .border-bottom,
 .bb {
-  border-bottom: $border-style;
+  border-bottom: none;
 }
 
 .border-left,
 .bl {
-  border-left: $border-style;
+  border-left: none;
 }
 
 .border-horizontal,
 .bh {
-  border-left: $border-style;
-  border-right: $border-style;
+  border-left: none;
+  border-right: none;
 }
 
 .border-vertical,
 .bv {
-  border-top: $border-style;
-  border-bottom: $border-style;
+  border-top: none;
+  border-bottom: none;
 }
 
 .error {

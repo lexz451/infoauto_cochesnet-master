@@ -5,7 +5,7 @@
 
             <form name="loginForm" novalidate>
                 <md-input-container class="md-block" md-no-float>
-                    <input name="username" data-ng-model="vm.username" placeholder="{{'Email o nombre de usario' | translate}}" required>
+                    <input name="username" data-ng-model="vm.username" placeholder="{{'Email o nombre de usario' | translate}}" required autofocus>
                     <div ng-messages="loginForm.username.$error" role="alert" multiple>
                         <div ng-message="required">
                             <span data-translate>Este campo es obligatorio</span>

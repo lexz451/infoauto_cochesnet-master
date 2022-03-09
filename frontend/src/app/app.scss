@@ -1,3 +1,7 @@
+.ms-navigation .ms-navigation-node .ms-navigation-item > .ms-navigation-button {
+  color: #353333 !important;
+}
+
 md-dialog{
   overflow: hidden;
 }
@@ -118,12 +122,13 @@ md-input-container.md-icon-right > parameters {
 
       .search-input-black,
       .search-input {
-        background: none;
         font-size: 16px;
         line-height: 40px;
-        height: 40px;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.3);
         transition: border-color 300ms ease;
+        height: 80px;
+        background: darkblue;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
       }
 
       .search-input {
@@ -142,7 +147,7 @@ md-input-container.md-icon-right > parameters {
       md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md-select-value.md-select-placeholder,
       .md-select-value > span:not(.md-select-icon) .md-text,
       md-select.simplified .md-select-value *:first-child {
-        color: #fff;
+        color: rgb(33,33,33);
       }
 
       .md-datepicker-input{

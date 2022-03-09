@@ -17,7 +17,7 @@
                             <input class="search-input-black" type="text" placeholder="{{'Buscar' | translate }}" data-ng-model="vm.filters.search" data-flex>
                         </label>
 
-                        <md-button type="submit" class="md-raised search-button" ng-click="vm.changeFilter('search',vm.filters.search)">
+                        <md-button type="submit" class="md-raised search-button" style="border-radius: 0.428rem;" ng-click="vm.changeFilter('search',vm.filters.search)">
                             <md-icon md-font-icon="icon-magnify" class="icon"></md-icon>
                         </md-button>
                     </div>
@@ -26,6 +26,7 @@
 
                 <div ng-if="vm.user.is_admin || vm.user.is_concession_admin">
                     <md-button class="md-raised md-hue-2 header-boards-button mr-40"
+                    style="border-radius: 0.428rem;"
                                ng-class="{'md-accent':!vm.leads.new.filters.with_concession}"
                                ng-click="vm.changeFilter('with_concession', null); vm.filters.user_data=[vm.user]"
                                aria-label="Mis leads">
@@ -33,6 +34,7 @@
                     </md-button>
 
                     <md-button class="md-raised md-hue-2 header-boards-button"
+                                style="border-radius: 0.428rem;"
                                ng-class="{'md-accent':vm.leads.new.filters.with_concession}"
                                ng-click="vm.changeFilter('with_concession', true); vm.filters.user_data=[]"
                                aria-label="Todos">
@@ -49,13 +51,13 @@
                   <md-icon md-font-icon="icon-alert" class="icon orange-700-fg"></md-icon>
                   <span translate>Filtros avanzados aplicados</span>
                 </p>
-                <md-button class="md-accent md-raised md-hue-2 header-boards-button"
+                <md-button class="md-accent md-raised md-hue-2 header-boards-button" style="border-radius: 0.428rem; margin-right: 3px;"
                            ng-click="vm.toggleSidenav('filters-sidenav')"
                            aria-label="Filtrar">
                     <md-icon md-font-icon="icon-filter-variant" class="icon"></md-icon>
                     <span data-translate>Filtrar</span>
                 </md-button>
-                <md-button class="md-raised md-hue-2 header-boards-button"
+                <md-button class="md-raised md-hue-2 header-boards-button" style="border-radius: 0.428rem; margin-right: 2px;"
                            ng-click="vm.getDocument()"
                            data-debouce-click
                            aria-label="Exportar">

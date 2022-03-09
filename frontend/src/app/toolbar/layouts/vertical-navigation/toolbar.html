@@ -58,7 +58,7 @@
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                        <md-button data-ng-click="vm.logout()">Cerrar sesión</md-button>
+                        <md-button data-ng-click="vm.logout()" style="border-radius: 0.428rem;">Cerrar sesión</md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
@@ -68,7 +68,7 @@
 
         <md-button data-ng-click="vm.toggleAvailable(true)"
                    ng-class="(vm.user.is_available) ? 'md-green-700-bg':'grey-300-bg'"
-                   class="md-raised white-fg available" data-debouce-click
+                   class="md-raised white-fg available bn1" data-debouce-click
                    aria-label="{{'Disponible' | translate}}">
             <span data-translate hide-xs>Disponible</span>
             <span data-translate hide-gt-xs>Disp.</span>
@@ -76,19 +76,11 @@
 
         <md-button data-ng-click="vm.toggleAvailable(false)"
                    ng-class="(!vm.user.is_available) ? 'md-warn':'grey-300-bg'"
-                   class="md-raised available" data-debouce-click
+                   class="md-raised md-primary available bn2" data-debouce-click
                    aria-label="{{'No disponible' | translate}}">
             <span data-translate hide-xs>No disponible</span>
             <span data-translate hide-gt-xs>No Disp.</span>
         </md-button>
-        <div hide-xs>
-            <span data-translate ng-if="vm.user.is_available">
-                Disponible para gestionar leads
-            </span>
-            <span data-translate ng-if="!vm.user.is_available">
-                Por favor conectate para recibir leads
-            </span>
-        </div>
     </div>
 
     <div data-layout="row" data-layout-align="start center">

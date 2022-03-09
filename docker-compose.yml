@@ -40,19 +40,19 @@ services:
       - "3333:3306"
 
   # Frontend Service 
-  #frontend:
-  #  image: infoauto-frontend
-  #  container_name: infoauto-frontend
-  #  build:
-  #    context: ./frontend
-  #    dockerfile: ./compose/Dockerfile
-  #  command: /start
-  #  restart: always
-  #  ports:
-  #    - "3000:3000"
-  #    - "3001:3001"
-  #  volumes:
-  #    - ./frontend:/code
+  frontend:
+    image: infoauto-frontend
+    container_name: infoauto-frontend
+    build:
+      context: ./frontend
+      dockerfile: ./compose/Dockerfile
+    command: /start
+    restart: always
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./frontend:/code
 
 
   # Redis Service

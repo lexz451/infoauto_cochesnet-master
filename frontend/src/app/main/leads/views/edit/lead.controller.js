@@ -7,13 +7,13 @@
 
     /** @ngInject */
     function LeadEditController($scope, currentUser, Lead, leadsService, $rootScope, provincesService, localitiesService,
-                                temperaturesService, phonesService, qualificationsService, scoresService, taskTypesService,
-                                sourcesService, $document, $stateParams, GasTypes, Tasks, tasksService, Concessionaire,
-                                clientsService, emailsService, $state, NotifyService, $mdDialog, $q, acdsService, $timeout,
-                                Source, click2callsService, LeadsIncomingCalls, LeadsOutgoingCalls, LeadsHistory, channelsService,
-                                vehiclesService, appraisalsService, usersService, LeadsActivity, originsService, gettextCatalog,
-                                leadResultsService, leadActionsService, StartCall, leadStatusService, $sce, concessionairesService,
-                                LeadsNews, LeadsAttended, LeadsCommercialManagements, LeadsTracings, LeadsEnds, DebounceService) {
+        temperaturesService, phonesService, qualificationsService, scoresService, taskTypesService,
+        sourcesService, $document, $stateParams, GasTypes, Tasks, tasksService, Concessionaire,
+        clientsService, emailsService, $state, NotifyService, $mdDialog, $q, acdsService, $timeout,
+        Source, click2callsService, LeadsIncomingCalls, LeadsOutgoingCalls, LeadsHistory, channelsService,
+        vehiclesService, appraisalsService, usersService, LeadsActivity, originsService, gettextCatalog,
+        leadResultsService, leadActionsService, StartCall, leadStatusService, $sce, concessionairesService,
+        LeadsNews, LeadsAttended, LeadsCommercialManagements, LeadsTracings, LeadsEnds, DebounceService) {
         var vm = this;
 
         // Data
@@ -24,31 +24,62 @@
         vm.isOpenFinishLeadBox = false;
         vm.concessionaire = Concessionaire;
         vm.origins = [];
-        vm.iframeAdLink=null;
+        vm.iframeAdLink = null;
 
-        vm.clientTypes=[
-            {id:'private', name:'Particular'},
-            {id:'freelance', name:'Autonomo'},
-            {id:'company', name:'Empresa'}
+        vm.clientTypes = [
+            { id: 'private', name: 'Particular' },
+            { id: 'freelance', name: 'Autonomo' },
+            { id: 'company', name: 'Empresa' }
+        ]
+
+        vm.clientSegments = [
+            { id: 'tur', name: "Turismo" },
+            { id: 'comercial', name: "Comercial" },
+            { id: 'moto', name: "Motocicleta" },
+            { id: 'other', name: "Otro" },
+        ]
+
+        vm.vehiclePurchaseMethods = [
+            { id: 'count', name: "Contado" },
+            { id: 'rent', name: "Renting" },
+            { id: 'lease', name: 'Leasing' },
+            { id: 'fin', name: 'Financiacion' }
+        ]
+
+        vm.leadStatuses = [
+            { id: 'new', name: "Leads no atendidos" },
+            { id: 'attended', name: "Leads atendidos por Comercial/Cualificado" },
+            { id: 'commercial_management', name: 'Tareas pendientes' },
+            { id: 'tracing', name: 'Seguimiento' },
+            { id: 'end', name: 'Leads cerrados' }
+        ]
+
+
+        vm.vehicleFinancialTerms = [
+            { id: 3, name: 3 }, { id: 6, name: 6 },
+            { id: 9, name: 9 }, { id: 12, name: 12 }, { id: 15, name: 15 }, { id: 18, name: 18 }, { id: 21, name: 21 }, { id: 24, name: 24 }, { id: 27, name: 27 }, { id: 30, name: 30 }, { id: 33, name: 33 }, { id: 36, name: 36 }, { id: 39, name: 39 }, { id: 42, name: 42 }, { id: 45, name: 45 }, { id: 48, name: 48 },
+            { id: 51, name: 51 }, { id: 54, name: 54 }, { id: 57, name: 57 }, { id: 60, name: 60 }, { id: 63, name: 63 }, { id: 66, name: 66 }, { id: 69, name: 69 }, { id: 72, name: 72 },
+            { id: 75, name: 75 }, { id: 78, name: 78 }, { id: 81, name: 81 }, { id: 84, name: 84 }, { id: 87, name: 87 }, { id: 90, name: 90 }, { id: 93, name: 93 }, { id: 96, name: 96 },
+            { id: 99, name: 99 }, { id: 102, name: 102 }, { id: 105, name: 105 }, { id: 108, name: 108 }, { id: 111, name: 111 }, { id: 114, name: 114 }, { id: 117, name: 117 }, { id: 120, name: 120 }
         ]
 
         // Data BOARD
         vm.board = {
-          lists: [
-            {id: 'new', name: gettextCatalog.getString('Leads no atendidos'), show: true},
-            {id: 'attended', name: gettextCatalog.getString('Leads atendidos por Comercial/Cualificado'), show: true},
-            {id: 'commercial_management', name: gettextCatalog.getString('Tareas pendientes'), show: true},
-            {id: 'tracing', name: gettextCatalog.getString('Seguimiento'), show: true},
-            {id: 'end', name: gettextCatalog.getString('Leads cerrados'), show: true}
-          ]
+            lists: [
+                { id: 'new', name: gettextCatalog.getString('Leads no atendidos'), show: true },
+                { id: 'attended', name: gettextCatalog.getString('Leads atendidos por Comercial/Cualificado'), show: true },
+                { id: 'commercial_management', name: gettextCatalog.getString('Tareas pendientes'), show: true },
+                { id: 'tracing', name: gettextCatalog.getString('Seguimiento'), show: true },
+                { id: 'end', name: gettextCatalog.getString('Leads cerrados'), show: true }
+            ]
         };
 
         vm.leads = {
-          new: LeadsNews,
-          attended: LeadsAttended,
-          commercial_management: LeadsCommercialManagements,
-          tracing: LeadsTracings,
-          end: LeadsEnds,
+            new: LeadsNews,
+            attended: LeadsAttended,
+            commercial_management: LeadsCommercialManagements,
+            tracing: LeadsTracings,
+            end: LeadsEnds,
         };
 
         vm.filters = {}
@@ -120,40 +151,40 @@
         vm.qualifications = qualificationsService.qualifications;
         vm.scores = scoresService.scores;
         vm.taskTypes = [];
-        taskTypesService.getTaskTypes(false).then(function(res){
-            vm.taskTypes=res;
-            taskTypesService.getTaskTypes(true).then(function(res){
+        taskTypesService.getTaskTypes(false).then(function (res) {
+            vm.taskTypes = res;
+            taskTypesService.getTaskTypes(true).then(function (res) {
                 vm.taskTypes = vm.taskTypes.concat(res);
             });
         });
         vm.gasTypes = GasTypes;
 
-        vm.results=leadResultsService.newLeadResults;
-        vm.resultReasons=leadResultsService.resultReasons;
+        vm.results = leadResultsService.newLeadResults;
+        vm.resultReasons = leadResultsService.resultReasons;
 
-        vm.vehicleTypes=[
-            {id:'new', name:gettextCatalog.getString('Nuevo')},
-            {id:'km0', name:gettextCatalog.getString('Km0')},
-            {id:'seminew', name:gettextCatalog.getString('Seminuevo')},
-            {id:'used', name:gettextCatalog.getString('Ocasión')}
+        vm.vehicleTypes = [
+            { id: 'new', name: gettextCatalog.getString('Nuevo') },
+            { id: 'km0', name: gettextCatalog.getString('Km0') },
+            { id: 'seminew', name: gettextCatalog.getString('Seminuevo') },
+            { id: 'used', name: gettextCatalog.getString('Ocasión') }
         ];
-        vm.comercialCategories=[
-            {id:'request_product', name:gettextCatalog.getString('Producto solicitado')},
-            {id:'offered_product', name:gettextCatalog.getString('Producto ofertado')},
+        vm.comercialCategories = [
+            { id: 'request_product', name: gettextCatalog.getString('Producto solicitado') },
+            { id: 'offered_product', name: gettextCatalog.getString('Producto ofertado') },
         ];
-        vm.requestTypes=[
-            {id:'new', name:gettextCatalog.getString('Nuevo')},
-            {id:'km0', name:gettextCatalog.getString('Kilometro 0')},
-            {id:'seminew', name:gettextCatalog.getString('Seminuevo')},
-            {id:'used', name:gettextCatalog.getString('Ocasión')},
-            {id:'management', name:gettextCatalog.getString('Gerencia')},
-            {id:'apv', name:gettextCatalog.getString('Postventa')},
-            {id:'acc', name:gettextCatalog.getString('Accesorios')}
+        vm.requestTypes = [
+            { id: 'new', name: gettextCatalog.getString('Nuevo') },
+            { id: 'km0', name: gettextCatalog.getString('Kilometro 0') },
+            { id: 'seminew', name: gettextCatalog.getString('Seminuevo') },
+            { id: 'used', name: gettextCatalog.getString('Ocasión') },
+            { id: 'management', name: gettextCatalog.getString('Gerencia') },
+            { id: 'apv', name: gettextCatalog.getString('Postventa') },
+            { id: 'acc', name: gettextCatalog.getString('Accesorios') }
         ];
 
-        vm.gearShifts=[
-            {id:'manual', name:gettextCatalog.getString('Manual')},
-            {id:'auto', name:gettextCatalog.getString('Automático')}
+        vm.gearShifts = [
+            { id: 'manual', name: gettextCatalog.getString('Manual') },
+            { id: 'auto', name: gettextCatalog.getString('Automático') }
         ];
 
         if ($stateParams.source) {
@@ -168,8 +199,8 @@
 
         if ($stateParams.user) {
             vm.lead.user = $stateParams.user;
-            usersService.getUser(vm.lead.user).then(function(user){
-                vm.lead.user_data=user;
+            usersService.getUser(vm.lead.user).then(function (user) {
+                vm.lead.user_data = user;
             });
         }
 
@@ -201,7 +232,7 @@
                         openSaveLeadDialog();
                     }, function (error) {
                         $scope.leadForm.$setPristine();
-                        $state.go(toState.name,{lead:0});
+                        $state.go(toState.name, { lead: 0 });
                     });
                 }
             }
@@ -323,7 +354,7 @@
                 reloadOrigins(vm.lead.concessionaire);
             }
 
-            if(StartCall){
+            if (StartCall) {
                 call(vm.lead);
             }
 
@@ -403,72 +434,72 @@
 
         function reloadLead(lead) {
             for (var i in lead) {
-                if(i!=='source_data' && i!=='concessionaire_data' && i!=='origin2_data'){
+                if (i !== 'source_data' && i !== 'concessionaire_data' && i !== 'origin2_data') {
                     vm.lead[i] = lead[i];
                 }
             }
-            if(!vm.lead.source_data_prov && vm.lead.source_data){
-                vm.lead.source_data_prov=vm.lead.source_data;
-                vm.lead.source=null;
+            if (!vm.lead.source_data_prov && vm.lead.source_data) {
+                vm.lead.source_data_prov = vm.lead.source_data;
+                vm.lead.source = null;
             }
 
             for (var i in vm.lead.vehicles) {
                 selectOrigin(vm.lead.vehicles[i]);
 
-                if(vm.lead.vehicles[i].brand_model){
-                    vm.lead.vehicles[i].brand_model_data={
-                        id:vm.lead.vehicles[i].brand_model.split("___")[1] || null,
-                        name:vm.lead.vehicles[i].brand_model.split("___")[0],
+                if (vm.lead.vehicles[i].brand_model) {
+                    vm.lead.vehicles[i].brand_model_data = {
+                        id: vm.lead.vehicles[i].brand_model.split("___")[1] || null,
+                        name: vm.lead.vehicles[i].brand_model.split("___")[0],
                     }
                 }
 
-                if(vm.lead.vehicles[i].model){
-                    vm.lead.vehicles[i].model_data={
-                        id:vm.lead.vehicles[i].model.split("___")[1] || null,
-                        model_name:vm.lead.vehicles[i].model.split("___")[0],
+                if (vm.lead.vehicles[i].model) {
+                    vm.lead.vehicles[i].model_data = {
+                        id: vm.lead.vehicles[i].model.split("___")[1] || null,
+                        model_name: vm.lead.vehicles[i].model.split("___")[0],
                     }
                 }
 
-                if(vm.lead.vehicles[i].version){
-                    vm.lead.vehicles[i].version_data={
-                        id:vm.lead.vehicles[i].version.split("___")[1] || null,
-                        version_name:vm.lead.vehicles[i].version.split("___")[0],
+                if (vm.lead.vehicles[i].version) {
+                    vm.lead.vehicles[i].version_data = {
+                        id: vm.lead.vehicles[i].version.split("___")[1] || null,
+                        version_name: vm.lead.vehicles[i].version.split("___")[0],
                     }
                 }
             }
 
             for (var i in vm.lead.appraisals) {
-                if(vm.lead.appraisals[i].brand){
-                    vm.lead.appraisals[i].brand_data={
-                        id:vm.lead.appraisals[i].brand.split("___")[1] || null,
-                        name:vm.lead.appraisals[i].brand.split("___")[0],
+                if (vm.lead.appraisals[i].brand) {
+                    vm.lead.appraisals[i].brand_data = {
+                        id: vm.lead.appraisals[i].brand.split("___")[1] || null,
+                        name: vm.lead.appraisals[i].brand.split("___")[0],
                     }
                 }
 
-                if(vm.lead.appraisals[i].model){
-                    vm.lead.appraisals[i].model_data={
-                        id:vm.lead.appraisals[i].model.split("___")[1] || null,
-                        model_name:vm.lead.appraisals[i].model.split("___")[0],
+                if (vm.lead.appraisals[i].model) {
+                    vm.lead.appraisals[i].model_data = {
+                        id: vm.lead.appraisals[i].model.split("___")[1] || null,
+                        model_name: vm.lead.appraisals[i].model.split("___")[0],
                     }
                 }
 
-                if(vm.lead.appraisals[i].version){
-                    vm.lead.appraisals[i].version_data={
-                        id:vm.lead.appraisals[i].version.split("___")[1] || null,
-                        version_name:vm.lead.appraisals[i].version.split("___")[0],
+                if (vm.lead.appraisals[i].version) {
+                    vm.lead.appraisals[i].version_data = {
+                        id: vm.lead.appraisals[i].version.split("___")[1] || null,
+                        version_name: vm.lead.appraisals[i].version.split("___")[0],
                     }
                 }
             }
 
-            if(vm.lead.vehicles && vm.lead.vehicles[0] && vm.lead.vehicles[0].ad_link){
-                vm.iframeAdLink=vm.lead.vehicles[0].ad_link
+            if (vm.lead.vehicles && vm.lead.vehicles[0] && vm.lead.vehicles[0].ad_link) {
+                vm.iframeAdLink = vm.lead.vehicles[0].ad_link
             }
 
             for (var i in vm.lead.appraisals) {
-                vm.lead.appraisals[i].circulation_date=vm.lead.appraisals[i].circulation_date? new Date(moment(vm.lead.appraisals[i].circulation_date).format()) : null;
-                vm.lead.appraisals[i].buy_date=vm.lead.appraisals[i].buy_date? new Date(moment(vm.lead.appraisals[i].buy_date).format()) : null;
-                vm.lead.appraisals[i].registration_date=vm.lead.appraisals[i].registration_date? new Date(moment(vm.lead.appraisals[i].registration_date).format()) : null;
-                vm.lead.appraisals[i].last_mechanic_date=vm.lead.appraisals[i].last_mechanic_date? new Date(moment(vm.lead.appraisals[i].last_mechanic_date).format()) : null;
+                vm.lead.appraisals[i].circulation_date = vm.lead.appraisals[i].circulation_date ? new Date(moment(vm.lead.appraisals[i].circulation_date).format()) : null;
+                vm.lead.appraisals[i].buy_date = vm.lead.appraisals[i].buy_date ? new Date(moment(vm.lead.appraisals[i].buy_date).format()) : null;
+                vm.lead.appraisals[i].registration_date = vm.lead.appraisals[i].registration_date ? new Date(moment(vm.lead.appraisals[i].registration_date).format()) : null;
+                vm.lead.appraisals[i].last_mechanic_date = vm.lead.appraisals[i].last_mechanic_date ? new Date(moment(vm.lead.appraisals[i].last_mechanic_date).format()) : null;
             }
         }
 
@@ -493,18 +524,18 @@
 
         function openSaveLeadDialog() {
             vm.leadAction.date = undefined;
-            
+
             return saveLead(false).then(function (response) {
                 $scope.leadForm.$setPristine();
                 reloadLead(response);
 
                 for (var i = 0; i < response.request.task.length; i++) {
-                    if (!vm.leadAction.date && new Date() <= moment(response.request.task[i].planified_realization_date) ) {
+                    if (!vm.leadAction.date && new Date() <= moment(response.request.task[i].planified_realization_date)) {
                         vm.leadAction.date = moment(response.request.task[i].planified_realization_date);
                     }
 
                     if (moment(response.request.task[i].planified_realization_date) < vm.leadAction.date && new Date() <= vm.leadAction.date) {
-                        vm.leadAction.date =  moment(response.request.task[i].planified_realization_date)
+                        vm.leadAction.date = moment(response.request.task[i].planified_realization_date)
                     }
                 }
 
@@ -520,6 +551,7 @@
 
                     }, function (error) {
                         vm.serverErrors = error.data;
+                        console.log($scope.leadForm)
                         NotifyService.errorMessage(gettextCatalog.getString("Error al guardar el Lead.") + " " + (error.data.non_field_errors || ""));
                     });
                 }
@@ -541,36 +573,36 @@
                 delete lead.request;
             }
 
-            var err={};
-            if(!lead.concessionaire_data || !lead.concessionaire_data.id){
-               err.concessionaire= ["Este campo es requerido."];
+            var err = {};
+            if (!lead.concessionaire_data || !lead.concessionaire_data.id) {
+                err.concessionaire = ["Este campo es requerido."];
             }
-            if(!lead.source_data || !lead.source_data.origin_data || !lead.source_data.origin_data.id){
-                err.origin= ["Este campo es requerido."];
+            if (!lead.source_data || !lead.source_data.origin_data || !lead.source_data.origin_data.id) {
+                err.origin = ["Este campo es requerido."];
             }
-            if(!lead.source_data || !lead.source_data.channel_data || !lead.source_data.channel_data.id){
-                err.channel= ["Este campo es requerido."];
+            if (!lead.source_data || !lead.source_data.channel_data || !lead.source_data.channel_data.id) {
+                err.channel = ["Este campo es requerido."];
             }
-            if(!lead.source_data_prov || !lead.source_data_prov.id){
-                err.source= ["Este campo es requerido."];
+            if (!lead.source_data_prov || !lead.source_data_prov.id) {
+                err.source = ["Este campo es requerido."];
             }
-            if(err.concessionaire || err.origin || err.channel || err.source){
+            if (err.concessionaire || err.origin || err.channel || err.source) {
                 vm.serverErrors = err;
                 NotifyService.errorMessage(gettextCatalog.getString("Error al guardar el informe."));
                 deferred.reject(err);
                 return deferred.promise;
             }
 
-            if(lead.origin2_data && lead.origin2_data.id){
-                lead.origin2=lead.origin2_data.id;
-            }else{
-                lead.origin2=null;
+            if (lead.origin2_data && lead.origin2_data.id) {
+                lead.origin2 = lead.origin2_data.id;
+            } else {
+                lead.origin2 = null;
             }
 
-            if(lead.channel2_data && lead.channel2_data.id){
-                lead.channel2=lead.channel2_data.id;
-            }else{
-                lead.channel2=null;
+            if (lead.channel2_data && lead.channel2_data.id) {
+                lead.channel2 = lead.channel2_data.id;
+            } else {
+                lead.channel2 = null;
             }
             delete lead.status;
 
@@ -600,7 +632,7 @@
                         }
                         $rootScope.loadingProgress = false;
                         NotifyService.successMessage(gettextCatalog.getString("Informe guardado correctamente"));
-                        vm.serverErrors=null;
+                        vm.serverErrors = null;
                         deferred.resolve(response);
                     }, function (error) {
                         console.log(error);
@@ -629,7 +661,7 @@
                     }
                     $rootScope.loadingProgress = false;
                     NotifyService.successMessage(gettextCatalog.getString("Informe guardado correctamente"));
-                    vm.serverErrors=null;
+                    vm.serverErrors = null;
                     deferred.resolve(response);
                 }, function (error) {
                     vm.serverErrors = error.data;
@@ -656,12 +688,12 @@
 
                 return leadsService.saveLead(obj).then(function (res) {
                     NotifyService.successMessage(gettextCatalog.getString("Acción realizada correctamente"));
-                    vm.lead.status_dates=res.status_dates;
-                    vm.lead.status_new_datetime=res.status_new_datetime;
-                    vm.lead.status_pending_datetime=res.status_pending_datetime;
-                    vm.lead.status_attended_datetime=res.status_attended_datetime;
-                    vm.lead.status_tracing_datetime=res.status_tracing_datetime;
-                    vm.lead.status_end_datetime=res.status_end_datetime;
+                    vm.lead.status_dates = res.status_dates;
+                    vm.lead.status_new_datetime = res.status_new_datetime;
+                    vm.lead.status_pending_datetime = res.status_pending_datetime;
+                    vm.lead.status_attended_datetime = res.status_attended_datetime;
+                    vm.lead.status_tracing_datetime = res.status_tracing_datetime;
+                    vm.lead.status_end_datetime = res.status_end_datetime;
                 }, function (error) {
                     lead.status = oldStatus;
                     vm.serverErrors = error.data;
@@ -763,7 +795,7 @@
          * Muestra el cuadro con las opciones de cierre de lead
          */
         function openFinishLeadBox() {
-            vm.isOpenFinishLeadBox=true;
+            vm.isOpenFinishLeadBox = true;
             /*vm.lead={
                 result:null,
                 result_reason:null,
@@ -776,7 +808,7 @@
          * Añade una nota
          */
         function addNote() {
-            vm.lead.note.push({content: '', modified: new Date()});
+            vm.lead.note.push({ content: '', modified: new Date() });
         }
 
         /**
@@ -806,7 +838,7 @@
          * Añade un tag
          */
         function addTag() {
-            vm.lead.tags.push({content: '', modified: new Date()});
+            vm.lead.tags.push({ content: '', modified: new Date() });
         }
 
         /**
@@ -839,11 +871,11 @@
          * @param task
          */
         function openTaskDialog(ev, tracing, task) {
-            if(!vm.lead.id){
+            if (!vm.lead.id) {
                 $rootScope.loadingProgress = true;
                 leadsService.saveLead(vm.lead).then(function (response) {
-                    vm.lead.id=response.id;
-                    vm.lead.request=response.request;
+                    vm.lead.id = response.id;
+                    vm.lead.request = response.request;
                     vm.openTaskDialog(ev, tracing, task);
                     $rootScope.loadingProgress = false;
                 }, function (error) {
@@ -921,9 +953,9 @@
         /* Localidades */
         function getLocalities(searchText) {
             var deferred = $q.defer();
-            var province=null;
-            if(vm.lead.client.province_data){
-                province=vm.lead.client.province_data.id;
+            var province = null;
+            if (vm.lead.client.province_data) {
+                province = vm.lead.client.province_data.id;
             }
             localitiesService.getLocalities(province, searchText).then(function (localities) {
                 var results = searchText ? localities.filter(createFilterFor(searchText)) : localities;
@@ -967,17 +999,17 @@
         }
 
         function getFullNameVersion(version) {
-          return version.version_name+' '+(version.motor || '')+' '+(version.engine_power || '');
+            return version.version_name + ' ' + (version.motor || '') + ' ' + (version.engine_power || '');
         }
 
         /* Change Version */
         function changeVehicleVersion(vehicle, power, gas) {
-            if(vehicle.version_data){
-                if(vehicle.version_data.engine_power){
-                    vehicle[power]=vehicle.version_data.engine_power;
+            if (vehicle.version_data) {
+                if (vehicle.version_data.engine_power) {
+                    vehicle[power] = vehicle.version_data.engine_power;
                 }
-                if(vehicle.version_data.gas_type_data && vehicle.version_data.gas_type_data.id){
-                    vehicle[gas]=vehicle.version_data.gas_type_data.id;
+                if (vehicle.version_data.gas_type_data && vehicle.version_data.gas_type_data.id) {
+                    vehicle[gas] = vehicle.version_data.gas_type_data.id;
                 }
             }
         }
@@ -1024,9 +1056,9 @@
         function completeAddress() {
             localitiesService.getLocalitiesByCodPostal(vm.lead.client.postal_code).then(function (localities) {
                 console.log(localities);
-                if(localities && localities[0]){
-                    vm.lead.client.location_data=localities[0];
-                    vm.lead.client.province_data=localities[0].province;
+                if (localities && localities[0]) {
+                    vm.lead.client.location_data = localities[0];
+                    vm.lead.client.province_data = localities[0].province;
                 }
             });
         }
@@ -1034,19 +1066,19 @@
         /* Concesionarios */
         function getConcessionaires(searchText) {
             var deferred = $q.defer();
-            if(vm.lead.user_data && vm.lead.user_data.id){
-                usersService.getUser(vm.lead.user_data.id).then(function(user){
-                    var concessionaires=user.related_concessionaires.map(function(related_concessionaire) {
+            if (vm.lead.user_data && vm.lead.user_data.id) {
+                usersService.getUser(vm.lead.user_data.id).then(function (user) {
+                    var concessionaires = user.related_concessionaires.map(function (related_concessionaire) {
                         return related_concessionaire.concessionaire_data;
                     });
                     var results = searchText ? concessionaires.filter(createFilterFor(searchText)) : concessionaires;
                     deferred.resolve(results);
                 });
-            }else{
-                concessionairesService.concessionaires.filters={};
-                concessionairesService.concessionaires.filters.search=searchText;
-                concessionairesService.concessionaires.filters.page_size="all";
-                concessionairesService.getConcessionaires().then(function(concessionaires){
+            } else {
+                concessionairesService.concessionaires.filters = {};
+                concessionairesService.concessionaires.filters.search = searchText;
+                concessionairesService.concessionaires.filters.page_size = "all";
+                concessionairesService.getConcessionaires().then(function (concessionaires) {
                     deferred.resolve(concessionaires.data);
                 });
             }
@@ -1056,17 +1088,17 @@
         /* Orígenes */
         function getOrigins(searchText, concessionaire) {
             var deferred = $q.defer();
-            if(concessionaire) {
-                var originsIds=Array.from(new Set(concessionaire.sources.map(function(s) { return s.origin })));
-                var origins=originsIds.map(function(origin) {
-                    var t=concessionaire.sources.find(function(s) { return s.origin===origin });
-                    if(t) {
+            if (concessionaire) {
+                var originsIds = Array.from(new Set(concessionaire.sources.map(function (s) { return s.origin })));
+                var origins = originsIds.map(function (origin) {
+                    var t = concessionaire.sources.find(function (s) { return s.origin === origin });
+                    if (t) {
                         return t.origin_data;
                     }
                 });
                 var results = searchText ? origins.filter(createFilterFor(searchText)) : origins;
                 deferred.resolve(results);
-            }else{
+            } else {
                 deferred.resolve([]);
             }
             return deferred.promise;
@@ -1075,7 +1107,7 @@
         /* Todos los Orígenes */
         function getAllOrigins(searchText) {
             var deferred = $q.defer();
-            originsService.getAllOrigins(searchText).then(function(origins){
+            originsService.getAllOrigins(searchText).then(function (origins) {
                 deferred.resolve(origins);
             });
             return deferred.promise;
@@ -1084,15 +1116,15 @@
         /* Canales */
         function getChannels(searchText, concessionaire, origin) {
             var deferred = $q.defer();
-            if(concessionaire && origin) {
+            if (concessionaire && origin) {
                 var channelsIds = Array.from(new Set(concessionaire.sources.map(function (s) {
                     return s.channel
                 })));
                 var channels = channelsIds.map(function (channel) {
-                    var t=concessionaire.sources.find(function (s) {
+                    var t = concessionaire.sources.find(function (s) {
                         return (s.channel === channel && s.origin === origin.id)
                     })
-                    if(t){
+                    if (t) {
                         return t.channel_data;
                     }
                 }).filter(function (el) {
@@ -1100,64 +1132,64 @@
                 });
                 var results = searchText ? channels.filter(createFilterFor(searchText)) : channels;
                 deferred.resolve(results);
-            }else{
+            } else {
                 deferred.resolve([]);
             }
             return deferred.promise;
         }
 
         /* Todos los Canales */
-        function getAllChannels(searchText,origin) {
+        function getAllChannels(searchText, origin) {
             var deferred = $q.defer();
 
-            if(origin && origin.available_channels_data.length>0){
+            if (origin && origin.available_channels_data.length > 0) {
                 deferred.resolve(origin.available_channels_data);
-            }else{
+            } else {
                 deferred.resolve([]);
             }
             return deferred.promise;
         }
 
         function changeChannel(concessionaire, origin, channel) {
-            if(channel){
-                var sourcesIds=Array.from(new Set(concessionaire.sources.map(function(s) {return s.id})));
-                var sources=sourcesIds.map(function(source) {
-                    return concessionaire.sources.find(function(s) {
-                        return (s.id===source && s.origin===origin.id && s.channel===channel.id)
+            if (channel) {
+                var sourcesIds = Array.from(new Set(concessionaire.sources.map(function (s) { return s.id })));
+                var sources = sourcesIds.map(function (source) {
+                    return concessionaire.sources.find(function (s) {
+                        return (s.id === source && s.origin === origin.id && s.channel === channel.id)
                     });
                 }).filter(function (el) {
                     return el != null;
                 });
 
-                if(sources.length===1){
-                    vm.lead.source_data_prov=sources[0];
+                if (sources.length === 1) {
+                    vm.lead.source_data_prov = sources[0];
                 }
             }
         }
 
-      function getExposicion() {
-        return {
-          id: 4,
-          name: "Presencial",
-          slug: "presencial"
+        function getExposicion() {
+            return {
+                id: 4,
+                name: "Presencial",
+                slug: "presencial"
+            }
         }
-      }
 
         /* Sources */
         function getSources(searchText, concessionaire, origin, channel) {
             var deferred = $q.defer();
-            if(concessionaire && origin && channel){
-                var sourcesIds=Array.from(new Set(concessionaire.sources.map(function(s) {return s.id})));
-                var sources=sourcesIds.map(function(source) {
-                    return concessionaire.sources.find(function(s) {
-                        return (s.id===source && s.origin===origin.id && s.channel===channel.id)
+            if (concessionaire && origin && channel) {
+                var sourcesIds = Array.from(new Set(concessionaire.sources.map(function (s) { return s.id })));
+                var sources = sourcesIds.map(function (source) {
+                    return concessionaire.sources.find(function (s) {
+                        return (s.id === source && s.origin === origin.id && s.channel === channel.id)
                     });
                 }).filter(function (el) {
                     return el != null;
                 });
                 var results = searchText ? sources.filter(createFilterFor(searchText)) : sources;
                 deferred.resolve(results);
-            }else{
+            } else {
                 deferred.resolve([]);
             }
             return deferred.promise;
@@ -1340,8 +1372,8 @@
         }
 
         function eventClientBlur() {
-            if(vm.lead.client.phone && vm.lead.client.phone==='+34'){
-                vm.lead.client.phone='';
+            if (vm.lead.client.phone && vm.lead.client.phone === '+34') {
+                vm.lead.client.phone = '';
             }
             if (vm.lead.client.phone && vm.lead.client.phone.length > 8) {
                 changeFilter("client__phone__icontains", vm.lead.client.phone);
@@ -1355,9 +1387,9 @@
         }
 
         function setExtension() {
-          if(!vm.lead.client.phone || vm.lead.client.phone===''){
-            vm.lead.client.phone='+34';
-          }
+            if (!vm.lead.client.phone || vm.lead.client.phone === '') {
+                vm.lead.client.phone = '+34';
+            }
         }
 
         /**
@@ -1367,19 +1399,19 @@
             // Create a new deferred object
             var deferred = $q.defer();
 
-            if(!angular.element(document.body).hasClass('md-dialog-is-showing') && vm.leads.new.filters.id_excluded>=0){
-              if(((vm.lead.client.phone && vm.lead.client.phone.length > 8) || (vm.lead.client.email && vm.lead.client.email.length > 5)) &&
-                (vm.leads.new.count>0 || vm.leads.attended.count>0 || vm.leads.commercial_management.count>0 || vm.leads.tracing.count>0 || vm.leads.end.count>0)){
+            if (!angular.element(document.body).hasClass('md-dialog-is-showing') && vm.leads.new.filters.id_excluded >= 0) {
+                if (((vm.lead.client.phone && vm.lead.client.phone.length > 8) || (vm.lead.client.email && vm.lead.client.email.length > 5)) &&
+                    (vm.leads.new.count > 0 || vm.leads.attended.count > 0 || vm.leads.commercial_management.count > 0 || vm.leads.tracing.count > 0 || vm.leads.end.count > 0)) {
 
-                $mdDialog.show(
-                  $mdDialog.alert()
-                    .ok(gettextCatalog.getString('OK'))
-                    .textContent(
-                    gettextCatalog.getString("¡¡Atención existen registros con los mismos datos de contacto revisa sección Coincidentes antes de generar duplicados!!")
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                            .ok(gettextCatalog.getString('OK'))
+                            .textContent(
+                                gettextCatalog.getString("¡¡Atención existen registros con los mismos datos de contacto revisa sección Coincidentes antes de generar duplicados!!")
+                            )
+                            .multiple(false)
                     )
-                    .multiple(false)
-                )
-              }
+                }
             }
 
             deferred.resolve(true);
@@ -1508,10 +1540,10 @@
          */
         function addAppraisal() {
             vm.lead.appraisals.push({
-                circulation_date:null,
-                buy_date:null,
-                registration_date:null,
-                last_mechanic_date:null
+                circulation_date: null,
+                buy_date: null,
+                registration_date: null,
+                last_mechanic_date: null
             });
         }
 
@@ -1578,7 +1610,7 @@
          * @param task
          */
         function saveTask(task) {
-            if(task.id){
+            if (task.id) {
                 var obj = {
                     id: task.id,
                     realization_date: new Date(),
@@ -1590,7 +1622,7 @@
                 }, function (error) {
                     NotifyService.errorMessage(gettextCatalog.getString("Error al realizar la solicitud.") + " " + (error.data.non_field_errors || ""));
                 });
-            }else{
+            } else {
                 task.realization_date = new Date();
                 task.realization_date_check = true;
             }
@@ -1639,11 +1671,11 @@
          * @param value
          */
         function changeFilter(key, value) {
-          vm.filters[key] = value;
-          for (var i in vm.leads) {
-            vm.leads[i].filters.page = 1;
-            vm.leads[i].filters[key] = value;
-          }
+            vm.filters[key] = value;
+            for (var i in vm.leads) {
+                vm.leads[i].filters.page = 1;
+                vm.leads[i].filters[key] = value;
+            }
         }
     }
 })();

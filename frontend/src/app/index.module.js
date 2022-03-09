@@ -39,7 +39,7 @@
             'app.dashboard',
 
             // Metrics
-            'app.metrics',
+            //'app.metrics',
 
             // Informes
             'app.leads',
