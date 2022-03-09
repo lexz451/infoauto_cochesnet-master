@@ -1,0 +1,55 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="originForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+                
+                <md-input-container flex="100">
+                    <input type="text" name="name" data-ng-model="vm.origin.name"
+                           placeholder="{{'Nombre' | translate}}" required md-autofocus>
+                    <error-messages field="originForm.name" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+
+                <md-input-container>
+                    <label data-translate>Canales permitidos</label>
+                    <md-select ng-model="vm.origin.available_channels" multiple>
+                        <md-option ng-repeat="channel in vm.channels" ng-value="channel.id">
+                            {{channel.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+                <p data-translate>Icono:</p>
+                <md-input-container flex="100" class="mt-0">
+                    <md-button ng-click="vm.openFiles(originForm)" class="md-accent md-raised" aria-label="{{'Añadir icono' | translate}}">
+                        <span ng-if="!vm.origin.icon" data-translate>Añadir icono</span>
+                        <span ng-if="vm.origin.icon" data-translate>Editar icono</span>
+                    </md-button>
+                    <input type="file" id="image-uploader" name="icon" data-ng-model="vm.origin.icon" ng-show="false">
+                    <error-messages field="originForm.icon" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+                <div>
+                    <img ng-if="vm.origin.icon" ng-src="{{ vm.origin.icon }}"/>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveOrigin()" class="send-button md-accent md-raised"
+                           data-ng-disabled="originForm.$invalid || originForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

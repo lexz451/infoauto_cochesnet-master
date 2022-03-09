@@ -1,0 +1,104 @@
+version: '3'
+
+services:
+
+  # Backend Service
+  backend: &backend
+    image: infoauto-backend
+    container_name: infoauto-backend
+    build:
+      context: ./backend/infoauto
+      dockerfile: ./compose/Dockerfile
+    restart: always
+    command: /start
+    volumes:
+      - ./backend/infoauto:/code
+      - /app/.ipython
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.mysql
+
+  # Database Service
+  db:
+    container_name: infoauto-database
+    build:
+      context: ./db
+      dockerfile: ./compose/Dockerfile
+    env_file:
+      - ./.envs/.local/.mysql
+    
+    restart: on-failure
+    volumes:
+     - mysql-data:/var/lib/mysql
+     - ./db/compose/sql:/sql
+    ports:
+      - "3333:3306"
+
+  # Frontend Service 
+  #frontend:
+  #  image: infoauto-frontend
+  #  container_name: infoauto-frontend
+  #  build:
+  #    context: ./frontend
+  #    dockerfile: ./compose/Dockerfile
+  #  command: /start
+  #  restart: always
+  #  ports:
+  #    - "3000:3000"
+  #    - "3001:3001"
+  #  volumes:
+  #    - ./frontend:/code
+
+
+  # Redis Service
+  redis:
+    image: redis:5.0.3-alpine
+    container_name: infoauto-redis
+    restart: on-failure
+
+  # Phpmyadmin sql web client Service
+  phpmyadmin:
+    container_name: infoauto-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: db
+    env_file:
+      - ./.envs/.local/.mysql
+    depends_on:
+      - db
+
+  # Celery worker Service
+  celeryworker:
+    <<: *backend
+    container_name: infoauto-celeryworker
+    image: infoauto_celeryworker
+    ports: []
+    command: celery -A infoauto.taskapp.celery worker -l INFO
+
+  # Celery beat Service
+  celerybeat:
+    <<: *backend
+    container_name: infoauto-celerybeat
+    image: infoauto_celerybeat
+    ports: []
+    command: celery -A infoauto.taskapp.celery beat -l INFO --pidfile="/tmp/celerybeat.pid"
+    
+  # Celery flower web client
+  flower:
+    <<: *backend
+    container_name: infoauto-celeryflower
+    image: infoauto_flower
+    ports:
+      - "5555:5555"
+    command: celery flower --broker=redis://redis:6379
+
+volumes:
+  mysql-data:

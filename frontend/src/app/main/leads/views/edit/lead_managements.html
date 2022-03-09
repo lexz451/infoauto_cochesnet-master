@@ -1,0 +1,73 @@
+<div layout="column" layout-align="space-between start" class="mb-20 md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <span>Lead managements</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding data-layout-xs="column" data-layout="row" data-layout-align="space-between center" layout-wrap class="fullwidth">
+
+        <div class="todo-item" layout="row" layout-align="start center"
+             ng-repeat="lead_management in vm.lead.lead_managements">
+
+            <div layout="row" layout-align="start center" flex>
+
+                <div class="info" flex="auto">
+                    <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                        <div layout="row" layout-align="space-between center">
+
+                            <div>
+                                <div class="mb-5">
+                                    <span class="title">{{lead_management.message}}</span>
+                                </div>
+
+                                <div class="tags" layout="row" layout-align="start center" layout-wrap>
+
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-account" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            {{lead_management.user_data.first_name}}
+                                            {{lead_management.user_data.last_name}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span translate>Fecha:</span>
+                                            {{lead_management.created | date:'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span translate>Hora:</span>
+                                            {{lead_management.created | date:'HH:mm'}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tag white-fg" layout="row" layout-align="start center" style="background:{{status.color}}"
+                                         ng-repeat="status in vm.leadStatus" ng-if="status.id===lead_management.status">
+                                        <md-icon md-font-icon="icon-tag" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span>
+                                                {{status.name}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </md-content>
+</div>

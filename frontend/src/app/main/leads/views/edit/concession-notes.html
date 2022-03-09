@@ -1,0 +1,67 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-document" class="black-fg no-margin"></md-icon>
+                <span data-translate>Notas</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div data-layout="column" data-layout-align="start start" layout-wrap class="fullwidth">
+
+        <div layout="column" layout-align="space-between start" class="fullwidth p-20">
+
+            <div class="no-results text-center" ng-if="concessionaire.notes_data.length == 0">
+
+                <div class="message">
+                    <md-icon class="message-icon s96" md-font-icon="icon-document"></md-icon>
+                    <div class="message-text" translate>Sin notas añadidas</div>
+                </div>
+
+            </div>
+
+            <div ng-repeat="note in concessionaire.notes_data" layout="row" layout-wrap class="fullwidth" ng-init="note.historyShow=false">
+                <div flex="80">
+
+                    <div class="fullwidth">
+                        <div class="mb-10">
+                            <md-icon md-font-icon="icon-calendar"></md-icon>
+                            <span>{{ note.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                        </div>
+                        <div class="mb-20">{{ note.content }}</div>
+                    </div>
+
+                    <div class="pl-50" ng-show="note.historyShow">
+                        <div ng-repeat="history in note.history">
+                            <div class="mb-10">
+                                <md-icon md-font-icon="icon-calendar"></md-icon>
+                                <span>{{ history.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                            </div>
+                            <div class="mb-20">{{ history.content }}</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div flex="20">
+                    <md-button ng-click="note.historyShow=!note.historyShow" ng-if="note.history.length>0"
+                               class="md-fab md-mini md-accent" aria-label="{{'Ver historial' | translate}}">
+                        <md-icon md-font-icon="icon-history"></md-icon>
+                        <md-tooltip>
+                            <span data-translate>Ver historial</span>
+                        </md-tooltip>
+                    </md-button>
+                    <md-button ng-click="vm.deleteNote(note)" ng-hide="vm.isDisabled()" ng-if="!note.id"
+                               class="md-fab md-mini md-warn" aria-label="{{'Borrar nota' | translate}}">
+                        <md-icon md-font-icon="icon-delete"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

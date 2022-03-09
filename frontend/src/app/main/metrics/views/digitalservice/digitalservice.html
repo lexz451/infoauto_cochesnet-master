@@ -1,0 +1,107 @@
+<div id="digitalService">
+  <h2>Niveles de servicio digital</h2>
+  <!-- Leads digitales -->
+  <div>
+    <p class="text-bold secondary-text" translate> Leads digitales</p>
+    <div>
+      <div class="md-accent-fg font-size-26 pl-40">
+        {{vm.digitalService.data.totales.total}}
+      </div>
+      <div>
+        <p class="pl-40 secondary-text"><span translate>No contactados:</span>{{vm.digitalService.data.totales.no_atendidas}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leads canal digital con teléfono -->
+  <div class="no-atendidas mt-40">
+    <p class="text-bold secondary-text" translate>Leads canal digital con teléfono</p>
+    <div ng-if="!vm.metrics.loading && vm.digitalService.data.con_telefono">
+      <div class="card" ng-init="vm.getChart()">
+        <div ng-if="vm.digitalService.data.con_telefono.con_llamadas>0 || vm.digitalService.data.con_telefono.sin_llamadas>0">
+          <chartist class="ct-chart ct-golden-section" chartist-data="vm.donutChartDigital.data" chartist-chart-type="Pie"
+                    chartist-events="vm.donutChartDigital.events" chartist-chart-options="vm.donutChartDigital.options"></chartist>
+        </div>
+        <div class="foot">
+          <div class="item">
+            <div class="box emitidas"></div>
+            <div translate class="mr-40">LLamadas emitidas</div>
+            <div class="mr-40">{{vm.digitalService.data.con_telefono.con_llamadas}}</div>
+            <div ng-if="vm.digitalService.data.con_telefono.con_llamadas>0">{{vm.digitalService.data.con_telefono.con_llamadas_percentage}}%</div>
+          </div>
+          <div class="item">
+            <div class="box sin-llamadas"></div>
+            <div translate class="w-110 mr-40">Sin llamadas</div>
+            <div class="mr-40">{{vm.digitalService.data.con_telefono.sin_llamadas}}</div>
+            <div ng-if="vm.digitalService.data.con_telefono.sin_llamadas>0">{{vm.digitalService.data.con_telefono.sin_llamadas_percentage}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- ASA leads contactados telefónicamente -->
+  <div class="mt-40">
+    <p class="text-bold secondary-text" translate>ASA leads contactados telefónicamente</p>
+    <div ng-if="!vm.metrics.loading">
+      <div class="md-accent-fg font-size-26 pl-40">
+        <div>{{vm.digitalService.data.asa.tiempo.hour}} Horas</div>
+        <div>{{vm.digitalService.data.asa.tiempo.minute}} Minutos</div>
+        <div>{{vm.digitalService.data.asa.tiempo.second}} Segundos</div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- Leads atendidos en menos de una hora -->
+  <div class="mt-40">
+    <p class="text-bold secondary-text" translate>Leads atendidos en menos de una hora</p>
+    <div ng-if="!vm.metrics.loading">
+      <div class="md-accent-fg font-size-26 pl-40">
+        <div>{{vm.digitalService.data.asa.menos_una_hora_percentage}}%</div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- users -->
+  <div class="users mt-40">
+    <table class="dataTable row-border hover">
+      <thead>
+      <tr>
+        <th>Asignado a</th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({without_outgoing_calls:false, client__phone__isnull:false, source__channel_id__in:'2,3,7,5,9,10,11,8', with_concession:true},vm.metrics.filters))" target="_blank">
+            Llamadas emitidas
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({without_outgoing_calls:true, client__phone__isnull:false, source__channel_id__in:'2,3,7,5,9,10,11,8', with_concession:true},vm.metrics.filters))" target="_blank">
+            Sin llamadas
+          </a>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="user in vm.digitalService.data.asignados">
+        <td>{{user.asignado}}</td>
+        <td>
+          <span>{{user.con_llamadas}}</span>
+        </td>
+        <td>
+          <span>{{user.sin_llamadas}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

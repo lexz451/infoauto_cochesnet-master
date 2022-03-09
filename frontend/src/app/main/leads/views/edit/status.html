@@ -1,0 +1,105 @@
+<div class="content-status-lead">
+
+    <div class="step step-new" ng-class="{'active': vm.lead.status_new_datetime }">
+        <div class="content-circle">
+            <div class="circle" ng-click="vm.changeStatus(vm.lead,'new')">
+                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="text" layout="column" data-layout-align="start center" hide-xs>
+            <span translate>Lead no atendido</span>
+            <div data-layout="row" data-layout-align="center center">
+                <md-button data-layout="column" class="md-icon-button" data-layout-align="start center"
+                           ng-if="vm.lead.status_new_datetime" ng-click="vm.openLeadStatusDateDialog($event, vm.lead, 'status_new_datetime')">
+                    <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-calendar"></md-icon>
+
+                </md-button>
+                <span>{{vm.lead.status_new_datetime | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </div>
+
+     <div class="step step-attended" ng-class="{'active': vm.lead.status_attended_datetime }">
+        <div class="content-circle">
+            <div class="circle" ng-click="vm.changeStatus(vm.lead,'attended')">
+                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+         <div class="text" layout="column" data-layout-align="start center" hide-xs>
+             <span translate>Lead atendido por comercial</span>
+             <div data-layout="row" data-layout-align="center center">
+                 <md-button data-layout="column" class="md-icon-button" data-layout-align="start center"
+                            ng-if="vm.lead.status_attended_datetime" ng-click="vm.openLeadStatusDateDialog($event, vm.lead, 'status_attended_datetime')">
+                     <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-calendar"></md-icon>
+
+                 </md-button>
+                 <span>{{vm.lead.status_attended_datetime | date:'dd/MM/yyyy HH:mm'}}</span>
+             </div>
+         </div>
+    </div>
+
+
+    <div class="step step-pending" ng-class="{'active': vm.lead.status_pending_datetime}">
+        <div class="content-circle">
+            <div class="circle" ng-click="vm.changeStatus(vm.lead,'commercial_management')">
+                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="text" layout="column" data-layout-align="start center" hide-xs>
+            <span translate>Tareas pendientes</span>
+            <div data-layout="row" data-layout-align="center center">
+                <md-button data-layout="column" class="md-icon-button" data-layout-align="start center"
+                           ng-if="vm.lead.status_pending_datetime" ng-click="vm.openLeadStatusDateDialog($event, vm.lead, 'status_pending_datetime')">
+                    <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-calendar"></md-icon>
+
+                </md-button>
+                <span>{{vm.lead.status_pending_datetime | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step step-tracing" ng-class="{'active': vm.lead.status_tracing_datetime}">
+        <div class="content-circle">
+            <div class="circle" ng-click="vm.changeStatus(vm.lead,'tracing')">
+                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="text" layout="column" data-layout-align="start center" hide-xs>
+            <span translate>Seguimiento</span>
+            <div data-layout="row" data-layout-align="center center">
+                <md-button data-layout="column" class="md-icon-button" data-layout-align="start center"
+                           ng-if="vm.lead.status_tracing_datetime" ng-click="vm.openLeadStatusDateDialog($event, vm.lead, 'status_tracing_datetime')">
+                    <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-calendar"></md-icon>
+
+                </md-button>
+                <span>{{vm.lead.status_tracing_datetime | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="step step-end" ng-class="{'active': vm.lead.status_end_datetime}">
+        <div class="content-circle">
+            <div class="circle" ng-click="vm.changeStatus(vm.lead,'end')" ng-class="{'pointer': vm.lead.id}">
+                <md-icon md-font-icon="icon-close"></md-icon>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="text" layout="column" data-layout-align="start center" hide-xs>
+            <span translate>Lead cerrado</span>
+            <div data-layout="row" data-layout-align="center center">
+                <md-button data-layout="column" class="md-icon-button" data-layout-align="start center"
+                           ng-if="vm.lead.status_end_datetime" ng-click="vm.openLeadStatusDateDialog($event, vm.lead, 'status_end_datetime')">
+                    <md-icon title="{{'Editar' | translate}}" md-font-icon="icon-calendar"></md-icon>
+
+                </md-button>
+                <span>{{vm.lead.status_end_datetime | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>

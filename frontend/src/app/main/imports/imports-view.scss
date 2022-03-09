@@ -1,0 +1,31 @@
+#imports {
+    min-height: 100%;
+    color:#fff;
+
+    #import-selector {
+        margin-top: 88px;
+
+        .import-list {
+            padding: 32px 0;
+
+            .import-list-item {
+                min-width: 210px;
+                width: 210px;
+                padding: 24px 0;
+                margin: 16px;
+                border-radius: 2px;
+                background: rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: $whiteframe-shadow-4dp;
+                }
+
+                .import-name {
+                    padding-top: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

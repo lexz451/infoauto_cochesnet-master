@@ -1,0 +1,142 @@
+<div id="voiceService">
+  <h2>Niveles de servicio de voz</h2>
+  <!-- Llamadas -->
+  <div>
+    <p class="text-bold secondary-text" translate> Llamadas</p>
+    <div>
+      <div class="md-accent-fg font-size-26 pl-40">
+        {{vm.voiceService.data.totales.total}}
+      </div>
+      <div>
+        <p class="pl-40 secondary-text"><span translate>No atendidas:</span>{{vm.voiceService.data.totales.no_atendidas}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LLamadas Recibidas -->
+  <div class="llamdas-recibidas mt-40">
+    <div layout="row" layout-align="space-between center">
+      <div>
+        <p class="text-bold secondary-text" translate>LLamadas Recibidas</p>
+      </div>
+      <div>
+        <md-button ui-sref="app.leads.list(vm.concatFilters({source__channel_id__in:1, with_concession:true},vm.metrics.filters))" target="_blank" class="md-icon-button md-primary" aria-label="Percentage">
+          <md-tooltip md-delay="300">Ver llamadas</md-tooltip>
+          <md-icon md-font-icon="icon-eye"></md-icon>
+        </md-button>
+      </div>
+    </div>
+    <div ng-if="!vm.metrics.loading && vm.voiceService.data.llamadas.labels.length>0">
+      <div class="card" ng-init="vm.getChart()">
+        <chartist class="ct-chart ct-golden-section" chartist-data="vm.stackedBarChart.data"
+                  chartist-chart-type="Bar" chartist-chart-options="vm.stackedBarChart.options"
+                  chartist-events="vm.stackedBarChart.events"></chartist>
+        <div class="foot">
+          <div class="item">
+            <div class="box atendidas"></div>
+            <div translate>Atendidas</div>
+          </div>
+          <div class="item">
+            <div class="box no-atendidas"></div>
+            <div translate>No atendidas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- No atendidas -->
+  <div class="no-atendidas mt-40">
+    <p class="text-bold secondary-text" translate>No atendidas</p>
+    <div ng-if="!vm.metrics.loading && vm.voiceService.data.no_atendidos">
+      <div class="card" ng-init="vm.getChart()">
+        <div ng-if="vm.voiceService.data.no_atendidos.con_llamadas>0 || vm.voiceService.data.no_atendidos.sin_llamadas>0">
+          <chartist class="ct-chart ct-golden-section" chartist-data="vm.donutChart.data" chartist-chart-type="Pie"
+                    chartist-events="vm.donutChart.events" chartist-chart-options="vm.donutChart.options"></chartist>
+        </div>
+        <div class="foot">
+          <div class="item">
+            <div class="box emitidas"></div>
+            <div translate class="mr-40">LLamadas emitidas</div>
+            <div class="mr-40">{{vm.voiceService.data.no_atendidos.con_llamadas}}</div>
+            <div ng-if="vm.voiceService.data.no_atendidos.con_llamadas">{{vm.voiceService.data.no_atendidos.con_llamadas_percentage}}%</div>
+          </div>
+          <div class="item">
+            <div class="box sin-llamadas"></div>
+            <div translate class="w-110 mr-40">Sin llamadas</div>
+            <div class="mr-40">{{vm.voiceService.data.no_atendidos.sin_llamadas}}</div>
+            <div ng-if="vm.voiceService.data.no_atendidos.sin_llamadas">{{vm.voiceService.data.no_atendidos.sin_llamadas_percentage}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- ASA llamadas perdidas -->
+  <div class="mt-40">
+    <p class="text-bold secondary-text" translate>ASA llamadas perdidas</p>
+    <div ng-if="!vm.metrics.loading">
+      <div class="md-accent-fg font-size-26 pl-40">
+        <div>{{vm.voiceService.data.asa.tiempo.hour}} Horas</div>
+        <div>{{vm.voiceService.data.asa.tiempo.minute}} Minutos</div>
+        <div>{{vm.voiceService.data.asa.tiempo.second}} Segundos</div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- Leads atendidos en menos de una hora -->
+  <div class="mt-40">
+    <p class="text-bold secondary-text" translate>Leads atendidos en menos de una hora</p>
+    <div ng-if="!vm.metrics.loading">
+      <div class="md-accent-fg font-size-26 pl-40">
+        <div>{{vm.voiceService.data.asa.menos_una_hora_percentage}}%</div>
+      </div>
+    </div>
+    <md-progress-circular ng-if="vm.metrics.loading" class="md-accent"
+                          md-mode="indeterminate" md-diameter="32">
+    </md-progress-circular>
+  </div>
+
+  <!-- users -->
+  <div class="users mt-40">
+    <table class="dataTable row-border hover">
+      <thead>
+      <tr>
+        <th>No atendidas asignadas a</th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({lead_managements__event:'outcomming_all', source__channel_id__in:1, with_concession:true},vm.metrics.filters))" target="_blank">
+            Llamadas emitidas
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({without_outgoing_calls:true, source__channel_id__in:1, with_concession:true},vm.metrics.filters))" target="_blank">
+            Sin llamadas
+          </a>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="user in vm.voiceService.data.asignados">
+        <td>{{user.asignado}}</td>
+        <td>
+          <span>{{user.con_llamadas}}</span>
+        </td>
+        <td>
+          <span>{{user.sin_llamadas}}</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

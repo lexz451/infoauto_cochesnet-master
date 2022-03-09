@@ -1,0 +1,60 @@
+<md-dialog class="task-dialog" aria-label="New Task" style="max-width: 900px; width: 900px">
+    <form name="leadForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column" data-translate ng-if="!vm.actionError">
+                Selecciona un resultado de la gestión
+            </div>
+            <div data-layout="column" data-translate ng-if="vm.actionError">
+                Indique por favor el motivo del cierre del lead
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center" ng-if="!vm.actionError">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click data-ng-click="vm.saveLead('negative')" class="md-warn md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'Negativo' | translate}}">
+                    <span data-translate>Negativo</span>
+                </md-button>
+                <md-button data-debouce-click data-ng-click="vm.saveLead('reserved_vehicle')" class="green-700-bg white-fg md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'Vehículo reservado' | translate}}">
+                    <span data-translate>Vehículo reservado</span>
+                </md-button>
+                <md-button data-debouce-click data-ng-click="vm.saveLead('unreachable')" class="md-accent md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'Ilocalizable' | translate}}">
+                    <span data-translate>Ilocalizable</span>
+                </md-button>
+                <md-button data-debouce-click data-ng-click="vm.saveLead('wrong')" class="md-primary md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'Duplicado' | translate}}">
+                    <span data-translate>Duplicado</span>
+                </md-button>
+                <md-button data-debouce-click data-ng-click="vm.saveLead('not_available')" class="yellow-700-bg white-fg md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'No disponible' | translate}}">
+                    <span data-translate>No disponible</span>
+                </md-button>
+                <md-button data-debouce-click data-ng-click="vm.saveLead('error')" class="purple-700-bg white-fg md-raised"
+                           data-ng-disabled="leadForm.$invalid" aria-label="{{'Error' | translate}}">
+                    <span data-translate>Error</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center" ng-if="vm.actionError">
+            <div data-layout="row" data-layout-align="start center">
+
+                <md-button ng-repeat="button in vm.buttonErros" ng-if="button.status===vm.lead.result" data-debouce-click data-ng-click="vm.saveLeadError(button.id)"
+                           class="md-primary md-raised" data-ng-disabled="leadForm.$invalid" aria-label="{{button.name}}">
+                    <span>{{button.name}}</span>
+                </md-button>
+
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

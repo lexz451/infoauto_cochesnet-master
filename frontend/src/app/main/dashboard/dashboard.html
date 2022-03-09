@@ -1,0 +1,15 @@
+<div id="dashboard" class="page-layout simple tabbed" id="diary">
+
+    <!-- CONTENT -->
+    <div class="content">
+        <md-tabs md-dynamic-height>
+            <md-tab ng-repeat="concessionaire in vm.concessionaires" ng-if="concessionaire.iframe_content"
+                    label="{{ concessionaire.name }}">
+                <div ng-bind-html="vm.trustAsHtml(concessionaire.iframe_content)"></div>
+            </md-tab>
+        </md-tabs>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

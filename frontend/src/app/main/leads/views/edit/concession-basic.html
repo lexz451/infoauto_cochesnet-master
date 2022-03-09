@@ -1,0 +1,82 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-document" class="black-fg no-margin"></md-icon>
+                <span data-translate>Datos básicos</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div data-layout="column" data-layout-align="start start" layout-wrap class="fullwidth">
+
+        <div class="p-20 fullwidth" layout="row" layout-align="space-between start" layout-wrap>
+
+            <div flex="40" flex-xs="100">
+                <div class="bb p-10">
+                    <span>
+                        <md-icon md-font-icon="icon-web"></md-icon>
+                    </span>
+                    <span>
+                        {{ concessionaire.web || ('Web no especificada' | translate)}}
+                    </span>
+                </div>
+
+                <div class="bb p-10">
+                    <span>
+                        <md-icon md-font-icon="icon-map-marker"></md-icon>
+                    </span>
+                    <span>
+                        {{ concessionaire.address || ('Dirección no especificada' | translate)}}
+                    </span>
+                </div>
+
+                <div class="mt-20">
+                    <strong data-translate>Orígenes</strong>
+                    <div class="bb p-10" ng-repeat="source in concessionaire.sources | unique : 'origin'" layout="row" layout-align="start center">
+                        <span>
+                            <img class="img-origin" ng-src="{{source.origin_data.icon}}">
+                        </span>
+                        <span>
+                            {{ source.origin_data.name }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div flex="40" flex-xs="100">
+                <strong data-translate>Calendario de trabajo</strong>
+
+                <div>
+                    <div ng-repeat="(day,work_calendar) in concessionaire.work_calendar" ng-if="vm.week[day]" layout="row" layout-align="space-between center" class="bb p-10">
+                        <div class="mr-40">
+                            {{ vm.week[day] }}
+                        </div>
+                        <div layout="row" class="date-row">
+
+                            <div>
+                                <span ng-if="work_calendar.start_hour">{{ work_calendar.start_hour | formatTime }}</span>
+                                <span ng-if="!work_calendar.start_hour" data-translate>Sin definir</span>
+                            </div>
+
+                            <div class="ml-20 mr-20">
+                                <span>-</span>
+                            </div>
+
+                            <div>
+                                <span ng-if="work_calendar.end_hour">{{ work_calendar.end_hour | formatTime }}</span>
+                                <span ng-if="!work_calendar.end_hour" data-translate>Sin definir</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

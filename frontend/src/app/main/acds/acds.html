@@ -1,0 +1,156 @@
+<div id="acds" class="page-layout carded fullwidth" data-layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" data-layout="column" data-flex>
+
+         <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-phone"></md-icon>
+                    <span data-translate>Llamadas entrantes</span>
+                </div>
+                <div class="count secondary-text">
+                    <span data-translate>Número de llamadas entrantes:</span>
+                    <span>{{vm.acds.count}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" data-layout="column" data-flex>
+
+            <md-content class="content p-20" flex ms-scroll>
+
+                <div layout="column" layout-align="space-between start">
+
+                    <div class="no-results text-center" ng-if="vm.acds.count == 0">
+
+                        <div class="message">
+                            <md-icon class="message-icon s96" md-font-icon="icon-phone"></md-icon>
+                            <div class="message-text" translate>Sin llamadas entrantes</div>
+                        </div>
+
+                    </div>
+                    <div class="todo-item" layout="row" layout-align="start center" ng-class="{'grey-200-bg':vm.lastAcds===acd.ID}"
+                         data-dir-paginate="acd in vm.acds.data | itemsPerPage: 10 | orderBy:'order'"
+                            data-total-items="vm.acds.count" data-current-page="vm.acds.filters.page">
+
+                        <div layout="row" layout-align="start center" flex>
+
+                            <div class="info" flex="auto">
+                                <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                                    <div layout="row" layout-align="space-between start">
+
+                                        <div class="mr-40 w-100" ng-if="acd.source.origin_data.icon">
+                                            <img ng-src="{{ server }}{{ acd.source.origin_data.icon }}" alt="origen" class="image"/>
+                                        </div>
+                                        <div class="mr-40">
+                                            <div class="title mb-5">
+                                                <span>{{acd.ID}}</span>
+                                            </div>
+                                            <div class="mb-5" ng-if="acd.concessionaire.name">
+                                                <span class="text-boxed m-0 indigo-bg white-fg">{{ acd.concessionaire.name }}</span>
+                                            </div>
+                                            <div class="mb-5" ng-if="acd.source.origin_data.name">
+                                                <span class="text-boxed m-0 deep-purple-bg white-fg">{{ acd.source.origin_data.name }}</span>
+                                            </div>
+                                            <div ng-if="acd.user" layout="row">
+                                              <div class="text-boxed m-0 md-purple-800-bg white-fg mb-5">
+                                                  <md-icon md-font-icon="icon-account" class="s16"></md-icon>
+                                                  <span>{{ acd.user.first_name }} {{ acd.user.last_name }}</span>
+                                              </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="title mb-5">
+                                                <md-icon md-font-icon="icon-phone-outgoing"></md-icon>
+                                                <span>{{acd.src}}</span>
+                                            </div>
+                                            <div class="title mb-5">
+                                                <md-icon md-font-icon="icon-phone-incoming"></md-icon>
+                                                <span>{{acd.dst}}</span>
+                                            </div>
+                                            <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                                <div class="tag" layout="row" layout-align="start center" ng-if="acd.startcall">
+                                                    <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                                    <div class="ml-10 tag-label">
+                                                        {{acd.startcall | date:'dd/MM/yyyy HH:mm'}}
+                                                    </div>
+                                                </div>
+                                                <div class="tag" layout="row" layout-align="start center" ng-if="acd.durationcallanswered">
+                                                    <md-icon md-font-icon="icon-clock" class="s16"></md-icon>
+                                                    <div class="ml-10 tag-label">
+                                                        {{acd.durationcallanswered}}
+                                                    </div>
+                                                </div>
+
+                                                <div ng-repeat="status in vm.status" ng-if="status.id===acd.statuscall"
+                                                      class="text-boxed m-0 white-fg mr-5" ng-class="status.color">
+                                                    <md-icon md-font-icon="icon-phone" class="s16"></md-icon>
+                                                    <span>{{ status.name }}</span>
+                                                </div>
+
+                                                <div ng-repeat="origin in vm.origins" ng-if="origin.id===acd.call_origin"
+                                                      class="text-boxed m-0 white-fg" ng-class="origin.color">
+                                                    <md-icon md-font-icon="icon-phone" class="s16"></md-icon>
+                                                    <span>{{ origin.name }}</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div layout="row" layout-align="end center">
+                                        <div layout="row" layout-align="end center" ng-if="!acd.callcontrolleadmodel.lead">
+
+                                            <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                      data-ng-click="vm.createLead(acd)">
+                                                <md-icon class="pt-5" title="{{'Editar' | translate}}" md-font-icon="icon-plus-circle"></md-icon>
+                                                <span class="pt-5" data-translate>Crear Lead</span>
+                                            </md-button>
+
+                                            <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                       ng-if="acd.possible_leads.length>0" data-ng-click="vm.openAcdDialog($event, acd)">
+                                                <md-icon class="pt-5" title="{{'Editar' | translate}}" md-font-icon="icon-arrow-right"></md-icon>
+                                                <span class="pt-5" data-translate>Duplicado</span>
+                                            </md-button>
+                                        </div>
+                                        <div layout="row" layout-align="end center" ng-if="acd.callcontrolleadmodel.lead">
+                                            <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                       data-ui-sref="app.leads.get.edit({lead:'{{ acd.callcontrolleadmodel.lead }}'})">
+                                                <md-icon class="pt-5" title="{{'Ver Lead' | translate}}" md-font-icon="icon-eye"></md-icon>
+                                                <span class="pt-5" data-translate>Ver Lead</span>
+                                            </md-button>
+                                        </div>
+                                        <div layout="row" layout-align="end center" ng-if="acd.has_audio">
+                                            <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                       data-debouce-click data-ng-click="vm.getAudio(acd)">
+                                                <md-icon class="pt-5 green-700-fg" title="{{'Editar' | translate}}" md-font-icon="icon-download"></md-icon>
+                                                <span class="pt-5 green-700-fg" data-translate>Descargar audio</span>
+                                            </md-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <dir-pagination-controls class="bottomFixed"></dir-pagination-controls>
+
+                </div>
+            </md-content>
+            <!-- CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

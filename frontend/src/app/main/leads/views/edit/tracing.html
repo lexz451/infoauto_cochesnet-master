@@ -1,0 +1,31 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1" ng-init="tracing=true">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-document" class="black-fg no-margin"></md-icon>
+                <span data-translate>Seguimiento programado</span>
+            </h2>
+            <md-icon ng-click="vm.openTaskDialog($event, tracing)" md-font-icon="icon-plus-circle-outline"
+                     class="pointer black-fg no-margin"></md-icon>
+        </div>
+    </md-toolbar>
+
+    <div data-layout="column" data-layout-align="start start" layout-wrap class="fullwidth" ng-init="form=leadForm">
+
+        <div class="fullwidth"
+             ng-include="'app/main/tasks/tasks.html'">
+            <!--include tasks-->
+        </div>
+
+        <div data-layout-xs="column" data-layout="row" data-layout-align="space-between center" layout-wrap class="fullwidth">
+
+            <md-input-container flex="100" class="no-margin">
+                <input type="hidden" name="request___non_field_errors" data-ng-model="vm.lead.request.non_field_errors">
+                <error-messages field="leadForm.request___non_field_errors" server-errors="vm.serverErrors"></error-messages>
+            </md-input-container>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,152 @@
+<div id="leads" class="page-layout carded left-sidenav" data-layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" data-layout="column" data-flex>
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-document"></md-icon>
+                    <span>LEADS</span>
+                </div>
+                <div class="count secondary-text">
+                    <span data-translate>Número de leads:</span>
+                    <span>{{ vm.leads.count }}</span>
+                </div>
+            </div>
+
+            <!-- FILTERS SIDENAV BUTTON -->
+            <div>
+                <md-button class="md-raised md-hue-2 header-boards-button"
+                           ng-click="vm.toggleSidenav('filters-sidenav')"
+                           aria-label="Filtrar">
+                    <md-icon md-font-icon="icon-filter-variant" class="icon"></md-icon>
+                    <span data-translate>Filtrar</span>
+                </md-button>
+                <md-button class="md-raised md-hue-2 header-boards-button"
+                           ng-click="vm.getDocument()"
+                           data-debouce-click
+                           aria-label="Exportar">
+                    <md-icon md-font-icon="icon-export" class="icon"></md-icon>
+                    <span data-translate>Exportar</span>
+                </md-button>
+            </div>
+            <!-- / FILTERS SIDENAV BUTTON -->
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" data-layout="column" data-flex>
+
+            <!-- CONTENT TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="start center" hide-gt-md>
+                <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('filters-sidenav')"
+                           aria-label="Toggle left sidenav">
+                    <md-icon md-font-icon="icon-filter-variant" class="icon"></md-icon>
+                </md-button>
+            </div>
+            <!-- / CONTENT TOOLBAR -->
+
+            <md-content class="content no-padding" flex ms-scroll>
+
+                <div layout="column" layout-align="space-between start">
+
+                    <!--<div class="fullwidth"
+                         ng-include="'app/main/leads/views/list/kpis.html'">
+                    </div>-->
+
+                    <div class="fullwidth" data-layout="column" data-flex>
+                        <div style="overflow-x:auto">
+
+                            <div table-fixed-header ms-scroll class="dataTables_scroll">
+                                <table class="dataTable row-border hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="pointer" ng-click="vm.changeOrder('created')">
+                                            <span data-translate>Fecha de alta</span>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='created'"
+                                                     md-font-icon="icon-sort-ascending" class="icon"></md-icon>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='-created'"
+                                                     md-font-icon="icon-sort-descending" class="icon"></md-icon>
+                                        </th>
+                                        <th class="pointer" ng-click="vm.changeOrder('modified')">
+                                            <span data-translate>Última modificación</span>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='modified'"
+                                                     md-font-icon="icon-sort-ascending" class="icon"></md-icon>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='-modified'"
+                                                     md-font-icon="icon-sort-descending" class="icon"></md-icon>
+                                        </th>
+                                        <th class="pointer" ng-click="vm.changeOrder('client__name')">
+                                            <span data-translate>Nombre</span>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='client__name'"
+                                                     md-font-icon="icon-sort-ascending" class="icon"></md-icon>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='-client__name'"
+                                                     md-font-icon="icon-sort-descending" class="icon"></md-icon>
+                                        </th>
+                                        <th class="pointer" ng-click="vm.changeOrder('status')">
+                                            <span data-translate>Estado</span>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='status'"
+                                                     md-font-icon="icon-sort-ascending" class="icon"></md-icon>
+                                            <md-icon ng-if="vm.leads.filters.ordering==='-status'"
+                                                     md-font-icon="icon-sort-descending" class="icon"></md-icon>
+                                        </th>
+                                        <th data-translate>Nº de llamadas realizadas</th>
+                                        <th data-translate>Nº de mails enviados</th>
+                                        <th data-translate>Nº de whatsapps</th>
+                                        <th data-translate>Nº de tareas realizadas</th>
+                                        <th data-translate>Nº de seguimientos realizados</th>
+                                        <th data-translate>Asignado a</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr data-ng-show="vm.leads.count === 0">
+                                        <td colspan="9" class="text-center" data-translate>No se han encontrado leads
+                                        </td>
+                                    </tr>
+
+                                    <tr data-dir-paginate="lead in vm.leads.data | itemsPerPage: 10"
+                                        ng-click="vm.goLead(lead)" class="pointer"
+                                        data-total-items="vm.leads.count" data-current-page="vm.leads.filters.page">
+                                        <td>{{ lead.created | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{ lead.modified | date:'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>{{ lead.client.name }} {{ lead.client.surname }}</td>
+                                        <td>
+                                            <span ng-repeat="status in vm.leadStatus"
+                                                  ng-if="status.id===lead.status">{{ status.name }}</span>
+                                        </td>
+                                        <td>{{ lead.sent_phone_call_count }}</td>
+                                        <td>{{ lead.sent_emails_count }}</td>
+                                        <td>{{ lead.sent_whatsapp_count }}</td>
+                                        <td>{{ lead.task_count }}</td>
+                                        <td>{{ lead.tracking_count }}</td>
+                                        <td>{{ lead.user_data.first_name }} {{ lead.user_data.last_name }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <dir-pagination-controls max-size="5" class="bottomFixed"></dir-pagination-controls>
+                    </div>
+                </div>
+            </md-content>
+            <!-- CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+    <!-- FILTERS SIDENAV -->
+    <md-sidenav class="filters-sidenav md-sidenav-right" md-component-id="filters-sidenav"
+                ng-include="'app/main/leads/sidenavs/filters/filters-sidenav.html'"
+                ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / FILTERS SIDENAV -->
+</div>

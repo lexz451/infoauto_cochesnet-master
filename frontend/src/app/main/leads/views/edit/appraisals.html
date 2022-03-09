@@ -1,0 +1,210 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-car" class="black-fg no-margin"></md-icon>
+                <span data-translate>Vehículos actuales</span>
+            </h2>
+            <md-icon ng-hide="vm.isDisabled()" ng-click="vm.addAppraisal()" md-font-icon="icon-plus-circle-outline" class="pointer black-fg no-margin"></md-icon>
+        </div>
+    </md-toolbar>
+
+    <md-content class="fullwidth">
+
+        <div ng-repeat="appraisal in vm.lead.appraisals" flex layout-padding data-layout-xs="column" data-layout="row"
+             data-layout-align="space-between start" layout-wrap class="fullwidth" ng-init="appraisal.field={}">
+
+            <div layout-margin-lg flex="80" data-layout-xs="column" data-layout="row" layout-wrap>
+                <div class="h-30" data-layout="column" data-layout-align="center start"
+                     ng-init="appraisal.field['brand']='appraisals___'+$index+'___brand'">
+                    <md-autocomplete md-floating-label="{{'Marca' | translate }}" md-delay="300" md-input-name="{{appraisal.field['brand']}}"
+                                     md-no-cache="true" ng-disabled="vm.isDisabled()" required
+                                     md-selected-item="appraisal.brand_data" md-search-text="searchTextBrand"
+                                     md-items="brand in vm.getBrands(searchTextBrand)" md-min-length="0"
+                                     md-item-text="brand.name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextBrand">{{brand.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ninguna marca con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-input-container flex="100" class="no-margin">
+                        <error-messages field="leadForm[appraisal.field['brand']]" server-errors="vm.serverErrors"  required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div class="h-30" data-layout="column" data-layout-align="center start"
+                     ng-init="appraisal.field['model']='appraisals___'+$index+'___model'">
+                    <md-autocomplete md-floating-label="{{'Modelo' | translate }}" md-delay="300" md-input-name="{{appraisal.field['model']}}"
+                                     md-no-cache="true" ng-disabled="vm.isDisabled() || !appraisal.brand_data"
+                                     md-selected-item="appraisal.model_data" md-search-text="searchTextModel"
+                                     md-items="model in vm.getModels(appraisal.brand_data.id, searchTextModel)" md-min-length="0"
+                                     md-item-text="model.model_name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextModel">{{model.model_name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ningun modelo con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-input-container flex="100" class="no-margin">
+                        <error-messages field="leadForm[appraisal.field['model']]" server-errors="vm.serverErrors"  required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div class="h-30" data-layout="column" data-layout-align="center start"
+                     ng-init="appraisal.field['version']='appraisals___'+$index+'___version'">
+                    <md-autocomplete md-floating-label="{{'Version' | translate }}" md-delay="300" md-input-name="{{appraisal.field['version']}}"
+                                     md-no-cache="true" ng-disabled="vm.isDisabled() || !appraisal.model_data"
+                                     md-selected-item-change="vm.changeVehicleVersion(appraisal,'cv','gas')"
+                                     md-selected-item="appraisal.version_data" md-search-text="searchTextVersion"
+                                     md-items="version in vm.getVersions(appraisal.model_data.id, searchTextVersion)" md-min-length="0"
+                                     md-item-text="vm.getFullNameVersion(version)">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextVersion">{{vm.getFullNameVersion(version)}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ninguna versión con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-input-container flex="100" class="no-margin">
+                        <error-messages field="leadForm[appraisal.field['version']]" server-errors="vm.serverErrors"  required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <md-input-container ng-init="appraisal.field['km']='appraisals___'+$index+'___km'">
+                    <label data-translate>Km</label>
+                    <input type="text" name="{{appraisal.field['km']}}" data-ng-model="appraisal.km" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['km']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['cv']='appraisals___'+$index+'___cv'">
+                    <label data-translate>CV</label>
+                    <input type="text" name="{{appraisal.field['cv']}}" data-ng-model="appraisal.cv" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['cv']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <div class="w-205" ng-init="appraisal.field['circulation_date']='appraisals___'+$index+'___circulation_date'">
+                    <label class="font-size-12 secondary-text" data-translate>Fecha de circulación</label>
+                    <md-datepicker name="{{appraisal.field['circulation_date']}}" data-ng-model="appraisal.circulation_date"
+                                   md-placeholder="{{'Fecha de circulación' | translate}}"></md-datepicker>
+
+                    <error-messages field="leadForm[appraisal.field['circulation_date']]" server-errors="vm.serverErrors"></error-messages>
+                </div>
+
+                <div class="w-205" ng-init="appraisal.field['buy_date']='appraisals___'+$index+'___buy_date'">
+                    <label class="font-size-12 secondary-text" data-translate>Fecha de compra</label>
+                    <md-datepicker name="{{appraisal.field['buy_date']}}" data-ng-model="appraisal.buy_date"
+                                   md-placeholder="{{'Fecha de compra' | translate}}"></md-datepicker>
+
+                    <error-messages field="leadForm[appraisal.field['buy_date']]" server-errors="vm.serverErrors"></error-messages>
+                </div>
+
+                <div class="w-205" ng-init="appraisal.field['registration_date']='appraisals___'+$index+'___registration_date'">
+                    <label class="font-size-12 secondary-text" data-translate>Fecha de matriculación</label>
+                    <md-datepicker name="{{appraisal.field['registration_date']}}" data-ng-model="appraisal.registration_date"
+                                   md-placeholder="{{'Fecha de matriculación' | translate}}"></md-datepicker>
+
+                    <error-messages field="leadForm[appraisal.field['registration_date']]" server-errors="vm.serverErrors"></error-messages>
+                </div>
+
+                <div class="w-205" ng-init="appraisal.field['last_mechanic_date']='appraisals___'+$index+'___last_mechanic_date'">
+                    <label class="font-size-12 secondary-text" data-translate>Última visita taller</label>
+                    <md-datepicker name="{{appraisal.field['last_mechanic_date']}}" data-ng-model="appraisal.last_mechanic_date"
+                                   md-placeholder="{{'Última visita taller' | translate}}"></md-datepicker>
+
+                    <error-messages field="leadForm[appraisal.field['last_mechanic_date']]" server-errors="vm.serverErrors"></error-messages>
+                </div>
+
+                <md-input-container class="w-200" ng-init="appraisal.field['is_finance']='appraisals___'+$index+'___is_finance'">
+                    <md-checkbox data-ng-model="appraisal.is_finance"
+                                 class="md-align-top-left no-margin" flex>
+                        <span data-translate>Financiado</span>
+                    </md-checkbox>
+                    <error-messages field="leadForm[appraisal.field['is_finance']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['status']='appraisals___'+$index+'___status'">
+                    <label data-translate>Estado</label>
+                    <input type="text" name="{{appraisal.field['status']}}" data-ng-model="appraisal.status" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['status']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['features']='appraisals___'+$index+'___features'">
+                    <label data-translate>Acabado del Vehiculo</label>
+                    <input type="text" name="{{appraisal.field['features']}}" data-ng-model="appraisal.features" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['features']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['license_plate']='appraisals___'+$index+'___license_plate'">
+                    <label data-translate>Matrícula</label>
+                    <input type="text" name="{{appraisal.field['license_plate']}}" data-ng-model="appraisal.license_plate" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['license_plate']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['evaluation_vo_price']='appraisals___'+$index+'___evaluation_vo_price'">
+                    <label data-translate>Precio de evaluación para VO</label>
+                    <input type="text" name="{{appraisal.field['evaluation_vo_price']}}" data-ng-model="appraisal.evaluation_vo_price" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['evaluation_vo_price']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['total_vehicles']='appraisals___'+$index+'___total_vehicles'">
+                    <label data-translate>Nº de vehículos</label>
+                    <input type="text" name="{{appraisal.field['total_vehicles']}}" data-ng-model="appraisal.total_vehicles" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['total_vehicles']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['total_comercial_vehicles']='appraisals___'+$index+'___total_comercial_vehicles'">
+                    <label data-translate>Nº de vehículos comerciales</label>
+                    <input type="text" name="{{appraisal.field['total_comercial_vehicles']}}" data-ng-model="appraisal.total_comercial_vehicles" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['total_comercial_vehicles']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container ng-init="appraisal.field['total_tourism_vehicles']='appraisals___'+$index+'___total_tourism_vehicles'">
+                    <label data-translate>Nº de vehículos turismos</label>
+                    <input type="text" name="{{appraisal.field['total_tourism_vehicles']}}" data-ng-model="appraisal.total_tourism_vehicles" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['total_tourism_vehicles']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container class="input-long" flex ng-init="appraisal.field['fleet_notes']='appraisals___'+$index+'___fleet_notes'">
+                    <label data-translate>Notas de la flota</label>
+                    <input type="text" name="{{appraisal.field['fleet_notes']}}" data-ng-model="appraisal.fleet_notes" ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[appraisal.field['fleet_notes']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+
+                <!--<md-input-container ng-init="appraisal.field['origin']='appraisals___'+$index+'___gas'">
+                    <label data-translate>Combustible</label>
+                    <md-select name="{{appraisal.field['gas']}}" data-ng-model="appraisal.gas" ng-disabled="vm.isDisabled()">
+                        <md-option data-ng-repeat="gas in vm.gasTypes.data" data-ng-value="gas.id">
+                            {{gas.name}}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="leadForm[appraisal.field['gas']]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>-->
+
+            </div>
+
+            <div layout="row" layout-align="end center" ng-hide="vm.isDisabled()">
+                <md-button data-layout="column" class="md-icon-button md-warn" data-layout-align="start center" ng-if="vm.lead.appraisals.length>1"
+                           data-ng-click="vm.deleteAppraisal($index,appraisal)">
+                    <md-icon title="{{'Eliminar' | translate}}" md-font-icon="icon-delete"></md-icon>
+<!--                    <span class="pt-5" data-translate>Eliminar</span>-->
+                </md-button>
+            </div>
+        </div>
+
+        <div data-layout-xs="column" data-layout="row" data-layout-align="space-between center"
+             layout-wrap class="fullwidth" ng-if="vm.serverErrors">
+
+            <md-input-container flex="100" class="no-margin">
+                <input type="hidden" name="appraisals___non_field_errors" data-ng-model="vm.lead.appraisals.non_field_errors">
+                <error-messages field="leadForm.appraisals___non_field_errors" server-errors="vm.serverErrors"></error-messages>
+            </md-input-container>
+
+        </div>
+    </md-content>
+
+</div>

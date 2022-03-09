@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>Gades</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Login local</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:3000/auth/login<datalist><option>http://gadessrvpru.uca.es/auth/login</option><option>http://localhost:3000/auth/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input_0<datalist><option>id=input_0</option><option>name=username</option><option>//input[@id='input_0']</option><option>//div[@id='login-form']/form/md-input-container/input</option><option>//input</option><option>css=#input_0</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input_0<datalist><option>id=input_0</option><option>name=username</option><option>//input[@id='input_0']</option><option>//div[@id='login-form']/form/md-input-container/input</option><option>//input</option><option>css=#input_0</option></datalist></td><td>p@p.com</td>
+</tr>
+<tr><td>click</td><td>id=input_1<datalist><option>id=input_1</option><option>name=password</option><option>//input[@id='input_1']</option><option>//div[@id='login-form']/form/md-input-container[2]/input</option><option>//md-input-container[2]/input</option><option>css=#input_1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input_1<datalist><option>id=input_1</option><option>name=password</option><option>//input[@id='input_1']</option><option>//div[@id='login-form']/form/md-input-container[2]/input</option><option>//md-input-container[2]/input</option><option>css=#input_1</option></datalist></td><td>1234567a</td>
+</tr>
+<tr><td>click</td><td>//div[@id='login-form']/form/button/ng-transclude/span<datalist><option>//div[@id='login-form']/form/button/ng-transclude/span</option><option>//span</option><option>css=span.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-menu-bar[@id='user-menu']/md-menu/button/span/span[2]<datalist><option>//md-menu-bar[@id='user-menu']/md-menu/button/span/span[2]</option><option>//span[2]</option><option>css=span.username.hide.show-gt-sm.ng-binding</option></datalist></td><td>p@p.com</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Login</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://gadessrvpru.uca.es/auth/login<datalist><option>http://gadessrvpru.uca.es/auth/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=input_0<datalist><option>id=input_0</option><option>name=username</option><option>//input[@id='input_0']</option><option>//div[@id='login-form']/form/md-input-container/input</option><option>//input</option><option>css=#input_0</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input_0<datalist><option>id=input_0</option><option>name=username</option><option>//input[@id='input_0']</option><option>//div[@id='login-form']/form/md-input-container/input</option><option>//input</option><option>css=#input_0</option></datalist></td><td>mario@intelligenia.com</td>
+</tr>
+<tr><td>click</td><td>id=input_1<datalist><option>id=input_1</option><option>name=password</option><option>//input[@id='input_1']</option><option>//div[@id='login-form']/form/md-input-container[2]/input</option><option>//md-input-container[2]/input</option><option>css=#input_1</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=input_1<datalist><option>id=input_1</option><option>name=password</option><option>//input[@id='input_1']</option><option>//div[@id='login-form']/form/md-input-container[2]/input</option><option>//md-input-container[2]/input</option><option>css=#input_1</option></datalist></td><td>mario1234</td>
+</tr>
+<tr><td>click</td><td>//div[@id='login-form']/form/button/ng-transclude/span<datalist><option>//div[@id='login-form']/form/button/ng-transclude/span</option><option>//span</option><option>css=span.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-menu-bar[@id='user-menu']/md-menu/button/span/span[2]<datalist><option>//md-menu-bar[@id='user-menu']/md-menu/button/span/span[2]</option><option>//span[2]</option><option>css=span.username.hide.show-gt-sm.ng-binding</option></datalist></td><td>mario@intelligenia.com</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Empresas</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[2]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[2]/div/a/span</option><option>//li[2]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='companyList']/div[2]/div/div/div/span<datalist><option>//div[@id='companyList']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Empresas</td>
+</tr>
+<tr><td>click</td><td>//div[@id='companyList']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div<datalist><option>//div[@id='companyList']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div</option><option>//div/div/div/div/div/div/div/div</option><option>css=div.title.ng-binding</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='companyDetail-list']/div[2]/div/div/div[2]/div/span<datalist><option>//div[@id='companyDetail-list']/div[2]/div/div/div[2]/div/span</option><option>//div[2]/div/span</option><option>css=div.layout-wrap.layout-align-start-center.layout-row &gt; span.ng-scope</option></datalist></td><td>Datos básicos</td>
+</tr>
+<tr><td>click</td><td>link=Sedes<datalist><option>link=Sedes</option><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[2]</option><option>//a[contains(@href, '/company/96/centers')]</option><option>//a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='centers']/div[2]/div/div/div/span<datalist><option>//div[@id='centers']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Sedes</td>
+</tr>
+<tr><td>click</td><td>link=Contactos<datalist><option>link=Contactos</option><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[3]</option><option>//a[contains(@href, '/company/96/contacts/')]</option><option>//a[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='contacts']/div[2]/div/div/div/span<datalist><option>//div[@id='contacts']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Contactos</td>
+</tr>
+<tr><td>click</td><td>link=Convenios<datalist><option>link=Convenios</option><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[4]</option><option>//a[contains(@href, '/company/96/agreements')]</option><option>//a[4]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='agreements']/div[2]/div/div/div/span<datalist><option>//div[@id='agreements']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Convenios</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Alumnos</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Alumnos<datalist><option>link=Alumnos</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[4]/div/a</option><option>//a[contains(@href, '/students/list')]</option><option>//li[4]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='studentsList']/div[2]/div/div/div/span<datalist><option>//div[@id='studentsList']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Alumnos</td>
+</tr>
+<tr><td>click</td><td>//div[@id='studentsList']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div/span[2]<datalist><option>//div[@id='studentsList']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div/span[2]</option><option>//div/div/div/div/div/div/span[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='studentsDetail-list']/div[2]/div[2]/md-content/div/form/div/div/div/md-toolbar/div/h2<datalist><option>//div[@id='studentsDetail-list']/div[2]/div[2]/md-content/div/form/div/div/div/md-toolbar/div/h2</option><option>//h2</option><option>css=h2.md-flex.ng-scope</option></datalist></td><td>Competencias</td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='studentsDetail-list']/div[2]/div[2]/md-content/div/form/div/div/div[2]/md-toolbar/div/h2<datalist><option>//div[@id='studentsDetail-list']/div[2]/div[2]/md-content/div/form/div/div/div[2]/md-toolbar/div/h2</option><option>//div[2]/md-toolbar/div/h2</option></datalist></td><td>Idiomas</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ofertas curriculares</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Ofertas curriculares<datalist><option>link=Ofertas curriculares</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li/div/a</option><option>//a[contains(@href, '/demands/')]</option><option>//li[6]/ul/li/div/a</option><option>css=ul.ng-scope &gt; li.ms-navigation-horizontal-node.ng-scope &gt; div.ms-navigation-horizontal-item.ng-scope.layout-row &gt; a.ms-navigation-horizontal-button.ng-scope.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='demands']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div[2]/div/div<datalist><option>//div[@id='demands']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div[2]/div/div</option><option>//div/div/div[2]/div/div</option><option>css=div.tag.layout-align-start-center.layout-row</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='demand-detail']/div[2]/div/div/div/span<datalist><option>//div[@id='demand-detail']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1 &gt; span.ng-scope</option></datalist></td><td>Datos básicos</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='company-sidenav']/md-content/div/a[2]<datalist><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[2]</option><option>//a[contains(@href, '/demands/21/demandsCompanies/')]</option><option>//a[2]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='demandsCompanies']/div[2]/div/div/div/span<datalist><option>//div[@id='demandsCompanies']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Empresas</td>
+</tr>
+<tr><td>click</td><td>link=Asignaciones<datalist><option>link=Asignaciones</option><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[3]</option><option>//a[contains(@href, '/demands/21/pendingAssignments/')]</option><option>//a[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='pendingAssignments']/div[2]/div/div/div/span<datalist><option>//div[@id='pendingAssignments']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-scope</option></datalist></td><td>Asignaciones pendientes</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Ofertas extracurriculares</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[2]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[2]/div/a/span</option><option>//li[6]/ul/li[2]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='offers']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div/ng-pluralize<datalist><option>//div[@id='offers']/div[2]/div[2]/md-content/div/div/div/div/div/div/div/div/ng-pluralize</option><option>//ng-pluralize</option><option>css=ng-pluralize</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='offer-edit']/div[2]/div/div/div/span<datalist><option>//div[@id='offer-edit']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1 &gt; span.ng-scope</option></datalist></td><td>Datos básicos</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='company-sidenav']/md-content/div/a[2]/div/span<datalist><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[2]/div/span</option><option>//a[2]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='offersRequests']/div[2]/div/div/div/span<datalist><option>//div[@id='offersRequests']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Candidatos</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='company-sidenav']/md-content/div/a[3]/div/span<datalist><option>//md-sidenav[@id='company-sidenav']/md-content/div/a[3]/div/span</option><option>//a[3]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossiers']/div[2]/div/div/div/span<datalist><option>//div[@id='dossiers']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Expedientes</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Expedientes</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Expedientes<datalist><option>link=Expedientes</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[3]/div/a</option><option>//a[contains(@href, '/dossiers/')]</option><option>//li[3]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='dossiers']/div[2]/div[2]/md-content/div/div/div/div/div/div/div[2]<datalist><option>//div[@id='dossiers']/div[2]/div[2]/md-content/div/div/div/div/div/div/div[2]</option><option>//div/div/div/div/div/div/div[2]</option><option>css=div.tags.layout-wrap.layout-align-start-center.layout-row</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossier-edit']/div[2]/div/div[2]/div[2]/span/span<datalist><option>//div[@id='dossier-edit']/div[2]/div/div[2]/div[2]/span/span</option><option>//div[2]/span/span</option><option>css=div.h1 &gt; span &gt; span.ng-scope</option></datalist></td><td>Expediente</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[2]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[2]/div/span</option><option>//a[2]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossierInterruptions']/div[2]/div/div/div/span<datalist><option>//div[@id='dossierInterruptions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Interrupciones</td>
+</tr>
+<tr><td>click</td><td>link=Prórrogas<datalist><option>link=Prórrogas</option><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[3]</option><option>//a[contains(@href, '/dossiers/1/extensions/')]</option><option>//a[3]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossierExtensions']/div[2]/div/div/div/span<datalist><option>//div[@id='dossierExtensions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-scope</option></datalist></td><td>Prórrogas</td>
+</tr>
+<tr><td>click</td><td>link=Cancelaciones<datalist><option>link=Cancelaciones</option><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[4]</option><option>//a[contains(@href, '/dossiers/1/resignations/')]</option><option>//a[4]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossierResignations']/div[2]/div/div/div/span<datalist><option>//div[@id='dossierResignations']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Cancelaciones</td>
+</tr>
+<tr><td>click</td><td>link=Documentación<datalist><option>link=Documentación</option><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[5]</option><option>//a[contains(@href, '/dossiers/1/documents/')]</option><option>//a[5]</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='dossierDocuments']/div[2]/div/div/div/span<datalist><option>//div[@id='dossierDocuments']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Documentos</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Programas</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[4]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[4]/div/a/span</option><option>//li[6]/ul/li[4]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='programs']/div[2]/div/div/div/span<datalist><option>//div[@id='programs']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Programas</td>
+</tr>
+<tr><td>click</td><td>//div[@id='programs']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='programs']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar programa</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar programa</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Tutores</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Tutores académicos<datalist><option>link=Tutores académicos</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[5]/div/a</option><option>//a[contains(@href, '/tutors')]</option><option>//li[5]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='tutors']/div[2]/div/div/div/span<datalist><option>//div[@id='tutors']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-scope</option></datalist></td><td>Tutores académicos</td>
+</tr>
+<tr><td>click</td><td>//div[@id='tutors']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/a/span<datalist><option>//div[@id='tutors']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/a/span</option><option>//div/div/div[2]/a/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//div[@id='teacher-detail']/div[2]/div[2]/md-content/div/form/div/div/div/md-toolbar/div/h2<datalist><option>//div[@id='teacher-detail']/div[2]/div[2]/md-content/div/form/div/div/div/md-toolbar/div/h2</option><option>//h2</option><option>css=h2.md-flex.ng-scope</option></datalist></td><td>assertText</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cuestionarios</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Cuestionarios<datalist><option>link=Cuestionarios</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[6]/ul/li[6]/div/a</option><option>//a[contains(@href, '/evaluations/questions//')]</option><option>//li[6]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Estudiante práctica curricular</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[2]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[2]/div/span</option><option>//a[2]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Tutor professional práctica curricular</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[3]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[3]/div/span</option><option>//a[3]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Tutor académico práctica curricular</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[4]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[4]/div/span</option><option>//a[4]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Estudiante práctica extracurricular</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[5]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[5]/div/span</option><option>//a[5]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Tutor professional práctica extracurricular</td>
+</tr>
+<tr><td>click</td><td>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[6]/div/span<datalist><option>//md-sidenav[@id='dossiers-sidenav']/md-content/div/a[6]/div/span</option><option>//a[6]/div/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='questions']/div[2]/div/div/div/span<datalist><option>//div[@id='questions']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span.ng-binding</option></datalist></td><td>Tutor académico práctica extracurricular</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Documentos</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Documentos<datalist><option>link=Documentos</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[7]/div/a</option><option>//a[contains(@href, '/documents/')]</option><option>//li[7]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='documents']/div[2]/div/div/div/span<datalist><option>//div[@id='documents']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Documentos</td>
+</tr>
+<tr><td>click</td><td>//div[@id='documents']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button[2]/span<datalist><option>//div[@id='documents']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button[2]/span</option><option>//button[2]/span</option><option>css=button.md-accent.md-button.ng-scope.md-default-theme.md-ink-ripple.layout-align-start-center.layout-column &gt; span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar documento</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar documento</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Informes</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[8]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[8]/div/a/span</option><option>//li[8]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='reports']/div[2]/div/div/div/span<datalist><option>//div[@id='reports']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Informes</td>
+</tr>
+<tr><td>click</td><td>//div[@id='reports']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button[3]/md-icon<datalist><option>//div[@id='reports']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button[3]/md-icon</option><option>//button[3]/md-icon</option><option>css=md-icon.pt-5.ng-scope.md-default-theme.md-font.material-icons.icon-pencil</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar informe</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar informe</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Notificaciones</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[9]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[9]/div/a/span</option><option>//li[9]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='notifications']/div[2]/div/div/div/span<datalist><option>//div[@id='notifications']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Notificaciones</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Configuración de notificaciones</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li/div/a/span</option><option>//li[10]/ul/li/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='events']/div[2]/div/div/div/span<datalist><option>//div[@id='events']/div[2]/div/div/div/span</option><option>//div[2]/div/div/div/span</option><option>css=div.header.layout-align-space-between-center.layout-row &gt; div.white-fg.layout-align-start-start.layout-column &gt; div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Eventos</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Cláusulas de convenio</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[2]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[2]/div/a/span</option><option>//li[10]/ul/li[2]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='conditionsTemplates']/div[2]/div/div/div/span<datalist><option>//div[@id='conditionsTemplates']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Cláusulas de convenios</td>
+</tr>
+<tr><td>click</td><td>//div[@id='conditionsTemplates']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/md-icon<datalist><option>//div[@id='conditionsTemplates']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/md-icon</option><option>//div[2]/button/md-icon</option><option>css=md-icon.pt-5.ng-scope.md-default-theme.md-font.material-icons.icon-pencil</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar cláusula de convenio</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar cláusula de convenio</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Competencias</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[3]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[3]/div/a/span</option><option>//li[10]/ul/li[3]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='skills']/div[2]/div/div/div/span<datalist><option>//div[@id='skills']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Competencias</td>
+</tr>
+<tr><td>click</td><td>//div[@id='skills']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='skills']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar competencia</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar competencia</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Actividades de empresa</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Actividades de empresa<datalist><option>link=Actividades de empresa</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[4]/div/a</option><option>//a[contains(@href, '/activities')]</option><option>//li[10]/ul/li[4]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='activities']/div[2]/div/div/div/span<datalist><option>//div[@id='activities']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Actividades</td>
+</tr>
+<tr><td>click</td><td>//div[@id='activities']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='activities']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar actividad</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar actividad</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Variables del sistema</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>link=Variables del sistema<datalist><option>link=Variables del sistema</option><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[5]/div/a</option><option>//a[contains(@href, '/category//pyconfrests')]</option><option>//li[10]/ul/li[5]/div/a</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='pyconfrests']/div[2]/div/div/div/span<datalist><option>//div[@id='pyconfrests']/div[2]/div/div/div/span</option><option>//div[2]/div/div/div/span</option><option>css=div.header.layout-align-space-between-center.layout-row &gt; div.white-fg.layout-align-start-start.layout-column &gt; div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Variables del sistema</td>
+</tr>
+<tr><td>click</td><td>//div[@id='pyconfrests']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='pyconfrests']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar variable</td>
+</tr>
+<tr><td>click</td><td>//md-toolbar/div/button/md-icon<datalist><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Editar variable</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Registro de acciones del sistema</td></tr>
+</thead>
+<tbody>
+<tr><td>click</td><td>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[6]/div/a/span<datalist><option>//div[@id='horizontal-navigation']/div/ms-navigation-horizontal/ul/li[10]/ul/li[6]/div/a/span</option><option>//li[10]/ul/li[6]/div/a/span</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//div[@id='actionloggings']/div[2]/div/div/div/span<datalist><option>//div[@id='actionloggings']/div[2]/div/div/div/span</option><option>//div/div/div/span</option><option>css=div.h1.layout-align-start-center.layout-row &gt; span</option></datalist></td><td>Acciones del sistema</td>
+</tr>
+<tr><td>click</td><td>//div[@id='actionloggings']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span<datalist><option>//div[@id='actionloggings']/div[2]/div[2]/md-content/div/div/div/div/div/div[2]/button/span</option><option>//div[2]/button/span</option><option>css=span.pt-5.ng-scope</option></datalist></td><td></td>
+</tr>
+<tr><td>assertText</td><td>//md-dialog[@id='actionloggingForm']/form/md-toolbar/div/span<datalist><option>//md-dialog[@id='actionloggingForm']/form/md-toolbar/div/span</option><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Detalle de acción</td>
+</tr>
+<tr><td>click</td><td>//md-dialog[@id='actionloggingForm']/form/md-toolbar/div/button/md-icon<datalist><option>//md-dialog[@id='actionloggingForm']/form/md-toolbar/div/button/md-icon</option><option>//md-toolbar/div/button/md-icon</option><option>css=md-icon.ng-scope.md-font.material-icons.icon-close.md-default-theme</option></datalist></td><td></td>
+</tr>
+<tr><td>pause</td><td><datalist><option></option></datalist></td><td>1000</td>
+</tr>
+<tr><td>assertNotText</td><td>//md-toolbar/div/span<datalist><option>//md-toolbar/div/span</option><option>css=div.md-toolbar-tools.layout-align-space-between-center.layout-row &gt; span.title.ng-binding</option></datalist></td><td>Detalle de acción</td>
+</tr>
+</tbody></table>
+</body>
+</html>

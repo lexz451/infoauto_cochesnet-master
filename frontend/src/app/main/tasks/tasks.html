@@ -1,0 +1,136 @@
+<div layout="column" layout-align="space-between start" class="container-tasks">
+
+    <div class="no-results text-center" ng-if="filtered.length == 0">
+
+        <div class="message">
+            <md-icon class="message-icon s96" md-font-icon="icon-document"></md-icon>
+            <div class="message-text" translate>Sin solicitudes</div>
+        </div>
+
+    </div>
+
+    <div class="fullwidth" layout="row" layout-align="start center"
+         layout-margin ng-repeat="task in filtered = (vm.tasks.data | filter:{is_traking_task: tracing})">
+
+        <div layout="row" layout-align="start center" flex id="task-{{task.id}}" class="item-task">
+
+            <div class="info" flex="auto">
+                <div>
+                    <md-input-container data-layout="column" flex="50" class="mt-0">
+                        <md-checkbox ng-model="task.realization_date_check" aria-label="{{'Marcar como realizada' | translate}}" class="realization_date_check"
+                                     class="md-align-top-left no-margin" ng-change="vm.saveTask(task)" flex data-ng-disabled="task.realization_date_check">
+                            <span class="font-size-12" data-translate>Marcar como realizada</span>
+                        </md-checkbox>
+                    </md-input-container>
+                </div>
+                <div layout="row" data-layout-xs="column" layout-align="start end">
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                        <div flex>
+                            <label class="input-label" data-translate>Fecha programada</label>
+                            <div class="bb">
+                                <md-icon md-font-icon="icon-calendar"></md-icon>
+                                <span class="planified_realization_date" ng-if="task.planified_realization_date">{{ task.planified_realization_date | date:'dd/MM/yyyy HH:mm' }}</span>
+                                <span class="planified_realization_date" ng-if="!task.planified_realization_date" translate>Sin definir</span>
+
+                                <!--- <span ng-if="vm.lead.last_lead_action.date">{{ vm.lead.last_lead_action.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                                <span ng-if="!vm.lead.last_lead_action.date" translate>Sin definir</span> --->
+                            </div>
+                            <span class="error">{{ vm.serverErrors.date[$index] }}</span>
+
+
+                        </div>
+                    </div>
+
+                    <!---  <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                        <div flex>
+                            <label class="input-label" data-translate>Usuario</label>
+                            <div class="bb">
+                                <md-icon md-font-icon="icon-account"></md-icon>
+                                <span ng-if="vm.lead.last_lead_action.user_data">
+                                    {{ vm.lead.last_lead_action.user_data.first_name }}
+                                    {{ vm.lead.last_lead_action.user_data.last_name }}
+                                </span>
+                                <span ng-if="vm.lead.user_data && !vm.lead.last_lead_action.user_data">
+                                    {{ vm.lead.user_data.first_name }}
+                                    {{ vm.lead.user_data.last_name }}
+                                </span>
+                                <span ng-if="!vm.lead.user_data && !vm.lead.last_lead_action.user_data">{{ vm.user.first_name }} {{ vm.user.last_name }}</span>
+                            </div>
+                        </div>
+                    </div> --->
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                        <div flex>
+                            <label class="input-label" data-translate>Medio</label>
+                            <div class="bb">
+                                <md-icon md-font-icon="icon-whatsapp" ng-if="task.media==='Whatsapp'"></md-icon>
+                                <md-icon md-font-icon="icon-phone" ng-if="task.media==='Phone'"></md-icon>
+                                <md-icon md-font-icon="icon-message-text-outline" ng-if="task.media==='SMS'"></md-icon>
+                                <md-icon md-font-icon="icon-email" ng-if="task.media==='E-mail'"></md-icon>
+                                <md-icon md-font-icon="icon-account-multiple" ng-if="task.media==='face'"></md-icon>
+                                <span class="media" ng-if="task.media==='Phone'" data-translate>Teléfono</span>
+                                <span class="media" ng-if="task.media==='face'" data-translate>Presencial</span>
+                                <span class="media" ng-if="task.media!=='Phone' && task.media!=='face'">{{ task.media }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                        <div flex>
+                            <label class="input-label" data-translate>Tipo de tarea</label>
+                            <div class="bb">
+                                <span class="type" ng-repeat="type in vm.taskTypes" ng-if="type.key===task.type">
+                                    {{ type.name }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                        <div flex>
+                            <label class="input-label" data-translate>Categoría</label>
+                            <div class="bb">
+                                <span class="subtype" ng-repeat="type in vm.taskTypes" ng-if="type.key===task.type">
+                                    {{ type.subtype }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 mr-15" flex>
+                        <div flex>
+                            <label class="input-label" data-translate>Descripción</label>
+                            <div class="bb">
+                                <span class="description">{{ task.description || "-"}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-layout="row" layout-align="start center" class="mb-20 mr-15"
+                         ng-if="task.realization_date">
+                        <div flex>
+                            <label class="input-label" data-translate>Realizada</label>
+                            <div class="bb realization_date" data-translate>
+                                {{ task.realization_date | date:'dd/MM/yyyy HH:mm' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div layout="row" layout-align="end center" ng-hide="vm.isDisabled()">
+                <md-button data-layout="column" class="md-icon-button md-accent" data-layout-align="start center"
+                           data-ng-if="hasPermission('tasks','PATCH')" data-ng-click="vm.openTaskDialog($event, tracing, task)">
+                    <md-icon title="{{ 'Editar' | translate }}" md-font-icon="icon-pencil"></md-icon>
+                </md-button>
+                <md-button data-layout="column" class="md-icon-button md-warn" data-layout-align="start center"
+                           data-ng-if="hasPermission('tasks','DELETE')" data-ng-click="vm.removeTask($event, task)">
+                    <md-icon title="{{ 'Eliminar' | translate }}" md-font-icon="icon-delete"></md-icon>
+                </md-button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

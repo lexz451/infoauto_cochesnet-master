@@ -1,0 +1,19 @@
+Estimado {{lead.user.get_full_name}} le informamos que su cliente {{ lead.client.name }}
+ha intentado volver a contactar contigo.
+
+
+Fecha-Hora: {{lead.created}}
+Nombre: {{lead.client.name}}
+Teléfono: {{ lead.client.phone|truncatechars:6 }}xxx
+Vehículo:
+{% for vehicle in lead.vehicles.all %}
+	{{vehicle.brand_model}},
+{% endfor %}
+
+Estado: {{lead.get_status_display}}
+
+Rogamos actualicen su información con todas las acciones que lleves a cabo con este potencial cliente.
+
+Atentamente
+Servicio de Atención al cliente
+Smart Motor Lead

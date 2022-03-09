@@ -1,0 +1,32 @@
+#leads,
+#scrumboard {
+  md-sidenav{
+    width: 400px;
+  }
+
+  .content-task,
+  md-input-container,
+  md-chips{
+    margin: 4px 0;
+    width: 100%;
+  }
+
+  .md-chips{
+    padding: 0px;
+  }
+
+  md-autocomplete-wrap > input[type="search"]{
+    padding: 0 !important;
+    font-size: 13px;
+  }
+
+  .disabled-chip{
+    color: rgba(0, 0, 0, 0.38);
+    padding: 10px 0px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+  }
+
+  .md-chips .md-chip-input-container{
+    width: 100%;
+  }
+}

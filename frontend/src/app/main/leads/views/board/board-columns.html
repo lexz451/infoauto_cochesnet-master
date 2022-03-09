@@ -1,0 +1,202 @@
+<!-- BOARD -->
+<div id="board" layout="row">
+    <!-- LIST -->
+    <div class="list-wrapper" ng-repeat="list in vm.board.lists" ng-show="list.show">
+
+        <div class="list md-whiteframe-1dp" layout="column">
+
+            <!-- LIST HEADER -->
+            <div class="list-header" layout="row" layout-align="space-between center">
+
+                <div class="list-header-name">
+                    <span>{{list.name}}</span>
+                </div>
+
+                <div class="p-20">
+                    {{ vm.leads[list.id].count }}
+                </div>
+            </div>
+            <!-- / LIST HEADER -->
+
+            <!-- LIST CONTENT -->
+            <div class="list-content" layout="column">
+
+                <div class="list-cards" ms-scroll>
+
+                    <!-- CARD -->
+                    <a class="list-card md-whiteframe-2dp"
+                         ng-repeat="lead in vm.leads[list.id].data"
+                         data-ui-sref="app.leads.get.edit({'lead':'{{ lead.id }}'})" target="_blank">
+
+
+                        <div class="list-card-details mb-10">
+
+
+                            <div class="list-card-labels" layout="row" layout-align="space-between center" layout-wrap>
+
+                                <div class="mb-10">
+                                    <stars score="lead.score"></stars>
+                                </div>
+
+                                <span ng-if="list.id==='end'">
+                                    <span class="list-card-label white-fg result-info" ng-repeat="result in vm.leadResults"
+                                          ng-if="result.id===lead.result" style="background: {{ result.color }}">
+                                        <span ng-if="lead.result!=='negative' && lead.result!=='not_available' && lead.result!=='error' && lead.result!=='positive'">{{ result.name }}</span>
+
+                                        <span ng-if="(lead.result==='negative' || lead.result==='not_available' || lead.result==='error' || lead.result==='positive') &&
+                                        result_reason.id===lead.result_reason" ng-repeat="result_reason in vm.leadResultsErrors">
+                                            {{result_reason.name}}
+                                        </span>
+
+                                        <span ng-if="(lead.result==='negative' || lead.result==='not_available' || lead.result==='error' || lead.result==='positive') &&
+                                        !lead.result_reason">
+                                            {{result.name}}
+                                        </span>
+                                    </span>
+                                </span>
+
+                                <div class="user-asign">
+                                    <span ng-if="lead.user_data.first_name">
+                                        {{lead.user_data.first_name[0]}}{{lead.user_data.last_name[0]}}
+                                    </span>
+                                    <span ng-if="!lead.user_data.first_name">-</span>
+                                </div>
+
+                            </div>
+
+                            <div layout="row" layout-align="space-between start">
+                                <div>
+                                    <div>
+                                        <i class="icon-account s16"></i>
+                                        <span ng-if="lead.client_name">{{lead.client_name}} {{lead.client_surname}}</span>
+                                        <span ng-if="!lead.client_name">{{'No definido' | translate}}</span>
+                                    </div>
+
+                                    <div ng-if="lead.client_business_name">
+                                        <i class="icon-domain s16"></i>
+                                        <span>{{lead.client_business_name}}</span>
+                                    </div>
+
+                                    <div ng-if="lead.client_phone">
+                                        <i class="icon-phone s16"></i>
+                                        <span>{{lead.client_phone | limitTo:5}}xxxx</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div layout="row" layout-align="start center">
+                                        <div layout="row" layout-align="start center" ng-show="lead.channel">
+
+                                            <span class="list-card-footer-item" layout="row" layout-align="start center" data-translate>Canal:</span>
+
+                                            <span class="list-card-footer-item" ng-if="lead.channel==='email' || lead.channel==='both'"
+                                                  layout="row" layout-align="start center">
+                                                <i class="icon-email s18"></i>
+                                            </span>
+
+                                            <span class="list-card-footer-item" ng-if="lead.channel==='phone' || lead.channel==='both'"
+                                                  layout="row" layout-align="start center">
+                                                <i class="icon-phone s18"></i>
+                                            </span>
+
+                                            <span class="list-card-footer-item" ng-if="lead.channel==='chat' || lead.channel==='both'"
+                                                  layout="row" layout-align="start center">
+                                                <i class="icon-comment s18"></i>
+                                            </span>
+
+                                            <span class="list-card-footer-item" ng-if="lead.channel==='exposition' || lead.channel==='both'"
+                                                  layout="row" layout-align="start center">
+                                                <i class="icon-map-marker s18"></i>
+                                            </span>
+
+                                            <span class="list-card-footer-item" ng-if="lead.channel==='web_home' || lead.channel==='both'"
+                                                  layout="row" layout-align="start center">
+                                                <i class="icon-web s18"></i>
+                                            </span>
+
+                                        </div>
+                                        <div class="origin-icon ml-10">
+                                            <img ng-src="{{ lead.origin }}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="list-card-footer" ng-if="lead.last_lead_action.last_task.type">
+                            <div>
+                                <div ng-init="task=lead.last_lead_action.last_task" layout="row" layout-align="start center" class="tags mt-10 mb-10">
+
+                                    <strong class="mr-20" ng-repeat="type in vm.taskTypes" ng-if="task.type===type.id && task.type">{{ type.name }}</strong>
+                                    <strong ng-if="!task.type" class="mr-20" translate>Sin solicitudes</strong>
+                                    <div layout="row" layout-align="start start">
+                                        <div class="ml-10 tag-label">
+                                            <span>{{ lead.last_lead_action.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-card-footer">
+                            <div class="list-card-name pt-10 pb-10" ng-repeat="vehicle in lead.vehicles_names">
+                                <i class="icon-car s16"></i>
+                                <span>{{vehicle | vehicle}}</span>
+                            </div>
+                        </div>
+
+                        <div class="list-card-footer">
+
+                            <div class="pt-10 pb-10">
+                                <div data-translate>Lead managements:</div>
+
+                                <div ng-repeat="lead_management in lead.lead_managements_data">
+                                    <div class="mt-5">
+                                        <strong class="title">{{lead_management.message}}</strong>
+                                    </div>
+
+                                    <div class="tags" layout="row" layout-align="start center" layout-wrap>
+
+                                        <div class="tag" layout="row" layout-align="start center">
+                                            <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                            <div class="ml-10 tag-label">
+                                                <span translate>Fecha:</span>
+                                                {{lead_management.created | date:'dd/MM/yyyy'}}
+                                            </div>
+                                        </div>
+
+                                        <div class="tag" layout="row" layout-align="start center">
+                                            <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                            <div class="ml-10 tag-label">
+                                                <span translate>Hora:</span>
+                                                {{lead_management.created | date:'HH:mm'}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </a>
+                    <!-- / CARD -->
+
+                    <div class="p-5 text-right pointer">
+                        <a ng-show="vm.leads[list.id].data.length<vm.leads[list.id].count" ng-click="vm.showMore(list.id)" data-translate>Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <!-- / LIST CONTENT -->
+
+        </div>
+    </div>
+    <!-- / LIST -->
+</div>
+<!-- / BOARD -->
+
+

@@ -1,0 +1,232 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="userForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="45">
+                        <input type="text" name="first_name" data-ng-model="vm.user.first_name"
+                               placeholder="{{'Nombre' | translate}}" required md-autofocus>
+                        <error-messages field="userForm.first_name" server-errors="vm.serverErrors" required></error-messages>
+                    </md-input-container>
+
+                    <md-input-container flex="45">
+                        <input type="text" name="last_name" data-ng-model="vm.user.last_name"
+                               placeholder="{{'Apellidos' | translate}}">
+                        <error-messages field="userForm.last_name" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <span translate>Asignar por defecto</span>
+                    <div layout="row">
+                        <md-input-container data-layout="column" flex="50" class="mt-0">
+                            <md-checkbox ng-model="vm.user.lost_calls" aria-label="{{'Llamadas perdidas' | translate}}"
+                                         class="md-align-top-left no-margin" flex>
+                                <span data-translate>Llamadas perdidas</span>
+                            </md-checkbox>
+                        </md-input-container>
+
+                        <md-input-container data-layout="column" flex="50" class="mt-0">
+                            <md-checkbox ng-model="vm.user.emails_received" aria-label="{{'Mails recibidos' | translate}}"
+                                         class="md-align-top-left no-margin" flex>
+                                <span data-translate>Mails recibidos</span>
+                            </md-checkbox>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="45">
+                        <label data-translate>Contraseña</label>
+                        <input type="password" name="password" data-ng-model="vm.user.password">
+                        <error-messages field="userForm.password" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+
+                    <md-input-container flex="45">
+                        <input match-password="password" type="password" name="repeat_password"
+                               ng-model="vm.user.repeat_password" placeholder="Repite la contraseña">
+                        <error-messages field="userForm.repeat_password" server-errors="vm.serverErrors" password-match></error-messages>
+                    </md-input-container>
+                </div>
+
+                <md-input-container flex="100">
+                    <input type="text" name="email" data-ng-model="vm.user.email"
+                           placeholder="{{'Email' | translate}}" required>
+                    <span class="hint" data-translate>Se usará para acceder al sistema</span>
+                    <error-messages field="userForm.email" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="phone" data-ng-model="vm.user.phone"
+                           placeholder="{{'Teléfono' | translate}}">
+                    <error-messages field="userForm.phone" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="ddi_whatsapp_business" data-ng-model="vm.user.ddi_whatsapp_business"
+                           placeholder="{{'DDis WhatsApp Business' | translate}}">
+                    <error-messages field="userForm.ddi_whatsapp_business" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="ubunet_company" data-ng-model="vm.user.ubunet_company"
+                           placeholder="{{'PBX Empresa' | translate}}">
+                    <error-messages field="userForm.ubunet_company" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="ubunet_extension" data-ng-model="vm.user.ubunet_extension"
+                           placeholder="{{'PBX Extension' | translate}}">
+                    <error-messages field="userForm.ubunet_extension" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="ubunet_agent" data-ng-model="vm.user.ubunet_agent"
+                           placeholder="{{'PBX Agente' | translate}}">
+                    <error-messages field="userForm.ubunet_agent" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+
+                <!--<md-input-container flex="100">
+                    <input type="text" name="memberid" data-ng-model="vm.user.memberid"
+                           placeholder="{{'Identificador click2call' | translate}}">
+                    <error-messages field="userForm.memberid" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="id_click2call" data-ng-model="vm.user.id_click2call"
+                           placeholder="{{'Id click2call' | translate}}">
+                    <error-messages field="userForm.id_click2call" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>-->
+
+                <p data-translate>Concesionarios a los que pertenece:</p>
+                <div ng-repeat="item in vm.user.related_concessionaires" ng-init="name='related_concessionaires___'+$index+'___concessionaire'"
+                     layout="row" layout-align="space-between center">
+
+                    <div flex="80">
+                        <div>
+                            <md-autocomplete md-floating-label="{{'Concesionario' | translate }}" md-delay="300" md-input-name="{{ name }}"
+                                             md-no-cache="true" md-min-length="0" flex="100"
+                                             md-selected-item="item.concessionaire_data" md-search-text="searchTextConcessionaire"
+                                             md-items="concessionaire in vm.getConcessionaires(searchTextConcessionaire)"
+                                             md-item-text="concessionaire.name">
+                                <md-item-template>
+                                    <span md-highlight-text="searchTextConcessionaire">{{concessionaire.name}}</span>
+                                </md-item-template>
+                                <md-not-found>
+                                    <span data-translate>No hay ningún concesionario con ese nombre</span>
+                                </md-not-found>
+                            </md-autocomplete>
+                            <md-input-container flex="100" class="no-margin" ng-show="vm.serverErrors">
+                                <error-messages field="userForm[name]" server-errors="vm.serverErrors" required></error-messages>
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row" class="mb-20">
+                            <md-input-container data-layout="column" flex="50" class="mt-0">
+                                <md-checkbox ng-model="item.is_concessionaire_admin" aria-label="{{'Es administrador del concesionario' | translate}}"
+                                      class="md-align-top-left no-margin" flex>
+                                    <span data-translate>Es administrador del concesionario</span>
+                                </md-checkbox>
+                            </md-input-container>
+
+                            <md-input-container data-layout="column" flex="50" class="mt-0">
+                                <md-checkbox ng-model="item.is_business_manager" aria-label="{{'Es gestor del concesionario' | translate}}"
+                                      class="md-align-top-left no-margin" flex>
+                                    <span data-translate>Es gestor del concesionario</span>
+                                </md-checkbox>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div flex="20" layout="row" layout-align="center center">
+                        <md-button ng-click="vm.removeConcessionaire($index,userForm, item)" data-debouce-click
+                                   class="md-fab md-mini md-warn" aria-label="{{'Borrar' | translate}}">
+                            <md-icon md-font-icon="icon-delete"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div>
+                    <md-button ng-click="vm.addConcessionaire()" class="md-accent md-raised" aria-label="{{'Añadir concesionario' | translate}}">
+                        <span data-translate>Añadir concesionario</span>
+                    </md-button>
+                </div>
+
+                <!--<md-input-container data-layout="column">
+                    <md-checkbox ng-model="vm.program.companies_visible" aria-label="{{'Visible para empresas' | translate}}"
+                          class="md-align-top-left" flex>
+                        <span data-translate>Visible para empresas</span>
+                    </md-checkbox>
+                </md-input-container>-->
+
+                <p data-translate>SFA</p>
+                <div ng-repeat="item in vm.user.sfa_configurations" class="bb mb-20"
+                     layout="row" layout-align="space-between center">
+
+                    <div flex="80" layout="column">
+                        <md-input-container ng-init="name='sfa_configurations___'+$index+'___channel'">
+                            <label data-translate>Canal</label>
+                            <md-select ng-model="item.channel" name="{{name}}" required>
+                                <md-option ng-repeat="channel in vm.channels" ng-value="channel.id">
+                                    {{channel.name}}
+                                </md-option>
+                            </md-select>
+                            <error-messages field="userForm[name]" server-errors="vm.serverErrors" required></error-messages>
+                        </md-input-container>
+
+                        <md-input-container ng-init="name='sfa_configurations___'+$index+'___event'">
+                            <label data-translate>Evento</label>
+                            <md-select ng-model="item.event" name="{{name}}" required>
+                                <md-option ng-repeat="event in vm.events" ng-value="event.id">
+                                    {{event.name}}
+                                </md-option>
+                            </md-select>
+                            <error-messages field="userForm[name]" server-errors="vm.serverErrors" required></error-messages>
+                        </md-input-container>
+
+                        <md-input-container ng-init="name='sfa_configurations___'+$index+'___text'">
+                            <input type="text" name="{{name}}" data-ng-model="item.text"
+                                   placeholder="{{'Comunicado' | translate}}" required>
+                            <error-messages field="userForm[name]" server-errors="vm.serverErrors"></error-messages>
+                        </md-input-container>
+                    </div>
+
+                    <div flex="20" layout="row" layout-align="center center">
+                        <md-button ng-click="vm.removeSFA($index,userForm, item)" data-debouce-click
+                                   class="md-fab md-mini md-warn" aria-label="{{'Borrar' | translate}}">
+                            <md-icon md-font-icon="icon-delete"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div>
+                    <md-button ng-click="vm.addSFA()" class="md-accent md-raised" aria-label="{{'Añadir SFA' | translate}}">
+                        <span data-translate>Añadir SFA</span>
+                    </md-button>
+                </div>
+
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveUser()" class="send-button md-accent md-raised"
+                           data-ng-disabled="userForm.$invalid || userForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

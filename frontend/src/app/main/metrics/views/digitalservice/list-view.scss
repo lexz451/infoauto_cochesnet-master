@@ -1,0 +1,52 @@
+#digitalService {
+
+  .llamdas-recibidas{
+    chartist{
+      overflow: hidden;
+      height: 450px;
+    }
+    .foot{
+      .item{
+        &>div{
+          display: inline-block;
+        }
+        .box{
+          width:20px;
+          height:10px;
+          &.atendidas{
+            background: #448aff;
+          }
+          &.no-atendidas{
+            background: #e0e0e0;
+          }
+        }
+      }
+    }
+  }
+
+  .no-atendidas{
+    chartist{
+      overflow: hidden;
+      height: 450px;
+    }
+    .foot{
+      .item{
+        &>div{
+          display: inline-block;
+        }
+        .box{
+          width:20px;
+          height:10px;
+          &.emitidas{
+            background: #3182ce;
+          }
+          &.sin-llamadas{
+            background: #63b3ed;
+          }
+        }
+      }
+    }
+  }
+
+}
+

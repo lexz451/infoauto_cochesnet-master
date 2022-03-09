@@ -1,0 +1,199 @@
+<div id="users" class="page-layout carded fullwidth" data-layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" data-layout="column" data-flex>
+
+         <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-account"></md-icon>
+                    <span data-translate>Usuarios</span>
+                </div>
+                <div class="count secondary-text">
+                    <span data-translate>Número de usuarios:</span>
+                    <span>{{vm.users.count}}</span>
+                </div>
+            </div>
+
+            <div data-layout="row" data-layout-align="space-between center" data-layout-wrap>
+
+                <div data-layout="row" data-layout-xs="column" data-layout-align="space-between center" data-layout-wrap>
+                    <label class="search" data-layout="row" data-layout-align="start center" data-flex>
+                        <span data-hide-xs data-hide-gt-xs data-translate>Buscar</span>
+                        <md-icon md-font-icon="icon-magnify" class="white-text icon search-icon"></md-icon>
+                        <input class="search-input" type="text" placeholder="{{'Buscar' | translate }}" data-ng-model="vm.users.filters.search" data-flex>
+                    </label>
+
+                    <div class="search-autocomplete" data-layout="row" data-layout-align="start center">
+                        <md-autocomplete md-floating-label="{{'Concesión' | translate }}" md-delay="300" md-input-name="concessionaire"
+                                         md-no-cache="true" ng-disabled="vm.isDisabled()" flex="90"
+                                         md-selected-item="vm.users.filters.concessionaire_data" md-search-text="searchTextConcessionaire"
+                                         md-items="concessionaire in vm.getConcessionaires(searchTextConcessionaire)" md-min-length="3"
+                                         md-item-text="concessionaire.name">
+                            <md-item-template>
+                                <span md-highlight-text="searchTextConcessionaire">{{concessionaire.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                <span data-translate>No hay ningún concesionario con ese teléfono</span>
+                            </md-not-found>
+                        </md-autocomplete>
+                    </div>
+
+                    <div class="search pt-20 mr-20">
+                        <md-select data-ng-model="vm.users.filters.online" placeholder="{{ 'Conexión' | translate }}">
+                            <md-option data-ng-value="">
+                                <span data-translate>Indiferente</span>
+                            </md-option>
+                            <md-option data-ng-value="true">
+                                <span data-translate>Conectados</span>
+                            </md-option>
+                            <md-option data-ng-value="false">
+                                <span data-translate>Desconectados</span>
+                            </md-option>
+                        </md-select>
+                    </div>
+                    <div class="search pt-20 mr-20">
+                        <md-select data-ng-model="vm.users.filters.is_active" placeholder="{{ 'Estado' | translate }}">
+                            <md-option data-ng-value="">
+                                <span data-translate>Indiferente</span>
+                            </md-option>
+                            <md-option data-ng-value="true">
+                                <span data-translate>Activos</span>
+                            </md-option>
+                            <md-option data-ng-value="false">
+                                <span data-translate>Dados de baja</span>
+                            </md-option>
+                        </md-select>
+                    </div>
+                </div>
+
+                <div class="actions" data-layout="row" data-layout-align="end center" data-ng-if="hasPermission('users','POST')">
+                    <md-button class="md-raised" aria-label="{{'Nuevo concesionario' | translate}}"
+                               data-ng-click="vm.openUserDialog($event)">
+                        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                        <span data-translate>Nuevo usuario</span>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" data-layout="column" data-flex>
+
+            <md-content class="content p-20" flex ms-scroll>
+
+                <div layout="column" layout-align="space-between start">
+
+                    <div class="no-results text-center" ng-if="vm.users.count == 0">
+
+                        <div class="message">
+                            <md-icon class="message-icon s96" md-font-icon="icon-account"></md-icon>
+                            <div class="message-text" translate>Sin usuarios</div>
+                        </div>
+
+                    </div>
+                    <div class="todo-item" layout="row" layout-align="start center"
+                         data-dir-paginate="user in vm.users.data | itemsPerPage: 10 | orderBy:'order'"
+                            data-total-items="vm.users.count" data-current-page="vm.users.filters.page" ng-class="{'red-100-bg':!user.is_active}">
+
+                        <div layout="row" layout-align="start center" flex>
+
+                            <div class="info" flex="auto">
+                                <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                                    <div layout="row" layout-align="space-between center">
+
+                                        <span class="avatar-wrapper mr-20">
+                                            <img data-md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg" alt="Imágen de perfil">
+                                            <md-icon ng-if="user.session.online" md-font-icon
+                                                     ng-style="{'color': '#4CAF50' }"
+                                                     class="icon icon-checkbox-marked-circle status s16">
+                                            </md-icon>
+                                            <md-icon ng-if="!user.session.online" md-font-icon
+                                                     ng-style="{'color': '#F44336' }"
+                                                     class="icon icon-minus-circle status s16">
+                                            </md-icon>
+                                        </span>
+
+                                        <div>
+                                            <div class="mb-5">
+                                                <span class="title">{{user.first_name}} {{user.last_name}}</span>
+                                                <span class="ml-10">
+                                                    <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_admin" data-translate>Super Administrador</span>
+                                                    <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_concession_admin" data-translate>Administrador de concesionario</span>
+                                                    <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_business_manager" data-translate>Gestor comercial</span>
+                                                </span>
+                                            </div>
+
+                                            <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                                <div class="tag" layout="row" layout-align="start center">
+                                                    <md-icon md-font-icon="icon-email" class="s16"></md-icon>
+                                                    <div class="ml-10 tag-label">
+                                                        {{user.email}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                                <div class="tag" layout="row" layout-align="start center" ng-repeat="concessionaire in user.related_concessionaires">
+                                                    <md-icon md-font-icon="icon-car" class="s16"></md-icon>
+                                                    <div class="ml-10 tag-label">
+                                                        {{concessionaire.concessionaire_data.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-10">
+                                                <span class="text-boxed m-0 green-bg white-fg" ng-if="user.user_activation_date" data-translate>
+                                                    Activado el {{ user.user_activation_date | date:'dd/MM/yyyy' }}
+                                                </span>
+                                                <span class="text-boxed m-0 red-bg white-fg" ng-if="user.user_deactivation_date" data-translate>
+                                                    Desactivado el {{ user.user_deactivation_date | date:'dd/MM/yyyy' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-align="end center">
+                                        <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('users','PATCH')" data-ng-click="vm.openUserDialog($event, user)">
+                                            <md-icon class="pt-5" title="{{'Editar' | translate}}" md-font-icon="icon-pencil"></md-icon>
+                                            <span class="pt-5" data-translate>Editar</span>
+                                        </md-button>
+                                        <md-button data-layout="column" class="md-warn" data-layout-align="start center" data-debouce-click
+                                                   data-ng-if="user.is_active && (vm.user.is_concession_admin || vm.user.is_admin)" data-ng-click="vm.toggleActive(user)">
+                                            <md-icon class="pt-5" title="{{'Dar de baja' | translate}}" md-font-icon="icon-arrow-down-bold"></md-icon>
+                                            <span class="pt-5" data-translate>Dar de baja</span>
+                                        </md-button>
+                                        <md-button data-layout="column" data-layout-align="start center" data-debouce-click
+                                                   data-ng-if="!user.is_active && vm.user.is_admin" data-ng-click="vm.toggleActive(user)">
+                                            <md-icon class="pt-5 green-700-fg" title="{{'Dar de alta' | translate}}" md-font-icon="icon-arrow-up-bold"></md-icon>
+                                            <span class="pt-5 green-700-fg" data-translate>Dar de alta</span>
+                                        </md-button>
+                                        <!--<md-button data-layout="column" class="md-warn" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('users','DELETE')" data-ng-click="vm.removeUser($event, user)">
+                                            <md-icon class="pt-5" title="{{'Eliminar' | translate}}" md-font-icon="icon-delete"></md-icon>
+                                            <span class="pt-5" data-translate>Eliminar</span>
+                                        </md-button>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <dir-pagination-controls class="bottomFixed"></dir-pagination-controls>
+
+                </div>
+            </md-content>
+            <!-- CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

@@ -1,0 +1,112 @@
+<div id="concessionaires" class="page-layout carded fullwidth" data-layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" data-layout="column" data-flex>
+
+         <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-car"></md-icon>
+                    <span data-translate>Concesionarios</span>
+                </div>
+                <div class="count secondary-text">
+                    <span data-translate>Número de concesionarios:</span>
+                    <span>{{vm.concessionaires.count}}</span>
+                </div>
+            </div>
+
+            <div data-layout="row" data-layout-align="space-between center" data-layout-wrap>
+
+                <div class="actions" data-layout="row" data-layout-align="end center" data-ng-if="vm.user.is_admin">
+                    <md-button class="md-raised" aria-label="{{'Nuevo concesionario' | translate}}"
+                               data-ng-click="vm.openConcessionaireDialog($event)">
+                        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                        <span data-translate>Nuevo concesionario</span>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" data-layout="column" data-flex>
+
+            <md-content class="content p-20" flex ms-scroll>
+
+                <div layout="column" layout-align="space-between start">
+
+                    <div class="no-results text-center" ng-if="vm.concessionaires.count == 0">
+
+                        <div class="message">
+                            <md-icon class="message-icon s96" md-font-icon="icon-car"></md-icon>
+                            <div class="message-text" translate>Sin concesionarios</div>
+                        </div>
+
+                    </div>
+                    <div class="todo-item" layout="row" layout-align="start center"
+                         data-dir-paginate="concessionaire in vm.concessionaires.data | itemsPerPage: 10 | orderBy:'order'"
+                            data-total-items="vm.concessionaires.count" data-current-page="vm.concessionaires.filters.page">
+
+                        <div layout="row" layout-align="start center" flex>
+
+                            <div class="info" flex="auto">
+                                <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                                    <div layout="row" layout-align="space-between center">
+                                        <div>
+                                            <div class="title">
+                                                <span>{{concessionaire.name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-align="end center">
+                                        <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                   data-ng-if="vm.user.is_admin || vm.user.is_concession_admin" data-ui-sref="app.users.list({concessionaire:'{{ concessionaire.id }}'})">
+                                            <md-icon class="pt-5 purple-700-fg" title="{{'Usuarios' | translate}}" md-font-icon="icon-account"></md-icon>
+                                            <span class="pt-5 purple-700-fg" data-translate>Usuarios</span>
+                                        </md-button>
+
+                                        <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('concessionaires','PATCH')" data-ng-click="vm.openConcessionaireNotesDialog($event, concessionaire)">
+                                            <md-icon class="pt-5 green-700-fg" title="{{'Notas' | translate}}" md-font-icon="icon-document"></md-icon>
+                                            <span class="pt-5 green-700-fg" data-translate>Notas</span>
+                                        </md-button>
+
+                                        <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('concessionaires','PATCH')" data-ng-click="vm.openConcessionaireCalendarDialog($event, concessionaire)">
+                                            <md-icon class="pt-5 brown-700-fg" title="{{'Calendario' | translate}}" md-font-icon="icon-calendar"></md-icon>
+                                            <span class="pt-5 brown-700-fg" data-translate>Calendario</span>
+                                        </md-button>
+
+                                        <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('concessionaires','PATCH')" data-ng-click="vm.openConcessionaireDialog($event, concessionaire)">
+                                            <md-icon class="pt-5" title="{{'Editar' | translate}}" md-font-icon="icon-pencil"></md-icon>
+                                            <span class="pt-5" data-translate>Editar</span>
+                                        </md-button>
+                                        <!--<md-button data-layout="column" class="md-warn" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('concessionaires','DELETE')" data-ng-click="vm.removeConcessionaire($event, concessionaire)">
+                                            <md-icon class="pt-5" title="{{'Eliminar' | translate}}" md-font-icon="icon-delete"></md-icon>
+                                            <span class="pt-5" data-translate>Eliminar</span>
+                                        </md-button>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <dir-pagination-controls class="bottomFixed"></dir-pagination-controls>
+
+                </div>
+            </md-content>
+            <!-- CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

@@ -1,0 +1,75 @@
+<div id="kpis" class="fullwidth">
+
+  <md-tabs md-dynamic-height md-selected="vm.selectedTabIndex">
+
+    <md-tab label="{{kpi.name}}" ng-repeat="kpi in vm.kpis.data" md-on-select="vm.togglePositive()">
+      <!-- WIDGET GROUP -->
+      <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+        <!-- WIDGET 1 -->
+        <ms-widget layout="column" flex="100" flex-gt-xs="50" flex-gt-md="20" class="pointer"
+                   ng-repeat="k in kpi.kpis" ng-click="vm.toggleKpi(k)" title="{{'Filtrar' | translate}}">
+
+          <!-- Front -->
+          <ms-widget-front class="white-bg" ng-class="{'active':k.active}">
+            <div class="ph-8 pv-16 h-55" layout="row" layout-align="space-between center">
+              <span>{{k.name}}</span>
+            </div>
+
+            <div class="pt-8 pb-32" layout="column" layout-align="center center">
+              <div class="font-size-72 line-height-72" ng-class="(k.danger ? 'red-fg':'light-blue-fg')">
+                {{k.value}}
+              </div>
+            </div>
+
+            <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+              <span class="h4 secondary-text text-truncate">{{k.second_name}}:</span>
+              <span class="h4 ml-8">{{k.done}}</span>
+            </div>
+          </ms-widget-front>
+          <!-- / Front -->
+
+        </ms-widget>
+        <!-- / WIDGET 1 -->
+      </div>
+      <!-- / WIDGET GROUP -->
+    </md-tab>
+
+    <md-tab label="{{'Ganado' | translate}}" ng-repeat="kpi in vm.kpisPositive.data" md-on-select="vm.togglePositive()">
+      <!-- WIDGET GROUP -->
+      <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+        <!-- WIDGET 1 -->
+        <ms-widget layout="column" flex="100" flex-gt-xs="50" flex-gt-md="20" class="pointer"
+                   ng-repeat="k in kpi.kpis" ng-click="vm.toggleKpiPositive(k)" title="{{'Filtrar' | translate}}">
+
+          <!-- Front -->
+          <ms-widget-front class="white-bg" ng-class="{'active':k.active}">
+            <div class="ph-8 pv-16 h-55" layout="row" layout-align="space-between center">
+              <span>{{k.name}}</span>
+            </div>
+
+            <div class="pt-8 pb-32" layout="column" layout-align="center center">
+              <div class="font-size-72 line-height-72" ng-class="(k.danger ? 'red-fg':'light-blue-fg')">
+                {{k.value}}
+              </div>
+            </div>
+
+            <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+              <span class="h4 secondary-text text-truncate">{{k.second_name}}:</span>
+              <span class="h4 ml-8">{{k.done}}</span>
+            </div>
+          </ms-widget-front>
+          <!-- / Front -->
+
+        </ms-widget>
+        <!-- / WIDGET 1 -->
+      </div>
+      <!-- / WIDGET GROUP -->
+    </md-tab>
+
+  </md-tabs>
+
+</div>
+
+

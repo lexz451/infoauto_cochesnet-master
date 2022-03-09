@@ -1,0 +1,37 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="acdForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <md-input-container flex="30" flex-xs="100">
+                    <label data-translate>Lead</label>
+                    <md-select name="lead" data-ng-model="vm.acd.lead">
+                        <md-option data-ng-repeat="lead in vm.acd.possible_leads" data-ng-value="lead.id">
+                            {{lead.vehicle_name}} - {{lead.client_name}}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="acdForm.lead" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveAcd()" class="send-button md-accent md-raised"
+                           data-ng-disabled="acdForm.$invalid || acdForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

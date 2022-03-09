@@ -1,0 +1,40 @@
+/**
+ *  Do not remove this comments bellow. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
+
+.pointer{
+    cursor:pointer;
+}
+
+.w-max-100-p{
+  max-width: 100%;
+}
+.w-100-p{
+  width: 100%;
+}
+
+.md-input-container{
+    margin:18px 0px;
+}
+
+md-input-container.md-input-has-value .md-select-value > span:not(.md-select-icon){
+    display:table;
+}
+
+.md-select-value > span:not(.md-select-icon) .md-text{
+    //display:table-cell;
+}
+
+.page-layout .header .breadcrumb * {
+    white-space: nowrap;
+}

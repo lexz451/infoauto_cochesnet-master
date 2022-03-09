@@ -1,0 +1,107 @@
+<md-dialog class="task-dialog" aria-label="New Task" id="leadByUser">
+    <form name="leadByUserForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+                <md-content>
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="{{ concessionaire.name }}" ng-repeat="concessionaire in vm.concessionaires">
+                            <md-content class="md-padding">
+
+                                <div class="todo-item" layout="row" layout-align="start center"
+                                     ng-repeat="lead in concessionaire.leads">
+
+
+                                    <div layout="row" layout-align="start center" flex>
+
+                                        <div class="info" flex="auto">
+                                            <div layout="row">
+
+                                                <div>
+                                                    <div class="title">
+                                                        <md-icon md-font-icon="icon-car" class="s16"></md-icon>
+                                                        {{lead.vehicle_name}}
+                                                    </div>
+
+                                                    <div class="tags" layout="column" layout-align="start start" layout-wrap>
+                                                        <div layout="column" layout-align="start start">
+
+                                                            <div layout="row" layout-align="start center" class="mb-5" ng-if="lead.client_name">
+                                                                <md-icon md-font-icon="icon-account" class="s16"></md-icon>
+                                                                <div class="tag-label">
+                                                                    <span>
+                                                                        <strong translate>Cliente:</strong>
+                                                                        {{lead.client_name}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div layout="row" layout-align="start center" ng-if="lead.client_phone">
+                                                                <md-icon md-font-icon="icon-phone" class="s16"></md-icon>
+                                                                <div class="tag-label">
+                                                                    <span>
+                                                                        <strong translate>Teléfono:</strong>
+                                                                        {{lead.client_phone}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-20">
+
+                                    <md-autocomplete md-floating-label="{{'Comercial' | translate }}" md-delay="300" md-input-name="user"
+                                                     md-no-cache="true" required
+                                                     md-selected-item="concessionaire.user_data" md-search-text="searchTextUser"
+                                                     md-items="user in vm.getUsers(searchTextUser,concessionaire.id)" md-min-length="3"
+                                                     md-item-text="vm.getFullUserName(user)">
+                                        <md-item-template>
+                                            <span md-highlight-text="searchTextUser">{{vm.getFullUserName(user)}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            <span data-translate>No hay ningun comercial con ese nombre</span>
+                                        </md-not-found>
+                                    </md-autocomplete>
+
+                                    <md-button data-debouce-click data-ng-click="vm.reasign(concessionaire)" class="send-button md-accent md-raised"
+                                               data-ng-disabled="!concessionaire.user_data" aria-label="{{'Reasignar' | translate}}">
+                                        <span data-translate>Reasignar</span>
+                                    </md-button>
+                                </div>
+
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+
+                    <div data-ng-show="!vm.isFormDisabled()">
+                        <p translate>Ya puede realizar la baja del usuario</p>
+                    </div>
+
+                </md-content>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.toggleActive(vm.user)" class="send-button md-accent md-raised"
+                           data-ng-disabled="vm.isFormDisabled()" aria-label="{{'Dar de baja' | translate}}">
+                    <span data-translate>Dar de baja</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

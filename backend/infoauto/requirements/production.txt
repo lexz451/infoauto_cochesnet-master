@@ -1,0 +1,19 @@
+# PRECAUTION: avoid production dependencies that aren't in development
+
+-r ./base.txt
+
+Collectfast==0.6.2  # https://github.com/antonagestam/collectfast
+django-pyodbc-azure
+
+# OpenPyXL - A Python library to read/write Excel 2010 xlsx/xlsm files
+openpyxl==2.5.8
+
+# Django
+# ------------------------------------------------------------------------------
+django-storages[boto3]==1.7.1  # https://github.com/jschneier/django-storages
+django-anymail[mailgun]==4.2  # https://github.com/anymail/django-anymail
+
+# memcached
+python-memcached==1.59
+
+# tqdm==4.39.0

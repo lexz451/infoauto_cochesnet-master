@@ -1,0 +1,1573 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/app/main/leads/views/edit/lead.controller.js:66
+msgid "Abandonar"
+msgstr "Leave"
+
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:39
+msgid "Abrir lead"
+msgstr "Open lead"
+
+#: src/app/main/leads/views/edit/lead.controller.js:222
+#: src/app/main/leads/views/edit/lead.controller.js:310
+#: src/app/main/leads/views/edit/lead.controller.js:694
+msgid "Acción realizada correctamente"
+msgstr "Action done correctly"
+
+#: src/app/main/users/views/list/users.html:152
+msgid "Activado el {{ user.user_activation_date | date:'dd/MM/yyyy' }}"
+msgstr "Enabled {{User. user_activation_date | date: ' DD/MM/yyyy '}}"
+
+#: src/app/main/users/views/list/users.html:66
+msgid "Activos"
+msgstr "Active"
+
+#: src/app/main/leads/views/edit/concession-users.html:50
+#: src/app/main/users/views/list/users.html:128
+msgid "Administrador de concesionario"
+msgstr "Dealer administrator"
+
+#: src/app/main/users/views/edit/user.html:19
+msgid "Administrar perfil"
+msgstr "Manage profile"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:15
+msgid "Alta"
+msgstr "Register"
+
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:32
+msgid "Alta lead"
+msgstr "Registrer lead"
+
+#: src/app/common/services/scores/scores.service.js:28
+msgid "Alto"
+msgstr "Stop"
+
+#: src/app/main/auth/views/register/register.html:20
+#: src/app/main/users/dialogs/user/user-dialog.html:23
+#: src/app/main/users/views/edit/user.html:81
+msgid "Apellidos"
+msgstr "Surname"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:18
+msgid "Asignación"
+msgstr "Assing"
+
+#: src/app/main/leads/views/edit/lead.html:86
+#: src/app/main/leads/views/edit/lead.html:87
+msgid "Asignar"
+msgstr "Assing"
+
+#: src/app/main/acds/acds.html:111
+#: src/app/main/acds/dialogs/acd/acd-dialog.controller.js:13
+msgid "Asignar Lead"
+msgstr "Assing lead"
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.controller.js:20
+msgid "Asignar comercial"
+msgstr "Assing user"
+
+#: src/app/utils/filters/level.filter.js:18
+msgid "Avanzado"
+msgstr "Advanced"
+
+#: src/app/main/leads/views/board/board-view.controller.js:51
+msgid "Ayer"
+msgstr "Yesterday"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:115
+#: src/app/main/users/dialogs/user/user-dialog.html:116
+msgid "Añadir concesionario"
+msgstr "Add dealer"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:111
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:112
+msgid "Añadir fuente"
+msgstr "Add origin"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:32
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:33
+msgid "Añadir icono"
+msgstr "Add icon"
+
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:65
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:66
+msgid "Añadir nota"
+msgstr "Add note"
+
+#: src/app/main/leads/views/edit/lead.html:116
+#: src/app/main/leads/views/edit/lead.html:117
+msgid "Añadir solicitud"
+msgstr "Add request"
+
+#: src/app/main/leads/views/edit/vehicle.html:34
+#: src/app/main/tasks/dialogs/task/appraisal.html:22
+msgid "Año"
+msgstr "Year"
+
+#: src/app/common/services/scores/scores.service.js:20
+msgid "Bajo"
+msgstr "Low"
+
+#: src/app/main/users/views/detail/user.html:46
+msgid "Biografía"
+msgstr "Biography"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:104
+#: src/app/main/users/dialogs/user/user-dialog.html:108
+msgid "Borrar"
+msgstr "Delete"
+
+#: src/app/main/channels/channels.controller.js:59
+msgid "Borrar canal"
+msgstr "Delete channel"
+
+#: src/app/main/concessionaires/concessionaires.controller.js:103
+#: src/app/main/origins/origins.controller.js:60
+#: src/app/main/users/views/list/users.controller.js:61
+msgid "Borrar concesionario"
+msgstr "Delete dealer"
+
+#: src/app/main/leads/views/list/leads.controller.js:61
+msgid "Borrar leada"
+msgstr "Delete lead"
+
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:57
+#: src/app/main/leads/views/edit/concession-notes.html:57
+#: src/app/main/leads/views/edit/notes.html:57
+#: src/app/main/tasks/dialogs/task/task-dialog.html:151
+msgid "Borrar nota"
+msgstr "Delete note"
+
+#: src/app/main/leads/views/edit/lead.controller.js:451
+msgid "Borrar solicitud"
+msgstr "Delete request"
+
+#: src/app/main/leads/views/edit/tags.html:57
+msgid "Borrar tag"
+msgstr "Delete tag"
+
+#: src/app/main/leads/views/board/board-view.html:22
+#: src/app/main/leads/views/board/board-view.html:24
+#: src/app/main/users/views/list/users.html:27
+#: src/app/main/users/views/list/users.html:29
+msgid "Buscar"
+msgstr "Search"
+
+#: src/app/main/concessionaires/concessionaires.html:81
+#: src/app/main/concessionaires/concessionaires.html:82
+msgid "Calendario"
+msgstr "Calendar"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:13
+#: src/app/main/leads/views/edit/concession-basic.html:49
+msgid "Calendario de trabajo"
+msgstr "Work calendar"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:84
+msgid "Calendario guardado correctamente"
+msgstr "Action done correctly"
+
+#: src/app/main/users/views/edit/user.html:61
+msgid "Cambiar foto"
+msgstr "Edit photo"
+
+#: src/app/main/users/views/edit/user.controller.js:58
+msgid "Cambios realizados correctamente"
+msgstr "Action done correctly"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:85
+msgid "Canal"
+msgstr "Channel"
+
+#: src/app/main/channels/channels.controller.js:64
+msgid "Canal borrado correctamente."
+msgstr "Channel delete correctly."
+
+#: src/app/main/channels/dialogs/channel/channel-dialog.controller.js:32
+msgid "Canal guardado correctamente"
+msgstr "Canal save correctly"
+
+#: src/app/main/leads/views/board/board-view.html:152
+#: src/app/main/leads/views/edit/lead.html:42
+msgid "Canal:"
+msgstr "Channel:"
+
+#: src/app/main/channels/channels.html:15 src/app/main/main.controller.js:137
+msgid "Canales"
+msgstr "Channels"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:22
+msgid "Canales permitidos"
+msgstr "Channels allowed"
+
+#: src/app/main/channels/channels.controller.js:60
+#: src/app/main/concessionaires/concessionaires.controller.js:104
+#: src/app/main/leads/views/edit/lead.controller.js:158
+#: src/app/main/leads/views/edit/lead.controller.js:244
+#: src/app/main/leads/views/edit/lead.controller.js:277
+#: src/app/main/leads/views/edit/lead.controller.js:452
+#: src/app/main/leads/views/edit/lead.controller.js:731
+#: src/app/main/leads/views/list/leads.controller.js:62
+#: src/app/main/origins/origins.controller.js:61
+#: src/app/main/users/views/list/users.controller.js:62
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: src/app/main/main.controller.js:161
+msgid "Centro de recursos"
+msgstr "Resource Center"
+
+#: src/app/main/leads/views/detail/lead-company.html:12
+msgid "Centro de trabajo"
+msgstr "Work Center"
+
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.html:70
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.html:71
+msgid "Cerrar"
+msgstr "Close"
+
+#: src/app/toolbar/layouts/horizontal-navigation/toolbar.html:46
+msgid "Cerrar sesión"
+msgstr "Sing off"
+
+#: src/app/main/leads/views/edit/client.html:7
+msgid "Cliente"
+msgstr "Client"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:41
+msgid "Cliente:"
+msgstr "Client:"
+
+#: src/app/main/leads/views/edit/vehicle.html:40
+#: src/app/main/tasks/dialogs/task/appraisal.html:28
+msgid "Combustible"
+msgstr "Fuel type"
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.html:22
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:67
+msgid "Comercial"
+msgstr "User"
+
+#: src/app/main/leads/views/edit/lead.html:21
+#: src/app/main/users/dialogs/user/user-dialog.html:72
+msgid "Concesionario"
+msgstr "Dealer"
+
+#: src/app/main/concessionaires/concessionaires.controller.js:108
+#: src/app/main/origins/origins.controller.js:65
+#: src/app/main/users/views/list/users.controller.js:66
+msgid "Concesionario borrado correctamente."
+msgstr "Dealer deleted correctly."
+
+#: src/app/main/acds/dialogs/acd/acd-dialog.controller.js:26
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.controller.js:39
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.controller.js:32
+msgid "Concesionario guardado correctamente"
+msgstr "Dealer saved correctly"
+
+#: src/app/main/concessionaires/concessionaires.html:15
+#: src/app/main/main.controller.js:113
+msgid "Concesionarios"
+msgstr "Dealers"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:66
+msgid "Concesionarios a los que pertenece:"
+msgstr "Linked dealers:"
+
+#: src/app/main/leads/dialogs/exportLeads/exportLeads-dialog.html:16
+#: src/app/main/leads/views/edit/lead.html:216
+#: src/app/main/users/views/list/users.html:33
+msgid "Concesión"
+msgstr "Dealer"
+
+#: src/app/main/users/views/list/users.html:53
+msgid "Conectados"
+msgstr "Connected"
+
+#: src/app/main/users/views/list/users.html:48
+msgid "Conexión"
+msgstr "Connected"
+
+#: src/app/main/main.controller.js:102
+msgid "Configuración"
+msgstr "Configuration"
+
+#: src/app/navigation/layouts/vertical-navigation/navigation.html:4
+#: src/app/navigation/layouts/vertical-navigation/navigation.html:5
+msgid "Configuración del sitio"
+msgstr "Web configuration"
+
+#: src/app/main/leads/views/edit/lead.controller.js:243
+#: src/app/main/leads/views/edit/lead.controller.js:276
+#: src/app/main/leads/views/edit/lead.controller.js:730
+msgid "Confirmar"
+msgstr "Confirm"
+
+#: src/app/main/leads/views/detail/lead-company.html:38
+msgid "Contactos"
+msgstr "Contacts"
+
+#: src/app/main/leads/views/board/board-view.html:207
+msgid "Contactos comerciales:"
+msgstr "Business contacts:"
+
+#: src/app/main/leads/views/edit/lead.controller.js:157
+msgid "Continuar"
+msgstr "Continue"
+
+#: src/app/main/auth/views/login/login.html:17
+#: src/app/main/auth/views/register/register.html:36
+#: src/app/main/users/dialogs/user/user-dialog.html:54
+msgid "Contraseña"
+msgstr "Password"
+
+#: src/app/main/auth/views/register/register.html:51
+msgid "Crear"
+msgstr "Create"
+
+#: src/app/main/acds/acds.html:105
+msgid "Crear Lead"
+msgstr "Create lead"
+
+#: src/app/main/users/views/edit/user.html:115
+msgid "Curso"
+msgstr "Apply"
+
+#: src/app/main/users/views/list/users.html:69
+msgid "Dados de baja"
+msgstr "Unsubscribed"
+
+#: src/app/main/users/views/list/users.html:174
+#: src/app/main/users/views/list/users.html:175
+msgid "Dar de alta"
+msgstr "Register"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:101
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:102
+#: src/app/main/users/views/list/users.html:169
+#: src/app/main/users/views/list/users.html:170
+msgid "Dar de baja"
+msgstr "Unsubscribe"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:41
+#: src/app/main/main.controller.js:89
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/app/main/leads/views/edit/concession-basic.html:7
+msgid "Datos básicos"
+msgstr "Basics data"
+
+#: src/app/main/leads/views/edit/lead.html:130
+msgid "Datos de lead"
+msgstr "Lead data"
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.controller.js:47
+msgid "Debe seleccionar un comercial existente."
+msgstr "You must select an existing comercial."
+
+#: src/app/utils/directives/errormessages.directive.js:29
+msgid "Debe seleccionar una opción de la lista"
+msgstr "You must select a list option"
+
+#: src/app/main/leads/views/detail/lead-company.html:33
+msgid "Departamento / Área"
+msgstr "Department/ Area"
+
+#: src/app/main/users/views/list/users.html:155
+msgid "Desactivado el {{ user.user_deactivation_date | date:'dd/MM/yyyy' }}"
+msgstr ""
+"User deactivation date {{ user.user_deactivation_date | date:'dd/MM/yyyy' }}"
+
+#: src/app/main/acds/acds.html:125
+msgid "Descargar audio"
+msgstr "Download audio"
+
+#: src/app/main/users/views/list/users.html:56
+msgid "Desconectados"
+msgstr "Disconnect"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:32
+msgid "Descripción"
+msgstr "Description"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:23
+msgid "Dirección"
+msgstr "Address"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:24
+#: src/app/main/leads/views/edit/lead.controller.js:51
+msgid "Domingo"
+msgstr "Sunday"
+
+#: src/app/common/services/leadResults/leadResults.service.js:27
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:33
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:34
+msgid "Duplicado"
+msgstr "Duplicate"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.html:23
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.html:27
+msgid "Día laborable"
+msgstr "Laborable day"
+
+#: src/app/main/acds/acds.html:104 src/app/main/acds/acds.html:110
+#: src/app/main/acds/acds.html:124 src/app/main/channels/channels.html:69
+#: src/app/main/channels/channels.html:70
+#: src/app/main/concessionaires/concessionaires.html:87
+#: src/app/main/concessionaires/concessionaires.html:88
+#: src/app/main/origins/origins.html:69 src/app/main/origins/origins.html:70
+#: src/app/main/tasks/tasks.html:72 src/app/main/tasks/tasks.html:73
+#: src/app/main/users/views/list/users.html:164
+#: src/app/main/users/views/list/users.html:165
+msgid "Editar"
+msgstr "Edit"
+
+#: src/app/main/channels/dialogs/channel/channel-dialog.controller.js:13
+msgid "Editar canal"
+msgstr "Edit channel"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.controller.js:13
+msgid "Editar concesionario"
+msgstr "Edit dealer"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:34
+msgid "Editar icono"
+msgstr "Edit icon"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.controller.js:13
+msgid "Editar origen"
+msgstr "Edit origin"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.controller.js:14
+msgid "Editar solicitud"
+msgstr "Edit request"
+
+#: src/app/main/users/dialogs/user/user-dialog.controller.js:13
+msgid "Editar usuario"
+msgstr "Edit user"
+
+#: src/app/utils/directives/errormessages.directive.js:60
+msgid "El email indicado ya existe"
+msgstr "This mail already exists"
+
+#: src/app/main/leads/views/edit/lead.controller.js:726
+msgid ""
+"El sistema ha detectado un seguimiento de este lead ¿Desea finalizar el lead?"
+msgstr ""
+"The system has detected a lead  follow-up , do you want to finish the lead?"
+
+#: src/app/main/channels/channels.html:74
+#: src/app/main/concessionaires/concessionaires.html:92
+#: src/app/main/origins/origins.html:74 src/app/main/tasks/tasks.html:77
+#: src/app/main/users/views/edit/user.html:66
+#: src/app/main/users/views/list/users.html:179
+msgid "Eliminar"
+msgstr "Remove"
+
+#: src/app/main/channels/channels.controller.js:54
+#: src/app/main/channels/channels.controller.js:56
+msgid "Eliminar canal"
+msgstr "Remove channel"
+
+#: src/app/main/concessionaires/concessionaires.controller.js:100
+#: src/app/main/concessionaires/concessionaires.controller.js:98
+#: src/app/main/origins/origins.controller.js:55
+#: src/app/main/origins/origins.controller.js:57
+#: src/app/main/users/views/list/users.controller.js:56
+#: src/app/main/users/views/list/users.controller.js:58
+msgid "Eliminar concesionario"
+msgstr "Remove dealer"
+
+#: src/app/main/leads/views/list/leads.controller.js:56
+#: src/app/main/leads/views/list/leads.controller.js:58
+msgid "Eliminar leada"
+msgstr "Remove lead"
+
+#: src/app/main/leads/views/edit/lead.controller.js:446
+#: src/app/main/leads/views/edit/lead.controller.js:448
+msgid "Eliminar solicitud"
+msgstr "Remove request"
+
+#: src/app/main/auth/views/register/register.html:28
+#: src/app/main/leads/views/edit/client.html:38
+#: src/app/main/users/dialogs/user/user-dialog.html:35
+#: src/app/main/users/views/edit/user.html:87
+msgid "Email"
+msgstr "Email"
+
+#: src/app/main/auth/views/login/login.html:8
+msgid "Email o nombre de usario"
+msgstr "Email or user name"
+
+#: src/app/main/auth/views/login/login.html:28
+msgid "Entrar"
+msgstr "Enter"
+
+#: src/app/main/users/dialogs/user/user-dialog.controller.js:78
+msgid "Error al borrar concesionario."
+msgstr "Mistake when deleting dealer."
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.controller.js:70
+msgid "Error al borrar la fuente."
+msgstr "Mistake when deleting origin."
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:64
+#: src/app/main/users/views/list/users.controller.js:124
+msgid "Error al dar de alta a este usuario."
+msgstr "Mistake when registering a dealer."
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:66
+#: src/app/main/users/views/list/users.controller.js:126
+msgid "Error al dar de baja a este usuario."
+msgstr "Mistake when deleting user."
+
+#: src/app/main/leads/dialogs/exportLeads/exportLeads-dialog.controller.js:30
+msgid "Error al exportar leads"
+msgstr "Mistake when export lead"
+
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.controller.js:37
+msgid "Error al finalizar lead."
+msgstr "Mistake when end lead."
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:88
+msgid "Error al guardar el calendario."
+msgstr "Mistake when saved calendar."
+
+#: src/app/main/channels/dialogs/channel/channel-dialog.controller.js:36
+msgid "Error al guardar el canal."
+msgstr "Mistake when saved the cannel."
+
+#: src/app/main/acds/dialogs/acd/acd-dialog.controller.js:30
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.controller.js:43
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.controller.js:36
+msgid "Error al guardar el concesionario."
+msgstr "Mistake when saved dealer."
+
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.controller.js:42
+msgid "Error al guardar el estado."
+msgstr "Mistake when saved status."
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.controller.js:44
+msgid "Error al guardar el infome."
+msgstr "Mistake when saved report."
+
+#: src/app/main/leads/views/edit/lead.controller.js:179
+#: src/app/main/leads/views/edit/lead.controller.js:204
+#: src/app/main/leads/views/edit/lead.controller.js:328
+msgid "Error al guardar el informe."
+msgstr "Mistake when saved report."
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.controller.js:44
+msgid "Error al guardar el origen."
+msgstr "Mistake when saved origin."
+
+#: src/app/main/users/dialogs/user/user-dialog.controller.js:41
+msgid "Error al guardar el usuario."
+msgstr "Mistake when saved user."
+
+#: src/app/main/tasks/dialogs/task/task-dialog.controller.js:56
+msgid "Error al guardar la solicitud."
+msgstr "Mistake when saved request."
+
+#: src/app/main/users/views/edit/user.controller.js:61
+msgid "Error al guardar los datos básicos."
+msgstr "Mistake when saved basics datas."
+
+#: src/app/main/users/views/edit/user.controller.js:77
+msgid "Error al modificar foto."
+msgstr "Mistake when edit photo."
+
+#: src/app/main/acds/acds.controller.js:95
+msgid "Error al obtener audio"
+msgstr "Mistake when saved"
+
+#: src/app/main/auth/views/register/register.controller.js:32
+msgid "Error al realizar el registro"
+msgstr "Mistake when registering"
+
+#: src/app/main/leads/views/edit/lead.controller.js:226
+#: src/app/main/leads/views/edit/lead.controller.js:334
+#: src/app/main/leads/views/edit/lead.controller.js:713
+msgid "Error al realizar la acción."
+msgstr "Mistake when performing the action."
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:98
+msgid "Error al reasignar leads."
+msgstr "Mistake when reassigning leads."
+
+#: src/app/main/users/dialogs/user/user-dialog.html:91
+#: src/app/main/users/dialogs/user/user-dialog.html:93
+msgid "Es administrador del concesionario"
+msgstr "Account manager of the car dealership"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:100
+#: src/app/main/users/dialogs/user/user-dialog.html:98
+msgid "Es gestor del concesionario"
+msgstr "Manager of a car dealership"
+
+#: src/app/main/users/views/edit/user.html:98
+msgid "Escuela"
+msgstr "School"
+
+#: src/app/index.run.js:33
+msgid "Español"
+msgstr "Spanish"
+
+#: src/app/main/users/views/edit/user.html:125
+msgid "Especialidad"
+msgstr "Specialty"
+
+#: src/app/main/leads/views/board/board-view.controller.js:55
+msgid "Esta semana"
+msgstr "This week"
+
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.html:16
+#: src/app/main/leads/views/edit/lead.html:93
+#: src/app/main/leads/views/edit/lead.html:94
+#: src/app/main/users/views/list/users.html:61
+msgid "Estado"
+msgstr "State"
+
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.controller.js:37
+msgid "Estado guardado correctamente"
+msgstr "Status saved correctly"
+
+#: src/app/main/auth/views/login/login.html:11
+#: src/app/main/auth/views/login/login.html:21
+#: src/app/utils/directives/errormessages.directive.js:22
+msgid "Este campo es obligatorio"
+msgstr "This field is required"
+
+#: src/app/main/leads/views/edit/lead.controller.js:153
+msgid "Este lead no tiene ninguna solicitud adjunta. ¿Desea continuar?"
+msgstr "This lead has no application attached. Do you wish to continue?"
+
+#: src/app/main/leads/views/board/board-view.controller.js:59
+msgid "Este mes"
+msgstr "This month"
+
+#: src/app/main/leads/dialogs/exportLeads/exportLeads-dialog.html:31
+#: src/app/main/leads/dialogs/exportLeads/exportLeads-dialog.html:32
+msgid "Exportar"
+msgstr "Export"
+
+#: src/app/main/leads/dialogs/exportLeads/exportLeads-dialog.controller.js:15
+msgid "Exportar Leads"
+msgstr "Export Leads"
+
+#: src/app/main/main.controller.js:64
+msgid "Exportar leads"
+msgstr "Export leads"
+
+#: src/app/common/services/origins/origins.service.js:18
+msgid "Extranjero"
+msgstr "Foreign"
+
+#: src/app/main/tasks/dialogs/task/appraisal.html:38
+msgid "Extras"
+msgstr "Additional features"
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.html:16
+msgid "Fecha"
+msgstr "Date"
+
+#: src/app/main/leads/views/edit/lead.html:56
+msgid "Fecha de alta:"
+msgstr "Discharge date:"
+
+#: src/app/main/users/views/edit/user.html:155
+msgid "Fecha de nacimiento"
+msgstr "Birthdate"
+
+#: src/app/main/tasks/tasks.html:52
+msgid "Fecha de realización:"
+msgstr "Date of realization:"
+
+#: src/app/main/tasks/tasks.html:59
+msgid "Fecha de seguimiento:"
+msgstr "Date of follow-up:"
+
+#: src/app/main/users/views/edit/user.html:148
+msgid "Fecha en la que comenzó como profesor"
+msgstr "Date you started as a teacher"
+
+#: src/app/main/leads/sidenavs/filters/filters-sidenav.html:4
+#: src/app/main/leads/views/board/board-view.html:42
+msgid "Filtrar"
+msgstr "Filter"
+
+#: src/app/main/leads/sidenavs/filters/filters-sidenav.html:54
+msgid "Filtrar por score"
+msgstr "Filter by score"
+
+#: src/app/main/leads/sidenavs/filters/filters-sidenav.html:36
+msgid "Filtrar por solicitudes"
+msgstr "Filter by requests"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:30
+msgid "Finalidazo"
+msgstr "Finalized"
+
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.controller.js:18
+#: src/app/main/leads/views/edit/lead.html:101
+#: src/app/main/leads/views/edit/lead.html:102
+#: src/app/main/leads/views/edit/lead.html:109
+#: src/app/main/leads/views/edit/lead.html:110
+msgid "Finalizar"
+msgstr "Finalize"
+
+#: src/app/main/leads/views/edit/lead.controller.js:238
+#: src/app/main/leads/views/edit/lead.controller.js:240
+#: src/app/main/leads/views/edit/lead.controller.js:271
+#: src/app/main/leads/views/edit/lead.controller.js:273
+#: src/app/main/leads/views/edit/lead.controller.js:725
+#: src/app/main/leads/views/edit/lead.controller.js:727
+msgid "Finalizar lead"
+msgstr "Finish lead"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:24
+msgid "Financiación"
+msgstr "Financing"
+
+#: src/app/main/users/views/edit/user.controller.js:84
+msgid "Foto modificada correctamente"
+msgstr "Photo modified correctly"
+
+#: src/app/index.run.js:41
+msgid "Francés"
+msgstr "French"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:62
+#: src/app/main/leads/views/edit/lead_concession.html:13
+#: src/app/main/leads/views/edit/lead_concession.html:5
+msgid "Fuente"
+msgstr "Source"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:58
+msgid "Fuentes:"
+msgstr "Sources:"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:27
+msgid "Garantía"
+msgstr "Warranty"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:21
+msgid "Gestión comercial"
+msgstr "Commercial management"
+
+#: src/app/main/leads/views/edit/concession-users.html:51
+#: src/app/main/users/views/list/users.html:129
+msgid "Gestor comercial"
+msgstr "Business manager"
+
+#: src/app/main/acds/dialogs/acd/acd-dialog.html:31
+#: src/app/main/acds/dialogs/acd/acd-dialog.html:32
+#: src/app/main/channels/dialogs/channel/channel-dialog.html:27
+#: src/app/main/channels/dialogs/channel/channel-dialog.html:28
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:122
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:123
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.html:56
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.html:57
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:76
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:77
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:38
+#: src/app/main/leads/dialogs/lead/lead-dialog.html:44
+#: src/app/main/leads/dialogs/lead/lead-dialog.html:45
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.html:31
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.html:32
+#: src/app/main/leads/views/edit/lead.controller.js:65
+#: src/app/main/leads/views/edit/lead.html:177
+#: src/app/main/leads/views/edit/lead.html:205
+#: src/app/main/leads/views/edit/lead.html:71
+#: src/app/main/leads/views/edit/lead.html:72
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:49
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:50
+#: src/app/main/tasks/dialogs/task/task-dialog.html:167
+#: src/app/main/tasks/dialogs/task/task-dialog.html:168
+#: src/app/main/users/dialogs/user/user-dialog.html:134
+#: src/app/main/users/dialogs/user/user-dialog.html:135
+#: src/app/main/users/views/edit/user.html:165
+#: src/app/main/users/views/edit/user.html:166
+msgid "Guardar"
+msgstr "Save"
+
+#: src/app/main/leads/views/edit/lead.controller.js:152
+#: src/app/main/leads/views/edit/lead.controller.js:154
+#: src/app/main/leads/views/edit/lead.controller.js:62
+msgid "Guardar lead"
+msgstr "Save lead"
+
+#: src/app/main/main.controller.js:168
+msgid "Guía desarrollador SML​"
+msgstr "SML Developer Guide"
+
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.controller.js:13
+msgid "Historial de contactos"
+msgstr "Contacts history"
+
+#: src/app/main/leads/views/edit/lead.html:264
+msgid "Histórico"
+msgstr "Historic"
+
+#: src/app/main/leads/views/edit/lead.html:248
+msgid "Histórico de llamadas"
+msgstr "Call history"
+
+#: src/app/main/leads/views/board/board-view.controller.js:47
+#: src/app/main/leads/views/board/board-view.html:13
+msgid "Hoy"
+msgstr "Today"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:30
+msgid "Icono:"
+msgstr "Icon:"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:48
+msgid "Id click2call"
+msgstr "Id click2call"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:47
+msgid "Id llamada c2c"
+msgstr "Id called c2c"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:42
+msgid "Identificador click2call"
+msgstr "Click2call identifier"
+
+#: src/app/common/services/leadResults/leadResults.service.js:23
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:29
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:30
+msgid "Ilocalizable"
+msgstr "Ilocable"
+
+#: src/app/main/users/views/list/users.html:50
+#: src/app/main/users/views/list/users.html:63
+msgid "Indiferente"
+msgstr "Indifferent"
+
+#: src/app/navigation/layouts/vertical-navigation/navigation.html:3
+msgid "Infoauto"
+msgstr "Infoauto"
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.controller.js:37
+msgid "Infome guardado correctamente"
+msgstr "Report saved correctly"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:30
+msgid "Información del vehículo"
+msgstr "Vehicle information"
+
+#: src/app/main/leads/views/edit/lead.controller.js:174
+#: src/app/main/leads/views/edit/lead.controller.js:200
+#: src/app/main/leads/views/edit/lead.controller.js:325
+msgid "Informe guardado correctamente"
+msgstr "Report saved correctly"
+
+#: src/app/index.run.js:37
+msgid "Inglés"
+msgstr "English"
+
+#: src/app/utils/filters/level.filter.js:12
+msgid "Inicial"
+msgstr "Initial"
+
+#: src/app/navigation/layouts/vertical-navigation/navigation.html:4
+#: src/app/navigation/layouts/vertical-navigation/navigation.html:5
+msgid "Inicio"
+msgstr "Start"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:21
+#: src/app/main/leads/views/edit/lead.controller.js:48
+msgid "Jueves"
+msgstr "Thursday"
+
+#: src/app/main/leads/views/edit/vehicle.html:28
+#: src/app/main/tasks/dialogs/task/appraisal.html:16
+msgid "Km"
+msgstr "Km"
+
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.html:47
+msgid "LLamada respondida:"
+msgstr "Call answered:"
+
+#: src/app/utils/directives/errormessages.directive.js:36
+msgid "La dirección web debe ser de la forma http://..."
+msgstr "The web address must be in the form http: // ..."
+
+#: src/app/utils/directives/errormessages.directive.js:52
+msgid "Las contraseñas no coinciden"
+msgstr "Passwords do not match"
+
+#: src/app/main/acds/dialogs/acd/acd-dialog.html:16
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:17
+msgid "Lead"
+msgstr "Lead"
+
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.controller.js:31
+msgid "Lead finalizado correctamente"
+msgstr "Lead completed correctly"
+
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.controller.js:17
+msgid "Lead no atendido"
+msgstr "Lead unattended"
+
+#: src/app/main/leads/views/list/leads.controller.js:66
+msgid "Leada borrado correctamente."
+msgstr "Lead erased correctly."
+
+#: src/app/main/leads/views/board/board-view.controller.js:22
+msgid "Leads cerrados"
+msgstr "Closed leads"
+
+#: src/app/main/leads/views/board/board-view.controller.js:19
+msgid "Leads no atendidos"
+msgstr "Leads not attended"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:96
+msgid "Leads reasignados correctamente"
+msgstr "Leads reassigned correctly"
+
+#: src/app/main/leads/views/edit/request.html:7
+msgid "Listado de solicitudes"
+msgstr "List of requests"
+
+#: src/app/main/acds/acds.html:15 src/app/main/main.controller.js:77
+msgid "Llamadas entrantes"
+msgstr "Incoming calls"
+
+#: src/app/main/leads/views/edit/client.html:93
+#: src/app/main/leads/views/edit/client.html:95
+msgid "Llamar"
+msgstr "Call"
+
+#: src/app/main/leads/views/edit/client.html:62
+msgid "Localidad"
+msgstr "Locality"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:18
+#: src/app/main/leads/views/edit/lead.controller.js:45
+msgid "Lunes"
+msgstr "Monday"
+
+#: src/app/main/leads/views/edit/vehicle.html:16
+#: src/app/main/tasks/dialogs/task/appraisal.html:4
+msgid "Marca/Modelo"
+msgstr "Make/model"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:19
+#: src/app/main/leads/views/edit/lead.controller.js:46
+msgid "Martes"
+msgstr "Tuesday"
+
+#: src/app/main/tasks/dialogs/task/appraisal.html:10
+msgid "Matrícula"
+msgstr "Registration number"
+
+#: src/app/common/services/scores/scores.service.js:24
+#: src/app/main/tasks/dialogs/task/task-dialog.html:78
+#: src/app/utils/filters/level.filter.js:15
+msgid "Medio"
+msgstr "Means"
+
+#: src/app/common/services/temperatures/temperatures.service.js:15
+msgid "Menos de 30"
+msgstr "Less than 30"
+
+#: src/app/main/main.controller.js:28
+msgid "Mis leads"
+msgstr "My leads"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:20
+#: src/app/main/leads/views/edit/lead.controller.js:47
+msgid "Miércoles"
+msgstr "Wednesday"
+
+#: src/app/main/users/views/edit/user.html:141
+msgid "Mujer"
+msgstr "Woman"
+
+#: src/app/common/services/scores/scores.service.js:16
+msgid "Muy bajo"
+msgstr "Very low"
+
+#: src/app/main/leads/views/edit/lead.html:61
+msgid "NSA:"
+msgstr "NSA:"
+
+#: src/app/common/services/origins/origins.service.js:15
+msgid "Nacional"
+msgstr "National"
+
+#: src/app/common/services/qualifications/qualifications.service.js:18
+msgid "Negativa"
+msgstr "Negative"
+
+#: src/app/common/services/leadResults/leadResults.service.js:15
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:21
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:22
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:44
+msgid "Negativo"
+msgstr "Negative"
+
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.html:51
+#: src/app/main/leads/views/edit/lead.controller.js:320
+msgid "No"
+msgstr "No"
+
+#: src/app/common/services/leadResults/leadResults.service.js:31
+#: src/app/main/leads/views/edit/vehicle.html:55
+#: src/app/main/leads/views/edit/vehicle.html:56
+msgid "No disponible"
+msgstr "Not available"
+
+#: src/app/main/users/views/list/users.controller.js:95
+msgid ""
+"No eres competente para realizar esta acción. Por favor contacte con "
+"atención al cliente."
+msgstr ""
+"You are not competent to perform this action. Please contact customer "
+"service."
+
+#: src/app/main/leads/dialogs/lead/lead-dialog.html:31
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:76
+msgid "No hay ningun comercial con ese nombre"
+msgstr "There is no commercial with that name"
+
+#: src/app/main/leads/views/edit/client.html:53
+msgid "No hay ningun provincia con ese nombre"
+msgstr "There is no province with that name"
+
+#: src/app/main/users/views/edit/user.html:106
+msgid "No hay ninguna escuela con ese nombre"
+msgstr "There is no school with that name"
+
+#: src/app/main/leads/views/edit/lead_concession.html:22
+msgid "No hay ninguna fuente para esta búsqueda"
+msgstr "There is no source for this search"
+
+#: src/app/main/leads/views/edit/client.html:72
+msgid "No hay ninguna localidad"
+msgstr "There is no locality"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:94
+msgid "No hay ningún canal con ese nombre"
+msgstr "There is no channel with that name"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:81
+msgid "No hay ningún concesionario con ese nombre"
+msgstr "There is no dealer with that name"
+
+#: src/app/main/users/views/list/users.html:42
+msgid "No hay ningún concesionario con ese teléfono"
+msgstr "There is no dealer with that phone"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:76
+msgid "No hay ningún origen con ese nombre"
+msgstr "There is no origin with that name"
+
+#: src/app/main/auth/views/register/register.html:12
+#: src/app/main/channels/dialogs/channel/channel-dialog.html:17
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:17
+#: src/app/main/leads/views/edit/client.html:15
+#: src/app/main/origins/dialogs/origin/origin-dialog.html:17
+#: src/app/main/users/dialogs/user/user-dialog.html:17
+#: src/app/main/users/views/edit/user.html:75
+msgid "Nombre"
+msgstr "First name"
+
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:31
+#: src/app/main/leads/views/edit/notes.html:31
+#: src/app/main/tasks/dialogs/task/task-dialog.html:125
+msgid "Nota"
+msgstr "Note"
+
+#: src/app/main/concessionaires/concessionaires.html:75
+#: src/app/main/concessionaires/concessionaires.html:76
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.controller.js:13
+#: src/app/main/leads/views/edit/concession-notes.html:7
+#: src/app/main/leads/views/edit/notes.html:7
+#: src/app/main/tasks/dialogs/task/task-dialog.html:112
+msgid "Notas"
+msgstr "Notes"
+
+#: src/app/main/leads/views/edit/lead.controller.js:314
+#: src/app/main/leads/views/edit/lead.controller.js:316
+msgid "Nueva alta"
+msgstr "New high"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.controller.js:21
+msgid "Nueva solicitud"
+msgstr "New request"
+
+#: src/app/main/channels/channels.html:26
+#: src/app/main/channels/channels.html:29
+#: src/app/main/channels/dialogs/channel/channel-dialog.controller.js:16
+msgid "Nuevo canal"
+msgstr "New channel"
+
+#: src/app/main/concessionaires/concessionaires.html:26
+#: src/app/main/concessionaires/concessionaires.html:29
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.controller.js:16
+#: src/app/main/users/views/list/users.html:76
+msgid "Nuevo concesionario"
+msgstr "New dealer"
+
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:48
+msgid "Nuevo estado"
+msgstr "New state"
+
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:42
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:43
+#: src/app/main/leads/views/edit/lead.html:12
+#: src/app/main/leads/views/list/leads.html:25
+#: src/app/main/leads/views/list/leads.html:28
+#: src/app/main/main.controller.js:52
+msgid "Nuevo lead"
+msgstr "New lead"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.controller.js:17
+#: src/app/main/origins/origins.html:26 src/app/main/origins/origins.html:29
+msgid "Nuevo origen"
+msgstr "New origin"
+
+#: src/app/main/users/dialogs/user/user-dialog.controller.js:16
+#: src/app/main/users/views/list/users.html:79
+msgid "Nuevo usuario"
+msgstr "New user"
+
+#: src/app/main/channels/channels.html:18
+msgid "Número de canales:"
+msgstr "Number of channels:"
+
+#: src/app/main/concessionaires/concessionaires.html:18
+msgid "Número de concesionarios:"
+msgstr "Number of dealers:"
+
+#: src/app/main/leads/views/list/leads.html:18
+msgid "Número de leads:"
+msgstr "Number of leads:"
+
+#: src/app/main/acds/acds.html:18
+msgid "Número de llamadas entrantes:"
+msgstr "Number of incoming calls:"
+
+#: src/app/main/origins/origins.html:18
+msgid "Número de orígenes:"
+msgstr "Number of origins:"
+
+#: src/app/main/users/views/list/users.html:18
+msgid "Número de usuarios:"
+msgstr "Number of users:"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:67
+#: src/app/main/tasks/dialogs/task/appraisal.html:44
+msgid "Origen"
+msgstr "Origin"
+
+#: src/app/main/origins/dialogs/origin/origin-dialog.controller.js:40
+msgid "Origen guardado correctamente"
+msgstr "Origin saved correctly"
+
+#: src/app/main/leads/views/edit/concession-basic.html:36
+#: src/app/main/main.controller.js:125 src/app/main/origins/origins.html:15
+msgid "Orígenes"
+msgstr "Origins"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:39
+msgid "Otro"
+msgstr "Other"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:36
+msgid "Pendiente de asignación"
+msgstr "Pending assignment"
+
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.controller.js:13
+msgid "Posible lead duplicado"
+msgstr "Possible duplicate lead"
+
+#: src/app/common/services/qualifications/qualifications.service.js:15
+msgid "Positiva"
+msgstr "Positive"
+
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:43
+msgid "Positivo"
+msgstr "Positive"
+
+#: src/app/main/leads/views/edit/vehicle.html:22
+msgid "Precio"
+msgstr "Price"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:21
+msgid "Presupuesto"
+msgstr "Budget"
+
+#: src/app/main/leads/views/edit/client.html:44
+msgid "Provincia"
+msgstr "Province"
+
+#: src/app/main/leads/dialogs/duplicateLeads/duplicateLeads-dialog.html:15
+msgid ""
+"Puede que esté dando de alta un lead ya creado en el sistema, compruebe si "
+"alguno de estos leads es el que usted está creando"
+msgstr ""
+"You may be registering a lead already created in the system, check if any of "
+"these leads is the one you are creating"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:50
+#: src/app/main/tasks/dialogs/task/task-dialog.html:70
+msgid "Realizado"
+msgstr "Accomplished"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:13
+msgid "Reasignación de leads"
+msgstr "Reassignment of leads"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:81
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:82
+msgid "Reasignar"
+msgstr "Reasign"
+
+#: src/app/main/auth/views/register/register.html:6
+msgid "Registrar nuevo usuario"
+msgstr "Register new user"
+
+#: src/app/main/auth/views/register/register.controller.js:29
+msgid "Registro realizado correctamente"
+msgstr "Registration made correctly"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:27
+msgid "Reservado"
+msgstr "Reserved"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:33
+msgid "Respuesta a solicitud vía Email"
+msgstr "Response to request via Email"
+
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:42
+msgid "Resultado"
+msgstr "Result"
+
+#: src/app/main/leads/views/edit/score.html:7
+#: src/app/toolbar/layouts/vertical-navigation/toolbar.html:37
+msgid "Score"
+msgstr "Score"
+
+#: src/app/main/leads/views/list/leads.html:102
+msgid "Score:"
+msgstr "Score:"
+
+#: src/app/main/leads/views/edit/score.html:16
+msgid "Scoring"
+msgstr "Scoring"
+
+#: src/app/main/users/views/list/users.controller.js:132
+msgid "Se ha producido un error."
+msgstr "An error has occurred."
+
+#: src/app/main/leads/views/edit/lead.controller.js:60
+msgid "Se han detectado cambios"
+msgstr "Changes have been detected"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:36
+msgid "Se usará para acceder al sistema"
+msgstr "It will be used to access the system"
+
+#: src/app/common/services/leadStatus/leadStatus.service.js:24
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.controller.js:23
+#: src/app/main/leads/views/board/board-view.controller.js:21
+msgid "Seguimiento"
+msgstr "Tracing"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:59
+msgid "Seguimiento programado el:"
+msgstr "Scheduled follow-up on:"
+
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:13
+msgid "Selecciona un resultado de la gestión"
+msgstr "Select a result of the management"
+
+#: src/app/main/users/views/edit/user.html:135
+msgid "Sexo"
+msgstr "Gender"
+
+#: src/app/main/leads/dialogs/leadContact/leadContact-dialog.html:48
+#: src/app/main/leads/views/edit/lead.controller.js:319
+msgid "Si"
+msgstr "Yes"
+
+#: src/app/main/leads/views/edit/lead.controller.js:61
+msgid ""
+"Si abandona esta pantalla perderá los cambios, ¿Desea guardar los cambios?"
+msgstr ""
+"If you leave this screen you will lose the changes, do you want to save the "
+"changes?"
+
+#: src/app/main/channels/channels.html:47
+msgid "Sin canales"
+msgstr "Without channels"
+
+#: src/app/main/concessionaires/concessionaires.html:47
+msgid "Sin concesionarios"
+msgstr "Without dealers"
+
+#: src/app/main/leads/views/edit/concession-basic.html:60
+#: src/app/main/leads/views/edit/concession-basic.html:69
+msgid "Sin definir"
+msgstr "Undefined"
+
+#: src/app/main/leads/views/list/leads.html:55
+msgid "Sin informes"
+msgstr "No reports"
+
+#: src/app/main/acds/acds.html:36
+msgid "Sin llamadas entrantes"
+msgstr "No incoming calls"
+
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:19
+#: src/app/main/leads/views/edit/concession-notes.html:20
+#: src/app/main/leads/views/edit/notes.html:19
+msgid "Sin notas añadidas"
+msgstr "No added notes"
+
+#: src/app/main/origins/origins.html:47
+msgid "Sin orígenes"
+msgstr "Without origins"
+
+#: src/app/main/tasks/tasks.html:7
+msgid "Sin solicitudes"
+msgstr "Without requests"
+
+#: src/app/main/leads/views/edit/tags.html:19
+msgid "Sin tags añadidos"
+msgstr "No tags added"
+
+#: src/app/main/leads/views/edit/concession-users.html:21
+#: src/app/main/users/views/list/users.html:97
+msgid "Sin usuarios"
+msgstr "Without users"
+
+#: src/app/main/leads/views/edit/lead.controller.js:456
+msgid "Solicitud borrada correctamente."
+msgstr "Request deleted correctly."
+
+#: src/app/main/tasks/dialogs/task/task-dialog.controller.js:49
+msgid "Solicitud guardada correctamente"
+msgstr "Request saved correctly"
+
+#: src/app/main/leads/views/edit/lead.html:190
+msgid "Solicitudes"
+msgstr "Request"
+
+#: src/app/main/leads/views/edit/concession-users.html:49
+#: src/app/main/users/views/list/users.html:127
+msgid "Super Administrador"
+msgstr "Super Administrator"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:23
+#: src/app/main/leads/views/edit/lead.controller.js:50
+msgid "Sábado"
+msgstr "Saturday"
+
+#: src/app/main/leads/views/edit/tags.html:31
+msgid "Tag"
+msgstr "Tag"
+
+#: src/app/main/leads/views/edit/tags.html:7
+msgid "Tags"
+msgstr "Tags"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:39
+msgid "Tarea programada el:"
+msgstr "Scheduled task on:"
+
+#: src/app/main/leads/dialogs/leadStatus/leadStatus-dialog.controller.js:20
+#: src/app/main/leads/views/board/board-view.controller.js:20
+msgid "Tareas pendientes"
+msgstr "Pending tasks"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:18
+msgid "Tasación"
+msgstr "Assessment"
+
+#: src/app/main/leads/views/edit/client.html:26
+#: src/app/main/users/dialogs/user/user-dialog.html:29
+msgid "Teléfono"
+msgstr "Phone"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:54
+msgid "Teléfono de concesión oficial"
+msgstr "Official concession phone"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:51
+msgid "Teléfono:"
+msgstr "Phone:"
+
+#: src/app/main/leads/views/edit/lead.controller.js:239
+#: src/app/main/leads/views/edit/lead.controller.js:272
+msgid ""
+"Tienes tareas pendientes de realización y seguimiento ¿Estás seguro de "
+"querer finalizar el lead?"
+msgstr ""
+"You have pending tasks of realization and follow-up. Are you sure you want "
+"to finish the lead?"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:16
+msgid "Tipo"
+msgstr "Type"
+
+#: src/app/main/leads/sidenavs/filters/filters-sidenav.html:46
+#: src/app/main/leads/views/board/board-view.controller.js:63
+msgid "Todas"
+msgstr "All"
+
+#: src/app/main/leads/views/detail/lead-company.html:61
+msgid "Tutor académico"
+msgstr "Academic tutor"
+
+#: src/app/main/leads/views/detail/lead-company.html:41
+msgid "Tutor profesional"
+msgstr "Professional tutor"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:35
+msgid "Url coches.net"
+msgstr "Url coches.net"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:56
+#: src/app/main/users/views/list/users.controller.js:116
+msgid "Usuario dado de alta correctamente"
+msgstr "User successfully registered"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.controller.js:58
+#: src/app/main/users/views/list/users.controller.js:118
+msgid "Usuario dado de baja correctamente"
+msgstr "User successfully unsubscribed"
+
+#: src/app/main/users/dialogs/user/user-dialog.controller.js:37
+msgid "Usuario guardado correctamente"
+msgstr "User saved correctly"
+
+#: src/app/main/concessionaires/concessionaires.html:69
+#: src/app/main/concessionaires/concessionaires.html:70
+#: src/app/main/main.controller.js:149
+#: src/app/main/users/views/list/users.html:15
+msgid "Usuarios"
+msgstr "Users"
+
+#: src/app/main/leads/views/edit/concession-users.html:7
+msgid "Usuarios conectados"
+msgstr "Users online"
+
+#: src/app/main/users/views/detail/user.html:40
+msgid "Valoración media"
+msgstr "Average Rating"
+
+#: src/app/main/users/views/edit/user.html:138
+msgid "Varón"
+msgstr "Male"
+
+#: src/app/common/services/leadResults/leadResults.service.js:19
+msgid "Vehiculo reservado"
+msgstr "Reserved vehicle"
+
+#: src/app/main/leads/views/edit/vehicle.html:7
+msgid "Vehículo"
+msgstr "Vehicle"
+
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:25
+#: src/app/main/leads/dialogs/finishLead/finishLead-dialog.html:26
+msgid "Vehículo reservado"
+msgstr "Reserved vehicle"
+
+#: src/app/main/acds/acds.html:117 src/app/main/acds/acds.html:118
+msgid "Ver Lead"
+msgstr "See Lead"
+
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:50
+#: src/app/main/concessionaires/dialogs/concessionaireNotes/concessionaireNotes-dialog.html:53
+#: src/app/main/leads/views/edit/concession-notes.html:50
+#: src/app/main/leads/views/edit/concession-notes.html:53
+#: src/app/main/leads/views/edit/lead.html:78
+#: src/app/main/leads/views/edit/lead.html:79
+#: src/app/main/leads/views/edit/notes.html:50
+#: src/app/main/leads/views/edit/notes.html:53
+#: src/app/main/leads/views/edit/tags.html:50
+#: src/app/main/leads/views/edit/tags.html:53
+#: src/app/main/tasks/dialogs/task/task-dialog.html:144
+#: src/app/main/tasks/dialogs/task/task-dialog.html:147
+msgid "Ver historial"
+msgstr "See history"
+
+#: src/app/main/leads/views/board/board-view.html:217
+msgid "Ver más"
+msgstr "See more"
+
+#: src/app/main/main.controller.js:40
+msgid "Ver todos"
+msgstr "See all"
+
+#: src/app/main/concessionaires/dialogs/concessionaireCalendar/concessionaireCalendar-dialog.controller.js:22
+#: src/app/main/leads/views/edit/lead.controller.js:49
+msgid "Viernes"
+msgstr "Friday"
+
+#: src/app/main/users/dialogs/user/user-dialog.html:121
+msgid "Visible para empresas"
+msgstr "Visible to companies"
+
+#: src/app/common/services/taskTypes/taskTypes.service.js:15
+msgid "Visita / Test Drive"
+msgstr "Visit / Test Drive"
+
+#: src/app/main/auth/views/register/register.html:56
+#: src/app/main/users/views/edit/user.html:15
+msgid "Volver"
+msgstr "Return"
+
+#: src/app/main/concessionaires/dialogs/concessionaire/concessionaire-dialog.html:29
+msgid "Web"
+msgstr "Web"
+
+#: src/app/main/users/dialogs/leadByUser/leadByUser-dialog.html:91
+msgid "Ya puede realizar la baja del usuario"
+msgstr "You can now unsubscribe the user"
+
+#: src/app/main/tasks/dialogs/task/task-dialog.html:45
+#: src/app/main/tasks/dialogs/task/task-dialog.html:65
+msgid "a las:"
+msgstr "at:"
+
+#: src/app/main/leads/views/edit/lead.controller.js:315
+msgid "¿Deseas dar de alta un vehículo de interés alternativo?"
+msgstr "Do you want to register a vehicle of alternative interest?"
+
+#: src/app/main/channels/channels.controller.js:55
+msgid "¿Seguro que quieres eliminar el canal?"
+msgstr "Are you sure you want to delete the channel?"
+
+#: src/app/main/concessionaires/concessionaires.controller.js:99
+#: src/app/main/origins/origins.controller.js:56
+#: src/app/main/users/views/list/users.controller.js:57
+msgid "¿Seguro que quieres eliminar el concesionario?"
+msgstr "Are you sure you want to delete the dealer?"
+
+#: src/app/main/leads/views/list/leads.controller.js:57
+msgid "¿Seguro que quieres eliminar el leada?"
+msgstr "Are you sure you want to delete the leads?"
+
+#: src/app/main/leads/views/edit/lead.controller.js:447
+msgid "¿Seguro que quieres eliminar la solicitud?"
+msgstr "Are you sure you want to delete the request?"

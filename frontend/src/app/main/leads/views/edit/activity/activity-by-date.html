@@ -1,0 +1,78 @@
+<div layout="column" layout-align="space-between start" class="mb-20 md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-calendar" class="black-fg no-margin"></md-icon>
+                <span>{{activity.title}}</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding data-layout-xs="column" data-layout="row" data-layout-align="space-between center" layout-wrap class="fullwidth">
+
+        <div class="no-results text-center" ng-if="vm.objectSize(vm.leadsActivity[activity.key]) == 0">
+
+            <div class="message">
+                <md-icon class="message-icon s96" md-font-icon="icon-history"></md-icon>
+                <div class="message-text" translate>Sin resultados</div>
+            </div>
+
+        </div>
+
+        <div class="todo-item" layout="row" layout-align="start center"
+             ng-repeat="activity in vm.leadsActivity[activity.key]">
+
+            <div layout="row" layout-align="start center" flex>
+
+                <div class="info" flex="auto">
+                    <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                        <div layout="row" layout-align="space-between center">
+
+                            <div>
+                                <div class="mb-5">
+                                    <span class="title">{{activity.activity_user.username}}</span>
+                                </div>
+
+                                <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-format-list-numbers" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span translate>Nº de actividades:</span>
+                                            {{activity.count}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span translate>Comienzo:</span>
+                                            {{activity.activity_date_start | date:'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tag" layout="row" layout-align="start center">
+                                        <md-icon md-font-icon="icon-calendar" class="s16"></md-icon>
+                                        <div class="ml-10 tag-label">
+                                            <span translate>Fin:</span>
+                                            {{activity.activity_date_end | date:'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div layout="row" layout-align="end center">
+                            <md-button data-layout="column" class="md-accent" data-layout-align="start center"
+                                       data-ng-click="vm.openLeadActivityDialog($event, activity)">
+                                <md-icon class="pt-5" title="{{'Consultar' | translate}}" md-font-icon="icon-eye"></md-icon>
+                                <span class="pt-5" data-translate>Consultar</span>
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </md-content>
+</div>

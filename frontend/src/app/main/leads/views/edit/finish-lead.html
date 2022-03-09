@@ -1,0 +1,58 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-account" class="black-fg no-margin"></md-icon>
+                <span data-translate>Lead cerrado</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <md-content flex data-layout-xs="column" data-layout="row"
+                data-layout-align="start start" layout-wrap class="fullwidth">
+
+        <div flex layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
+             data-layout-align-xs="start start" layout-wrap layout-margin>
+
+            <div class="m-0 p-0" layout-padding data-layout-xs="column" data-layout="row" data-layout-align="start end"
+                 data-layout-align-xs="start start" layout-wrap layout-margin class="fullwidth">
+                <div class="h-60" data-layout="column" data-layout-align="center start">
+                    <md-input-container>
+                        <label data-translate>Resultado</label>
+                        <md-select data-ng-model="vm.lead.result" name="result" class="w-200" ng-disabled="vm.isDisabled()">
+                            <md-option data-ng-repeat="result in vm.results" data-ng-value="result.id">
+                                {{ result.name }}
+                            </md-option>
+                        </md-select>
+                        <error-messages field="leadForm.result" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div class="h-60" data-layout="column" data-layout-align="center start">
+                    <md-input-container>
+                        <label data-translate>Motivo</label>
+                        <md-select data-ng-model="vm.lead.result_reason" name="result_reason" class="w-200" ng-disabled="vm.isDisabled()">
+                            <md-option data-ng-repeat="reason in vm.resultReasons[vm.lead.result] | orderBy:'name'" data-ng-value="reason.id">
+                                {{ reason.name }}
+                            </md-option>
+                        </md-select>
+                        <error-messages field="leadForm.result_reason" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div data-layout="column" data-layout-align="center start" flex="100">
+                    <md-input-container class="w-500">
+                        <label data-translate>Comentarios</label>
+                        <textarea class="dynamic" name="result_comments" data-ng-model="vm.lead.result_comments" ng-disabled="vm.isDisabled()"></textarea>
+                        <error-messages field="leadForm.result_comments" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+                </div>
+            </div>
+
+        </div>
+
+    </md-content>
+
+</div>
+

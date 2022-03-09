@@ -1,0 +1,139 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="concessionaireForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+                
+                <md-input-container flex="100">
+                    <input type="text" name="name" data-ng-model="vm.concessionaire.name"
+                           placeholder="{{'Nombre' | translate}}" required md-autofocus>
+                    <error-messages field="concessionaireForm.name" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="address" data-ng-model="vm.concessionaire.address"
+                           placeholder="{{'Dirección' | translate}}">
+                    <error-messages field="concessionaireForm.address" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="web" data-ng-model="vm.concessionaire.web"
+                           placeholder="{{'Web' | translate}}">
+                    <error-messages field="concessionaireForm.web" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="web_coches_net" data-ng-model="vm.concessionaire.web_coches_net"
+                           placeholder="{{'Url coches.net' | translate}}">
+                    <error-messages field="concessionaireForm.web_coches_net" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="schedule" data-ng-model="vm.concessionaire.schedule"
+                           placeholder="{{'Dashboard' | translate}}">
+                    <error-messages field="concessionaireForm.schedule" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="mask_c2c" data-ng-model="vm.concessionaire.mask_c2c"
+                           placeholder="{{'Id llamada c2c' | translate}}">
+                    <error-messages field="concessionaireForm.mask_c2c" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="concession_phone" data-ng-model="vm.concessionaire.concession_phone"
+                           placeholder="{{'Teléfono de concesión oficial' | translate}}">
+                    <error-messages field="concessionaireForm.concession_phone" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="hubspot_api_key" data-ng-model="vm.concessionaire.hubspot_api_key"
+                           placeholder="{{'Hubspot Api Key' | translate}}">
+                    <error-messages field="concessionaireForm.hubspot_api_key" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <input type="text" name="concession_phhubspot_idone" data-ng-model="vm.concessionaire.hubspot_id"
+                           placeholder="{{'Hubspot ID' | translate}}">
+                    <error-messages field="concessionaireForm.hubspot_id" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <p data-translate>Fuentes:</p>
+                <div ng-repeat="source in vm.concessionaire.sources" layout="row" layout-wrap>
+                    <md-input-container flex="30" ng-init="name='sources___'+$index+'___data'">
+                        <input type="text" name="{{ name }}" data-ng-model="source.data"
+                               placeholder="{{'Fuente' | translate}} {{ $index+1 }}">
+                        <error-messages field="concessionaireForm[name]" server-errors="vm.serverErrors"></error-messages>
+                    </md-input-container>
+
+                    <div ng-init="nameOrigin='sources___'+$index+'___origin'" flex="30">
+                        <md-autocomplete md-floating-label="{{'Origen' | translate }}" md-delay="300" md-input-name="{{ nameOrigin }}"
+                                         md-no-cache="true" md-min-length="0"
+                                         md-selected-item="source.origin_data" md-search-text="searchTextOrigin"
+                                         md-items="origin in vm.getOrigins(searchTextOrigin)"
+                                         md-item-text="origin.name">
+                            <md-item-template>
+                                <span md-highlight-text="searchTextOrigin">{{origin.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                <span data-translate>No hay ningún origen con ese nombre</span>
+                            </md-not-found>
+                        </md-autocomplete>
+                        <md-input-container flex="100" class="no-margin" ng-show="vm.serverErrors">
+                            <error-messages field="concessionaireForm[nameOrigin]" server-errors="vm.serverErrors" required></error-messages>
+                        </md-input-container>
+                    </div>
+
+                    <div ng-init="nameChannel='sources___'+$index+'___channel'" flex="30">
+                        <md-autocomplete md-floating-label="{{'Canal' | translate }}" md-delay="300" md-input-name="{{ nameChannel }}"
+                                         md-no-cache="true" md-min-length="0" ng-disabled="!source.origin_data"
+                                         md-selected-item="source.channel_data" md-search-text="searchTextChannel"
+                                         md-items="channel in vm.getChannels(searchTextChannel,source.origin_data)"
+                                         md-item-text="channel.name">
+                            <md-item-template>
+                                <span md-highlight-text="searchTextChannel">{{channel.name}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                <span data-translate>No hay ningún canal con ese nombre</span>
+                            </md-not-found>
+                        </md-autocomplete>
+                        <md-input-container flex="100" class="no-margin" ng-show="vm.serverErrors">
+                            <error-messages field="concessionaireForm[nameChannel]" server-errors="vm.serverErrors" required></error-messages>
+                        </md-input-container>
+                    </div>
+
+                    <div flex="10">
+                        <md-button ng-click="vm.removeSource($index,concessionaireForm, source)"
+                                   class="md-fab md-mini md-warn" aria-label="{{'Borrar' | translate}}">
+                            <md-icon md-font-icon="icon-delete"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div>
+                    <md-button ng-click="vm.addSource()" class="md-accent md-raised" aria-label="{{'Añadir fuente' | translate}}">
+                        <span data-translate>Añadir fuente</span>
+                    </md-button>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveConcessionaire()" class="send-button md-accent md-raised"
+                           data-ng-disabled="concessionaireForm.$invalid || concessionaireForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,40 @@
+<!-- IMPORTS -->
+<div id="imports" class="md-accent-bg" layout="column" flex>
+
+    <!-- IMPORT SELECTION -->
+    <div id="import-selector" layout="column" layout-align="start center" flex>
+
+        <h1 translate>IMPORTADOR/EXPORTADOR DE LEADS</h1>
+
+        <!-- IMPORT LIST -->
+        <div class="import-list" layout="row" layout-align="center center" layout-wrap>
+
+
+            <div class="import-list-item add-new-import" layout="column" layout-align="center center"
+                 ng-click="vm.getDocument()">
+                <md-icon md-font-icon="icon-download" class="icon s64 white-fg"></md-icon>
+                <div class="import-name" translate>Descargar plantilla</div>
+            </div>
+
+            <div class="import-list-item add-new-import" layout="column" layout-align="center center"
+                 ng-click="vm.openFiles()" data-ng-disabled="vm.loadingImport">
+                <md-icon ng-show="!vm.loadingImport" md-font-icon="icon-upload" class="icon s64 white-fg"></md-icon>
+                <md-progress-circular ng-show="vm.loadingImport" class="for-button" md-diameter="16" md-mode="indeterminate"></md-progress-circular>
+                <div class="import-name" translate>Importar leads</div>
+            </div>
+            <input type="file" id="file-uploader" ng-show="false">
+
+            <div class="import-list-item add-new-import" layout="column" layout-align="center center"
+                 ng-click="vm.openExportLeadDialog($event)">
+              <md-icon md-font-icon="icon-export" class="icon s64 white-fg"></md-icon>
+              <div class="import-name" translate>Exportar Leads</div>
+            </div>
+
+        </div>
+        <!-- / IMPORT LIST -->
+
+    </div>
+    <!-- / IMPORT SELECTION -->
+
+</div>
+<!-- / IMPORTS -->

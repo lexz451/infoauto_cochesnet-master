@@ -1,0 +1,59 @@
+<div id="timeline-incoming" class="timeline-right" flex="50" flex-xs="100">
+
+    <!-- TIMELINE ITEM -->
+    <div layout-align="center center" layout="row"
+         layout-align-gt-md="center start"
+         class="ms-timeline-item"
+         ng-repeat="call in vm.leadsIncomingCalls.data">
+
+        <div class="timeline-point md-accent-bg md-whiteframe-2dp">
+            <md-icon md-font-icon="icon-phone-incoming"></md-icon>
+        </div>
+
+        <div class="timeline-detail" flex="50">
+            <div class="time" ng-if="call.startcall">
+                {{call.startcall | date:'dd/MM/yyyy HH:mm'}}
+            </div>
+            <div class="time" ng-if="call.durationcallanswered">
+                <md-icon md-font-icon="icon-timer"></md-icon>
+                {{call.durationcallanswered}}
+            </div>
+        </div>
+
+        <div class="timeline-card" layout="row" flex="50">
+
+        </div>
+    </div>
+    <!-- / TIMELINE ITEM -->
+
+</div>
+
+<div id="timeline-outgoing" class="timeline-right" flex="50" flex-xs="100">
+
+    <!-- TIMELINE ITEM -->
+    <div layout-align="center center" layout="row"
+         layout-align-gt-md="center start"
+         class="ms-timeline-item"
+         ng-repeat="call in vm.leadsOutgoingCalls.data">
+
+        <div class="timeline-point md-accent-bg md-whiteframe-2dp">
+            <md-icon md-font-icon="icon-phone-outgoing"></md-icon>
+        </div>
+
+        <div class="timeline-detail" flex="50">
+            <div class="time" ng-if="call.startcall">
+                {{call.startcall | date:'dd/MM/yyyy HH:mm'}}
+            </div>
+            <div class="time" ng-if="call.durationcallanswered">
+                <md-icon md-font-icon="icon-timer"></md-icon>
+                {{call.durationcallanswered}}
+            </div>
+        </div>
+
+        <div class="timeline-card" layout="row" flex="50">
+
+        </div>
+    </div>
+    <!-- / TIMELINE ITEM -->
+
+</div>

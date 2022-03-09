@@ -1,0 +1,62 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="concessionaireForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <div>
+                    <div ng-repeat="(day,work_calendar) in vm.concessionaire.work_calendar" ng-if="vm.week[day]" layout="row" layout-align="space-between center" class="bb">
+                        <div class="mr-40">
+                            {{ vm.week[day] }}
+                        </div>
+                        <div layout="row" class="date-row">
+
+                            <md-input-container class="md-block mr-40" layout="column" layout-align="center center" ng-init="nameDate='work_calendar___'+day+'___working_day'">
+                                <div data-translate>
+                                    Día laborable
+                                </div>
+                                <div class="ml-35">
+                                    <md-checkbox name="{{ nameDate }}" ng-model="work_calendar.working_day" aria-label="{{'Día laborable' | translate}}">
+                                    </md-checkbox>
+                                </div>
+                                <error-messages field="concessionaireForm[nameDate]" server-errors="vm.serverErrors"></error-messages>
+                            </md-input-container>
+
+                            <md-input-container ng-show="work_calendar.working_day" class="no-errors-spacer mr-40" flex md-no-float
+                                                ng-init="nameDate='work_calendar___'+day+'___start_hour'">
+                                <span>Hora de apertura</span>
+                                <input name="{{ nameDate }}" type="time" ng-model="work_calendar.start_hour">
+                                <error-messages field="concessionaireForm[nameDate]" server-errors="vm.serverErrors"></error-messages>
+                            </md-input-container>
+
+                            <md-input-container ng-show="work_calendar.working_day" class="no-errors-spacer" flex md-no-float
+                                                ng-init="nameDate='work_calendar___'+day+'___end_hour'">
+                                <span>Hora de cierre</span>
+                                <input name="{{ nameDate }}" type="time" ng-model="work_calendar.end_hour">
+                                <error-messages field="concessionaireForm[nameDate]" server-errors="vm.serverErrors"></error-messages>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveConcessionaire()" class="send-button md-accent md-raised"
+                           data-ng-disabled="concessionaireForm.$invalid || concessionaireForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

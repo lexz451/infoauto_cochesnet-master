@@ -1,0 +1,194 @@
+#calendar {
+    background: #FFFFFF;
+
+    .fc-event{
+      cursor: pointer;
+    }
+
+    .fc-license-message{
+        display:none;
+    }
+
+    th.fc-resource-cell {
+        padding: 20px;
+        padding-top: 30px;
+    }
+
+    .header {
+        position: relative;
+        background-size: 100% auto;
+        background-position: 0 50%;
+        background-repeat: no-repeat;
+        background-color: #FAFAFA;
+        padding: 16px;
+
+        .header-content {
+            height: 100%;
+
+            .header-top {
+                position: relative;
+                z-index: 2;
+
+                .logo {
+
+                    .logo-icon {
+                        margin-right: 16px;
+                    }
+
+                    .logo-text {
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            .header-bottom {
+                position: relative;
+                z-index: 2;
+
+                .title {
+                    font-size: 20px;
+                    min-width: 160px;
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+
+    .content {
+        padding: 0;
+
+        #calendarView {
+
+            &.fc {
+
+                .fc-widget-header {
+                    border: none;
+                    color: rgba(0, 0, 0, 0.54);
+
+                    .fc-day-header {
+                        text-align: left;
+                        border: none;
+                        font-weight: 500;
+                        padding: 8px;
+                    }
+                }
+
+                .fc-widget-content {
+                    color: rgba(0, 0, 0, 0.54);
+
+                    .fc-day-grid-container {
+
+                        .fc-day-grid {
+
+                            .fc-day-number {
+                                text-align: left;
+                                padding: 8px 8px 0 8px;
+                            }
+                        }
+                    }
+
+                    .fc-time-grid-container {
+                        overflow: hidden;
+                        height: auto !important;
+
+                        .fc-axis {
+                            font-weight: 500;
+                            border: none;
+                        }
+                    }
+                }
+
+                .fc-day-grid-event {
+                    margin: 4px 8px 0 8px;
+                    padding: 2px 4px;
+                    font-size: 13px;
+                    color: #FFFFFF;
+                }
+
+                .fc-time-grid-event {
+                    color: #FFFFFF;
+                }
+
+                .fc-month-view {
+                    padding: 24px;
+                }
+
+                .fc-agenda-view {
+
+                    .fc-widget-header {
+
+                        .fc-day-header {
+                            border: 1px solid #DDD;
+                            line-height: 50px;
+                            font-size: 17px;
+                        }
+                    }
+
+                    > table > tbody > tr > td.fc-widget-content {
+                        border: none;
+                    }
+
+                    .fc-minor .fc-widget-content {
+                        border-top: none;
+                    }
+
+                    .fc-week, .fc-day {
+                        height: 100px !important;
+                    }
+
+                    .fc-widget-content {
+                        height: 50px;
+                    }
+
+                    .fc-axis {
+                        padding-left: 24px;
+                    }
+                }
+            }
+        }
+    }
+
+    .fc-resource-cell{
+        position: relative;
+        .badge {
+            display: inline-block;
+            /* position: absolute; */
+            /* top: 58%; */
+            min-width: 20px;
+            height: 20px;
+            line-height: 20px;
+            padding: 0 7px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 20px;
+            /* transform: translateY(-50%); */
+            /* transition: opacity 0.2s ease-in-out 0.1s; */
+        }
+    }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    #calendar {
+
+        .header {
+            padding: 8px;
+
+            .header-content {
+
+                .header-top {
+
+                    .logo {
+                        margin-bottom: 16px;
+                    }
+                }
+            }
+
+            .add-event-button {
+                right: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="availableForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <md-input-container>
+                    <label data-translate>Motivo</label>
+                    <md-select data-ng-model="vm.form.unavailable_reason" name="unavailable_reason" required>
+                        <md-option data-ng-repeat="reason in vm.reasons" data-ng-value="reason.id">
+                            {{ reason.name }}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="taskForm.unavailable_reason" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveAvailable()" class="send-button md-accent md-raised"
+                           data-ng-disabled="availableForm.$invalid || availableForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

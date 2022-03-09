@@ -1,0 +1,103 @@
+<md-dialog id="lead-edit-dialog" class="task-dialog" aria-label="New Task">
+    <form name="sendWhatsappForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title" data-translate ng-if="!vm.manageTemplates">Enviar whatsapp</span>
+                <span class="title" data-translate ng-if="vm.manageTemplates">Gestión de plantillas de Whatsapp</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column" ng-if="!vm.manageTemplates">
+                <div data-layout="row" data-layout-align="start center" class="fullwidth">
+                    <md-input-container ng-if="vm.lead.user_data.whatsapp_templates.length" class="w-400">
+                        <label data-translate>Plantillas</label>
+                        <md-select ng-change="vm.updateTemplate()" ng-model="vm.templateSelected">
+                            <md-option ng-repeat="template in vm.lead.user_data.whatsapp_templates" ng-value="template.text">
+                                {{template.alias}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-button data-debouce-click data-ng-click="vm.startManageTemplates()"
+                               class="send-button md-raised"
+                               aria-label="{{ 'Gestionar plantillas' | translate }}">
+                        <span data-translate>Gestionar plantillas</span>
+                    </md-button>
+                </div>
+
+                <md-input-container>
+                    <label data-translate>Mensaje de Whatsapp</label>
+                    <textarea class="dynamic" data-ng-model="vm.whatsappMsg"></textarea>
+                </md-input-container>
+
+            </div>
+
+            <div data-layout="column" ng-if="vm.manageTemplates">
+                <div class="md-grey-300-bg grey-600-fg" style="padding: 12px;margin-bottom: 24px">
+                    <p>Puede usar las siguientes variables de sustitución</p>
+                    <ul>
+                        <li><strong>[Nombre vendedor]</strong>: Su propio nombre y apellido</li>
+                        <li><strong>[Telefono del vendedor]</strong>: Su propio teléfono</li>
+                        <li><strong>[Vehículo solicitado]</strong>: El vehículo solicitado por el cliente</li>
+                        <li><strong>[Url anuncio]</strong>: La URL del anuncio de este vehículo</li>
+                        <li><strong>[Origen del lead]</strong>: El origen de captación de este lead</li>
+                        <li><strong>[Nombre del concesionario]</strong>: El nombre del concesionario vinculado al lead</li>
+                    </ul>
+                    <p><strong>Ejemplo:</strong> Hola! Soy [Nombre vendedor] y le ayudaré en el proceso de compra del vehículo [Vehículo solicitado] en el concesionario [Nombre del concesionario]. Para cualquier duda puede llamarme al [Telefono del vendedor]</p>
+                </div>
+
+                <div data-layout="row" data-layout-align="start start" class="fullwidth" ng-repeat="template in vm.templates">
+                    <md-input-container>
+                        <label data-translate>Alias de la plantilla</label>
+                        <input type="text" data-ng-model="template.alias"></input>
+                    </md-input-container>
+
+                    <md-input-container class="w-400">
+                        <label data-translate>Mensaje de Whatsapp</label>
+                        <textarea class="dynamic" data-ng-model="template.text" ></textarea>
+                    </md-input-container>
+                </div>
+
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="end center">
+            <div data-layout="row" data-layout-align="end center" class="fullwidth" ng-if="!vm.manageTemplates">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.closeDialog()"
+                           class="send-button md-raised"
+                           aria-label="{{ 'Cancelar' | translate }}">
+                    <span data-translate>Cancelar</span>
+                </md-button>
+
+                <md-button class="md-raised md-accent" aria-label="{{'Enviar' | translate}}"
+                           data-ng-click="vm.sendWhatsapp()">
+                    <span data-translate>Enviar</span>
+                </md-button>
+            </div>
+
+            <div data-layout="row" data-layout-align="end center" class="fullwidth" ng-if="vm.manageTemplates">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.manageTemplates = false"
+                           class="send-button md-raised"
+                           aria-label="{{ 'Cancelar' | translate }}">
+                    <span data-translate>Cancelar</span>
+                </md-button>
+
+                <md-button data-debouce-click type="submit" data-ng-click="vm.templates.push({alias: '',text: ''})"
+                           class="send-button md-raised"
+                           aria-label="{{ 'Añadir plantilla' | translate }}">
+                    <span data-translate>Añadir plantilla</span>
+                </md-button>
+
+                <md-button class="md-raised md-accent" aria-label="{{'Enviar' | translate}}"
+                           data-ng-click="vm.sendWhatsappTemplates()">
+                    <span data-translate>Guardar plantillas</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

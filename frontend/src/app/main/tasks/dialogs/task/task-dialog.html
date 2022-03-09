@@ -1,0 +1,194 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="taskForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{ vm.title }}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <!---- FECHA --->
+                <label data-translate style="color: rgba(0, 0, 0, 0.54);font-size: 13px;">Fecha</label>
+                <div>
+                    <md-datepicker name="date" data-ng-model="vm.task.planified_realization_date"
+                                   style="margin-bottom: 14px"
+                                   md-placeholder="dd/mm/yyyy"></md-datepicker>
+
+                    <md-icon md-font-icon="icon-clock" class="s16"></md-icon>
+                    <input class="mb-10" type="time" data-ng-model="vm.task.datetime" md-placeholder="hh:mm"
+                           step="60">
+                    <error-messages field="taskForm.date" server-errors="vm.serverErrors" forcechange></error-messages>
+                </div>
+
+                <!---vm.lead.last_lead_action.date --->
+
+
+                <md-input-container>
+                    <label data-translate>Tipo</label>
+                    <md-select data-ng-model="vm.task.type" name="type" required>
+                        <md-option data-ng-repeat="taskType in vm.taskTypes" data-ng-value="taskType.key">
+                            {{ taskType.name }}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="taskForm.type" server-errors="vm.serverErrors" required></error-messages>
+                </md-input-container>
+
+                <!--<md-input-container>
+                    <label data-translate>Subtipo</label>
+                    <input type="text" data-ng-model="vm.task.subtype" name="subtype">
+                    <error-messages field="taskForm.subtype" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>-->
+
+                <md-input-container>
+                    <label data-translate>Descripción</label>
+                    <input type="text" data-ng-model="vm.task.description" name="description">
+                    <error-messages field="taskForm.description" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <!--div layout="row" layout-align="start center">
+                    <md-input-container class="mr-20 h-100">
+                        <h4 data-translate>Tarea programada el:</h4>
+                        <md-datepicker name="planified_realization_date" data-ng-model="vm.task.planified_realization_date"
+                                       md-placeholder="dd/mm/yyyy"></md-datepicker>
+                        <error-messages field="taskForm.planified_realization_date" server-errors="vm.serverErrors" forcechange></error-messages>
+                    </md-input-container>
+                    <md-input-container class="mr-20 h-100">
+                        <h4 data-translate>a las:</h4>
+                        <input type="time" data-ng-model="vm.task.planified_realization_date">
+                    </md-input-container>
+                    <md-button data-ng-click="vm.task.realization_date_check=true" class="md-accent md-raised"
+                               ng-if="!vm.task.realization_date_check">
+                        <span data-translate>Realizado</span>
+                    </md-button>
+                    <span ng-if="vm.task.realization_date_check" class="text-boxed m-0 green-bg white-fg">
+                        Realizada el {{ vm.task.realization_date || vm.now | date:'dd/MM/yyyy' }} a las {{ vm.task.realization_date || vm.now | date:'HH:mm' }}
+                    </span>
+                </div>
+
+                <div layout="row" layout-align="start center">
+                    <md-input-container class="mr-20 h-100">
+                        <h4 data-translate>Seguimiento programado el:</h4>
+                        <md-datepicker name="planified_tracking_date" data-ng-model="vm.task.planified_tracking_date"
+                                       md-placeholder="dd/mm/yyyy"></md-datepicker>
+                        <error-messages field="taskForm.planified_tracking_date" server-errors="vm.serverErrors" forcechange></error-messages>
+                    </md-input-container>
+                    <md-input-container class="mr-20 h-100">
+                        <h4 data-translate>a las:</h4>
+                        <input type="time" data-ng-model="vm.task.planified_tracking_date">
+                    </md-input-container>
+                    <md-button data-ng-click="vm.task.tracking_date_check=true" class="md-accent md-raised"
+                               ng-if="!vm.task.tracking_date_check">
+                        <span data-translate>Realizado</span>
+                    </md-button>
+                    <span ng-if="vm.task.tracking_date_check" class="text-boxed m-0 green-bg white-fg">
+                        Realizado el {{ vm.task.tracking_date || vm.now | date:'dd/MM/yyyy' }} a las {{ vm.task.tracking_date || vm.now | date:'HH:mm' }}
+                    </span>
+                </div-->
+
+                <md-input-container>
+                    <label class="md-container-ignore md-no-float" data-translate>Medio</label>
+                    <div layout="row">
+                        <div class="p-10 pointer w-70 h-70" layout="column" layout-align="center center"
+                             ng-class="{'border':vm.task.media==='Whatsapp'}" ng-click="vm.task.media='Whatsapp'">
+                            <md-icon md-font-icon="icon-whatsapp s40"></md-icon>
+                        </div>
+                        <div class="p-10 pointer w-70 h-70" layout="column" layout-align="center center"
+                             ng-class="{'border':vm.task.media==='Phone'}" ng-click="vm.task.media='Phone'">
+                            <md-icon md-font-icon="icon-phone s40"></md-icon>
+                        </div>
+                        <div class="p-10 pointer w-70 h-70" layout="column" layout-align="center center"
+                             ng-class="{'border':vm.task.media==='SMS'}" ng-click="vm.task.media='SMS'">
+                            <md-icon md-font-icon="icon-message-text-outline s30"></md-icon>
+                            <span class="font-size-12">SMS</span>
+                        </div>
+                        <div class="p-10 pointer w-70 h-70" layout="column" layout-align="center center"
+                             ng-class="{'border':vm.task.media==='E-mail'}" ng-click="vm.task.media='E-mail'">
+                            <md-icon md-font-icon="icon-email s40"></md-icon>
+                        </div>
+                        <div class="p-10 pointer w-70 h-70" layout="column" layout-align="center center"
+                             ng-class="{'border':vm.task.media==='face'}" ng-click="vm.task.media='face'">
+                            <md-icon md-font-icon="icon-account-multiple s40"></md-icon>
+                        </div>
+                    </div>
+                    <input type="hidden" data-ng-model="vm.task.media" name="media">
+                    <error-messages field="taskForm.media" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <!-- tasacion -->
+                <div class="fullwidth" ng-if="vm.task.type==='appraisal' && false"
+                     ng-include="'app/main/tasks/dialogs/task/appraisal.html'">
+                    <!--include request-->
+                </div>
+
+                <!-- contenedor de notas de tarea -->
+                <!--<div class="md-accent-bg fullwidth">
+
+                    <div class="md-accent-bg fullwidth p-8" layout="row" layout-align="space-between center">
+                        <span data-translate>Notas</span>
+                        <md-icon ng-click="vm.addTaskNote(task)" md-font-icon="icon-plus" class="pointer white-fg no-margin"></md-icon>
+                    </div>
+
+                    <div class="white-bg black-fg p-20">
+
+                        <div ng-repeat="note in vm.task.note" layout="row" layout-wrap class="fullwidth" ng-init="note.historyShow=false">
+                            <div flex="80">
+                                <div class="mb-10">
+                                    <md-icon md-font-icon="icon-calendar"></md-icon>
+                                    <span>{{ note.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                                </div>
+                                <md-input-container flex="100" ng-init="name='note___'+$index+'___content'" class="fullwidth">
+                                    <label data-translate>Nota</label>
+                                    <input type="text" data-ng-model="vm.task.note[$index].content" name="{{ name }}">
+                                    <error-messages field="taskForm[name]" server-errors="vm.serverErrors"></error-messages>
+                                </md-input-container>
+
+                                <div class="pl-50" ng-show="note.historyShow">
+                                    <div ng-repeat="history in note.history">
+                                        <div class="mb-10">
+                                            <md-icon md-font-icon="icon-calendar"></md-icon>
+                                            <span>{{ history.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                                        </div>
+                                        <div class="mb-20">{{ history.content }}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div flex="20">
+                                <md-button ng-click="note.historyShow=!note.historyShow" ng-if="note.history.length>0"
+                                           class="md-fab md-mini md-accent" aria-label="{{'Ver historial' | translate}}">
+                                    <md-icon md-font-icon="icon-history"></md-icon>
+                                    <md-tooltip>
+                                        <span data-translate>Ver historial</span>
+                                    </md-tooltip>
+                                </md-button>
+                                <md-button ng-click="vm.deleteTaskNote(note)" class="md-warn md-raised" ng-if="!note.id"
+                                           aria-label="{{'Borrar nota' | translate}}">
+                                    <md-icon md-font-icon="icon-delete"></md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div> -->
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveTask()"
+                           class="send-button md-accent md-raised"
+                           data-ng-disabled="taskForm.$invalid" aria-label="{{ 'Guardar' | translate }}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

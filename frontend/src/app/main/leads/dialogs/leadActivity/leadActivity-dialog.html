@@ -1,0 +1,60 @@
+<md-dialog id="leadActivities" class="task-dialog" aria-label="New Task">
+    <form name="leadActivityForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <div class="todo-item" layout="row" layout-align="start center"
+                     ng-repeat="activity in vm.leadActivities.data">
+
+                    <div layout="row" layout-align="start center" flex>
+
+                        <div class="info" flex="auto">
+                            <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                                <div layout="row" layout-align="space-between center">
+                                    <div>
+                                        <div class="title mb-5">
+                                            <md-icon md-font-icon="icon-account"></md-icon>
+                                            <span>{{activity.user_data.username}}</span>
+                                        </div>
+                                        <div class="title mb-5">
+                                            <md-icon md-font-icon="icon-calendar"></md-icon>
+                                            <span>{{activity.date | date:'dd/MM/yyyy'}}</span>
+                                        </div>
+                                        <div layout="row" layout-align="start center" layout-wrap>
+                                            <span ng-repeat="status in vm.activityStatus" ng-if="status.id===activity.lead_status_planing">
+                                                {{status.name}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="activity.status==='done'">
+                                    <md-icon class="green-700-fg" md-font-icon="icon-check-circle"></md-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-ng-click="vm.closeDialog()" class="md-accent md-raised"
+                           aria-label="{{'Cerrar' | translate}}">
+                    <span data-translate>Cerrar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

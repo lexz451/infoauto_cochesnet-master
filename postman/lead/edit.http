@@ -1,0 +1,27 @@
+PATCH {{host}}/api/lead/11579/
+accept: application/json
+Content-Type: application/json
+Authorization: Token {{auth_token}}
+
+{
+    "tracing": {
+        "task": [
+            {
+                "appraisal": null,
+                "author": 5,
+                "description": "lorem ipsum2",
+                "id": 16921,
+                "is_click2call": false,
+                "media": "Whatsapp",
+                "planified_realization_date": "2020-04-22T22:10:00+02:00",
+                "planified_tracking_date": null,
+                "realization_date": null,
+                "realization_date_check": false,
+                "subtype": null,
+                "tracking_date": null,
+                "tracking_date_check": false,
+                "type": "date"
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+# curl -X POST "http://localhost:8000/api/auth/login/" -H "accept: application/json" -H "Authorization: Token d8fbd66bcb1d2616dd9b612bccc3be680b4eaa39" -H "Content-Type: application/json" -H "X-CSRFToken: a0amnpt4CWNI9R8cqN3dK8xydWr4uvfcByNfNwDk9cNQtmK8YqGhBOkHlh6iEwer" -d "{ \"username\": \"sclemente@info-auto.es \", \"password\": \"12345\"}"
+POST {{host}}/api/auth/login/
+accept: application/json
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###

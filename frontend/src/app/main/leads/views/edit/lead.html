@@ -1,0 +1,234 @@
+<div id="lead-edit" class="page-layout simple" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" flex ms-scroll>
+
+        <!-- CONTENT -->
+        <div class="content white-bg">
+
+            <md-tabs md-dynamic-height md-selected="vm.selectedTab">
+
+                <md-tab label="{{ 'Datos de lead' | translate }}">
+
+                    <div layout="column" flex>
+
+                        <form name="leadForm" class="md-inline-form ms-form-wizard-form full-width p-20" novalidate>
+
+                            <div layout="row" layout-align="start center" >
+
+                                <div class="fullwidth"
+                                     ng-include="'app/main/leads/views/edit/status.html'">
+                                    <!--include status-->
+                                </div>
+
+                                <!--<div layout="row" layout-align="end end" class="mb-50">
+                                    <div layout="row" layout-align="start center">
+                                        <md-button data-debouce-click
+                                                   ng-if="vm.lead.status === 'end' && vm.lead.status_dates.end"
+                                                   data-ng-click="vm.reactivate(vm.lead)"
+                                                   class="green-700-bg white-fg md-raised"
+                                                   aria-label="{{'Reactivar' | translate}}">
+                                            <span data-translate>Reactivar</span>
+                                        </md-button>
+                                    </div>
+                                </div>-->
+
+                                <div layout="row" layout-align="end end" class="mb-50">
+                                    <div layout="row" layout-align="start center">
+                                        <md-button ng-click="vm.openSaveLeadDialog()" data-debouce-click
+                                                   ng-hide="vm.isDisabled()"
+                                                   data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
+                                                   aria-label="{{'Guardar' | translate}}" class="md-fab">
+                                            <md-icon md-font-icon="icon-content-save"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div layout="row" layout-align="space-between start" layout-wrap>
+                                <div flex="100" flex-xs="100" data-layout="column" data-layout-align="start start">
+
+                                    <div class="fullwidth mb-20" ng-if="vm.isOpenFinishLeadBox || vm.lead.status_end_datetime"
+                                         ng-include="'app/main/leads/views/edit/finish-lead.html'">
+                                        <!--include form finish lead-->
+                                    </div>
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/client.html'">
+                                        <!--include client-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/vehicle.html'">
+                                        <!--include vehicle-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/appraisals.html'">
+                                        <!--include appraisals-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/tags.html'">
+                                        <!--include tags-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/request.html'">
+                                        <!--include request-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/tracing.html'">
+                                        <!--include tracing-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20"
+                                         ng-include="'app/main/leads/views/edit/notes.html'">
+                                        <!--include notes-->
+                                    </div>
+
+                                    <div class="fullwidth mb-20" ng-if="vm.lead.lead_managements.length>0"
+                                         ng-include="'app/main/leads/views/edit/lead_managements.html'">
+                                        <!--include lead_managements-->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </md-tab>
+
+                <md-tab ng-if="vm.lead.id && vm.lead.vehicles && vm.lead.vehicles[0]">
+                    <md-tab-label>
+                        <span data-translate>Anuncio</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <form class="p-20">
+                            <div class="fullwidth mb-20"
+                                 ng-include="'app/main/leads/views/edit/vehicle.html'">
+                                <!--include vehicle-->
+                            </div>
+
+                            <iframe id="iframe-ad-link" ng-if="vm.iframeAdLink" src="{{vm.trustSrc(vm.iframeAdLink)}}"></iframe>
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-if="((vm.lead.client.phone && vm.lead.client.phone.length > 8) || (vm.lead.client.email && vm.lead.client.email.length > 5)) &&
+                        (vm.leads.new.count>0 || vm.leads.attended.count>0 || vm.leads.commercial_management.count>0 || vm.leads.tracing.count>0 || vm.leads.end.count>0)">
+                  <md-tab-label>
+                    <span data-translate>Coincidentes</span>
+                  </md-tab-label>
+                  <md-tab-body>
+                    <div class="p-20" id="scrumboard">
+                      <div class="fullwidth" style="height: 80vh"
+                           ng-include="'app/main/leads/views/board/board-columns.html'">
+                        <!--include columns-->
+                      </div>
+                    </div>
+                  </md-tab-body>
+                </md-tab>
+
+                <!--<md-tab ng-if="vm.lead.concessionaire || vm.lead.source_data.concession_data" ng-init="concessionaire=vm.lead.concessionaire_data || vm.lead.source_data.concession_data">
+
+                    <md-tab-label>
+                        <span data-translate>Concesión</span>
+                        <span ng-if="!concessionaire.work_calendar.open_now" class="badge badge-close">
+                            C
+                        </span>
+                        <span ng-if="concessionaire.work_calendar.open_now" class="badge badge-open">
+                            O
+                        </span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20">
+                            <div class="fullwidth"
+                                 ng-include="'app/main/leads/views/edit/concession-basic.html'">
+                            </div>
+
+                            <div layout="row" layout-xs="column" class="fullwidth mt-20" layout-align="space-between start">
+                                <div flex="45" flex-xs="100"
+                                     ng-include="'app/main/leads/views/edit/concession-users.html'">
+                                </div>
+                                <div flex="45" flex-xs="100"
+                                     ng-include="'app/main/leads/views/edit/concession-notes.html'">
+                                </div>
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>-->
+
+                <!--<md-tab ng-if="vm.leadsIncomingCalls.count>0 || vm.leadsOutgoingCalls.count>0">
+
+                    <md-tab-label>
+                        <span data-translate>Histórico de llamadas</span>
+                        <span class="badge">{{ vm.leadsIncomingCalls.count+vm.leadsOutgoingCalls.count }}</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20">
+                            <div class="fullwidth" layout="row" layout-xs="column" layout-align="space-between start"
+                                 ng-include="'app/main/leads/views/edit/click2call/timeline-right.html'">
+
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>-->
+
+                <!--<md-tab ng-if="vm.leadsHistory.count>0 && (vm.lead.current_user_is_concession_admin || vm.lead.current_user_is_business_manager || vm.user.is_admin)">
+                    <md-tab-label>
+                        <span data-translate>Histórico</span>
+                        <span class="badge">{{ vm.leadsHistory.count }}</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20">
+                            <div class="fullwidth"
+                                 ng-include="'app/main/leads/views/edit/history/timeline-right.html'">
+
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>-->
+
+                <md-tab ng-if="vm.leadsActivity.count>0">
+
+                    <md-tab-label>
+                        <span data-translate>Actividades</span>
+                        <span class="badge">{{ vm.leadsActivity.count }}</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20">
+                            <div class="fullwidth"
+                                 ng-include="'app/main/leads/views/edit/activity/timeline-right.html'">
+                                <!--include activity-->
+                            </div>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-if="vm.lead.id && vm.lead.concessionaire_data.hubspot_api_key && vm.lead.concessionaire_data.hubspot_id">
+
+                    <md-tab-label>
+                        <span data-translate>Hubspot</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20">
+                                                        <md-button class="md-raised md-accent mt-10" aria-label="{{'Sincronizar' | translate}}"
+                                       data-debouce-click data-ng-click="vm.hubspot()">
+                                <md-icon md-font-icon="icon-sync"></md-icon>
+                                <span data-translate>Sincronizar</span>
+                            </md-button>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+
+            </md-tabs>
+
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

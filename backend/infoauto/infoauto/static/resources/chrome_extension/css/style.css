@@ -1,0 +1,96 @@
+#v-condition-title {
+  font-size: 25px;
+  font-family: Roboto-Regular;
+  font-weight: bold;
+  color: dimgrey;
+}
+
+#v-condition-text {
+  font-size: 15px;
+  font-family: Roboto-Regular;
+  background-color: white;
+  padding: 30px;
+  padding-bottom: 60px;
+  color:dimgrey;
+}
+
+
+#spinner_box{
+  background-color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#windows-confirm,  #windows-loading{
+  border: solid 1px grey;
+  border-radius: 3px;
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  background-color: lightgrey;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 10px;
+
+}
+
+#btn-confirm{
+  width: 150px;
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #48a23f, #48a23f);
+  background-image: -moz-linear-gradient(top, #48a23f, #48a23f);
+  background-image: -ms-linear-gradient(top, #48a23f, #48a23f);
+  background-image: -o-linear-gradient(top, #48a23f, #48a23f);
+  background-image: linear-gradient(to bottom, #48a23f, #48a23f);
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  font-family: Roboto-Regular;
+
+}
+
+#btn-confirm:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #5ac94e, #5ac94e);
+  background-image: -moz-linear-gradient(top, #5ac94e, #5ac94e);
+  background-image: -ms-linear-gradient(top, #5ac94e, #5ac94e);
+  background-image: -o-linear-gradient(top, #5ac94e, #5ac94e);
+  background-image: linear-gradient(to bottom, #5ac94e, #5ac94e);
+  text-decoration: none;
+}
+
+#btn-cancel{
+  margin-left: 10px;
+  width: 150px;
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #b52b2b, #b52b2b);
+  background-image: -moz-linear-gradient(top, #b52b2b, #b52b2b);
+  background-image: -ms-linear-gradient(top, #b52b2b, #b52b2b);
+  background-image: -o-linear-gradient(top, #b52b2b, #b52b2b);
+  background-image: linear-gradient(to bottom, #b52b2b, #b52b2b);
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  font-family: Roboto-Regular;
+}
+
+#btn-cancel:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #f23c32, #f23c32);
+  background-image: -moz-linear-gradient(top, #f23c32, #f23c32);
+  background-image: -ms-linear-gradient(top, #f23c32, #f23c32);
+  background-image: -o-linear-gradient(top, #f23c32, #f23c32);
+  background-image: linear-gradient(to bottom, #f23c32, #f23c32);
+  text-decoration: none;
+}
+
+#form-box{
+  margin-top: 30px;
+  display:inline-block;
+  margin-bottom: 20px;
+}

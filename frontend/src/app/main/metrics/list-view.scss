@@ -1,0 +1,24 @@
+#metrics {
+  padding: 40px;
+
+  table{
+    a{
+      color:inherit;
+    }
+    td, th{
+      text-align: right;
+    }
+
+    th:first-child,
+    td:first-child{
+      text-align: left;
+    }
+  }
+}
+
+@media screen and (max-width: 600px){
+  #metrics {
+    padding: 20px;
+  }
+}
+

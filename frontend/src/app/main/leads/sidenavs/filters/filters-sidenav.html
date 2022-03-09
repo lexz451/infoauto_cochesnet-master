@@ -1,0 +1,377 @@
+<!-- SIDENAV HEADER -->
+<md-toolbar class="md-accent" ng-class="'md-'+vm.board.settings.color+'-bg'">
+  <div class="md-toolbar-tools">
+    <span flex class="menu-title" data-translate>Filtro avanzado</span>
+  </div>
+</md-toolbar>
+<!-- / SIDENAV HEADER -->
+
+<!-- CONTENT -->
+<md-content class="" ms-scroll>
+  <md-list>
+
+    <!-- FILTER BY TIME -->
+    <md-subheader class="md-no-sticky" data-translate>Filtrar por fecha de alta</md-subheader>
+
+    <md-list-item class="label">
+      <label class=" mb-20" data-layout="row" data-layout-align="start center" data-flex>
+        <md-datepicker data-ng-model="vm.filters.created_start_date"
+                       md-max-date="vm.filters.created_end_date"
+                       md-placeholder="{{'Desde' | translate}}"></md-datepicker>
+      </label>
+
+      <label class="mb-20" data-layout="row" data-layout-align="start center" data-flex>
+        <md-datepicker data-ng-model="vm.filters.created_end_date"
+                       md-min-date="vm.filters.created_start_date"
+                       md-placeholder="{{'Hasta' | translate}}"></md-datepicker>
+      </label>
+    </md-list-item>
+    <!-- / FILTER BY TIME -->
+
+    <!-- FILTER BY TIME -->
+    <md-subheader class="md-no-sticky" data-translate>Filtrar por fecha de última modificación</md-subheader>
+
+    <md-list-item class="label">
+      <label class=" mb-20" data-layout="row" data-layout-align="start center" data-flex>
+        <md-datepicker data-ng-model="vm.filters.date_start"
+                       md-min-date="vm.minDate"
+                       md-max-date="vm.filters.date_end"
+                       md-placeholder="{{'Desde' | translate}}"></md-datepicker>
+      </label>
+
+      <label class="mb-20" data-layout="row" data-layout-align="start center" data-flex>
+        <md-datepicker data-ng-model="vm.filters.date_end"
+                       md-min-date="vm.filters.date_start"
+                       md-max-date="vm.maxDate"
+                       md-placeholder="{{'Hasta' | translate}}"></md-datepicker>
+      </label>
+    </md-list-item>
+    <!-- / FILTER BY TIME -->
+
+    <md-list-item class="label">
+      <div class="mb-10 mr-40">
+        <div translate>Rating</div>
+        <div class="mt-10 tag" layout="row" layout-align="start center">
+          <md-icon ng-click="vm.setScore(1)"
+                   md-font-icon="{{vm.filters.score >0 ? 'icon-star' : 'icon-star-outline'}}"
+                   class="amber-fg"></md-icon>
+          <md-icon ng-click="vm.setScore(2)"
+                   md-font-icon="{{vm.filters.score >1 ? 'icon-star' : 'icon-star-outline'}}"
+                   class="amber-fg"></md-icon>
+          <md-icon ng-click="vm.setScore(3)"
+                   md-font-icon="{{vm.filters.score >2 ? 'icon-star' : 'icon-star-outline'}}"
+                   class="amber-fg"></md-icon>
+          <md-icon ng-click="vm.setScore(4)"
+                   md-font-icon="{{vm.filters.score >3 ? 'icon-star' : 'icon-star-outline'}}"
+                   class="amber-fg"></md-icon>
+        </div>
+      </div>
+
+      <div>
+        <md-chips ng-model="vm.filters.status_data" md-autocomplete-snap
+                  md-require-match="true">
+          <md-autocomplete placeholder="{{'Estado' | translate }}" md-delay="300" md-input-name="status"
+                           md-no-cache="true"
+                           md-min-length="0"
+                           md-search-text="vm.searchTextStatus"
+                           md-items="s in vm.getStatusLead()"
+                           md-item-text="vm.copySearch('searchTextStatus')">
+            <md-item-template>
+              <span md-highlight-text="vm.searchTextStatus">{{s.name}}</span>
+            </md-item-template>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>{{$chip.name}}</span>
+          </md-chip-template>
+        </md-chips>
+      </div>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.user.is_admin || vm.user.is_concession_admin">
+      <div class="mt-20">
+        <md-button class="md-raised md-hue-2 header-boards-button"
+                   ng-class="{'md-accent':!vm.filters.with_concession}"
+                   ng-click="vm.filters.with_concession=null; vm.filters.user_data=[vm.user]"
+                   aria-label="Mis leads">
+          <span data-translate>Mis leads</span>
+        </md-button>
+
+        <md-button class="md-raised md-hue-2 header-boards-button"
+                   ng-class="{'md-accent':vm.filters.with_concession}"
+                   ng-click="vm.filters.with_concession=true; vm.filters.user_data=[]"
+                   aria-label="Todos">
+          <span data-translate>Todos</span>
+        </md-button>
+      </div>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.user_data" md-autocomplete-snap
+                md-require-match="true" readonly="!vm.filters.with_concession">
+        <md-autocomplete placeholder="{{'Usuario' | translate }}" md-delay="300" md-input-name="user"
+                         md-no-cache="true"
+                         md-min-length="vm.filters.user_data.length>0 ? 0:1"
+                         md-search-text="vm.searchTextUser"
+                         md-items="user in vm.getUsers(vm.searchTextUser)"
+                         md-item-text="vm.copySearch('searchTextUser')">
+          <md-item-template>
+            <span md-highlight-text="vm.searchTextUser">{{vm.getFullUserName(user)}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ningun usuario con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{vm.getFullUserName($chip)}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.concessionaire__in_data" md-autocomplete-snap
+                md-require-match="true">
+        <md-autocomplete
+            md-no-cache="true" md-delay="300"
+            md-min-length="vm.filters.concessionaire__in_data.length>0 ? 0:1"
+            md-search-text="vm.searchTextConcessionaire"
+            md-items="concessionaire in vm.getConcessionaires(vm.searchTextConcessionaire)"
+            md-item-text="vm.copySearch('searchTextConcessionaire')"
+            placeholder="{{'Concesionario' | translate }}">
+          <md-item-template>
+            <span md-highlight-text="vm.searchTextConcessionaire">{{concessionaire.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ningún concesionario con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{$chip.name}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.origin_data" md-autocomplete-snap
+                md-require-match="true">
+        <md-autocomplete placeholder="{{'Origen' | translate }}" md-delay="300" md-input-name="origin"
+                         md-no-cache="true"
+                         md-min-length="vm.filters.origin_data.length>0 ? 0:1"
+                         md-search-text="vm.searchTextOrigin"
+                         md-items="origin in vm.getOrigins(vm.searchTextOrigin)"
+                         md-item-text="vm.copySearch('searchTextOrigin')">
+          <md-item-template>
+            <span md-highlight-text="vm.searchTextOrigin">{{origin.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ningún origen con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{$chip.name}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.channel_data" md-autocomplete-snap
+                md-require-match="true">
+        <md-autocomplete placeholder="{{'Canal' | translate }}" md-delay="300" md-input-name="channel"
+                         md-no-cache="true"
+                         md-min-length="vm.filters.channel_data.length>0 ? 0:1"
+                         md-search-text="vm.searchTextChannel"
+                         md-items="channel in vm.getChannels(vm.searchTextChannel)"
+                         md-item-text="vm.copySearch('searchTextChannel')">
+          <md-item-template>
+            <span md-highlight-text="vm.searchTextChannel">{{channel.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ningún canal con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{$chip.name}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.tasks_media_data" md-autocomplete-snap
+                md-require-match="true">
+        <md-autocomplete placeholder="{{'Medio' | translate }}" md-delay="300" md-input-name="media"
+                         md-no-cache="true"
+                         md-min-length="vm.filters.tasks_media_data.length>0 ? 0:1"
+                         md-search-text="searchTextMedia"
+                         md-items="media in vm.getTaskMedia(searchTextMedia)"
+                         md-item-text="media.name">
+          <md-item-template>
+            <span md-highlight-text="searchTextMedia">{{media.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ningún medio con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{$chip.name}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-chips ng-model="vm.filters.brand_data" md-autocomplete-snap
+                md-require-match="true">
+        <md-autocomplete placeholder="{{'Marca' | translate }}" md-delay="300" md-input-name="brand"
+                         md-no-cache="true"
+                         md-min-length="vm.filters.brand_data.length>0 ? 0:1"
+                         md-search-text="vm.searchTextBrand"
+                         md-items="brand in vm.getBrands(vm.searchTextBrand)"
+                         md-item-text="vm.copySearch('searchTextBrand')">
+          <md-item-template>
+            <span md-highlight-text="vm.searchTextBrand">{{brand.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            <span data-translate>No hay ninguna marca con ese nombre</span>
+          </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>{{$chip.name}}</span>
+        </md-chip-template>
+      </md-chips>
+    </md-list-item>
+
+    <md-list-item>
+      <md-input-container>
+        <label data-translate>Modelo</label>
+        <input type="text" name="model" data-ng-model="vm.filters.model">
+      </md-input-container>
+    </md-list-item>
+
+    <md-list-item>
+      <md-input-container>
+        <label data-translate>Versión</label>
+        <input type="text" name="version" data-ng-model="vm.filters.version">
+      </md-input-container>
+    </md-list-item>
+
+    <md-list-item>
+      <div class="content-task">
+        <md-autocomplete md-floating-label="{{'Tipo de solicitud' | translate }}" md-delay="300" md-input-name="task"
+                         md-selected-item-change="vm.filters.tasks_tracing_data=[];vm.filters.tasks_type_data=[];vm.filters.overdue=null"
+                         md-no-cache="true" md-min-length="0"
+                         md-selected-item="vm.filters.tasktype"
+                         md-items="t in vm.getRequestTypes()"
+                         md-item-text="t.name">
+          <md-item-template>
+            <span>{{t.name}}</span>
+          </md-item-template>
+        </md-autocomplete>
+      </div>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.filters.tasktype.id==='tarea'">
+      <div class="content-task">
+        <md-chips ng-model="vm.filters.tasks_type_data" md-autocomplete-snap
+                  md-require-match="true">
+          <md-autocomplete placeholder="{{'Tarea' | translate }}" md-delay="300" md-input-name="task"
+                           md-no-cache="true"
+                           md-min-length="vm.filters.tasks_type_data.length>0 ? 0:1"
+                           md-search-text="vm.searchTextTask"
+                           md-items="task in vm.getTaskTypes(false, vm.searchTextTask)"
+                           md-item-text="vm.copySearch('searchTextTask')">
+            <md-item-template>
+              <span md-highlight-text="vm.searchTextTask">{{task.name}}</span>
+            </md-item-template>
+            <md-not-found>
+              <span data-translate>No hay ninguna tarea con ese nombre</span>
+            </md-not-found>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>{{$chip.name}}</span>
+          </md-chip-template>
+        </md-chips>
+      </div>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.filters.tasktype.id==='seguimiento'">
+      <div class="content-task">
+        <md-chips ng-model="vm.filters.tasks_tracing_data" md-autocomplete-snap
+                  md-require-match="true">
+          <md-autocomplete placeholder="{{'Seguimiento' | translate }}" md-delay="300" md-input-name="task"
+                           md-no-cache="true"
+                           md-min-length="vm.filters.tasks_tracing_data.length>0 ? 0:1"
+                           md-search-text="vm.searchTextTask"
+                           md-items="task in vm.getTaskTypes(true,vm.searchTextTask)"
+                           md-item-text="vm.copySearch('searchTextTask')">
+            <md-item-template>
+              <span md-highlight-text="vm.searchTextTask">{{task.name}}</span>
+            </md-item-template>
+            <md-not-found>
+              <span data-translate>No hay ningún seguimiento con ese nombre</span>
+            </md-not-found>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>{{$chip.name}}</span>
+          </md-chip-template>
+        </md-chips>
+      </div>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.filters.tasktype.id">
+      <div class="content-task">
+        <md-autocomplete md-floating-label="{{'Vencida' | translate }}" md-delay="300" md-input-name="overdue"
+                         md-no-cache="true" md-min-length="0"
+                         md-selected-item="vm.filters.overdue"
+                         md-items="b in vm.getBooleans()"
+                         md-item-text="b.name">
+          <md-item-template>
+            <span>{{b.name}}</span>
+          </md-item-template>
+        </md-autocomplete>
+      </div>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.filters">
+      <md-input-container>
+        <label data-translate>Resultado</label>
+        <md-select data-ng-model="vm.filters.result" name="result" ng-change="vm.filters.result_reason=null">
+          <md-option data-ng-value="null" data-translate>Ver todos</md-option>
+          <md-option data-ng-repeat="result in vm.results" data-ng-value="result.id">
+            {{ result.name }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </md-list-item>
+
+    <md-list-item ng-if="vm.filters && vm.filters.result">
+      <md-input-container>
+        <label data-translate>Motivo</label>
+        <md-select data-ng-model="vm.filters.result_reason" name="result_reason">
+          <md-option data-ng-value="null" data-translate>Ver todos</md-option>
+          <md-option data-ng-repeat="reason in vm.resultReasons[vm.filters.result]" data-ng-value="reason.id">
+            {{ reason.name }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </md-list-item>
+
+    <!--<md-divider></md-divider>-->
+
+    <md-list-item class="mt-20">
+      <md-button class="md-accent md-raised md-hue-2 header-boards-button"
+                 ng-click="vm.setFilters()"
+                 aria-label="search">
+        <md-icon md-font-icon="icon-magnify" class="icon"></md-icon>
+        <span data-translate>Buscar</span>
+      </md-button>
+      <md-button class="md-accent md-raised md-hue-2 header-boards-button"
+                 ng-click="vm.getDocument()"
+                 data-debouce-click
+                 aria-label="Exportar">
+        <md-icon md-font-icon="icon-export" class="icon"></md-icon>
+        <span data-translate>Exportar</span>
+      </md-button>
+    </md-list-item>
+
+
+  </md-list>
+</md-content>
+<!-- / CONTENT -->

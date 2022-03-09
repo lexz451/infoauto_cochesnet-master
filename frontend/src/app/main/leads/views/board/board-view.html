@@ -1,0 +1,88 @@
+<div id="scrumboard" class="page-layout simple fullwidth center" layout="column">
+
+    <!-- HEADER -->
+    <div class="header bb" layout="column">
+
+        <div class="header-content" layout="row" layout-align="space-between" layout-wrap flex>
+
+            <!-- BOARD SELECTION BUTTON -->
+            <div layout="row" layout-align="center center" flex-order="1" flex-order-xs="2">
+
+                <form name="search" layout="row" layout-xs="column" layout-wrap novalidate class="mr-40">
+
+                    <div layout="row">
+                        <label class="search" data-layout="row" data-layout-align="start center" data-flex>
+                            <span data-hide-xs data-hide-gt-xs data-translate>Buscar</span>
+                            <!--<md-icon md-font-icon="icon-magnify" class="white-text icon search-icon"></md-icon>-->
+                            <input class="search-input-black" type="text" placeholder="{{'Buscar' | translate }}" data-ng-model="vm.filters.search" data-flex>
+                        </label>
+
+                        <md-button type="submit" class="md-raised search-button" ng-click="vm.changeFilter('search',vm.filters.search)">
+                            <md-icon md-font-icon="icon-magnify" class="icon"></md-icon>
+                        </md-button>
+                    </div>
+
+                </form>
+
+                <div ng-if="vm.user.is_admin || vm.user.is_concession_admin">
+                    <md-button class="md-raised md-hue-2 header-boards-button mr-40"
+                               ng-class="{'md-accent':!vm.leads.new.filters.with_concession}"
+                               ng-click="vm.changeFilter('with_concession', null); vm.filters.user_data=[vm.user]"
+                               aria-label="Mis leads">
+                        <span data-translate>Mis leads</span>
+                    </md-button>
+
+                    <md-button class="md-raised md-hue-2 header-boards-button"
+                               ng-class="{'md-accent':vm.leads.new.filters.with_concession}"
+                               ng-click="vm.changeFilter('with_concession', true); vm.filters.user_data=[]"
+                               aria-label="Todos">
+                        <span data-translate>Todos</span>
+                    </md-button>
+                </div>
+            </div>
+            <!-- / BOARD SELECTION BUTTON -->
+
+            <!-- TOOLBAR -->
+            <div class="toolbar" layout="row" layout-align="space-between center" flex-order="3">
+                <!-- FILTERS SIDENAV BUTTON -->
+                <p ng-if="vm.hasFilterAdvance" class="orange-700-fg mr-40">
+                  <md-icon md-font-icon="icon-alert" class="icon orange-700-fg"></md-icon>
+                  <span translate>Filtros avanzados aplicados</span>
+                </p>
+                <md-button class="md-accent md-raised md-hue-2 header-boards-button"
+                           ng-click="vm.toggleSidenav('filters-sidenav')"
+                           aria-label="Filtrar">
+                    <md-icon md-font-icon="icon-filter-variant" class="icon"></md-icon>
+                    <span data-translate>Filtrar</span>
+                </md-button>
+                <md-button class="md-raised md-hue-2 header-boards-button"
+                           ng-click="vm.getDocument()"
+                           data-debouce-click
+                           aria-label="Exportar">
+                    <md-icon md-font-icon="icon-export" class="icon"></md-icon>
+                    <span data-translate>Exportar</span>
+                </md-button>
+                <!-- / FILTERS SIDENAV BUTTON -->
+            </div>
+            <!-- / TOOLBAR -->
+
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <md-content class="content" flex layout="column">
+      <div class="fullwidth"
+           ng-include="'app/main/leads/views/board/board-columns.html'">
+        <!--include columns-->
+      </div>
+    </md-content>
+
+    <!-- FILTERS SIDENAV -->
+    <md-sidenav class="filters-sidenav md-sidenav-right" md-component-id="filters-sidenav"
+                ng-include="'app/main/leads/sidenavs/filters/filters-sidenav.html'"
+                ms-sidenav-helper>
+    </md-sidenav>
+    <!-- / FILTERS SIDENAV -->
+</div>
+

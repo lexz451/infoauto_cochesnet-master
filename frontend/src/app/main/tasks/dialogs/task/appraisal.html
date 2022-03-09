@@ -1,0 +1,62 @@
+<!-- tasacion -->
+<div layout="column">
+    <md-input-container ng-init="nameBrand_model='appraisal___brand_model'">
+        <label data-translate>Marca/Modelo</label>
+        <input type="text" name="{{ nameBrand_model }}" data-ng-model="vm.task.appraisal.brand_model">
+        <error-messages field="taskForm[nameBrand_model]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameLicense_plate='appraisal___license_plate'">
+        <label data-translate>Matrícula</label>
+        <input type="text" name="{{ nameLicense_plate }}" data-ng-model="vm.task.appraisal.license_plate">
+        <error-messages field="taskForm[nameLicense_plate]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameKm='appraisal___km'">
+        <label data-translate>Km</label>
+        <input type="text" name="{{ nameKm }}" data-ng-model="vm.task.appraisal.km">
+        <error-messages field="taskForm[nameKm]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameYear='appraisal___year'">
+        <label data-translate>Año</label>
+        <input type="text" name="{{ nameYear }}" data-ng-model="vm.task.appraisal.year">
+        <error-messages field="taskForm[nameYear]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameGas='appraisal___gas'">
+        <label data-translate>Combustible</label>
+        <md-select name="{{ nameGas }}" data-ng-model="vm.task.appraisal.gas">
+            <md-option data-ng-repeat="gas in vm.gasTypes.data" data-ng-value="gas.id">
+                {{gas.name}}
+            </md-option>
+        </md-select>
+        <error-messages field="taskForm[nameGas]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameExtras='appraisal___extras'">
+        <label data-translate>Extras</label>
+        <input type="text" name="{{ nameExtras }}" data-ng-model="vm.task.appraisal.extras">
+        <error-messages field="taskForm[nameExtras]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <md-input-container ng-init="nameOrigin='appraisal___origin'">
+        <label data-translate>Origen</label>
+        <md-select data-ng-model="vm.task.appraisal.origin" name="{{ nameOrigin }}">
+            <md-option data-ng-repeat="origin in vm.origins" data-ng-value="origin.id">
+                {{origin.name}}
+            </md-option>
+        </md-select>
+        <error-messages field="form[nameOrigin]" server-errors="vm.serverErrors"></error-messages>
+    </md-input-container>
+
+    <div data-layout-xs="column" data-layout="row" data-layout-align="space-between center" layout-wrap class="fullwidth">
+
+        <md-input-container flex="100" ng-init="nameAppraisal='appraisal'">
+            <input type="hidden" name="{{ nameAppraisal }}" data-ng-model="vm.task.appraisal">
+            <error-messages field="form[nameAppraisal]" server-errors="vm.serverErrors"></error-messages>
+        </md-input-container>
+
+    </div>
+</div>
+

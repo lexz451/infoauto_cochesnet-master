@@ -1,0 +1,277 @@
+#lead-detail {
+
+    .detail-company{
+        font-size: 25px;
+        md-icon{
+            font-size: 35px;
+        }
+    }
+
+    .content-normative{
+        max-height: 300px;
+        p{
+            white-space: pre-line;
+        }
+    }
+
+    .content-img{
+        position: relative;
+        .edit-image{
+            position: absolute;
+            top: -15px;
+            right: -10px;
+        }
+        .delete-image{
+            position: absolute;
+            top: -15px;
+            left: -15px;
+        }
+    }
+
+    .header {
+
+      .h1 {
+
+        md-icon {
+          margin-right: 12px;
+        }
+      }
+    }
+
+    .content-card {
+
+      form{
+        width:100%;
+
+        md-input-container{
+          min-width: 270px;
+
+          &.months,
+          &.eur{
+            min-width: 140px;
+            width: 140px;
+          }
+        }
+      }
+    }
+
+    .todo-item {
+      width:100%;
+      position: relative;
+      padding: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      text-transform: none;
+
+      .info{
+        padding: 8px;
+      }
+
+      .options {
+          text-align:right;
+      }
+
+      &.todo-item-placeholder {
+        background: rgba(0, 0, 0, 0.12);
+        * {
+          opacity: 0;
+        }
+      }
+
+      .handle {
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 48px;
+        top: 0;
+        left: 0;
+        cursor: move;
+        text-align: center;
+
+        md-icon {
+          display: block;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      .image{
+          max-width:200px;
+          margin-right:20px;
+      }
+      .tags {
+        font-size: 12px;
+
+        .tag {
+          border-radius: 2px;
+          margin: 4px 4px 0 0;
+          padding: 3px 8px;
+          background-color: rgba(0, 0, 0, 0.08);
+
+          .tag-color {
+            width: 8px;
+            height: 8px;
+            margin-right: 8px;
+            border-radius: 50%;
+          }
+        }
+
+        .aforo, .music, .location {
+          border-radius: 2px;
+          margin: 4px 4px 0 0;
+          padding: 3px 8px 3px 8px;
+        }
+
+      }
+
+      .info {
+        margin: 0 16px 0 8px;
+
+        .title {
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .notes {
+          margin-top: 4px;
+          margin-right: 10px;
+        }
+      }
+
+      .buttons {
+
+        .is-starred {
+          margin: 0 0 0 16px;
+        }
+
+        .is-important {
+          margin: 0;
+        }
+      }
+    }
+
+    .todo-list-pane {
+
+        .todo-items {
+
+            &.sortable {
+
+                .todo-item {
+                    padding: 16px 16px 16px 48px;
+
+                    .handle {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .todo-items {
+            overflow-x: hidden;
+
+        }
+    }
+
+    .todo-item {
+    width:100%;
+    position: relative;
+    padding: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-transform: none;
+
+    .info{
+      padding: 8px;
+    }
+
+    .options {
+        text-align:right;
+    }
+
+    &.todo-item-placeholder {
+      background: rgba(0, 0, 0, 0.12);
+      * {
+        opacity: 0;
+      }
+    }
+
+    .handle-load,
+    .handle {
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 48px;
+      top: 0;
+      left: 0;
+      cursor: move;
+      text-align: center;
+
+      md-progress-circular,
+      md-icon {
+        display: block;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    .handle-load {
+      display: block;
+    }
+
+    .info {
+      margin: 0 16px 0 8px;
+
+      .title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .notes {
+        margin-top: 4px;
+        margin-right: 10px;
+      }
+    }
+
+    .buttons {
+
+      .is-starred {
+        margin: 0 0 0 16px;
+      }
+
+      .is-important {
+        margin: 0;
+      }
+    }
+  }
+
+}
+
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+  #lead {
+
+    .todo-list-pane {
+
+      .sortable {
+
+        .todo-items {
+
+          .todo-item {
+            padding-left: 32px;
+          }
+        }
+      }
+
+      .todo-items {
+
+        .todo-item {
+
+          .handle {
+            width: 32px;
+          }
+        }
+      }
+    }
+  }
+}

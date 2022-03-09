@@ -1,0 +1,34 @@
+{
+  "name": "Sail Auto Form-Fill",
+  "version": "1.2",
+  "description": "Sail Auto Form-Fill",
+  "update_url": "https://smartmotorlead.net/api/updates2.xml",
+
+  "permissions": [
+    "tabs"
+  ],
+  "background": {
+    "scripts":["background.js"]
+  },
+  "icons": {
+        "16": "img/sail.png",
+        "48": "img/sail.png",
+        "128":"img/sail.png"
+  },
+    "browser_action": {
+      "default_icon":   "img/sail.png",
+      "default_popup":  "popup.html"
+  },
+  "manifest_version": 2,
+  "content_scripts": [{
+      "matches": [
+        "http://infoauto-backend:3000/*",
+        "https://cochesnet.testing.intelligenia.com/*",
+        "https://smartmotorlead.net/*",
+        "https://es-piveplus.citroen.com/*"
+      ],
+      "css": ["css/style.css"],
+      "js": ["copy.js", "paste.js"],
+      "run_at": "document_end"
+    }]
+}

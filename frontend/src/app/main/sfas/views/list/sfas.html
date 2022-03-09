@@ -1,0 +1,99 @@
+<div id="sfas" class="page-layout carded fullwidth" data-layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" data-layout="column" data-flex>
+
+         <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center">
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-arrange-bring-to-front"></md-icon>
+                    <span data-translate>Mis automatismos</span>
+                </div>
+                <div class="count secondary-text">
+                    <span data-translate>Número de automatismos:</span>
+                    <span>{{vm.sfas.length}}</span>
+                </div>
+            </div>
+
+            <div data-layout="row" data-layout-align="space-between center" data-layout-wrap>
+
+                <div data-layout="row" data-layout-xs="column" data-layout-align="space-between center" data-layout-wrap>
+
+                </div>
+
+                <div class="actions" data-layout="row" data-layout-align="end center" data-ng-if="hasPermission('sfas','POST')">
+                    <md-button class="md-raised" aria-label="{{'Nuevo automatísmo' | translate}}"
+                               data-ng-click="vm.openSfaDialog($event)">
+                        <md-icon md-font-icon="icon-plus-circle-outline"></md-icon>
+                        <span data-translate>Nuevo automatismo</span>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" data-layout="column" data-flex>
+
+            <md-content class="content p-20" flex ms-scroll>
+
+                <div layout="column" layout-align="space-between start">
+
+                    <div class="no-results text-center" ng-if="vm.sfas.length == 0">
+
+                        <div class="message">
+                            <md-icon class="message-icon s96" md-font-icon="icon-arrange-bring-to-front"></md-icon>
+                            <div class="message-text" translate>Sin automatismos</div>
+                        </div>
+
+                    </div>
+                    <div class="todo-item" layout="row" layout-align="start center"
+                         ng-repeat="sfa in vm.sfas">
+
+                        <div layout="row" layout-align="start center" flex>
+
+                            <div class="info" flex="auto">
+                                <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                                    <div layout="row" layout-align="space-between center">
+
+                                        <div>
+                                            <div class="title">
+                                                <span ng-repeat="c in vm.channels" ng-if="c.id===sfa.channel">Canal: {{c.name}}</span>
+                                            </div>
+                                            <div class="title">
+                                                <span ng-repeat="e in vm.events" ng-if="e.id===sfa.event">Evento: {{e.name}}</span>
+                                            </div>
+                                            <div>
+                                                <p>{{sfa.text}}</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div layout="row" layout-align="end center">
+                                        <md-button data-layout="column" class="md-warn" data-layout-align="start center"
+                                                   data-ng-if="hasPermission('sfas','DELETE')" ng-click="vm.removeSfa($index, sfa)">
+                                            <md-icon class="pt-5" title="{{'Eliminar' | translate}}" md-font-icon="icon-delete"></md-icon>
+                                            <span class="pt-5" data-translate>Eliminar</span>
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </md-content>
+            <!-- CONTENT -->
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>

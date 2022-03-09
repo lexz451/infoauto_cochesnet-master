@@ -1,0 +1,175 @@
+<div id="benchmark">
+  <h2>Benchmark</h2>
+  <!-- Funnel -->
+  <div class="funnel" data-layout="row">
+    <div class="w-150">
+      <p class="text-bold secondary-text" translate> LEAD RECIBIDO</p>
+      <p class="text-bold secondary-text" translate> LEAD UTIL</p>
+      <p class="text-bold secondary-text" translate> LEAD GANADOS</p>
+    </div>
+    <div class="chart" flex="100">
+      <div>
+        <p class="md-accent-bg white-fg text-center"><strong>{{vm.benchmark.data.funnel.lead_recibido}}</strong></p>
+      </div>
+      <div class="text-center">
+        <p style="width: {{vm.benchmark.data.funnel.lead_util_percentage}}%; display: inline-block"
+           class="mt-0 text-center" ng-class="{'white-fg md-accent-bg': vm.benchmark.data.funnel.lead_util>0}">
+          <strong>{{vm.benchmark.data.funnel.lead_util}}</strong> <span ng-if="vm.benchmark.data.funnel.lead_util>0">({{vm.benchmark.data.funnel.lead_util_percentage}}%)</span>
+        </p>
+      </div>
+      <div class="text-center">
+        <p style="width: {{vm.benchmark.data.funnel.ganados_percentage}}%; display: inline-block"
+           class="mt-0 text-center" ng-class="{'white-fg md-accent-bg': vm.benchmark.data.funnel.ganados>0}">
+          <strong>{{vm.benchmark.data.funnel.ganados}}</strong>
+        </p>
+        <span ng-if="vm.benchmark.data.funnel.ganados>0">({{vm.benchmark.data.funnel.ganados_percentage}}%)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Origins -->
+  <div class="origins mt-40 mb-40">
+    <div layout="row" layout-align="end end">
+      <md-button ng-if="vm.data_origins==='numbers'" ng-click="vm.data_origins='percentage'" class="md-fab md-mini md-primary" aria-label="Percentage">
+        <md-tooltip md-delay="300">Datos porcentuales</md-tooltip>
+        <md-icon md-font-icon="icon-percent" class="white-fg"></md-icon>
+      </md-button>
+      <md-button ng-if="vm.data_origins!=='numbers'" ng-click="vm.data_origins='numbers'" class="md-fab md-mini md-primary" aria-label="Number">
+        <md-tooltip md-delay="300">Datos decimales</md-tooltip>
+        <md-icon md-font-icon="icon-numeric" class="white-fg"></md-icon>
+      </md-button>
+    </div>
+    <table class="dataTable row-border hover">
+      <thead>
+      <tr>
+        <th>Origen</th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result__isnull:true, with_concession:true},vm.metrics.filters))" target="_blank">
+            Abiertos
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result:'negative', with_concession:true},vm.metrics.filters))" target="_blank">
+             Descartado
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result:'positive', with_concession:true},vm.metrics.filters))" target="_blank">
+            Ganado
+          </a>
+        </th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="origin in vm.benchmark.data.origins">
+        <td>{{origin.origen}}</td>
+        <td>
+          <span ng-if="vm.data_origins==='numbers'">{{origin.abiertos}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{origin.abiertos_percentage}}%</span>
+        </td>
+        <td>
+          <span ng-if="vm.data_origins==='numbers'">{{origin.descartados}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{origin.descartados_percentage}}%</span>
+        </td>
+        <td>
+          <span ng-if="vm.data_origins==='numbers'">{{origin.ganados}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{origin.ganados_percentage}}%</span>
+        </td>
+        <td class="total">{{origin.total}}</td>
+      </tr>
+
+      <tr>
+        <th class="total">Total</th>
+        <th>
+          <span ng-if="vm.data_origins==='numbers'">{{vm.benchmark.data.total_origins.abiertos}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{vm.benchmark.data.total_origins.abiertos_percentage}}%</span>
+        </th>
+        <th>
+          <span ng-if="vm.data_origins==='numbers'">{{vm.benchmark.data.total_origins.descartados}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{vm.benchmark.data.total_origins.descartados_percentage}}%</span>
+        </th>
+        <th>
+          <span ng-if="vm.data_origins==='numbers'">{{vm.benchmark.data.total_origins.ganados}}</span>
+          <span ng-if="vm.data_origins!=='numbers'">{{vm.benchmark.data.total_origins.ganados_percentage}}%</span>
+        </th>
+        <th>{{vm.benchmark.data.funnel.lead_recibido}}</th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- users -->
+  <div class="users">
+    <div layout="row" layout-align="end end">
+      <md-button ng-if="vm.data_users==='numbers'" ng-click="vm.data_users='percentage'" class="md-fab md-mini md-primary" aria-label="Percentage">
+        <md-tooltip md-delay="300">Datos porcentuales</md-tooltip>
+        <md-icon md-font-icon="icon-percent" class="white-fg"></md-icon>
+      </md-button>
+      <md-button ng-if="vm.data_users!=='numbers'" ng-click="vm.data_users='numbers'" class="md-fab md-mini md-primary" aria-label="Number">
+        <md-tooltip md-delay="300">Datos decimales</md-tooltip>
+        <md-icon md-font-icon="icon-numeric" class="white-fg"></md-icon>
+      </md-button>
+    </div>
+    <table class="dataTable row-border hover">
+      <thead>
+      <tr>
+        <th>Asignado a</th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result__isnull:true, with_concession:true},vm.metrics.filters))" target="_blank">
+            Abiertos
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result:'negative', with_concession:true},vm.metrics.filters))" target="_blank">
+            Descartado
+          </a>
+        </th>
+        <th>
+          <a ui-sref="app.leads.list(vm.concatFilters({result:'positive', with_concession:true},vm.metrics.filters))" target="_blank">
+            Ganado
+          </a>
+        </th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="user in vm.benchmark.data.users">
+        <td>{{user.asignado}}</td>
+        <td>
+          <span ng-if="vm.data_users==='numbers'">{{user.abiertos}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{user.abiertos_percentage}}%</span>
+        </td>
+        <td>
+          <span ng-if="vm.data_users==='numbers'">{{user.descartados}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{user.descartados_percentage}}%</span>
+        </td>
+        <td>
+          <span ng-if="vm.data_users==='numbers'">{{user.ganados}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{user.ganados_percentage}}%</span>
+        </td>
+        <td class="total">{{user.total}}</td>
+      </tr>
+
+      <tr>
+        <th class="total">Total</th>
+        <th>
+          <span ng-if="vm.data_users==='numbers'">{{vm.benchmark.data.total_users.abiertos}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{vm.benchmark.data.total_users.abiertos_percentage}}%</span>
+        </th>
+        <th>
+          <span ng-if="vm.data_users==='numbers'">{{vm.benchmark.data.total_users.descartados}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{vm.benchmark.data.total_users.descartados_percentage}}%</span>
+        </th>
+        <th>
+          <span ng-if="vm.data_users==='numbers'">{{vm.benchmark.data.total_users.ganados}}</span>
+          <span ng-if="vm.data_users!=='numbers'">{{vm.benchmark.data.total_users.ganados_percentage}}%</span>
+        </th>
+        <th>{{vm.benchmark.data.funnel.lead_recibido}}</th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

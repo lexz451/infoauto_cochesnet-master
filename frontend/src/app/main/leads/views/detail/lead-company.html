@@ -1,0 +1,82 @@
+<div class="mb-20 detail-company" data-ng-if="!hasPermission('companyList','GET')">
+    <md-icon md-font-icon="icon-domain"></md-icon>
+    <span class="ml-20">{{vm.lead.offer.company.business_name}}</span>
+</div>
+<div ui-sref="app.company.detail({id:'{{vm.lead.offer.company.id}}'})" class="mb-20 detail-company pointer" data-ng-if="hasPermission('companyList','GET')">
+    <md-icon md-font-icon="icon-domain"></md-icon>
+    <span class="ml-20">{{vm.lead.offer.company.business_name}}</span>
+</div>
+
+<div data-layout="column" data-layout-align="start start" layout-wrap>
+    <div class="border-bottom fullwidth">
+        <h2 data-translate>Centro de trabajo</h2>
+        <span>{{vm.lead.seat_data.name}} {{vm.lead.seat_data.address}}</span>
+    </div>
+
+    <div class="pl-20 mb-20 mt-20" ng-if="vm.lead.seat_data">
+        <div class="secondary-text" data-ng-if="vm.lead.seat_data.address">
+            <md-icon md-font-icon="icon-map-marker" class="icon"></md-icon>
+            <span>{{vm.lead.seat_data.address}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.seat_data.email">
+            <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+            <span>{{vm.lead.seat_data.email}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.seat_data.phone">
+            <md-icon md-font-icon="icon-phone" class="icon"></md-icon>
+            <span>{{vm.lead.seat_data.phone}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="border-bottom fullwidth">
+    <h4 data-translate>Departamento / Área</h4>
+    <span>{{vm.lead.department}}</span>
+</div>
+
+<div data-layout="column" data-layout-align="start start" layout-wrap>
+    <h2 data-translate>Contactos</h2>
+
+    <div class="border-bottom fullwidth" ng-if="vm.lead.professional_tutor_data">
+        <h4 data-translate>Tutor profesional</h4>
+        <span>{{vm.lead.professional_tutor_data.name}} {{vm.lead.professional_tutor_data.surname}} {{vm.lead.professional_tutor_data.second_surname}}</span>
+    </div>
+
+    <div class="pl-20 mb-20 mt-20" ng-if="vm.lead.professional_tutor_data">
+        <div class="secondary-text" data-ng-if="vm.lead.professional_tutor_data.user.email">
+            <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+            <span>{{vm.lead.professional_tutor_data.user.email}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.professional_tutor_data.phone">
+            <md-icon md-font-icon="icon-phone" class="icon"></md-icon>
+            <span>{{vm.lead.professional_tutor_data.phone}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.professional_tutor_data.mobile">
+            <md-icon md-font-icon="icon-cellphone-iphone" class="icon"></md-icon>
+            <span>{{vm.lead.professional_tutor_data.mobile}}</span>
+        </div>
+    </div>
+
+    <div class="border-bottom fullwidth" ng-if="vm.lead.academic_tutor_data">
+        <h4 data-translate>Tutor académico</h4>
+        <span>{{vm.lead.academic_tutor_data.name}} {{vm.lead.academic_tutor_data.surname}} {{vm.lead.academic_tutor_data.second_surname}}</span>
+    </div>
+
+    <div class="pl-20 mb-20 mt-20" ng-if="vm.lead.academic_tutor_data">
+        <div class="secondary-text" data-ng-if="vm.lead.academic_tutor_data.email">
+            <md-icon md-font-icon="icon-email" class="icon"></md-icon>
+            <span>{{vm.lead.academic_tutor_data.email}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.academic_tutor_data.phone">
+            <md-icon md-font-icon="icon-phone" class="icon"></md-icon>
+            <span>{{vm.lead.academic_tutor_data.phone}}</span>
+        </div>
+        <div class="secondary-text" data-ng-if="vm.lead.academic_tutor_data.mobile">
+            <md-icon md-font-icon="icon-cellphone-iphone" class="icon"></md-icon>
+            <span>{{vm.lead.academic_tutor_data.mobile}}</span>
+        </div>
+    </div>
+
+</div>
+
+

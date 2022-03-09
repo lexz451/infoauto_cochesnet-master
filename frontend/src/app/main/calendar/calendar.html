@@ -1,0 +1,90 @@
+<div id="calendar" class="page-layout fullwidth" layout="column">
+
+    <!-- HEADER -->
+    <div class="header" ng-class="vm.currentMonthShort">
+
+        <div class="header-content" layout="column" layout-align="space-between">
+
+            <div class="header-top" layout="row" layout-align="space-between center" layout-xs="column">
+                <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-calendar-today"></md-icon>
+                    </span>
+
+                    <span class="logo-text" translate>Calendario</span>
+                </div>
+
+                <div>
+                  <md-autocomplete placeholder="{{'Usuario' | translate }}" md-delay="300" md-input-name="user"
+                                   md-no-cache="true"
+                                   md-min-length="3"
+                                   md-search-text="searchTextUser"
+                                   md-selected-item="vm.leads.filters.user_data"
+                                   md-items="user in vm.getUsers(searchTextUser)"
+                                   md-item-text="vm.getFullUserName(user)">
+                    <md-item-template>
+                      <span md-highlight-text="vm.searchTextUser">{{vm.getFullUserName(user)}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                      <span data-translate>No hay ningun usuario con ese nombre</span>
+                    </md-not-found>
+                  </md-autocomplete>
+                </div>
+
+                <!-- TOOLBAR -->
+                <div class="toolbar" layout="row" layout-align="start center">
+                    <md-button class="md-icon-button" ng-click="vm.calendar.today()" aria-label="Hoy">
+                        <md-icon md-font-icon="icon-calendar-today"></md-icon>
+                        <md-tooltip><span translate>Hoy</span></md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaDay')">
+                        <md-icon md-font-icon="icon-view-day"></md-icon>
+                        <md-tooltip><span translate>Dia</span></md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaWeek')">
+                        <md-icon md-font-icon="icon-view-week"></md-icon>
+                        <md-tooltip><span translate>Semana</span></md-tooltip>
+                    </md-button>
+
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('month')">
+                        <md-icon md-font-icon="icon-view-module"></md-icon>
+                        <md-tooltip><span translate>Mes</span></md-tooltip>
+                    </md-button>
+                </div>
+            </div>
+            <!-- / TOOLBAR -->
+
+            <div class="fullwidth"
+                 ng-include="'app/main/leads/views/list/kpis.html'">
+              <!--include status-->
+            </div>
+
+            <!-- HEADER BOTTOM -->
+            <div class="header-bottom" layout="row" layout-align="center center">
+                <md-button class="md-icon-button arrow" ng-click="vm.calendar.prev()" aria-label="Anterior">
+                    <md-icon md-font-icon="icon-chevron-left"></md-icon>
+                </md-button>
+
+                <div class="title">
+                    {{vm.calendarView.title}}
+                </div>
+
+                <md-button class="md-icon-button arrow" ng-click="vm.calendar.next()" aria-label="Siguiente">
+                    <md-icon md-font-icon="icon-chevron-right"></md-icon>
+                </md-button>
+            </div>
+            <!-- / HEADER BOTTOM -->
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div id="calendarView" ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.events" calendar="main"></div>
+    </div>
+    <!-- / CONTENT -->
+
+</div>

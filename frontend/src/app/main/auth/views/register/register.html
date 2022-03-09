@@ -1,0 +1,60 @@
+<div id="register" class="flex-scrollable" data-layout="column" ms-scroll>
+    <div id="register-form-wrapper" data-layout="column" data-layout-align="center center">
+        <div id="register-form" class="md-whiteframe-8dp">
+            <img src="assets/logo/logo-color{{domain}}.png" alt="Lantia" />
+
+            <h1 class="title" data-translate>Registrar nuevo usuario</h1>
+
+            <form name="registerForm" novalidate>
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="100">
+                        <label data-translate>Nombre</label>
+                        <input name="first_name" data-ng-model="vm.form.first_name" required>
+                        <error-messages field="registerForm.first_name" server-errors="vm.serverErrors" required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="100">
+                        <label data-translate>Apellidos</label>
+                        <input name="last_name" data-ng-model="vm.form.last_name" required>
+                        <error-messages field="registerForm.last_name" server-errors="vm.serverErrors" required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="100">
+                        <label data-translate>Email</label>
+                        <input name="email" data-ng-model="vm.form.email" required>
+                        <error-messages field="registerForm.email" server-errors="vm.serverErrors" required></error-messages>
+                    </md-input-container>
+                </div>
+
+                <div data-layout="row" data-layout-align="space-between start">
+                    <md-input-container flex="50">
+                        <label data-translate>Contraseña</label>
+                        <input type="password" name="password" data-ng-model="vm.form.password" required>
+                        <error-messages field="registerForm.password" server-errors="vm.serverErrors" required></error-messages>
+                    </md-input-container>
+
+                     <md-input-container flex="50">
+                        <input match-password="password" type="password" name="password2"
+                               ng-model="vm.form.repeat_password" placeholder="Repite la contraseña">
+                        <error-messages field="registerForm.password2" server-errors="vm.serverErrors" password-match></error-messages>
+                    </md-input-container>
+                </div>
+
+                <md-button data-debouce-click data-ng-click="vm.register()" type="submit"
+                           class="md-raised md-accent submit-button" aria-label="RESET MY PASSWORD"
+                           data-ng-disabled="registerForm.$invalid || registerForm.$pristine">
+                    <span data-translate>Crear</span>
+                </md-button>
+            </form>
+
+            <div class="login" data-layout="row" data-layout-align="center center">
+                <a class="link" data-ui-sref="app.auth.login" data-translate>Volver</a>
+            </div>
+        </div>
+    </div>
+</div>

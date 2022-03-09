@@ -1,0 +1,50 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-tag" class="black-fg no-margin"></md-icon>
+                <span data-translate>Solicitudes</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding data-layout-xs="column" data-layout="column" data-layout-align="start start" layout-wrap class="fullwidth">
+
+        <div class="mt-10" layout="row" layout-wrap>
+            <!--<div layout-margin>
+                <md-input-container>
+                    <label data-translate>Tipo</label>
+                    <md-select name="request_type" data-ng-model="vm.lead.request_type" ng-disabled="vm.isDisabled()" class="w-200">
+                        <md-option data-ng-repeat="type in vm.requestTypes" data-ng-value="type.id">
+                            {{type.name}}
+                        </md-option>
+                    </md-select>
+                    <error-messages field="leadForm.request_type" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+            </div>-->
+
+            <div ng-repeat="tag in vm.getNumber(5) track by $index" layout-margin>
+
+                <md-input-container flex="100" ng-init="name='tags___'+$index+'___content'">
+                    <label data-translate>Tag</label>
+                    <input type="text" data-ng-model="vm.lead.tags[$index].content" name="{{ name }}"
+                           ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[name]" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+            </div>
+        </div>
+
+        <div layout="row" class="w-100-p">
+            <div layout-margin class="w-100-p">
+                <md-input-container class="w-100-p">
+                    <label data-translate>Comentarios del cliente</label>
+                    <textarea class="dynamic" name="request_notes" data-ng-model="vm.lead.request_notes" ng-disabled="vm.isDisabled()"></textarea>
+                    <error-messages field="leadForm.request_notes" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+            </div>
+        </div>
+    </md-content>
+
+</div>

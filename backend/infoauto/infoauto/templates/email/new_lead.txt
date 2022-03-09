@@ -1,0 +1,21 @@
+Estimado {{lead.user.get_full_name}}
+
+Le informamos que tienes un nuevo lead asignado con los siguientes datos:
+
+Fecha-Hora: {{lead.created}}
+Nombre: {{lead.client.name}}
+Teléfono: {{ lead.client.phone|truncatechars:6 }}xxx
+Vehículo:
+{% for vehicle in lead.vehicles.all %}
+	{{vehicle.brand_model}},
+{% endfor %}
+
+Estado: {{lead.get_status_display}}
+ACCEDER AL LEAD AQUÍ: {{lead_url}}
+LLAMAR AL CLIENTE AQUÍ: {{call_url}}
+
+Rogamos actualicen su información con todas las acciones que lleves a cabo con este potencial cliente.
+
+Atentamente
+Servicio de Atención al cliente
+Smart Motor Lead

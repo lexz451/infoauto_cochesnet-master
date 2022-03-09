@@ -1,0 +1,195 @@
+<md-dialog id="lead-edit-dialog" class="task-dialog" aria-label="New Task">
+    <form name="saveLeadForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title" data-translate>Siguientes pasos</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <label data-translate>Por favor valora el lead</label>
+                <md-input-container>
+                    <div class="mt-10 tag pointer" layout="row" layout-align="start center">
+                        <md-icon style="margin: 0;" ng-click="vm.lead.score=1" class="amber-fg"
+                                 md-font-icon="{{ vm.lead.score >0 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                        <md-icon style="margin: 0;" ng-click="vm.lead.score=2" class="amber-fg"
+                                 md-font-icon="{{ vm.lead.score >1 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                        <md-icon style="margin: 0;" ng-click="vm.lead.score=3" class="amber-fg"
+                                 md-font-icon="{{ vm.lead.score >2 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                        <md-icon style="margin: 0;" ng-click="vm.lead.score=4" class="amber-fg"
+                                 md-font-icon="{{ vm.lead.score >3 ? 'icon-star' : 'icon-star-outline'}}"></md-icon>
+                    </div>
+                    <input type="hidden" name="score" ng-model="vm.lead.score">
+                    <error-messages field="saveLeadForm.score" server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+                <div class="fullwidth" layout="row" layout-align="start center"
+                     layout-margin ng-repeat="task in vm.tasks.data" ng-if="!task.realization_date">
+
+                    <div layout="row" layout-align="start center" flex>
+
+                        <div class="info" flex="auto">
+                            <div layout="row" data-layout-xs="column" layout-align="start end">
+
+                                <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                                    <div flex>
+                                        <label class="input-label" data-translate>Fecha</label>
+                                        <div class="bb">
+                                            <md-icon md-font-icon="icon-calendar"></md-icon>
+                                            <span ng-if="vm.lead.last_lead_action.date">{{ vm.lead.last_lead_action.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                                            <span ng-if="!vm.lead.last_lead_action.date" translate>Sin definir</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                                    <div flex>
+                                        <label class="input-label" data-translate>Medio</label>
+                                        <div class="bb">
+                                            <md-icon md-font-icon="icon-whatsapp"
+                                                     ng-if="task.media==='Whatsapp'"></md-icon>
+                                            <md-icon md-font-icon="icon-phone" ng-if="task.media==='Phone'"></md-icon>
+                                            <md-icon md-font-icon="icon-message-text-outline"
+                                                     ng-if="task.media==='SMS'"></md-icon>
+                                            <md-icon md-font-icon="icon-email" ng-if="task.media==='E-mail'"></md-icon>
+                                            <md-icon md-font-icon="icon-account-multiple"
+                                                     ng-if="task.media==='face'"></md-icon>
+                                            <span ng-if="task.media==='Phone'" data-translate>Teléfono</span>
+                                            <span ng-if="task.media==='face'" data-translate>Presencial</span>
+                                            <span ng-if="task.media!=='Phone' && task.media!=='face'">{{ task.media }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div data-layout="row" layout-align="start center" class="mb-20 w-165 mr-15">
+                                    <div flex>
+                                        <label class="input-label" data-translate>Tipo de tarea</label>
+                                        <div class="bb">
+                                <span ng-repeat="type in vm.taskTypes" ng-if="type.id===task.type">
+                                    {{ type.name }}
+                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div layout="row" layout-align="start end">
+                    <md-input-container>
+                        <h4 data-translate>Programa la fecha de la siguiente gestión:</h4>
+                        <md-datepicker name="date" data-ng-model="vm.leadAction.date"
+                                       md-placeholder="dd/mm/yyyy"></md-datepicker>
+                        <error-messages field="saveLeadForm.date" server-errors="vm.serverErrors"
+                                        forcechange></error-messages>
+                    </md-input-container>
+
+                    <md-input-container class="mr-20" style="margin-left: -40px">
+                        <input class="mb-10" type="time" data-ng-model="vm.leadAction.date" md-placeholder="hh:mm"
+                               step="60">
+                    </md-input-container>
+
+                    <div class="mb-30">
+                        <md-button data-ng-click="vm.setDate(1)" class="md-raised"
+                                   aria-label="{{ '1 DIA' | translate }}">
+                            <span data-translate>1 DIA</span>
+                        </md-button>
+
+                        <md-button data-ng-click="vm.setDate(2)" class="md-raised"
+                                   aria-label="{{ '2 DIAS' | translate }}">
+                            <span data-translate>2 DIAS</span>
+                        </md-button>
+
+                        <md-button data-ng-click="vm.setDate(7)" class="md-raised"
+                                   aria-label="{{ '1 SEMANA' | translate }}">
+                            <span data-translate>1 SEMANA</span>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div class="content-status-lead">
+
+                    <div class="step step-new" ng-class="{'active': vm.leadAction.lead_status_planing==='new'}">
+                        <div class="content-circle">
+                            <div class="circle pointer" ng-click="vm.leadAction.lead_status_planing='new'">
+                                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="text" layout="column" hide-xs>
+                            <span translate>Alta</span>
+                        </div>
+                    </div>
+
+                    <div class="step step-pending"
+                         ng-class="{'active': vm.leadAction.lead_status_planing==='commercial_management'}">
+                        <div class="content-circle">
+                            <div class="circle pointer"
+                                 ng-click="vm.leadAction.lead_status_planing='commercial_management'">
+                                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="text" layout="column">
+                            <span translate>Tareas pendientes</span>
+                        </div>
+                    </div>
+
+                    <div class="step step-tracing" ng-class="{'active': vm.leadAction.lead_status_planing==='tracing'}">
+                        <div class="content-circle">
+                            <div class="circle pointer" ng-click="vm.leadAction.lead_status_planing='tracing'">
+                                <md-icon md-font-icon="icon-chevron-right"></md-icon>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="text" layout="column">
+                            <span translate>Seguimiento</span>
+                        </div>
+                    </div>
+
+                    <div class="step step-end" ng-class="{'active': vm.leadAction.lead_status_planing==='end'}">
+                        <div class="content-circle">
+                            <div class="circle" ng-click="vm.leadAction.lead_status_planing='end';vm.finishLead()">
+                                <md-icon md-font-icon="icon-close"></md-icon>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="text" layout="column" hide-xs>
+                            <span translate>Finalizar</span>
+                        </div>
+                    </div>
+
+                </div>
+                <md-input-container>
+                    <input type="hidden" name="lead_status_planing" ng-model="vm.leadAction.lead_status_planing">
+                    <error-messages field="saveLeadForm.lead_status_planing"
+                                    server-errors="vm.serverErrors"></error-messages>
+                </md-input-container>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="end center">
+            <div data-layout="row" data-layout-align="end center" class="fullwidth">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.closeDialog()"
+                           class="send-button md-raised"
+                           aria-label="{{ 'Cancelar' | translate }}">
+                    <span data-translate>Cancelar</span>
+                </md-button>
+
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveSaveLead()"
+                           class="send-button md-accent md-raised"
+                           aria-label="{{ 'Confirmar' | translate }}">
+                    <span data-translate>Confirmar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

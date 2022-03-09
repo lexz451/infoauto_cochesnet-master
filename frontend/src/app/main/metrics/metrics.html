@@ -1,0 +1,113 @@
+<div id="metrics" class="page-layout carded fullwidth" data-layout="column">
+
+  <!-- Filters -->
+  <div class="header">
+
+    <div class="header-content" layout="column" layout-align="space-between">
+
+      <div class="header-top" layout="row" layout-align="center center" layout-xs="column">
+
+        <!-- TOOLBAR -->
+        <div class="toolbar" layout="row" layout-align="start center">
+          <md-button class="md-icon-button" ng-click="vm.calendar.today()" aria-label="Hoy">
+            <md-icon md-font-icon="icon-calendar-today"></md-icon>
+            <md-tooltip><span translate>Hoy</span></md-tooltip>
+          </md-button>
+
+          <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaDay')">
+            <md-icon md-font-icon="icon-view-day"></md-icon>
+            <md-tooltip><span translate>Dia</span></md-tooltip>
+          </md-button>
+
+          <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaWeek')">
+            <md-icon md-font-icon="icon-view-week"></md-icon>
+            <md-tooltip><span translate>Semana</span></md-tooltip>
+          </md-button>
+
+          <md-button class="md-icon-button" ng-click="vm.calendar.changeView('month')">
+            <md-icon md-font-icon="icon-view-module"></md-icon>
+            <md-tooltip><span translate>Mes</span></md-tooltip>
+          </md-button>
+        </div>
+      </div>
+      <!-- / TOOLBAR -->
+
+      <!-- HEADER BOTTOM -->
+      <div class="header-bottom" layout="row" layout-align="center center">
+        <md-button class="md-icon-button arrow" ng-click="vm.calendar.prev()" aria-label="Anterior">
+          <md-icon md-font-icon="icon-chevron-left"></md-icon>
+        </md-button>
+
+        <div class="font-size-20">
+          {{vm.calendarView.title}}
+        </div>
+
+        <md-button class="md-icon-button arrow" ng-click="vm.calendar.next()" aria-label="Siguiente">
+          <md-icon md-font-icon="icon-chevron-right"></md-icon>
+        </md-button>
+      </div>
+      <!-- / HEADER BOTTOM -->
+    </div>
+
+    <div class="w-0 h-0 overflow-hidden">
+      <div id="calendarView" ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.calendarModel" calendar="main"></div>
+    </div>
+
+  </div>
+
+  <div class="filters">
+    <div data-layout="row" data-layout-wrap>
+      <div data-flex class="mb-25" style="min-width: 220px">
+        <md-chips ng-model="vm.metrics.filters.user_data" md-autocomplete-snap md-require-match="true">
+          <md-autocomplete placeholder="{{'Usuario' | translate }}" md-delay="300" md-input-name="user"
+                           md-no-cache="true"
+                           md-min-length="0"
+                           md-dropdown-items="50"
+                           md-search-text="vm.searchTextUser"
+                           md-items="user in vm.getUsers(vm.searchTextUser)"
+                           md-item-text="vm.copySearch('searchTextUser')">
+            <md-item-template>
+              <span md-highlight-text="vm.searchTextUser">{{vm.getFullUserName(user)}}</span>
+            </md-item-template>
+            <md-not-found>
+              <span data-translate>No hay ningun usuario con ese nombre</span>
+            </md-not-found>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>{{vm.getFullUserName($chip)}}</span>
+          </md-chip-template>
+        </md-chips>
+      </div>
+
+      <div data-flex class="pt-20 text-right" style="min-width: 220px">
+        <md-checkbox ng-model="vm.metrics.filters.useful" aria-label="{{'Solo útiles' | translate}}"
+                     class="md-align-top-left no-margin" flex>
+          <span data-translate>Solo útiles</span>
+        </md-checkbox>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="fullwidth mb-20"
+       ng-include="'app/main/metrics/views/benchmark/benchmark.html'">
+    <!--include benchmark-->
+  </div>
+
+  <div class="fullwidth mb-20"
+       ng-include="'app/main/metrics/views/servicelevel/servicelevel.html'">
+    <!--include servicelevel-->
+  </div>
+
+  <div class="fullwidth mb-20"
+       ng-include="'app/main/metrics/views/voiceservice/voiceservice.html'">
+    <!--include voiceservice-->
+  </div>
+
+  <div class="fullwidth mb-20"
+       ng-include="'app/main/metrics/views/digitalservice/digitalservice.html'">
+    <!--include voiceservice-->
+  </div>
+
+
+</div>

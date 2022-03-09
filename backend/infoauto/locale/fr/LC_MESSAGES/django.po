@@ -1,0 +1,1228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-15 13:14+0200\n"
+"PO-Revision-Date: 2019-05-20 10:17+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.2\n"
+"Language: fr\n"
+
+#: config/settings/base.py:299
+msgid "English"
+msgstr "ANGLAIS"
+
+#: config/settings/base.py:300
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: config/urls.py:42 infoauto/leads/models/leads.py:108
+msgid "Lead"
+msgstr "Lead"
+
+#: config/urls.py:43
+msgid "Auth"
+msgstr "Auth"
+
+#: config/urls.py:44
+msgid "User"
+msgstr "UTILISATEUR"
+
+#: config/urls.py:45 infoauto/leads/models/concessionaires.py:58
+msgid "Concessionaire"
+msgstr "CONCESSIONAIRE"
+
+#: config/urls.py:46 infoauto/leads/models/tasks.py:70
+msgid "Task"
+msgstr "Tâche"
+
+#: config/urls.py:47
+msgid "Countries"
+msgstr "Des pays"
+
+#: config/urls.py:48
+msgid "Provinces"
+msgstr "Les provinces"
+
+#: config/urls.py:49
+msgid "Localities"
+msgstr "Localités"
+
+#: config/urls.py:50
+msgid "Gas Type"
+msgstr "Carburant"
+
+#: config/urls.py:51
+msgid "LeadCols"
+msgstr "LeadCols"
+
+#: config/urls.py:52 infoauto/templates/email/netelip_received_call.html:15
+#: infoauto/templates/email/netelip_received_call.html:18
+#: infoauto/templates/email/netelip_received_call.txt:15
+#: infoauto/templates/email/netelip_received_call.txt:18
+msgid "Origen"
+msgstr "Origine"
+
+#: config/urls.py:53
+msgid "Llamadas entrantes"
+msgstr "Appels entrants"
+
+#: config/urls.py:54
+msgid "Llamadas entrantes Infodata"
+msgstr "Appels entrants Infodata"
+
+#: config/urls.py:55
+msgid "ACDV"
+msgstr "ACDV"
+
+#: config/urls.py:56
+msgid "Relación Usuario & Concesionario"
+msgstr "Relation utilisateur / revendeur"
+
+#: config/urls.py:57
+msgid "Teléfonos de concesionarios"
+msgstr "Téléphones revendeurs"
+
+#: config/urls.py:58
+msgid "Emails de concesionarios"
+msgstr "Emails revendeurs"
+
+#: config/urls.py:59
+msgid "API Pública de Leads"
+msgstr "API publique"
+
+#: config/urls.py:60
+msgid "Dashboard de Concesionarios"
+msgstr "Dashboard"
+
+#: config/urls.py:61
+msgid "Clientes"
+msgstr "Clients"
+
+#: config/urls.py:62
+msgid "Canal"
+msgstr "Canal"
+
+#: config/urls.py:63
+msgid "Fuente"
+msgstr "Source"
+
+#: config/urls.py:64
+msgid "Historico de Sesiones"
+msgstr "Historique des Séances"
+
+#: config/urls.py:65
+msgid "Click to call"
+msgstr "Historique des Séances"
+
+#: config/urls.py:66
+msgid "Full Lead History"
+msgstr "Histoire Principale Pleine"
+
+#: infoauto/click2call/clients.py:44
+msgid "Service connection failure"
+msgstr "Échec de connexion de service"
+
+#: infoauto/click2call/serializers.py:21
+msgid "El cliente no tiene un teléfono asignado"
+msgstr "Le client n’a pas de téléphone attribué"
+
+#: infoauto/click2call/serializers.py:25
+msgid "El usuario no tiene un teléfono asignado"
+msgstr "L’utilisateur n’a pas de numéro de téléphone"
+
+#: infoauto/concessionaires/serializers.py:204
+msgid "No puedes escoger el mismo concesionario en mas de una ocasión"
+msgstr "Tu ne peux pas choisir le même concessionnaire plus d’une fois"
+
+#: infoauto/concessionaires/serializers.py:213
+msgid "No se admiten concesionarios vacíos"
+msgstr "Les concessionnaires vides ne sont pas admis"
+
+#: infoauto/concessionaires/serializers.py:222
+msgid ""
+"No tiene permisos para realizar dicha acción.Usted no pertenece y/o "
+"administra esta concesión"
+msgstr ""
+"Vous n’avez pas l’autorisation d’entreprendre une telle action. Vous n’êtes "
+"pas propriétaire et/ou gérez cette concession"
+
+#: infoauto/leads/models/acd.py:16
+msgid "Identificador único de la llamada"
+msgstr "Identifiant unique de l’appel"
+
+#: infoauto/leads/models/acd.py:18 infoauto/users/models.py:28
+msgid "Numero de teléfono desde el que se ha llamado"
+msgstr "Numéro de téléphone à partir duquel vous avez appelé"
+
+#: infoauto/leads/models/acd.py:20
+msgid "Numero de teléfono al que se ha llamado"
+msgstr "Numéro de téléphone appelé"
+
+#: infoauto/leads/models/acd.py:21
+msgid "Fichero con el audio de la llamada"
+msgstr "Fiche audio de l’appel"
+
+#: infoauto/leads/models/acd.py:22
+msgid "URL al fichero de la llamada"
+msgstr "URL au fichier d’appel"
+
+#: infoauto/leads/models/acd.py:23
+msgid "Llamada respondida"
+msgstr "Appel répondu"
+
+#: infoauto/leads/models/acd.py:24
+msgid "Fecha de contacto"
+msgstr "Date de contact"
+
+#: infoauto/leads/models/acd.py:25
+msgid "Duración de la llamada"
+msgstr "Durée de l'appel"
+
+#: infoauto/leads/models/acd.py:29
+msgid "ACD"
+msgstr "ACD"
+
+#: infoauto/leads/models/acd.py:30
+msgid "ACD's"
+msgstr "ACD's"
+
+#: infoauto/leads/models/clients.py:29
+#: infoauto/leads/models/concessionaires.py:15
+#: infoauto/leads/models/concessionaires.py:20
+#: infoauto/leads/models/leads.py:82 infoauto/leads/models/tasks.py:27
+msgid "Phone"
+msgstr "Téléphone"
+
+#: infoauto/leads/models/clients.py:37 infoauto/netelip/models.py:31
+msgid "Client"
+msgstr "Client"
+
+#: infoauto/leads/models/clients.py:38
+msgid "Clients"
+msgstr "Clients"
+
+#: infoauto/leads/models/common.py:9 infoauto/users/models.py:18
+msgid ""
+"Phone number must be entered in the format: '+999999999'. Up to 15 digits "
+"allowed."
+msgstr ""
+"Le numéro de téléphone doit être entré dans le format : '+999999999'. "
+"Jusqu’à 15 chiffres autorisés."
+
+#: infoauto/leads/models/concessionaires.py:21
+msgid "Phones"
+msgstr "Téléphones"
+
+#: infoauto/leads/models/concessionaires.py:49
+msgid "Relación entre concesionario y usuario"
+msgstr "Relation entre concessionnaire et utilisateur"
+
+#: infoauto/leads/models/concessionaires.py:53
+msgid "Mascara [src] a mostrar como llamante"
+msgstr "Masque [src] pour montrer comment appeler"
+
+#: infoauto/leads/models/concessionaires.py:55
+msgid "Número de la casa oficial de la concesión"
+msgstr "Numéro de la maison officielle de la concession"
+
+#: infoauto/leads/models/concessionaires.py:59
+msgid "Concessionaires"
+msgstr "Concessionnaires"
+
+#: infoauto/leads/models/concessionaires.py:66
+msgid "Administrador del concesionario"
+msgstr "L'administrateur du concessionnaire"
+
+#: infoauto/leads/models/concessionaires.py:67
+msgid "Gestor del concesionario"
+msgstr "Gérant du concessionnaire"
+
+#: infoauto/leads/models/concessionaires.py:70
+msgid "Relación Usuario Concesionario"
+msgstr "Relation le Concessionnaire Utilisateur"
+
+#: infoauto/leads/models/concessionaires.py:71
+msgid "Relaciones usuario concessionario"
+msgstr "Relations un concessionnaire utilisateur"
+
+#: infoauto/leads/models/leads.py:24
+msgid "Very low"
+msgstr "Très bas"
+
+#: infoauto/leads/models/leads.py:25
+msgid "Low"
+msgstr "Bas"
+
+#: infoauto/leads/models/leads.py:26
+msgid "Medium"
+msgstr "Moyen"
+
+#: infoauto/leads/models/leads.py:27
+msgid "High"
+msgstr "Haut"
+
+#: infoauto/leads/models/leads.py:32
+msgid "new opportunity"
+msgstr "nouvelle occasion"
+
+#: infoauto/leads/models/leads.py:33 infoauto/leads/models/tasks.py:33
+msgid "Pending"
+msgstr "En attendant"
+
+#: infoauto/leads/models/leads.py:34
+msgid "Commercial management"
+msgstr "Dirección commerciale"
+
+#: infoauto/leads/models/leads.py:35
+msgid "Tracing"
+msgstr "Traçage"
+
+#: infoauto/leads/models/leads.py:36
+msgid "End"
+msgstr "Fin"
+
+#: infoauto/leads/models/leads.py:40
+msgid "No disponible"
+msgstr "Non disponible"
+
+#: infoauto/leads/models/leads.py:41
+msgid "Negative"
+msgstr "Négatif"
+
+#: infoauto/leads/models/leads.py:42
+msgid "Vehicle reserved"
+msgstr "Véhicule réservé"
+
+#: infoauto/leads/models/leads.py:43
+msgid "Unreachable"
+msgstr "Inaccessible"
+
+#: infoauto/leads/models/leads.py:44
+msgid "Duplicado"
+msgstr "Dupliquer"
+
+#: infoauto/leads/models/leads.py:83
+msgid "Email de concesión"
+msgstr "Email de concession"
+
+#: infoauto/leads/models/leads.py:96
+msgid ""
+"Keep first task date to do. Needed for making date filters on leads grid"
+msgstr ""
+"Garder la date de la première tâche à faire. Nécessaire pour faire des "
+"filtres de date sur la grille des pistes"
+
+#: infoauto/leads/models/leads.py:109
+msgid "Leads"
+msgstr "Leads"
+
+#: infoauto/leads/models/notes.py:25
+msgid "Note"
+msgstr "Note"
+
+#: infoauto/leads/models/notes.py:26
+msgid "Notes"
+msgstr "Notes"
+
+#: infoauto/leads/models/origins.py:17
+msgid "Origin"
+msgstr "Origine"
+
+#: infoauto/leads/models/origins.py:18
+msgid "Origins"
+msgstr "Origines"
+
+#: infoauto/leads/models/tasks.py:14
+msgid "Visita / Test Drive"
+msgstr "Visite / Test Drive"
+
+#: infoauto/leads/models/tasks.py:15 infoauto/leads/models/vehicles.py:61
+msgid "Appraisal"
+msgstr "Évaluation"
+
+#: infoauto/leads/models/tasks.py:16
+msgid "Budget"
+msgstr "Budget"
+
+#: infoauto/leads/models/tasks.py:17
+msgid "Financing"
+msgstr "Financement"
+
+#: infoauto/leads/models/tasks.py:18
+msgid "Warranty"
+msgstr "Garantie"
+
+#: infoauto/leads/models/tasks.py:19
+msgid "Vehicle information"
+msgstr "Informations de véhicule"
+
+#: infoauto/leads/models/tasks.py:20
+msgid "Respuesta a solicitud vía Email"
+msgstr "Réponse à la demande par Email"
+
+#: infoauto/leads/models/tasks.py:21
+msgid "Pendiente de asignación"
+msgstr "Encore attribué"
+
+#: infoauto/leads/models/tasks.py:22
+msgid "Otros"
+msgstr "Autres"
+
+#: infoauto/leads/models/tasks.py:26
+msgid "Whatsapp"
+msgstr "Whatsapp"
+
+#: infoauto/leads/models/tasks.py:28
+msgid "SMS"
+msgstr "SMS"
+
+#: infoauto/leads/models/tasks.py:29
+msgid "E-mail"
+msgstr "E-mail"
+
+#: infoauto/leads/models/tasks.py:34
+msgid "Doing"
+msgstr "Faire"
+
+#: infoauto/leads/models/tasks.py:35
+msgid "Timeout"
+msgstr "Temps est écoulé"
+
+#: infoauto/leads/models/tasks.py:36
+msgid "Finished"
+msgstr "Fini"
+
+#: infoauto/leads/models/tasks.py:64
+msgid "Set True when tasks is created with button Click2Call"
+msgstr ""
+"Définissez True lorsque les tâches sont créées avec le bouton Click2Call"
+
+#: infoauto/leads/models/tasks.py:65 infoauto/netelip/models.py:47
+msgid "ID único de la llamada"
+msgstr "ID unique de l’appel"
+
+#: infoauto/leads/models/tasks.py:71
+msgid "Tasks"
+msgstr "Tâches"
+
+#: infoauto/leads/models/tasks.py:102 infoauto/leads/models/tasks.py:105
+#, python-format
+msgid "%(text)s: %(date)s"
+msgstr "%(text)s: %(date)s"
+
+#: infoauto/leads/models/tasks.py:125
+msgid "Request"
+msgstr "Demande"
+
+#: infoauto/leads/models/tasks.py:126
+msgid "Requests"
+msgstr "Demandes"
+
+#: infoauto/leads/models/vehicles.py:41
+msgid "Vehicle"
+msgstr "Véhicule"
+
+#: infoauto/leads/models/vehicles.py:42
+msgid "Vehicles"
+msgstr "Véhicules"
+
+#: infoauto/leads/models/vehicles.py:46
+msgid "National"
+msgstr "Nationale"
+
+#: infoauto/leads/models/vehicles.py:47
+msgid "Foreign"
+msgstr "Étranger"
+
+#: infoauto/leads/models/vehicles.py:62
+msgid "Appraisals"
+msgstr "Évaluations"
+
+#: infoauto/leads/serializers/core.py:32
+msgid "Es necesario rellenar al menos uno de estos campos señalados"
+msgstr "Il est nécessaire de remplir au moins un de ces champs"
+
+#: infoauto/leads/serializers/core.py:78 infoauto/leads/serializers/core.py:91
+msgid "La fecha de seguimiento no puede ser menor a la fecha de realización"
+msgstr "La date de suivi ne peut être inférieure à la date de réalisation"
+
+#: infoauto/leads/serializers/core.py:84
+msgid ""
+"La fecha de seguimiento no puede ser menor al momento actual ya que nose ha "
+"planificado una fecha de realización"
+msgstr ""
+"La date de suivi ne peut être inférieure à la date actuelle puisque nous "
+"n’avons pas prévu de date de réalisation"
+
+#: infoauto/leads/serializers/leads.py:70
+msgid "El concesionario no existe"
+msgstr "Le concessionnaire n'existe pas"
+
+#: infoauto/leads/serializers/leads.py:120
+msgid "No tiene permisos para realizar esta acción"
+msgstr "Vous n’avez pas le droit de faire ça"
+
+#: infoauto/leads/serializers/leads.py:122
+msgid "El usuario no pertenece al concesionario asignado al lead"
+msgstr "L’utilisateur n’appartient pas au concessionnaire du lead"
+
+#: infoauto/leads/serializers/leads.py:157
+msgid "Alerta de alta de lead"
+msgstr "Alerte de sortie de lead"
+
+#: infoauto/leads/serializers/leads.py:310
+msgid "Cambio de estado no permitido"
+msgstr "Changement d’état non autorisé"
+
+#: infoauto/leads/views.py:66
+msgid "You are not member of this concession"
+msgstr "Vous n’êtes pas membre de cette concession"
+
+#: infoauto/leads/views.py:68
+msgid "This lead status is 'Finished'. You can not make changes on this"
+msgstr ""
+"Ce statut est 'Finished'. Vous ne pouvez pas faire de modifications sur ce"
+
+#: infoauto/leads_public/apps.py:8
+msgid "Leads Publicos"
+msgstr "Leads Publics"
+
+#: infoauto/netelip/client.py:73
+msgid "Something wrong happens with Netelip call. Please, try again later."
+msgstr ""
+"Quelque chose de mal se passe avec l’appel Netelip. S’il vous plaît, essayez "
+"à nouveau plus tard."
+
+#: infoauto/netelip/models.py:13
+msgid "El número llamado no existe"
+msgstr "Le numéro n’existe pas"
+
+#: infoauto/netelip/models.py:14
+msgid "El número llamado está ocupado"
+msgstr "Le numéro appelé est occupé"
+
+#: infoauto/netelip/models.py:15
+msgid "El número llamado no contesta"
+msgstr "Le numéro ne répond pas"
+
+#: infoauto/netelip/models.py:16
+msgid "El número llamado ha contestado"
+msgstr "Le numéro de téléphone a répondu"
+
+#: infoauto/netelip/models.py:17
+msgid "El número llamado ha colgado"
+msgstr "Le numéro appelé a raccroché"
+
+#: infoauto/netelip/models.py:18
+msgid "Fallo en red telefónica por congestión"
+msgstr "Panne du réseau téléphonique due à la congestion"
+
+#: infoauto/netelip/models.py:19
+msgid "Fallo en red telefónica desconocido"
+msgstr "Panne du réseau téléphonique inconnue"
+
+#: infoauto/netelip/models.py:23
+msgid ""
+"llamada con origen una extensión de tu vPBX cuando ésta tiene el asociado el "
+"\"Plan de marcado de API Voice\""
+msgstr ""
+"appel d’origine d’une extension de votre vPBX lorsque l’associé a le \"Plan "
+"de marquage d’API Voice\""
+
+#: infoauto/netelip/models.py:25
+msgid ""
+"llamada con destino un número de teléfono de netelip gestionado por API Voice"
+msgstr ""
+"appeler avec destination un numéro de téléphone netelip géré par API Voice"
+
+#: infoauto/netelip/models.py:30
+msgid "Usuario"
+msgstr "Utilisateur"
+
+#: infoauto/netelip/models.py:35
+msgid "Llamada entrante"
+msgstr "Appel entrant"
+
+#: infoauto/netelip/models.py:36
+msgid "No respondida"
+msgstr "Non répondue"
+
+#: infoauto/netelip/models.py:37
+msgid "Respondida"
+msgstr "Répondu"
+
+#: infoauto/netelip/models.py:38
+msgid "Finalizada"
+msgstr "Terminé"
+
+#: infoauto/netelip/models.py:48
+msgid "Nombre del API destino de la llamada"
+msgstr "Nom de l’EPI destination de l’appel"
+
+#: infoauto/netelip/models.py:49
+msgid "Número de origen de la llamada"
+msgstr "Numéro d’origine de l’appel"
+
+#: infoauto/netelip/models.py:50
+msgid "Número de destino de la llamada"
+msgstr "Numéro de destination de l’appel"
+
+#: infoauto/netelip/models.py:51
+msgid "Fecha y hora en la que comenzó la llamada"
+msgstr "Date et heure de début de l’appel"
+
+#: infoauto/netelip/models.py:52
+msgid "Duración actual de la llamada"
+msgstr "Durée actuelle de l’appel"
+
+#: infoauto/netelip/models.py:53
+msgid "Duración de la llamada una vez atendida por un agente"
+msgstr "Durée de l’appel après prise en charge par un agent"
+
+#: infoauto/netelip/models.py:55
+msgid "Comando ejecutado"
+msgstr "Commando exécuté"
+
+#: infoauto/netelip/models.py:56
+msgid "Opciones del comando ejecutado"
+msgstr "Options du commando exécuté"
+
+#: infoauto/netelip/models.py:57
+msgid "Descripción del resultado de la ejecución del comando"
+msgstr "Description du résultat de l’exécution de la commande"
+
+#: infoauto/netelip/models.py:59
+msgid "Dígito DTMF - Dígito marcado en la llamada para establecer flujo"
+msgstr "DTMF Digit - Chiffre composé dans l'appel pour établir le flux"
+
+#: infoauto/netelip/models.py:61
+msgid "Código de estado de la ejecución"
+msgstr "Code d’état de l’exécution"
+
+#: infoauto/netelip/models.py:62
+msgid "Estado de la llamada"
+msgstr "État de l'appel"
+
+#: infoauto/netelip/models.py:64
+msgid "Variable establecida por el usuario"
+msgstr "Variable établie par l’utilisateur"
+
+#: infoauto/netelip/models.py:66
+msgid "Tipo de origen"
+msgstr "Type d'origine"
+
+#: infoauto/netelip/models.py:68
+msgid ""
+"Usuario del origen de la llamada. Cuando el tipo de origen es 'ext', el "
+"valor de 'usersrc' será el usuario SIP de la extensión que realiza la "
+"llamada;Cuando el tipo de origen es 'did', será el número de teléfono de "
+"origen de la llamada, tendrá el mismo valor que 'src'."
+msgstr ""
+"Utilisateur de l’origine de l’appel. Lorsque le type d’origine est 'ext', la "
+"valeur de 'usersrc' sera l’utilisateur SIP de l’extension qui effectue "
+"l’appel;Lorsque le type d’origine est 'did', il sera le numéro de téléphone "
+"d’origine de l’appel, il aura la même valeur que 'src'."
+
+#: infoauto/netelip/models.py:76
+msgid "Origen de la llamada"
+msgstr "Source de l'appel"
+
+#: infoauto/netelip/models.py:82
+msgid "Llamada entrante/saliente"
+msgstr "Appel entrant/saillante"
+
+#: infoauto/netelip/models.py:83
+msgid "Llamadas entrantes/salientes"
+msgstr "Appels entrants/saillantes"
+
+#: infoauto/netelip/models.py:218
+msgid "Click2Call"
+msgstr "Click2Call"
+
+#: infoauto/netelip/models.py:219
+msgid "Flujo"
+msgstr "Flux"
+
+#: infoauto/netelip/models.py:233
+msgid "Flow"
+msgstr "Flux"
+
+#: infoauto/netelip/models.py:234
+msgid "Flows"
+msgstr "Flux"
+
+#: infoauto/netelip/models.py:248
+msgid "Command"
+msgstr "Commande"
+
+#: infoauto/netelip/models.py:249
+msgid "Commands"
+msgstr "Commandes"
+
+#: infoauto/netelip/signals/command.py:40
+msgid "No es posible realizar esta acción."
+msgstr "Cette action n’est pas possible."
+
+#: infoauto/netelip/signals/command.py:50
+msgid ""
+"Esta instancia no puede ser borrada. Es un comando de 'inicio' o 'error'"
+msgstr ""
+"Cette instance ne peut pas être supprimée. C’est une commande de 'démarrage' "
+"ou 'erreur'"
+
+#: infoauto/netelip/signals/flow.py:38
+#, python-format
+msgid ""
+"No es posible realizar esta acción. Debe definirse un nuevo flujo por "
+"defecto para el tipo '%s'"
+msgstr ""
+"Il n'est pas possible d'effectuer cette action. Un nouveau flux par défaut "
+"doit être défini pour le type '% s'"
+
+#: infoauto/netelip/signals/flow.py:49
+msgid "Este comando no puede ser borrado. Es un flujo por defecto"
+msgstr "Cette commande ne peut pas être supprimée. C'est un flux par défaut"
+
+#: infoauto/netelip/validators.py:7
+#, python-format
+msgid "Quantity %(value)s is not allowed"
+msgstr "Quantité %(value)s n' est pas autorisée"
+
+#: infoauto/netelip/views.py:76
+msgid "Service to register realized calls with APIVoice"
+msgstr "Service d’enregistrement des appels réalisés avec APIVoice"
+
+#: infoauto/netelip/views.py:82 infoauto/netelip_leads/views.py:43
+msgid "Service to register received calls from APIVoice"
+msgstr "Service d’enregistrement des appels reçus d’APIVoice"
+
+#: infoauto/netelip_leads/filters.py:12
+msgid "1=All, 2=True, 3=False"
+msgstr "1=All, 2=True, 3=False"
+
+#: infoauto/netelip_leads/models.py:23
+msgid "Call & Lead Relation"
+msgstr "Appelez et Lead la Relation"
+
+#: infoauto/netelip_leads/models.py:24
+msgid "Call & Lead Relations"
+msgstr "Appelez et Lead la Relations"
+
+#: infoauto/netelip_leads/serializers.py:88
+msgid "Error en la configuración"
+msgstr "Erreur dans la configuration"
+
+#: infoauto/netelip_leads/serializers.py:96
+msgid "Error en la configuración del flujo"
+msgstr "Erreur dans la configuration du flux"
+
+#: infoauto/netelip_leads/signals.py:22
+msgid "SML - Nueva llamada entrante"
+msgstr "SML - Nouvel appel entrant"
+
+#: infoauto/netelip_leads/tasks.py:22
+msgid "SML - Llamada sin supervisión"
+msgstr "SML - Appel sans surveillance"
+
+#: infoauto/source_channels/models/channels.py:13
+msgid "Channel"
+msgstr "Canal"
+
+#: infoauto/source_channels/models/channels.py:14
+msgid "Channels"
+msgstr "Canaux"
+
+#: infoauto/source_channels/models/sources.py:29
+msgid "Source"
+msgstr "Source"
+
+#: infoauto/source_channels/models/sources.py:30
+msgid "Sources"
+msgstr "Sources"
+
+#: infoauto/source_channels/serializers/sources.py:41
+msgid "This channel is not compatible with the origin"
+msgstr "Ce canal n’est pas compatible avec l’origine"
+
+#: infoauto/source_channels/serializers/sources.py:47
+#: infoauto/work_calendar/serializers.py:34
+#: infoauto/work_calendar/serializers.py:44
+#: infoauto/work_calendar/serializers.py:46
+#: infoauto/work_calendar/serializers.py:50
+#: infoauto/work_calendar/serializers.py:72
+msgid "This field is required"
+msgstr "Ce champ est nécessaire"
+
+#: infoauto/source_channels/serializers/sources.py:53
+msgid "This phone already exists"
+msgstr "Ce téléphone existe déjà"
+
+#: infoauto/source_channels/serializers/sources.py:62
+msgid "This field is not a phone"
+msgstr "Ce champ n’est pas un téléphone"
+
+#: infoauto/source_channels/serializers/sources.py:69
+msgid "This field is not an email"
+msgstr "Ce champ n’est pas un courriel"
+
+#: infoauto/source_channels/serializers/sources.py:95
+#: infoauto/source_channels/serializers/sources.py:96
+msgid "Source already exists"
+msgstr "La source existe déjà"
+
+#: infoauto/tags_app/models.py:24
+msgid "TAG"
+msgstr "TAG"
+
+#: infoauto/tags_app/models.py:25
+msgid "TAGS"
+msgstr "TAGS"
+
+#: infoauto/templates/account/account_inactive.html:5
+#: infoauto/templates/account/account_inactive.html:8
+msgid "Account Inactive"
+msgstr "Compte Inactif"
+
+#: infoauto/templates/account/account_inactive.html:10
+msgid "This account is inactive."
+msgstr "Ce compte est inactif."
+
+#: infoauto/templates/account/email.html:7
+msgid "Account"
+msgstr "Compte"
+
+#: infoauto/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr "Adresses e-mail"
+
+#: infoauto/templates/account/email.html:13
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Les adresses e-mail suivantes sont associées à votre compte :"
+
+#: infoauto/templates/account/email.html:27
+msgid "Verified"
+msgstr "Vérifié"
+
+#: infoauto/templates/account/email.html:29
+msgid "Unverified"
+msgstr "Non vérifié"
+
+#: infoauto/templates/account/email.html:31
+msgid "Primary"
+msgstr "Primaire"
+
+#: infoauto/templates/account/email.html:37
+msgid "Make Primary"
+msgstr "Faire primaire"
+
+#: infoauto/templates/account/email.html:38
+msgid "Re-send Verification"
+msgstr "Renvoyer vérification"
+
+#: infoauto/templates/account/email.html:39
+msgid "Remove"
+msgstr "Retirer"
+
+#: infoauto/templates/account/email.html:46
+msgid "Warning:"
+msgstr "Attention:"
+
+#: infoauto/templates/account/email.html:46
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Vous n’avez actuellement aucune adresse de courriel configurée. Vous devriez "
+"vraiment ajouter une adresse e-mail afin de recevoir des notifications, "
+"réinitialiser votre mot de passe, etc."
+
+#: infoauto/templates/account/email.html:51
+msgid "Add E-mail Address"
+msgstr "Ajoutez l'Adresse électronique"
+
+#: infoauto/templates/account/email.html:56
+msgid "Add E-mail"
+msgstr "Ajoutez email"
+
+#: infoauto/templates/account/email.html:66
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Voulez-vous vraiment supprimer l’adresse e-mail sélectionnée?"
+
+#: infoauto/templates/account/email_confirm.html:6
+#: infoauto/templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Confirmez l'Adresse électronique"
+
+#: infoauto/templates/account/email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+"Veuillez confirmer que <a href=\"mailto:%(email)s\">%(email)s</a> est une "
+"adresse e-mail pour l’utilisateur %(user_display)s."
+
+#: infoauto/templates/account/email_confirm.html:20
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: infoauto/templates/account/email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+"Ce lien de confirmation par courrier électronique a expiré ou n'est pas "
+"valide. Veuillez <a href=\"%(email_url)s\"> envoyer une nouvelle demande de "
+"confirmation par e-mail </a>."
+
+#: infoauto/templates/account/login.html:7
+#: infoauto/templates/account/login.html:11
+#: infoauto/templates/account/login.html:44 infoauto/templates/base.html:68
+msgid "Sign In"
+msgstr "Ouvrir une session"
+
+#: infoauto/templates/account/login.html:16
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a>\n"
+"for a %(site_name)s account and sign in below:"
+msgstr ""
+"Veuillez vous connecter avec un\n"
+"de vos comptes tiers existants. Ou bien, <a href=\"%(signup_url)s\"> "
+"inscrivez-vous </a>\n"
+"pour un compte %(site_name)s et connectez-vous ci-dessous:"
+
+#: infoauto/templates/account/login.html:26
+msgid "or"
+msgstr "ou"
+
+#: infoauto/templates/account/login.html:33
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"<a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+"Si vous n'avez pas encore créé de compte, alors s'il vous plaît\n"
+"<a href=\"%(signup_url)s\"> inscrivez-vous </a> en premier."
+
+#: infoauto/templates/account/login.html:43
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié?"
+
+#: infoauto/templates/account/logout.html:5
+#: infoauto/templates/account/logout.html:8
+#: infoauto/templates/account/logout.html:17 infoauto/templates/base.html:59
+msgid "Sign Out"
+msgstr "Déconnexion"
+
+#: infoauto/templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr "Êtes-vous certain de vouloir vous déconnecter?"
+
+#: infoauto/templates/account/password_change.html:6
+#: infoauto/templates/account/password_change.html:9
+#: infoauto/templates/account/password_change.html:14
+#: infoauto/templates/account/password_reset_from_key.html:5
+#: infoauto/templates/account/password_reset_from_key.html:8
+#: infoauto/templates/account/password_reset_from_key_done.html:4
+#: infoauto/templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
+#: infoauto/templates/account/password_reset.html:7
+#: infoauto/templates/account/password_reset.html:11
+#: infoauto/templates/account/password_reset_done.html:6
+#: infoauto/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr "Réinitialisation de mot"
+
+#: infoauto/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+"Mot de passe oublié? Entrez votre adresse e-mail ci-dessous, et nous vous "
+"enverrons un e-mail vous permettant de le réinitialiser."
+
+#: infoauto/templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr "Réinitialiser mon mot de passe"
+
+#: infoauto/templates/account/password_reset.html:24
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Veuillez communiquer avec nous si vous avez de la difficulté à réinitialiser "
+"votre mot de passe."
+
+#: infoauto/templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Nous vous avons envoyé un e-mail. S'il vous plaît contactez-nous si vous ne "
+"le recevez pas dans quelques minutes."
+
+#: infoauto/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr "Mauvais jeton"
+
+#: infoauto/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+"Le lien de réinitialisation du mot de passe n'était pas valide, probablement "
+"parce qu'il a déjà été utilisé. Veuillez demander une <a href="
+"\"%(passwd_reset_url)s\"> réinitialisation du nouveau mot de passe </a>."
+
+#: infoauto/templates/account/password_reset_from_key.html:18
+msgid "change password"
+msgstr "changer le mot de passe"
+
+#: infoauto/templates/account/password_reset_from_key.html:21
+#: infoauto/templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr "Votre mot de passe est maintenant changé."
+
+#: infoauto/templates/account/password_set.html:6
+#: infoauto/templates/account/password_set.html:9
+#: infoauto/templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "Définir le mot de passe"
+
+#: infoauto/templates/account/signup.html:6
+msgid "Signup"
+msgstr "S'inscrire"
+
+#: infoauto/templates/account/signup.html:9
+#: infoauto/templates/account/signup.html:19 infoauto/templates/base.html:64
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: infoauto/templates/account/signup.html:11
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+"Vous avez déjà un compte? Dans ce cas, <a href=\"%(login_url)s\"> connectez-"
+"vous </a>."
+
+#: infoauto/templates/account/signup_closed.html:5
+#: infoauto/templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "Inscriptions closes"
+
+#: infoauto/templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Nous sommes désolés, mais l'inscription est actuellement fermée."
+
+#: infoauto/templates/account/verification_sent.html:5
+#: infoauto/templates/account/verification_sent.html:8
+#: infoauto/templates/account/verified_email_required.html:5
+#: infoauto/templates/account/verified_email_required.html:8
+msgid "Verify Your E-mail Address"
+msgstr "Vérifiez votre adresse e-mail"
+
+#: infoauto/templates/account/verification_sent.html:10
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Nous vous avons envoyé un courrier électronique pour vérification. Suivez le "
+"lien fourni pour finaliser le processus d'inscription. S'il vous plaît "
+"contactez-nous si vous ne le recevez pas dans quelques minutes."
+
+#: infoauto/templates/account/verified_email_required.html:12
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+"Cette partie du site nous oblige à vérifier que vous êtes ce que vous "
+"prétendez être. Pour cela, nous vous demandons vérifier la propriété de "
+"votre adresse e-mail "
+
+#: infoauto/templates/account/verified_email_required.html:16
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+"Nous vous avons envoyé un e-mail pour\n"
+"vérification. S'il vous plaît cliquer sur le lien à l'intérieur de cet e-"
+"mail. S'il vous plaît\n"
+"contactez-nous si vous ne le recevez pas dans quelques minutes."
+
+#: infoauto/templates/account/verified_email_required.html:20
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+"<strong> Remarque: </ strong> vous pouvez toujours <a href=\"%(email_url)s"
+"\"> modifier votre adresse e-mail </a>."
+
+#: infoauto/templates/base.html:55
+msgid "My Profile"
+msgstr "Mon profil"
+
+#: infoauto/templates/email/netelip_received_call.html:14
+#: infoauto/templates/email/netelip_received_call.txt:14
+msgid "Identificador de la llamada"
+msgstr "Identifiant de l'appel"
+
+#: infoauto/templates/email/netelip_received_call.html:16
+#: infoauto/templates/email/netelip_received_call.txt:16
+msgid "Destino"
+msgstr "Destination"
+
+#: infoauto/templates/email/netelip_received_call.html:17
+#: infoauto/templates/email/netelip_received_call.txt:17
+msgid "Concesionario"
+msgstr "Concessionnaire"
+
+#: infoauto/users/forms.py:17
+msgid "This username has already been taken."
+msgstr "Ce nom d'utilisateur a déjà été pris."
+
+#: infoauto/users/models.py:26
+msgid "email address"
+msgstr "adresse électronique"
+
+#: infoauto/users/models.py:31
+msgid "Member Id for Click2Call"
+msgstr "Identifiant de membre pour Click2Call"
+
+#: infoauto/users/models.py:32
+msgid "Id for Click2Call"
+msgstr "Id pour Click2Call"
+
+#: infoauto/users/models.py:86
+msgid "User starts to work"
+msgstr "L'utilisateur commence à travailler"
+
+#: infoauto/users/models.py:88
+msgid "Last time when user was working"
+msgstr "Dernière fois où l'utilisateur travaillait"
+
+#: infoauto/users/models.py:89
+msgid "If True, is currently working"
+msgstr "Si vrai, fonctionne actuellement"
+
+#: infoauto/users/models.py:95
+msgid "Session With Historic"
+msgstr "Session avec historique"
+
+#: infoauto/users/models.py:96
+msgid "Sessions With Historic"
+msgstr "Sessions avec historique"
+
+#: infoauto/users/serializers/users.py:29
+msgid "Solicitud de nueva contraseña"
+msgstr "Demande de nouveau mot de passe"
+
+#: infoauto/users/serializers/users.py:47
+#: infoauto/users/serializers/users.py:94
+msgid "Those passwords don't match."
+msgstr "Ces mots de passe ne correspondent pas."
+
+#: infoauto/users/serializers/users.py:92
+msgid "No tienes permisos suficientes para modificar este usuario"
+msgstr "Vous n’avez pas assez d’autorisations pour modifier cet utilisateur"
+
+#: infoauto/users/serializers/users.py:97
+msgid ""
+"Este usuario no puede ser dado de baja en la plataforma. Aún tiene leads "
+"asignados."
+msgstr ""
+"Cet utilisateur ne peut pas être désactivé sur la plate-forme. Il a encore "
+"des Leads assignés."
+
+#: infoauto/users/serializers/users.py:153
+msgid ""
+"Algunos de los leads no pueden ser asignados al usuario seleccionado. Por "
+"favor, póngase en contacto con el Departamento de Atención al Cliente"
+msgstr ""
+"Certains des Leads ne peuvent pas être attribués à l’utilisateur "
+"sélectionné. Veuillez contacter le service clientèle"
+
+#: infoauto/work_calendar/models.py:7
+msgid "Monday"
+msgstr "Lundi"
+
+#: infoauto/work_calendar/models.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: infoauto/work_calendar/models.py:9
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: infoauto/work_calendar/models.py:10
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: infoauto/work_calendar/models.py:11
+msgid "Friday"
+msgstr "Vendredi"
+
+#: infoauto/work_calendar/models.py:12
+msgid "Saturday"
+msgstr "Samedi"
+
+#: infoauto/work_calendar/models.py:13
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: infoauto/work_calendar/models.py:34
+msgid "Weekday"
+msgstr "Jour de la semaine"
+
+#: infoauto/work_calendar/models.py:35
+msgid "Weekdays"
+msgstr "Jours de la semaine"
+
+#: infoauto/work_calendar/models.py:48
+msgid "Week"
+msgstr "Semaine"
+
+#: infoauto/work_calendar/models.py:49
+msgid "Weeks"
+msgstr "Semaines"
+
+#: infoauto/work_calendar/serializers.py:25
+msgid "Start hour can't be grater than end hour"
+msgstr "L'heure de début ne peut être plus grande que l'heure de fin"
+
+#: infoauto/work_calendar/serializers.py:26
+msgid "End hour can't be lower than start hour"
+msgstr "Heure de fin ne peut être inférieure à l'heure de début"
+
+#: infoauto/ws_centralita/apps.py:7
+msgid "WSCentralita"
+msgstr "WSStandard"
+
+#: infoauto/zadarma_client/api.py:44
+msgid "El método especificado no es correcto"
+msgstr "La méthode spécifiée n’est pas correcte"
+
+#: infoauto/zadarma_client/views.py:22
+msgid "Error en la petición"
+msgstr "Erreur dans la demande"

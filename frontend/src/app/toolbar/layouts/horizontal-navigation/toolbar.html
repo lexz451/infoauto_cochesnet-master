@@ -1,0 +1,52 @@
+<div class="top-row" layout="row" layout-align="space-between center">
+
+    <div layout="row" layout-align="start center">
+        <div class="navigation-toggle" hide-gt-sm>
+            <md-button class="md-icon-button" ng-click="vm.toggleHorizontalMobileMenu()"
+                       aria-label="Toggle Mobile Navigation">
+                <md-icon md-font-icon="icon-menu"></md-icon>
+            </md-button>
+        </div>
+
+        <div class="logo" layout="row" layout-align="start center">
+            <span class="logo-image">I</span>
+            <span class="logo-text">Infoauto</span>
+        </div>
+    </div>
+
+    <div layout="row" layout-align="start center">
+        <md-progress-circular id="toolbar-progress" ng-if="$root.loadingProgress" class="md-accent"
+                              md-mode="indeterminate" md-diameter="32">
+        </md-progress-circular>
+
+        <md-button aria-label="Emails" ui-sref="app.notifications">
+            <span class="badge" style="background: {{getEmailsBadge().color}}">{{vm.notifications.unread_messages}}</span>
+            <md-icon md-font-icon="icon-bell" class="icon"></md-icon>
+        </md-button>
+
+        <div class="toolbar-separator"></div>
+
+        <md-menu-bar id="user-menu">
+
+            <md-menu data-md-position-mode="left bottom">
+                <md-button class="user-button" data-ng-click="$mdOpenMenu()"
+                           aria-label="User settings">
+                    <span data-layout="row" data-layout-align="space-between center">
+                        <span class="avatar-wrapper">
+                            <img data-md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg" alt="Imágen de perfil">
+                        </span>
+                        <md-icon md-font-icon="icon-chevron-down"
+                                 class="icon s16" data-hide-xs></md-icon>
+                    </span>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <md-menu-item class="md-indent">
+                        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+                        <md-button data-ng-click="vm.logout()" data-translate>Cerrar sesión</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+    </div>
+</div>

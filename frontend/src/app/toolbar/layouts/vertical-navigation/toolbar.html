@@ -1,0 +1,154 @@
+<div data-layout="row" data-layout-align="start center">
+    <div data-layout="row" data-layout-align="start center" data-flex>
+        <md-button id="navigation-toggle" class="md-icon-button" data-ng-click="vm.toggleSidenav('navigation')"
+                   data-hide-gt-sm aria-label="Toggle navigation" >
+            <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+        </md-button>
+
+        <div class="toolbar-separator"></div>
+
+        <md-menu-bar id="user-menu">
+
+            <md-menu data-md-position-mode="left bottom">
+                <md-button class="user-button" data-ng-click="$mdOpenMenu()"
+                           aria-label="User settings">
+                    <span data-layout="row" data-layout-align="space-between center">
+                        <span class="avatar-wrapper">
+                            <div class="user-asign" ng-if="vm.user.first_name">
+                                <span>
+                                    {{vm.user.first_name[0]}}{{vm.user.last_name[0]}}
+                                </span>
+                            </div>
+                            <img ng-if="!vm.user.first_name" data-md-menu-align-target class="avatar"
+                                 src="assets/images/avatars/profile.jpg" alt="Imágen de perfil">
+<!--                            <md-icon ng-if="vm.user.session.online" md-font-icon-->
+<!--                                     ng-style="{'color': '#4CAF50' }"-->
+<!--                                     class="icon icon-checkbox-marked-circle status s16">-->
+<!--                            </md-icon>-->
+<!--                            <md-icon ng-if="!vm.user.session.online" md-font-icon-->
+<!--                                     ng-style="{'color': '#F44336' }"-->
+<!--                                     class="icon icon-minus-circle status s16">-->
+<!--                            </md-icon>-->
+                        </span>
+                        <span class="username" data-hide data-show-gt-sm>{{ vm.getFullNameUser(vm.user) }}</span>
+                        <md-icon md-font-icon="icon-chevron-down"
+                                 class="icon s16" data-hide-xs></md-icon>
+                    </span>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <!--<md-menu-item class="md-indent" data-ui-sref="app.users.detail">-->
+                    <!--<md-icon md-font-icon="icon-account" class="icon"></md-icon>-->
+                    <!--<md-button>Mi perfil</md-button>-->
+                    <!--</md-menu-item>-->
+
+                    <!--<md-menu-divider></md-menu-divider>-->
+
+<!--                    <md-menu-item class="md-indent" data-ng-click="vm.toggleOnline()" ng-if="!vm.user.session.online">-->
+<!--                        <md-icon md-font-icon="icon-checkbox-marked-circle" class="icon" ng-style="{'color': '#4CAF50' }"></md-icon>-->
+<!--                        <md-button>Activo</md-button>-->
+<!--                    </md-menu-item>-->
+
+<!--                    <md-menu-item class="md-indent" data-ng-click="vm.toggleOnline()" ng-if="vm.user.session.online">-->
+<!--                        <md-icon md-font-icon="icon-minus-circle status" class="icon" ng-style="{'color': '#F44336' }"></md-icon>-->
+<!--                        <md-button>Inactivo</md-button>-->
+<!--                    </md-menu-item>-->
+
+                    <md-menu-divider></md-menu-divider>
+
+                    <md-menu-item class="md-indent">
+                        <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
+                        <md-button data-ng-click="vm.logout()">Cerrar sesión</md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-menu-bar>
+
+        <div class="toolbar-separator"></div>
+
+        <md-button data-ng-click="vm.toggleAvailable(true)"
+                   ng-class="(vm.user.is_available) ? 'md-green-700-bg':'grey-300-bg'"
+                   class="md-raised white-fg available" data-debouce-click
+                   aria-label="{{'Disponible' | translate}}">
+            <span data-translate hide-xs>Disponible</span>
+            <span data-translate hide-gt-xs>Disp.</span>
+        </md-button>
+
+        <md-button data-ng-click="vm.toggleAvailable(false)"
+                   ng-class="(!vm.user.is_available) ? 'md-warn':'grey-300-bg'"
+                   class="md-raised available" data-debouce-click
+                   aria-label="{{'No disponible' | translate}}">
+            <span data-translate hide-xs>No disponible</span>
+            <span data-translate hide-gt-xs>No Disp.</span>
+        </md-button>
+        <div hide-xs>
+            <span data-translate ng-if="vm.user.is_available">
+                Disponible para gestionar leads
+            </span>
+            <span data-translate ng-if="!vm.user.is_available">
+                Por favor conectate para recibir leads
+            </span>
+        </div>
+    </div>
+
+    <div data-layout="row" data-layout-align="start center">
+
+        <md-progress-circular id="toolbar-progress" data-ng-disabled="!$root.loadingProgress"  class="md-accent" data-md-diameter="32">
+        </md-progress-circular>
+
+        <md-menu id="info-lead" data-md-position-mode="left bottom" ng-show-start="vm.lead.data.id && vm.showInfo()">
+            <md-button ng-click="$mdOpenMenu()"
+                       aria-label="lead" md-menu-origin md-menu-align-target>
+                <md-icon md-font-icon="icon-information" class="icon blue-700-fg"></md-icon>
+            </md-button>
+
+            <md-menu-content width="3" id="lead-menu-content">
+                <md-menu-item>
+                    <md-icon md-font-icon="icon-calendar"></md-icon>
+                    <span data-translate>Alta lead</span>
+                    <span>{{ vm.lead.data.created | date:'dd/MM/yyyy'}}</span>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-icon md-font-icon="icon-trending-up"></md-icon>
+                    <span data-translate>Score</span>
+                    <span data-ng-repeat="score in vm.scores" ng-if="score.id===vm.lead.data.score">{{ score.name }}</span>
+                </md-menu-item>
+                <md-menu-item ng-if="vm.lead.data.result">
+                    <md-icon md-font-icon="icon-car"></md-icon>
+                    <span data-translate>Resultado</span>
+                    <span ng-if="vm.lead.data.result==='positive'" data-translate>Positivo</span>
+                    <span ng-if="vm.lead.data.result==='negative'" data-translate>Negativo</span>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-icon md-font-icon="icon-tag"></md-icon>
+                    <span data-translate>Nuevo estado</span>
+                    <span ng-repeat="status in vm.leadStatus" ng-if="status.id===vm.lead.data.status">{{status.name}}</span>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+        <div class="toolbar-separator" ng-show-end></div>
+
+        <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
+            <md-button class="language-button" ng-click="$mdOpenMenu()"
+                       aria-label="Language" md-menu-origin md-menu-align-target>
+                <div data-layout="row" data-layout-align="center center">
+                    <img class="flag" data-ng-src="assets/images/flags/{{languageSelected}}.png" alt="{{languageSelected}}">
+                    <span class="iso">{{languageSelected}}</span>
+                </div>
+            </md-button>
+
+            <md-menu-content width="3" id="language-menu-content">
+                <md-menu-item ng-repeat="language in languages">
+                    <md-button ng-click="changeLanguage(language.code)" aria-label="{{language.name}}">
+                        <span data-layout="row" data-layout-align="start center">
+                            <img class="flag" data-ng-src="assets/images/flags/{{language.code}}.png" alt="{{language.name}}">
+                            <span>{{language.name}}</span>
+                        </span>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+</div>

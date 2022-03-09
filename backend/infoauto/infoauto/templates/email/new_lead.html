@@ -1,0 +1,27 @@
+<p>Estimado {{lead.user.get_full_name}}</p>
+<p>Le informamos que tienes un nuevo lead asignado con los siguientes datos:</p>
+<p>
+  Fecha-Hora: {{lead.created}}<br>
+  Nombre: {{lead.client.name}}<br>
+  Teléfono: {{ lead.client.phone|truncatechars:6 }}xxx <br>
+  Vehículo:
+  {% for vehicle in lead.vehicles.all %}
+    {{vehicle.brand_model}},
+  {% endfor %}
+  <br>
+</p>
+<p>
+    Estado: {{lead.get_status_display}}
+</p>
+<p>
+  ACCEDER AL LEAD AQUÍ: {{lead_url}} <br>
+  LLAMAR AL CLIENTE AQUÍ: {{call_url}} <br>
+</p>
+<p>
+  Rogamos actualicen su información con todas las acciones que lleves a cabo con este potencial cliente.
+</p>
+<p>
+  Atentamente<br>
+  Servicio de Atención al cliente<br>
+  Smart Motor Lead<br>
+</p>

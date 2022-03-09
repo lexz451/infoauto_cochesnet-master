@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static i18n %}
+<head>
+  <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+  <title></title> <!-- the <title> tag shows on email notifications on Android 4.4. -->
+</head>
+<body>
+<div>
+  {{ msg }}:<br>
+  <ul>
+    <li><b>{% trans "Identificador de la llamada" %}:</b> {{ call.id_call }}</li>
+    <li><b>{% trans "Origen" %}:</b> {{ call.src }}</li>
+    <li><b>{% trans "Destino" %}:</b> {{ call.dst }}</li>
+    <li><b>{% trans "Concesionario" %}:</b> {{ source.concession.name }}</li>
+    <li><b>{% trans "Origen" %}:</b> {{ source.origin.name }}</li>
+  </ul>
+  <br>
+  Para mas información, acceda a la plataforma pulsando <a href="{{ current_site }}">aquí</a>
+  o mediante el siguiente enlace <a href="{{ current_site }}">{{ current_site }}</a>
+</div>
+</body>
+</html>

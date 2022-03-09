@@ -1,0 +1,165 @@
+#kpis {
+  .ms-widget .ms-widget-front.active{
+    border:1px solid rgb(0,172,193);
+  }
+}
+
+#leads {
+
+  .header {
+    .h1 {
+
+      md-icon {
+        margin-right: 12px;
+      }
+    }
+  }
+
+  // Single scroll
+  &.single-scroll {
+
+    .todo-list-pane {
+      overflow: hidden;
+    }
+  }
+
+  .todo-item {
+    width:100%;
+    position: relative;
+    padding: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-transform: none;
+    cursor: pointer;
+
+    .info{
+      padding: 8px;
+    }
+
+    .options {
+        text-align:right;
+    }
+
+    &.todo-item-placeholder {
+      background: rgba(0, 0, 0, 0.12);
+      * {
+        opacity: 0;
+      }
+    }
+
+    .handle {
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 48px;
+      top: 0;
+      left: 0;
+      cursor: move;
+      text-align: center;
+
+      md-icon {
+        display: block;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .image{
+        max-width:200px;
+        margin-right:20px;
+    }
+    .tags {
+      font-size: 12px;
+
+      .tag {
+        border-radius: 2px;
+        margin: 4px 4px 0 0;
+        padding: 3px 8px;
+        background-color: rgba(0, 0, 0, 0.08);
+
+        .tag-color {
+          width: 8px;
+          height: 8px;
+          margin-right: 8px;
+          border-radius: 50%;
+        }
+      }
+
+      .aforo, .music, .location {
+        border-radius: 2px;
+        margin: 4px 4px 0 0;
+        padding: 3px 8px 3px 8px;
+      }
+
+    }
+
+    .info {
+      margin: 0 16px 0 8px;
+
+      .title {
+        font-size: 15px;
+        font-weight: 500;
+      }
+
+      .notes {
+        margin-top: 4px;
+        margin-right: 10px;
+      }
+    }
+
+    .buttons {
+
+      .is-starred {
+        margin: 0 0 0 16px;
+      }
+
+      .is-important {
+        margin: 0;
+      }
+    }
+  }
+
+  .todo-item-ghost {
+    opacity: 1 !important;
+    background: #FFFFFF;
+    box-shadow: $whiteframe-shadow-14dp;
+    border: none;
+
+    .md-ripple-container {
+      display: none;
+    }
+  }
+
+}
+
+
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+  #leads {
+
+    .todo-list-pane {
+
+      .sortable {
+
+        .todo-items {
+
+          .todo-item {
+            padding-left: 32px;
+          }
+        }
+      }
+
+      .todo-items {
+
+        .todo-item {
+
+          .handle {
+            width: 32px;
+          }
+        }
+      }
+    }
+  }
+}

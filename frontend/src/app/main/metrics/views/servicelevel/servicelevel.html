@@ -1,0 +1,27 @@
+<div id="servicelevel">
+  <h2>Niveles de servicio</h2>
+  <!-- Niveles de servicio -->
+  <div class="services mt-40 mb-40">
+    <p class="text-bold secondary-text" translate> Niveles de servicio</p>
+
+    <div data-layout="row" data-layout-wrap layout-margin="20px">
+      <div class="box" ng-class="vm.getColor($index)" ng-repeat="kpi in vm.servicelevel.data.kpis" ng-if="kpi.title">
+        <div layout="row" layout-align="end end">
+          <md-button ui-sref="app.leads.list(vm.concatFilters(kpi.filters,vm.metrics.filters))" target="_blank" class="md-icon-button" aria-label="Ver leads">
+            <md-tooltip md-delay="300">Ver leads</md-tooltip>
+            <md-icon md-font-icon="icon-eye" class="secondary-text"></md-icon>
+          </md-button>
+        </div>
+        <div class="pr-20">
+          <div>
+            <span class="number">{{kpi.number}}</span>
+            <span class="percentage"ng-if="kpi.number>0">({{kpi.percentage}}%)</span>
+          </div>
+          <div class="title">{{kpi.title}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

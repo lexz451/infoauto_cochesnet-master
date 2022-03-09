@@ -1,0 +1,327 @@
+md-dialog{
+  overflow: hidden;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 30px;
+  color: grey;
+  white-space: pre-wrap;
+}
+
+md-input-container.md-icon-right > parameters {
+  margin: 0;
+  right: 2px;
+  left: auto;
+  top: 8px;
+  position: absolute;
+}
+
+.progress {
+    display: flex;
+    height: 2.5rem;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: 1.25rem;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #007bff;
+    transition: width .6s ease;
+}
+
+.marcador-temperatura {
+    position: absolute;
+    left: 0%;
+    text-align: center;
+    display: inline-block;
+    background: #cacaca;
+    width: auto;
+    padding:0px 10px;
+    color: #fff;
+    transition: all 2500ms;
+    transform: translateX(-50%);
+}
+
+.arrow_box {
+    position: relative;
+    background: #364854;
+    border: 2px solid #ededed;
+}
+
+.arrow_box:after, .arrow_box:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.arrow_box:before {
+    border-color: rgba(237, 237, 237, 0);
+    border-bottom-color: #ededed;
+    border-width: 8px;
+    margin-left: -8px;
+}
+
+.arrow_box:after {
+    border-color: rgba(54, 72, 84, 0);
+    border-bottom-color: #364854;
+    border-width: 5px;
+    margin-left: -5px;
+}
+
+.center {
+
+  .header {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: 1000px !important;
+    padding: 24px 0;
+
+    .h1 {
+
+      md-icon {
+        margin-right: 12px;
+      }
+    }
+
+    .count {
+      margin: 6px 0 0 40px;
+    }
+
+    .search {
+      position: relative;
+      padding-left: 24px;
+      max-width: 480px;
+
+      .search-icon {
+        margin: 0 -24px 0 0;
+      }
+
+      .search-input-black,
+      .search-input {
+        background: none;
+        font-size: 16px;
+        line-height: 40px;
+        height: 40px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+        transition: border-color 300ms ease;
+      }
+
+      .search-input {
+        color: #FFFFFF;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        &:focus {
+          border-color: rgba(255, 255, 255, 1);
+        }
+
+        &::-webkit-input-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      md-select.md-default-theme .md-select-icon, md-select .md-select-icon,
+      md-select.md-default-theme .md-select-value.md-select-placeholder, md-select .md-select-value.md-select-placeholder,
+      .md-select-value > span:not(.md-select-icon) .md-text,
+      md-select.simplified .md-select-value *:first-child {
+        color: #fff;
+      }
+
+      .md-datepicker-input{
+        color:#fff;
+        &::-webkit-input-placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      .md-datepicker-button{
+        md-icon {
+          color: #fff;
+        }
+      }
+
+      .md-datepicker-triangle-button .md-datepicker-expand-triangle{
+        border-top-color:rgba(255, 255, 255, 0.5);
+      }
+
+      .md-datepicker-input-container{
+        border-bottom-color:rgba(255, 255, 255, 0.5);
+      }
+
+      .md-datepicker-input-container{
+        min-width:173px;
+      }
+
+    }
+  }
+}
+
+form {
+    md-input-container {
+        textarea.md-input:not(.dynamic) {
+            min-height: 150px;
+        }
+    }
+}
+
+.fullwidth,
+.no-results{
+  width:100%;
+}
+
+md-input-container .md-errors-spacer{
+  display:none;
+}
+
+.pagination {
+  text-align: center;
+  padding: 6px;
+}
+
+md-toast.md-toast-error-theme .md-toast-content {
+  background-color: #D32F2F;
+}
+
+md-toast.md-toast-success-theme .md-toast-content {
+  background-color: #388E3C;
+}
+
+.page-layout.carded{
+  overflow:auto;
+  //overflow:initial;
+}
+
+.page-layout.carded.fullwidth > .center .content-card{
+  min-height: 300px;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+.md-autocomplete-suggestions-container{
+  overflow-y:auto
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-scroller{
+  position:static
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-sizer{
+  height:0 !important
+}
+
+.md-autocomplete-suggestions-container .md-virtual-repeat-offsetter{
+  position:static
+}
+
+
+dir-pagination-controls.bottomFixed{
+  //position: absolute;
+  bottom: 0px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+dir-pagination-controls{
+  .md-button.md-icon-button{
+    margin:0;
+  }
+}
+
+.layout-row > .flex.search{
+  min-width:300px;
+}
+
+.basicFilters md-icon.md-default-theme,
+.basicFilters md-icon{
+  color:rgba(255, 255, 255, 0.5);
+}
+
+.md-default-theme.md-hue-2 .basicFilters .md-datepicker-input{
+  color:#fff;
+  &::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.md-default-theme.md-hue-2 .basicFilters .md-datepicker-triangle-button .md-datepicker-expand-triangle{
+  border-top-color:rgba(255, 255, 255, 0.5);
+}
+
+.md-default-theme.md-hue-2 .basicFilters .md-datepicker-input-container{
+  border-bottom-color:rgba(255, 255, 255, 0.5);
+}
+
+.md-default-theme.md-hue-2 .basicFilters .md-datepicker-input-container{
+  min-width:173px;
+}
+
+label.input-label {
+  color: rgba(0,0,0,0.54);
+  font-size: 13px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.content-img-select{
+  display: inline-block;
+  max-height: 30px;
+  max-width: 30px;
+  img{
+    width:auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1500px){
+  body{
+    #content{
+      div.page-layout.carded.fullwidth{
+        div.center {
+
+          div.header {
+              padding: 16px;
+              max-height: initial;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px){
+  body{
+    #content{
+      div.page-layout.carded.fullwidth{
+        div.center {
+
+          div.header {
+              padding: 16px;
+              max-height: initial;
+          }
+        }
+      }
+    }
+  }
+}

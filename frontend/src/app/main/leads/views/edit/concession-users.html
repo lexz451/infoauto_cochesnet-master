@@ -1,0 +1,83 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-account" class="black-fg no-margin"></md-icon>
+                <span data-translate>Usuarios conectados</span>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div data-layout="column" data-layout-align="start start" layout-wrap class="fullwidth">
+
+        <div layout="column" layout-align="space-between start" class="fullwidth pt-10 pb-10">
+
+            <!--<div class="no-results text-center" ng-if="concessionaire.related_users.length == 0">-->
+            <div class="no-results text-center" ng-if="filtered.length == 0">
+
+                <div class="message">
+                    <md-icon class="message-icon s96" md-font-icon="icon-account"></md-icon>
+                    <div class="message-text" translate>Sin usuarios</div>
+                </div>
+
+            </div>
+            <div class="todo-item" layout="row" layout-align="start center" ng-repeat="user in concessionaire.related_users | filter:{user_data:{online:true}} as filtered" >
+
+                <div layout="row" layout-align="start center" flex>
+
+                    <div class="info" flex="auto">
+                        <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                            <div layout="row" layout-align="space-between center">
+
+                                <span class="avatar-wrapper mr-20">
+                                    <img data-md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg" alt="Imágen de perfil">
+                                    <md-icon ng-if="user.user_data.online" md-font-icon
+                                             ng-style="{'color': '#4CAF50' }"
+                                             class="icon icon-checkbox-marked-circle status s16">
+                                    </md-icon>
+                                    <md-icon ng-if="!user.user_data.online" md-font-icon
+                                             ng-style="{'color': '#F44336' }"
+                                             class="icon icon-minus-circle status s16">
+                                    </md-icon>
+                                </span>
+
+                                <div>
+                                    <div class="mb-5">
+                                        <span class="title">{{user.user_data.first_name}} {{user.user_data.last_name}}</span>
+                                        <span class="ml-10">
+                                            <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_admin" data-translate>Super Administrador</span>
+                                            <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_concession_admin" data-translate>Administrador de concesionario</span>
+                                            <span class="text-boxed m-0 green-bg white-fg" ng-show="user.is_business_manager" data-translate>Gestor comercial</span>
+                                        </span>
+                                    </div>
+
+                                    <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                        <div class="tag" layout="row" layout-align="start center">
+                                            <md-icon md-font-icon="icon-email" class="s16"></md-icon>
+                                            <div class="ml-10 tag-label">
+                                                {{user.user_data.email}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tags" layout="row" layout-align="start center" layout-wrap>
+                                        <div class="tag" layout="row" layout-align="start center" ng-repeat="concessionaire in user.user_data.related_concessionaires">
+                                            <md-icon md-font-icon="icon-car" class="s16"></md-icon>
+                                            <div class="ml-10 tag-label">
+                                                {{concessionaire.concessionaire_data.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

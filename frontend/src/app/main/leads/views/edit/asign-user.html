@@ -1,0 +1,23 @@
+<div data-layout="column" data-layout-align="start start" flex="100" class="md-whiteframe-z1">
+
+    <md-toolbar class="md-grey-300-bg black-fg">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h2 class="md-flex text-uppercase">
+                <md-icon md-font-icon="icon-account" class="black-fg no-margin"></md-icon>
+                <span data-translate>Asignado a</span>
+            </h2>
+            <md-icon ng-if="(vm.lead.cur_user_can_assign || !vm.lead.id) && vm.selectedTab===0"
+                     data-ng-click="vm.openLeadDialog($event,vm.lead,'tracing')" md-font-icon="icon-pencil"
+                     class="pointer white-fg no-margin"></md-icon>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding data-layout="row" data-layout-align="space-between center"
+                layout-wrap class="fullwidth">
+
+        <div>
+            {{vm.getFullUserName(vm.lead.user_data)}}
+        </div>
+    </md-content>
+
+</div>

@@ -1,0 +1,187 @@
+<div id="user-edit" class="page-layout carded left-sidenav" layout="row">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg md-lantia-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+
+        <!-- CONTENT HEADER -->
+        <div class="header" layout="row" layout-align="space-between center" layout-wrap>
+            <div class="white-fg" layout="column" layout-align="start start">
+                <div class="h1 mb-20 pointer" layout="row" layout-align="start center" ng-click="historyBack()">
+                    <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+                    <span data-translate>Volver</span>
+                </div>
+                <div class="h1" layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-account"></md-icon>
+                    <span data-translate>Administrar perfil</span>
+                </div>
+            </div>
+
+        </div>
+        <!-- / CONTENT HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card" layout="column" flex>
+
+            <!-- CONTENT -->
+            <md-content class="content p-20" flex ms-scroll>
+                <div layout="row" layout-xs="column" layout-align="space-between start" flex>
+                    <form name="userForm" novalidate data-layout="row" data-layout-align="center start" class="fullwidth">
+
+                        <div data-layout="row" layout-xs="column" data-layout-align="start start" flex="60" flex-xs="100">
+
+                            <!-- Columna 1 -->
+                            <div layout="column" flex="50" flex-xs="100" class="pr-40">
+
+                                <md-input-container flex="100" layout="column" class="bb pb-20 w-250">
+
+                                    <div class="pb-20 container-image">
+                                        <img ng-src="{{vm.user.image}}" alt="Imagen principal" ng-if="vm.user.image"/>
+                                        <img src="assets/images/avatars/profile.jpg" alt="Imagen principal" ng-if="!vm.user.image"/>
+                                    </div>
+
+                                    <div
+                                         flow-init="vm.ngFlowOptions"
+                                         flow-name="vm.formFlow.imageFlow"
+                                         flow-drop
+                                         flow-file-error="vm.imageError($file, $message, $flow)"
+                                         flow-file-success="vm.reloadImage($file, $message, $flow)"
+                                         flow-files-submitted="$flow.upload()"
+                                         flow-drag-enter="vm.dropping=true"
+                                         flow-drag-leave="vm.dropping=false"
+                                         ng-class="{'dropping':vm.dropping}">
+
+
+                                        <div layout="row" layout-align="space-between center" layout-wrap>
+                                            <md-button flow-btn aria-label="upload imagen"
+                                                       class="md-raised grey-200-bg pl-10 pr-10 pt-5 pb-5 font-weight-700 line-height-16 no-margin">
+                                                <span class="font-size-10 grey-600-fg" data-translate>Cambiar foto</span>
+                                            </md-button>
+
+                                            <md-button aria-label="delete imagen" ng-click="vm.removeImage()"
+                                                       class="md-raised grey-200-bg pl-10 pr-10 pt-5 pb-5 font-weight-700 line-height-16 no-margin">
+                                                <span class="font-size-10 grey-600-fg" data-translate>Eliminar</span>
+                                            </md-button>
+                                        </div>
+
+                                    </div>
+
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label data-translate>Nombre</label>
+                                    <input name="first_name" data-ng-model="vm.user.first_name" required>
+                                    <error-messages field="userForm.first_name" server-errors="vm.serverErrors" required></error-messages>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label data-translate>Apellidos</label>
+                                    <input name="last_name" data-ng-model="vm.user.last_name" required>
+                                    <error-messages field="userForm.last_name" server-errors="vm.serverErrors" required></error-messages>
+                                </md-input-container>
+
+                                <md-input-container flex="100">
+                                    <label data-translate>Email</label>
+                                    <input name="email" data-ng-model="vm.user.email" required>
+                                    <error-messages field="userForm.email" server-errors="vm.serverErrors" required></error-messages>
+                                </md-input-container>
+
+                            </div>
+
+                            <!-- Columna 2 -->
+                            <div layout="column"  flex="50" flex-xs="100">
+                                
+                                <div>
+                                    <md-autocomplete md-floating-label="{{'Escuela' | translate }}" md-delay="300" md-input-name="school"
+                                                     md-selected-item="vm.user.school_data" md-search-text="searchTextSchool"
+                                                     md-items="school in vm.getSchools(searchTextSchool)" md-min-length="3"
+                                                     md-item-text="school.name">
+                                        <md-item-template>
+                                            <span md-highlight-text="searchTextSchool">{{school.name}}</span>
+                                        </md-item-template>
+                                        <md-not-found>
+                                            <span data-translate>No hay ninguna escuela con ese nombre</span>
+                                        </md-not-found>
+                                    </md-autocomplete>
+                                    <md-input-container flex="100" class="no-margin">
+                                        <error-messages field="userForm.school" server-errors="vm.serverErrors" required></error-messages>
+                                    </md-input-container>
+                                </div>
+
+                                <md-input-container>
+                                    <label data-translate>Curso</label>
+                                    <md-select data-ng-model="vm.user.course" name="course">
+                                        <md-option data-ng-repeat="course in vm.courses.data" data-ng-value="course.id">
+                                            {{course.name}}
+                                        </md-option>
+                                    </md-select>
+                                    <error-messages field="userForm.course" server-errors="vm.serverErrors"></error-messages>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label data-translate>Especialidad</label>
+                                    <md-select data-ng-model="vm.user.speciality" name="speciality" multiple>
+                                        <md-option data-ng-repeat="speciality in vm.specialities.data" data-ng-value="speciality.id">
+                                            {{speciality.name}}
+                                        </md-option>
+                                    </md-select>
+                                    <error-messages field="userForm.speciality" server-errors="vm.serverErrors"></error-messages>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label data-translate>Sexo</label>
+                                    <md-select data-ng-model="vm.user.sex" name="sex">
+                                        <md-option value="V">
+                                            <span data-translate>Varón</span>
+                                        </md-option>
+                                        <md-option value="M">
+                                            <span data-translate>Mujer</span>
+                                        </md-option>
+                                    </md-select>
+                                    <error-messages field="userForm.sex" server-errors="vm.serverErrors"></error-messages>
+                                </md-input-container>
+
+                                <md-input-container class="mt-50">
+                                    <label class="md-no-float" data-translate>Fecha en la que comenzó como profesor</label>
+                                    <md-datepicker name="hire_date" data-ng-model="vm.user.hire_date"
+                                                   md-placeholder="dd/mm/yyyy"></md-datepicker>
+                                    <error-messages field="userForm.hire_date" server-errors="vm.serverErrors" forcechange></error-messages>
+                                </md-input-container>
+
+                                <md-input-container class="mt-20">
+                                    <label class="md-no-float" data-translate>Fecha de nacimiento</label>
+                                    <md-datepicker name="born_date" data-ng-model="vm.user.born_date"
+                                                   md-placeholder="dd/mm/yyyy"></md-datepicker>
+                                    <error-messages field="userForm.born_date" server-errors="vm.serverErrors" forcechange></error-messages>
+                                </md-input-container>
+                                
+                                <div layout="row" layout-align="end end" class="fullwidth">
+                                    <md-button ng-click="vm.saveUser(vm.user)" class="send-button md-accent md-raised"
+                                               data-debouce-click
+                                               data-ng-if="hasPermission('users','PATCH')"
+                                               ng-disabled="userForm.$invalid || userForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                                        <span data-translate>Guardar</span>
+                                    </md-button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                    </form>
+                </div>
+
+            </md-content>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
+

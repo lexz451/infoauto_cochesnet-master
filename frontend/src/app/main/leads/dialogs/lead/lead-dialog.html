@@ -1,0 +1,70 @@
+<md-dialog class="task-dialog" aria-label="New Task" style="width: 1000px; max-width: 1000px">
+    <form name="leadForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-translate>Comercial</th>
+                            <th data-translate>Activo/Inactivo</th>
+                            <th data-translate>Leads asignados hoy</th>
+                            <th data-translate>Leads no atendidos</th>
+                            <th data-translate>Tareas atrasadas</th>
+                            <th data-translate>Seguimientos atrasados</th>
+                            <th data-translate>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="user in vm.users">
+                            <td>
+                                <span>{{vm.getFullUserName(user)}}</span>
+                                <span ng-if="user.emails_received">
+                                    <md-icon md-font-icon="icon-email"></md-icon>
+                                </span>
+                                <span ng-if="user.lost_calls">
+                                    <md-icon md-font-icon="icon-phone"></md-icon>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span ng-if="user.is_online" class="green-fg">Activo</span>
+                                <span ng-if="!user.is_online" class="red-fg">Inactivo</span>
+                            </td>
+                            <td class="text-center">{{user.today_lead_number}}</td>
+                            <td class="text-center">{{user.unattended_leads}}</td>
+                            <td class="text-center">{{user.delayed_tasks}}</td>
+                            <td class="text-center">{{user.delayed_trackings}}</td>
+                            <td>
+                                <div data-layout="row" data-layout-align="start center">
+                                    <md-button data-debouce-click type="submit" data-ng-click="vm.saveLead(user)"
+                                               class="send-button md-accent md-raised"
+                                               aria-label="{{'Asignar' | translate}}">
+                                        <span data-translate>Asignar</span>
+                                    </md-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-ng-click="vm.closeDialog()" class="md-raised" aria-label="{{'Cancelar' | translate}}">
+                    <span data-translate>Cancelar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

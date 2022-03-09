@@ -1,0 +1,24 @@
+#layout-horizontal-navigation {
+    #toolbar-navigation-container {
+
+
+        #horizontal-navigation {
+
+            text-transform: uppercase;
+
+            .ms-navigation-horizontal .horizontal{
+                .ms-navigation-horizontal-item .ms-navigation-horizontal-button{
+
+                    &.active{
+                        color: rgb(3,155,229) !important;
+                        background:transparent;
+                        .icon{
+                          color: rgb(3,155,229);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

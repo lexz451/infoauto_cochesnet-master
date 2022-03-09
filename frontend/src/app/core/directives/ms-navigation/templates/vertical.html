@@ -1,0 +1,52 @@
+<ul>
+    <li data-ng-repeat="node in vm.navigation" data-ms-navigation-node="node"
+        data-ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+        data-ng-include="'navigation-nested.html'"></li>
+</ul>
+
+<!-- Nested navigation template -->
+<script type="text/ng-template" id="navigation-nested.html">
+
+    <div data-ms-navigation-item data-layout="row" data-ng-if="!vm.isHidden()">
+
+        <div class="ms-navigation-button" data-ng-if="!node.uisref && node.title && !node.href && !node.click">
+            <i class="icon s16 {{node.icon}}" data-ng-if="node.icon"></i>
+            <span class="title" data-flex>{{node.title}}</span>
+            <span class="badge white-fg" data-ng-style="{'background': node.badge.color}" data-ng-if="node.badge">{{node.badge.content}}</span>
+            <i class="icon-chevron-right s16 arrow" data-ng-if="vm.collapsable && vm.hasChildren"></i>
+        </div>
+
+        <a class="ms-navigation-button" data-ui-sref="{{node.uisref}}" data-ui-sref-active="active md-accent-bg"
+           data-ng-if="node.uisref && node.title && !node.href">
+            <i class="icon s16 {{node.icon}}" data-ng-if="node.icon"></i>
+            <span class="title" data-flex>{{node.title}}</span>
+            <span class="badge white-fg" data-ng-style="{'background': node.badge.color}" data-ng-if="node.badge">{{node.badge.content}}</span>
+            <i class="icon-chevron-right s16 arrow" data-ng-if="vm.collapsable && vm.hasChildren"></i>
+        </a>
+
+        <a class="ms-navigation-button" href="{{node.href}}" target="_blank"
+           data-ng-if="node.href && node.title">
+            <i class="icon s16 {{node.icon}}" data-ng-if="node.icon"></i>
+            <span class="title" data-flex>{{node.title}}</span>
+            <span class="badge white-fg" data-ng-style="{'background': node.badge.color}" data-ng-if="node.badge">{{node.badge.content}}</span>
+            <i class="icon-chevron-right s16 arrow" data-ng-if="vm.collapsable && vm.hasChildren"></i>
+        </a>
+
+        <a class="ms-navigation-button" ng-click="node.click()"
+           data-ng-if="node.click && node.title">
+            <i class="icon s16 {{node.icon}}" data-ng-if="node.icon"></i>
+            <span class="title" data-flex>{{node.title}}</span>
+            <span class="badge white-fg" data-ng-style="{'background': node.badge.color}" data-ng-if="node.badge">{{node.badge.content}}</span>
+            <i class="icon-chevron-right s16 arrow" data-ng-if="vm.collapsable && vm.hasChildren"></i>
+        </a>
+
+    </div>
+
+    <ul data-ng-if="vm.hasChildren && !vm.isHidden()">
+        <li data-ng-repeat="node in node.children" data-ms-navigation-node="node"
+            data-ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+            data-ng-include="'navigation-nested.html'"></li>
+    </ul>
+
+</script>
+<!-- / Nested navigation template -->

@@ -1,0 +1,82 @@
+<md-dialog class="task-dialog" aria-label="New Task">
+    <form name="concessionaireForm" class="md-inline-form" novalidate>
+        <md-toolbar class="md-accent md-hue-2">
+            <div class="md-toolbar-tools" data-layout="row" data-layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" data-ng-click="vm.closeDialog()">
+                    <md-icon md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content ms-scroll>
+            <div data-layout="column">
+
+                <div class="no-results text-center" ng-if="vm.concessionaire.notes_data.length == 0">
+
+                    <div class="message">
+                        <md-icon class="message-icon s96" md-font-icon="icon-document"></md-icon>
+                        <div class="message-text" translate>Sin notas añadidas</div>
+                    </div>
+
+                </div>
+
+                <div ng-repeat="note in vm.concessionaire.notes_data" layout="row" layout-wrap class="fullwidth" ng-init="note.historyShow=false">
+                    <div flex="80">
+                        <div class="mb-10">
+                            <md-icon md-font-icon="icon-calendar"></md-icon>
+                            <span>{{ note.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                        </div>
+                        <md-input-container flex="100" ng-init="name='notes_data___'+$index+'___content'" class="fullwidth">
+                            <label data-translate>Nota</label>
+                            <input type="text" data-ng-model="vm.concessionaire.notes_data[$index].content" name="{{ name }}" ng-disabled="vm.isDisabled()">
+                            <error-messages field="concessionaireForm[name]" server-errors="vm.serverErrors"></error-messages>
+                        </md-input-container>
+
+                        <div class="pl-50" ng-show="note.historyShow">
+                            <div ng-repeat="history in note.history">
+                                <div class="mb-10">
+                                    <md-icon md-font-icon="icon-calendar"></md-icon>
+                                    <span>{{ history.modified | date:'dd/MM/yyyy HH:mm' }}</span>
+                                </div>
+                                <div class="mb-20">{{ history.content }}</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div flex="20">
+                        <md-button ng-click="note.historyShow=!note.historyShow" ng-if="note.history.length>0"
+                                   class="md-fab md-mini md-accent" aria-label="{{'Ver historial' | translate}}">
+                            <md-icon md-font-icon="icon-history"></md-icon>
+                            <md-tooltip>
+                                <span data-translate>Ver historial</span>
+                            </md-tooltip>
+                        </md-button>
+                        <md-button ng-click="vm.deleteNote(note)" ng-hide="vm.isDisabled()" ng-if="!note.id"
+                                   class="md-fab md-mini md-warn" aria-label="{{'Borrar nota' | translate}}">
+                            <md-icon md-font-icon="icon-delete"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+
+                <div class="mt-20">
+                    <md-button ng-click="vm.addNote()" class="md-accent md-raised"
+                               aria-label="{{'Añadir nota' | translate}}">
+                        <span data-translate>Añadir nota</span>
+                    </md-button>
+                </div>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions data-layout="row" data-layout-align="space-between center">
+            <div data-layout="row" data-layout-align="start center">
+                <md-button data-debouce-click type="submit" data-ng-click="vm.saveConcessionaire()" class="send-button md-accent md-raised"
+                           data-ng-disabled="concessionaireForm.$invalid || concessionaireForm.$pristine" aria-label="{{'Guardar' | translate}}">
+                    <span data-translate>Guardar</span>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
