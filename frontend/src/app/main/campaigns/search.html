@@ -1,0 +1,133 @@
+<div id="campaignsSearch" class="page-layout carded fullwidth" data-layout="row">
+    <div class="content-card" data-layout="column" data-flex>
+        <md-content class="content p-20">
+            <div data-layout="row">
+                <md-input-container flex="50">
+                    <md-icon md-svg-src="assets/icons/search.svg" class="name"></md-icon>
+                    <input type="text" name="name" data-ng-model="vm.campaigns.filters.name"
+                        placeholder="Busqueda por nombre de la campaña" md-autofocus>
+                </md-input-container>
+                <a href="/campaigns/new" style="margin-left: auto;text-decoration: none !important;">
+                    <md-button class="md-accent md-raised md-ink-ripple bn1">
+                        <md-icon md-font-icon="icon-plus"></md-icon>
+                        Nueva
+                    </md-button>
+                </a>
+            </div>
+            <div class="filters mt-20">
+                <div data-layout="row">
+                    <md-input-container flex="25">
+                        <md-datepicker md-placeholder="Fecha comienzo" ng-model="vm.campaign.startDate"
+                            input-aria-labelledby="start-date"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container flex="25">
+                        <md-datepicker md-placeholder="Fecha finalización" ng-model="vm.campaign.endDate"
+                            input-aria-labelledby="end-date"></md-datepicker>
+                    </md-input-container>
+                    <md-autocomplete md-floating-label="Concesionario" md-delay="300" md-input-name="concessionaire"
+                        md-no-cache="true" md-min-length="0" flex="25" md-selected-item="vm.campaign.concessionaire"
+                        md-search-text="searchTextConcessionaire"
+                        md-items="concessionaire in vm.getConcessionaires(searchTextConcessionaire)"
+                        md-item-text="concessionaire.name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextConcessionaire">{{concessionaire.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ningún concesionario con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+
+
+                </div>
+                <div data-layout="row">
+                    <md-autocomplete md-floating-label="Marca" md-delay="300" md-input-name="brand" md-no-cache="true"
+                        ng-disabled="vm.isDisabled()" md-selected-item="vm.campaign.brand"
+                        md-search-text="searchTextBrand" flex="25" md-items="brand in vm.getBrands(searchTextBrand)"
+                        md-min-length="0" md-item-text="brand.name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextBrand">{{brand.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ninguna marca con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+
+                    <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
+                        ng-disabled="vm.isDisabled()" md-selected-item="vm.campaign.model"
+                        md-search-text="searchTextModel"
+                        md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
+                        md-item-text="model.model_name" flex="25">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextModel">{{model.model_name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ningun modelo con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+
+                    <md-input-container flex="25">
+                        <label>Status</label>
+                        <md-select data-ng-model="vm.campaign.status" name="campaign_status">
+                            <md-option data-ng-repeat="type in vm.campaignStatus" data-ng-value="type.id">
+                                {{ type.name }}
+                            </md-option>
+                        </md-select>
+
+                    </md-input-container>
+                </div>
+            </div>
+        </md-content>
+        <md-content class="content p-20 mt-20">
+            <div class="campaign-item" layout="row" layout-align="start center"
+                data-dir-paginate="camp in vm.campaigns.data | itemsPerPage: 10 | orderBy:'order'"
+                data-total-items="vm.campaigns.count" data-current-page="vm.campaigns.filters.page">
+
+                <div layout="row" layout-align="start center" flex>
+
+                    <div class="info" flex="auto">
+                        <div layout="row" data-layout-xs="column" layout-align="space-between center">
+                            <div layout="row" layout-align="space-between center">
+                                <div>
+                                    <div class="title">
+                                        <span>{{camp.name}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div layout="row" layout-align="end center">
+                                <md-button data-layout="column" data-layout-align="start center"
+                                    data-ng-if="hasPermission('camp','PATCH')"
+                                   >
+                                    <a href="/campaigns/{{camp.id}}">
+                                        <md-icon class="" title="{{'Editar' | translate}}" md-font-icon="icon-pencil">
+                                        </md-icon>
+                                    </a>
+                                </md-button>
+                                <md-button data-layout="column" data-layout-align="start center"
+                                    data-ng-if="hasPermission('camp','DELETE')"
+                                    data-ng-click="vm.removeCampaign($event, camp)">
+                                    <md-icon class="" title="{{'Eliminar' | translate}}" md-font-icon="icon-delete">
+                                    </md-icon>
+                                </md-button>
+                                <md-button data-layout="column" data-layout-align="start center">
+                                    <a href="/leads/board">
+                                        <md-icon class="" title="{{'Ver en dashboard' | translate}}"
+                                            md-font-icon="icon-tile-four">
+                                        </md-icon>
+                                    </a>
+                                </md-button>
+                                <md-button data-layout="column" data-layout-align="start center"
+                                    data-ng-if="hasPermission('camp','DELETE')"
+                                    data-ng-click="vm.copyCreate($event, camp)">
+                                    <md-icon class="" title="{{'Duplicar' | translate}}" md-font-icon="icon-document">
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <dir-pagination-controls class="bottomFixed"></dir-pagination-controls>
+        </md-content>
+    </div>
+</div>

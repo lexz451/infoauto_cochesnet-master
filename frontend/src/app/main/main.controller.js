@@ -62,6 +62,7 @@
                 }
             });
 
+           
             msNavigationService.saveItem('calendar', {
                 title: 'Calendario',
                 icon: 'icon-calendar-today',
@@ -111,6 +112,7 @@
                     }
                 }
             });
+
 
             msNavigationService.saveItem('config', {
                 title: gettextCatalog.getString('Configuración'),
@@ -274,6 +276,37 @@
                 weight: 0,
                 hidden: function () {
                     if (!$rootScope.hasPermission("leads", "LIST")) {
+                        return true;
+                    }
+                }
+            });
+
+            msNavigationService.saveItem('campaigns', {
+                title: 'Campañas',
+                icon: 'icon-bullhorn',
+                state: 'app.campaigns',
+                weight: 20
+            });
+
+            msNavigationService.saveItem('campaigns.new', {
+                title: 'Nueva',
+                icon: 'icon-plus',
+                state: 'app.campaigns.new',
+                weight: 1,
+                hidden: function () {
+                    if (!currentUser.is_admin && !currentUser.is_concession_admin) {
+                        return true;
+                    }
+                }
+            });
+
+            msNavigationService.saveItem('campaigns.search', {
+                title: 'Buscador',
+                icon: 'icon-tile-four',
+                state: 'app.campaigns.search',
+                weight: 1,
+                hidden: function () {
+                    if (!currentUser.is_admin && !currentUser.is_concession_admin) {
                         return true;
                     }
                 }

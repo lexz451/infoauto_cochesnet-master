@@ -7,21 +7,14 @@
                 <span data-translate>Comentarios</span>
             </h2>
             <md-icon ng-hide="vm.isDisabled()" ng-click="vm.addNote()" md-font-icon="icon-plus-circle-outline"
-                class="white black-fg no-margin"></md-icon>
+                class="white white-fg no-margin"></md-icon>
         </div>
     </md-toolbar>
 
     <md-content flex layout-padding data-layout-xs="column" data-layout="row" data-layout-align="space-between center"
         layout-wrap class="fullwidth">
 
-        <div class="no-results text-center" ng-if="vm.lead.note.length == 0">
-
-            <div class="message">
-                <md-icon class="message-icon s96" md-font-icon="icon-document"></md-icon>
-                <div class="message-text" translate>Sin comentarios añadidos</div>
-            </div>
-
-        </div>
+        
 
         <div ng-repeat="note in vm.lead.note" layout="row" layout-wrap class="fullwidth"
             ng-init="note.historyShow=false">
@@ -66,7 +59,7 @@
                 <!--                </div>-->
 
                 <md-button ng-click="vm.deleteNote(note)" ng-hide="vm.isDisabled()" ng-if="!note.id"
-                    class="md-fab md-mini md-warn" aria-label="{{'Borrar comentario' | translate}}">
+                    class="md-mini md-warn" aria-label="{{'Borrar comentario' | translate}}">
                     <md-icon md-font-icon="icon-delete"></md-icon>
                 </md-button>
 

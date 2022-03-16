@@ -42,10 +42,10 @@ from .lead_master import LeadMaster, LeadMasterPersistente
 from .models.lead_management import LeadManagement, EVENT_LEAD_REACTIVATED_KEY
 
 from .permissions import IsConcessionaireAdmin
-from .models import Lead, Task, LEAD_STATUS, Request, GasType, ACD, Origin
+from .models import Lead, Task, LEAD_STATUS, Request, GasType, ACD, Origin, Campaign
 from infoauto.leads.serializers import LeadSerializer, TaskSerializer, TaskCreateSerializer, \
     LeadColumnSerializer, ACDSerializer, OriginSerializer, LeadStatusSerializer, \
-    HistorySerializer
+    HistorySerializer, CampaignSerializer
 
 from .serializers.lead_importer_serializers import LeadImporterSerializer
 from .utils import special_date_ranges, create_excel_template, add_value_to_excel, add_column_to_excel
@@ -125,6 +125,13 @@ class LeadGenericViewSet(GenericViewSet):
             last_lead_action_date=RawSQL(self.raw_sql, params=())
         ).order_by('last_lead_action_date')
         return super().get_queryset()
+
+class CampaignView(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+    serializer_class = CampaignSerializer
+    queryset = Campaign.objects.all()
+    permission_classes = [IsAuthenticated]
+    filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['id', 'name', 'startDate', 'endDate']
 
 
 class LeadView(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin,

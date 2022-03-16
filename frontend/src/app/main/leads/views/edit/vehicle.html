@@ -223,7 +223,7 @@
                     </error-messages>
                 </md-input-container>
 
-                <md-input-container flex-xs="100" ng-init="vehicle.field['ad_link']='vehicles___'+$index+'___ad_link'"
+                <md-input-container flex="100" ng-init="vehicle.field['ad_link']='vehicles___'+$index+'___ad_link'"
                     class=" md-icon-float md-icon-right">
                     <label data-translate>Link anuncio</label>
                     <input type="text" name="{{vehicle.field['ad_link']}}" data-ng-model="vehicle.ad_link"
@@ -237,7 +237,7 @@
 
 
                 <md-input-container flex-xs="100" ng-init="vehicle.field['note']='vehicles___'+$index+'___note'" class="fullwidth">
-                    <label data-translate>Descripción</label>
+                    <label data-translate>Notas de la oportunidad</label>
                     <textarea class="dynamic" name="{{vehicle.field['note']}}" data-ng-model="vehicle.note"
                         ng-disabled="vm.isDisabled()"></textarea>
                     <error-messages field="leadForm[vehicle.field['note']]" server-errors="vm.serverErrors">
@@ -325,8 +325,17 @@
                     </error-messages>
                 </md-input-container>
 
+                <md-input-container flex="100" ng-init="vehicle.field['purchase_description']='vehicles___'+$index+'___price'">
+                    <label data-translate>Descripción método de adquisición</label>
+                    <input type="text" name="{{vehicle.field['purchase_description']}}" data-ng-model="vehicle.purchase_description"
+                        ng-disabled="vm.isDisabled()">
+                    <error-messages field="leadForm[vehicle.field['purchase_description']]" server-errors="vm.serverErrors">
+                    </error-messages>
+                </md-input-container>
+            </div>
 
-
+            <div data-layout="row">
+                
             </div>
 
             <div layout="row" layout-align="end center" ng-hide="vm.isDisabled()">

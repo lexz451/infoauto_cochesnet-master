@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WORK_DIR="$(dirname "$0")"
-PROJECT_DIR="$(dirname "$WORK_DIR")"
+PROJECT_DIR="$(dirname "../$WORK_DIR")"
 
 pip --version >/dev/null 2>&1 || {
     echo >&2 -e "\npip is required but it's not installed."

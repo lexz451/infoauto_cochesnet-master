@@ -45,7 +45,7 @@
             color: rgba(255, 255, 255, 0.70);
 
             &:hover {
-                background: rgba(115,103,240,.18);
+                background: rgba(#4e63aa,.18);
             }
 
             // Non-link & Link Common
@@ -109,8 +109,8 @@
                 }
 
                 &.active {
-                        background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
-                        box-shadow: 0 0 10px 1px rgba(115,103,240,.70);
+                        background: #4e63aa;
+                        box-shadow: 0 0 10px 1px rgba(#4e63aa,.70);
                         color: #fff !important;
                         font-weight: 400;
                         border-radius: 4px;

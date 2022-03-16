@@ -27,7 +27,7 @@
             queryAll: queryAll,
             queryAllObj: queryAllObj,
             create: {method: 'POST'},
-            update: {method: 'PATCH'}
+            update: {method: 'PATCH'},
         };
 
         // Base Url
@@ -53,6 +53,11 @@
         api.URLs.setLeadsByUser=api.baseUrl + 'user/:id/set_user_leads/';
         api.URLs.vehicles=api.baseUrl + 'vehicles/:id/';
         api.URLs.appraisals=api.baseUrl + 'appraisal/:id/';
+
+        // Campaigns
+        api.URLs.campaigns=api.baseUrl + 'campaigns/';
+        api.URLs.campaignsDetail=api.baseUrl + 'campaigns/:id/';
+
 
         api.URLs.leadsNews=api.baseUrl + 'lead_col/?status=new';
         api.URLs.leadsAttended=api.baseUrl + 'lead_col/?status=attended';
@@ -182,6 +187,20 @@
 
         api.tasks = $resource(api.URLs.tasks, {id: '@id'}, defaultObj);
         api.taskTypes = $resource(api.URLs.taskTypes, {id: '@id'}, defaultObj);
+
+        api.campaigns = $resource(api.URLs.campaigns, { id: '@id' }, {
+            queryAll: queryAll,
+            queryAllObj: queryAllObj,
+            create: {method: 'POST'},
+            update: {
+                method: 'PATCH',
+                url: 'api/campaigns/:id/'
+            },
+            getById: {
+                method: 'GET',
+                url: 'api/campaigns/:id'
+            }
+        });
 
         api.concessionaires = $resource(api.URLs.concessionaires, {id: '@id'}, {
             queryAll: queryAll,

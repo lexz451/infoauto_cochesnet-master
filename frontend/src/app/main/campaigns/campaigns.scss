@@ -1,0 +1,87 @@
+#campaignsNew,
+#campaignsSearch {
+    .content-card {
+        margin: 1rem;
+
+        md-input-container {
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+
+        .md-datepicker-input-container {
+            width: 90%;
+        }
+
+        ._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
+            top: 0;
+        }
+
+        .md-button.md-icon-button {
+            width: 24px !important;
+        }
+
+        .send-button {
+            margin-left: auto;
+            border-radius: 10px !important;
+            border-color: #1b1931 !important;
+            background-color: #4e63aa !important;
+            color: #fff !important;
+            &[disabled] {
+                background-color: #a7a7a7 !important;
+            }
+        }
+
+        .md-button.bn1{
+            display: flex;
+            align-items: center;
+            border: none;
+            padding: 0.786rem 1.5rem;
+            font-size: 1.2rem;
+            line-height: 1;
+            border-radius: 10px !important;
+            border-color: #1b1931 !important;
+            background-color: #4e63aa !important;
+            color: #fff !important;
+            //margin-left: 40px;
+            height: 40px;
+            //margin-left: auto;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
+            :hover {
+                box-shadow: 0 8px 25px -8px #4e63aa;
+            }
+            md-icon {
+                margin-right: 1rem;
+                &::before {
+                    color: #fafafa !important;
+                }
+            }
+        }
+
+        .filters {
+            md-input-container {
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                margin-right: 1.5rem;
+            }
+            ._md-datepicker-has-calendar-icon {
+                max-width: 292px;
+            }
+        }
+
+        .campaign-item {
+            box-shadow: 0 0 5px 3px rgba(#000, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            height: 60px;
+
+            .md-button {
+                min-width: unset !important;
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+                md-icon::before {
+                    color: #4e63aa;
+                }
+            }
+        }
+    }
+}

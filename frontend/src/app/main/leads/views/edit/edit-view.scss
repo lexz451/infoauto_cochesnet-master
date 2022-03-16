@@ -1,11 +1,16 @@
 #lead-edit-dialog,
 #lead-edit {
 
+  .white-fg::before {
+    color: #fafafa !important;
+  }
+
+
     md-toolbar{
       min-height: 50px;
       height: 50px;
       color: #fff !important;
-      background-color: #7367f0 !important;
+      background-color: #4e63aa !important;
       border-radius: 5px 5px 0px 0px !important;
     }
 

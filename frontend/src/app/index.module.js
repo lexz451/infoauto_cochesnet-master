@@ -40,6 +40,7 @@
 
             // Metrics
             //'app.metrics',
+            'app.campaigns',
 
             // Informes
             'app.leads',

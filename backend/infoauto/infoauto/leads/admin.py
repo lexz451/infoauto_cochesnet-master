@@ -2,7 +2,7 @@ from django.contrib import admin
 from simple_history.admin import SimpleHistoryAdmin
 
 from infoauto.leads.models import Request, Lead, Note, Origin, Concessionaire, Phone, Email, UserConcession, Task, \
-    Client, Vehicle
+    Client, Vehicle, Campaign
 
 admin.site.register(Lead, SimpleHistoryAdmin)
 admin.site.register(Note, SimpleHistoryAdmin)
@@ -31,5 +31,6 @@ admin.site.register(Email)
 admin.site.register(UserConcession)
 admin.site.register(Task)
 admin.site.register(Request, SimpleHistoryAdmin)
+admin.site.register(Campaign)
 
 admin.site.register(Vehicle, SimpleHistoryAdmin)
