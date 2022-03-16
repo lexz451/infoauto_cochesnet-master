@@ -284,7 +284,7 @@
             msNavigationService.saveItem('campaigns', {
                 title: 'Campañas',
                 icon: 'icon-bullhorn',
-                state: 'app.campaigns',
+                //state: 'app.campaigns',
                 weight: 20
             });
 
