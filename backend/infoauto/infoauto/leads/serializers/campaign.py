@@ -65,8 +65,8 @@ class CampaignSerializer(WritableNestedModelSerializer):
     origin = CampaignOriginSerializer(allow_null=True, required=False)
     source = CampaignSourceSerializer(allow_null=True, required=False)
     brand = CampaignBrandSerializer(allow_null=True, required=False)
-    model = CampaignModelSerializer(allow_null=True, required=False)
-    version = CampaignVersionSerializer(allow_null=True, required=False)
+    model = CampaignModelSerializer(allow_null=True, required=False, read_only=True)
+    version = CampaignVersionSerializer(allow_null=True, required=False, read_only=True)
     channel = ChannelSerializer(allow_null=True, required=False)
 
     class Meta:
