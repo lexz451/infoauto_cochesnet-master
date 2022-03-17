@@ -1,5 +1,6 @@
 
 from email.policy import default
+from infoauto.vehicles.serializers import GasTypeSerializer, VehicleBrandSerializer, VehicleModelSerializer
 from infoauto.source_channels.serializers.sources import SourceSerializer, ChannelSerializer
 from infoauto.leads.serializers.origins import OriginSerializer
 from drf_writable_nested import WritableNestedModelSerializer
@@ -40,7 +41,7 @@ class CampaignBrandSerializer(WritableNestedModelSerializer):
 
 class CampaignModelSerializer(WritableNestedModelSerializer):
     name = SerializerMethodField(read_only=True)
-
+    brand = VehicleBrandSerializer()
     def get_name(self, model):
         return r'Model...'
 
@@ -51,7 +52,10 @@ class CampaignModelSerializer(WritableNestedModelSerializer):
 
 class CampaignVersionSerializer(WritableNestedModelSerializer):
     name = SerializerMethodField(read_only=True)
-
+    vehicle_model = VehicleModelSerializer()
+    gas_type_data = GasTypeSerializer(source='gas_type', read_only=True)
+    version_fullname = SerializerMethodField()
+    
     def get_name(self, model):
         return r'Model...'
 
@@ -65,8 +69,8 @@ class CampaignSerializer(WritableNestedModelSerializer):
     origin = CampaignOriginSerializer(allow_null=True, required=False)
     source = CampaignSourceSerializer(allow_null=True, required=False)
     brand = CampaignBrandSerializer(allow_null=True, required=False)
-    model = CampaignModelSerializer(allow_null=True, required=False, read_only=True)
-    version = CampaignVersionSerializer(allow_null=True, required=False, read_only=True)
+    model = CampaignModelSerializer(allow_null=True, required=False)
+    version = CampaignVersionSerializer(allow_null=True, required=False)
     channel = ChannelSerializer(allow_null=True, required=False)
 
     class Meta:
