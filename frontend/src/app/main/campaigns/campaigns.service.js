@@ -16,11 +16,35 @@
             campaign: {},
             getCampaigns: getCampaigns,
             getCampaign: getCampaign,
-            saveCampaign: saveCampaign
+            saveCampaign: saveCampaign,
+            deleteCampaign: deleteCampaign
         }
 
         return service;
 
+        function deleteCampaign(id) {
+            console.log(id);
+            var deferred = $q.defer();
+            api.campaigns.delete({ id: id }, deleteOk, deleteKO);
+            return deferred.promise;
+
+            function deleteOk(response) {
+                // Store the clients
+                //service.channels.data.push(response);
+                //service.channels.count ++;
+                deferred.resolve();
+            }
+
+            function deleteKO(response) {
+                // Actauliza el listado
+                //for (var i = 0; i < service.channels.data.length; i++) {
+                //    if (service.channels.data[i].id === response.id) {
+                //        service.channels.data[i] = angular.copy(response);
+                ///    }
+                // }
+                deferred.reject(response);
+            }
+        }
 
         function saveCampaign(data) {
             var deferred = $q.defer();
@@ -46,7 +70,7 @@
                 //    if (service.channels.data[i].id === response.id) {
                 //        service.channels.data[i] = angular.copy(response);
                 ///    }
-               // }
+                // }
                 deferred.resolve(response);
             }
 
@@ -57,7 +81,7 @@
 
         function getCampaign(id) {
             var deferred = $q.defer();
-            api.campaigns.getById({id: id}, getOK, getKO);
+            api.campaigns.getById({ id: id }, getOK, getKO);
 
             function getOK(response) {
                 service.campaign = response;
@@ -80,7 +104,7 @@
             return deferred.promise;
 
             function getOK(response) {
-                service.campaigns.data=response.results;
+                service.campaigns.data = response.results;
                 service.campaigns.count = response.count;
 
                 deferred.resolve(service.campaigns);
@@ -89,8 +113,8 @@
             function getKO(response) {
                 //con esto evitamos que den problemas los not found cuando
                 // filtramos y estamos en una página que ya no existe
-                if(response.status==404 && service.campaigns.filters.page!=1){
-                    service.campaigns.filters.page=1;
+                if (response.status == 404 && service.campaigns.filters.page != 1) {
+                    service.campaigns.filters.page = 1;
                     getChannels();
                 }
                 deferred.reject(response);

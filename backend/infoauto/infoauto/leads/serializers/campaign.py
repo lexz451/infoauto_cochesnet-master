@@ -53,8 +53,8 @@ class CampaignModelSerializer(WritableNestedModelSerializer):
 class CampaignVersionSerializer(WritableNestedModelSerializer):
     name = SerializerMethodField(read_only=True)
     vehicle_model = VehicleModelSerializer()
-    gas_type_data = GasTypeSerializer(source='gas_type', read_only=True)
-    version_fullname = SerializerMethodField()
+    gas_type = GasTypeSerializer(read_only=True)
+    #version_fullname = SerializerMethodField()
     
     def get_name(self, model):
         return r'Model...'
@@ -77,6 +77,7 @@ class CampaignSerializer(WritableNestedModelSerializer):
         model = Campaign
         partial = True
         fields = [
+            'lead',
             'id', 
             'name', 
             'concessionaire', 

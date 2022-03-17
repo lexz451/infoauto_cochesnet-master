@@ -5,7 +5,7 @@
         .controller('CampaignsController', CampaignsController);
 
     /** @ngInject */
-    function CampaignsController($location, originsService, $scope, DebounceService, currentUser, Campaigns, Campaign, Expenses, concessionairesService, campaignsService, vehiclesService, $q) {
+    function CampaignsController($location, leadsService, originsService, $scope, DebounceService, currentUser, Campaigns, Campaign, Expenses, concessionairesService, campaignsService, vehiclesService, $q) {
         var vm = this;
         vm.currentUser = currentUser;
 
@@ -68,23 +68,47 @@
         vm.deleteExpense = deleteExpense;
         vm.getAllOrigins = getAllOrigins;
         vm.getAllChannels = getAllChannels;
+        vm.getLeads = getLeads;
+        vm.changeVehicleVersion = changeVehicleVersion;
 
 
         $scope.$watch('vm.campaigns.filters', DebounceService(campaignsService.getCampaigns, 300), true);
+        $scope.$watch('vm.expenses', getTotalInvestment, true);
+
+        function getTotalInvestment() {
+            if (vm.expenses.length) {
+                const amount = vm.expenses.map(function(e) {
+                    return e.amount;
+                }).reduce(function(p,n) {
+                    return p + n
+                }, 0);
+                vm.campaign.investment = amount;
+            }
+        }
 
         vm.q = '';
+
+        function getLeads(text) {
+            var deferred = $q.defer();
+            leadsService.getLeads().then(function (res) {
+                console.log(res);
+                deferred.resolve(res.data);
+            })
+            return deferred.promise;
+        }
 
         function getAllChannels(text, origin) {
             var deferred = $q.defer();
             if (origin && origin.available_channels.length > 0) {
-                deferred.resolve(origin.available_channels_data);
+                deferred.resolve(origin.available_channels);
             } else {
                 deferred.resolve([]);
             }
             return deferred.promise;
         }
 
-        function deleteExpense(i) {
+        function deleteExpense(i,form) {
+            form.$pristine = false;
             vm.expenses.splice(i, 1);
         }
 
@@ -101,7 +125,13 @@
         }
 
         function removeCampaign($e, camp) {
-
+            console.log(camp);
+            campaignsService.deleteCampaign(camp.id).then(function() {
+                campaignsService.getCampaigns().then(function (e) {
+                    $location.path('/campaigns/search');
+                });
+            })
+            
         }
 
         function editCampaign($e, camp) {
@@ -115,6 +145,7 @@
         function saveCampaign() {
             const _data = JSON.stringify(vm.expenses);
             vm.campaign.expenses = _data;
+            vm.campaign.lead = vm.campaign.lead.id;
             campaignsService.saveCampaign(vm.campaign);
             $location.path('/campaigns/search');
         }

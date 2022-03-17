@@ -27,6 +27,9 @@ CAMPAIGN_STATUS = [
 
 
 class Campaign(TimeStampedModel):
+
+    lead = ForeignKey('Lead', on_delete=CASCADE, related_name='campaigns', blank=True, null=True)
+
     name = CharField(max_length=255, null=True, blank=True)
     # type
     campaignType = CharField(max_length=255,choices=CAMPAIGN_TYPES, null=True)

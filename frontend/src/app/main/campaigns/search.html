@@ -26,7 +26,7 @@
                     </md-input-container>
                    
 
-                    <div data-layout="row" flex="50">
+                    <div data-layout="row" flex="100">
                         <md-button data-ng-click="vm.campaigns.filters={}" style="margin-left: auto;" class="md-accent md-raised md-ink-ripple bn1">
                             <md-icon md-font-icon="icon-delete"></md-icon>
                             Limpiar
@@ -114,7 +114,7 @@
                                     </md-icon>
                                 </md-button>
                                 <md-button data-layout="column" data-layout-align="start center">
-                                    <a href="/leads/board">
+                                    <a href="/leads/{{camp.lead}}/edit">
                                         <md-icon class="" title="{{'Ver en dashboard' | translate}}"
                                             md-font-icon="icon-tile-four">
                                         </md-icon>

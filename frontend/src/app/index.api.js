@@ -200,6 +200,10 @@
                 method: 'GET',
                 url: 'api/campaigns/:id'
             },
+            delete: {
+                method: 'DELETE',
+                url: 'api/campaigns/:id'
+            }
         });
 
         api.concessionaires = $resource(api.URLs.concessionaires, {id: '@id'}, {

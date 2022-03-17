@@ -221,7 +221,10 @@ class Appraisal(TimeStampedModel):
 
 GEARBOX_CHOICES = [
     ('manual', _('Manual')),
-    ('automatic', _('Automatico'))
+    # temp fix
+    ('MANUAL', _('Manual')),
+    ('automatic', _('Automatico')),
+    ('AUTOMATIC', _('Automatico'))
 ]
 
 

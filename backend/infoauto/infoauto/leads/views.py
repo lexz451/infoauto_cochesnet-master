@@ -127,7 +127,7 @@ class LeadGenericViewSet(GenericViewSet):
         return super().get_queryset()
 
 
-class CampaignView(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
+class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = CampaignSerializer
     queryset = Campaign.objects.all().order_by("startDate")
     permission_classes = [IsAuthenticated]
