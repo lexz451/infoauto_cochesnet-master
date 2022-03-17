@@ -18,10 +18,10 @@
 
                                
 
-                                <div class="fullwidth"
+                                <!--<div class="fullwidth"
                                      ng-include="'app/main/leads/views/edit/status.html'">
                                     include status
-                                </div>
+                                </div>-->
 
                                 <!--<div layout="row" layout-align="end end" class="mb-50">
                                     <div layout="row" layout-align="start center">
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>-->
 
-                                <div layout="row" layout-align="end end" class="save__button mb-50">
+                                <div style="margin-left: auto;" layout="row" layout-align="end end" class="save__button mb-50">
                                     <div layout="row" layout-align="start center">
                                         <md-button ng-click="vm.openSaveLeadDialog()" data-debouce-click
                                                    ng-hide="vm.isDisabled()"
@@ -97,6 +97,16 @@
                                 </div>
                             </div>
 
+                            <div style="margin-left: auto;" layout="row" layout-align="end end" class="save__button mb-50">
+                                <div layout="row" layout-align="start center">
+                                    <md-button ng-click="vm.openSaveLeadDialog()" data-debouce-click
+                                               ng-hide="vm.isDisabled()"
+                                               data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
+                                               aria-label="{{'Guardar' | translate}}" class="md-fab">
+                                        <md-icon md-font-icon="icon-content-save"></md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
                         </form>
                     </div>
 

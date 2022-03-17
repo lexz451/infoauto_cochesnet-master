@@ -199,7 +199,7 @@
             getById: {
                 method: 'GET',
                 url: 'api/campaigns/:id'
-            }
+            },
         });
 
         api.concessionaires = $resource(api.URLs.concessionaires, {id: '@id'}, {

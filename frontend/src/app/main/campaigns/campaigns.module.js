@@ -57,6 +57,31 @@
                 },
                 bodyClass: 'todo'
             })
+            .state('app.campaigns.new', {
+                url: '/new',
+                views: {
+                    'content@app': {
+                        templateUrl: 'app/main/campaigns/new.html',
+                        controller: 'CampaignsController as vm'
+                    }
+                },
+                resolve: {
+                    currentUser: function (AuthService) {
+                        return AuthService.getCurrentUser().then(function (response) {
+                            if (response) {
+                                return response;
+                            }
+                        });
+                    },
+                    Campaigns: function (campaignsService) {
+                        return [];
+                    },
+                    Expenses: function () {
+                        return [];
+                    }
+                },
+                bodyClass: 'todo'
+            })
             .state('app.campaigns.edit', {
                 url: '/:id',
                 views: {
@@ -83,43 +108,19 @@
                     Expenses: function (Campaign) {
                         const _json = Campaign.expenses;
                         const data = JSON.parse(_json || "[]");
-                        return data;
-                    }
-                    /*Channels: function (channelsService) {
-                        channelsService.channels.filters = {};
-                        return channelsService.getChannels();
-                    }*/
-                },
-            })
-            .state('app.campaigns.new', {
-                url: '/new',
-                views: {
-                    'content@app': {
-                        templateUrl: 'app/main/campaigns/new.html',
-                        controller: 'CampaignsController as vm'
-                    }
-                },
-                resolve: {
-                    currentUser: function (AuthService) {
-                        return AuthService.getCurrentUser().then(function (response) {
-                            if (response) {
-                                return response;
+                        const _data = (data || []).map(e => {
+                            return {
+                                amount: e['amount'] || 0,
+                                date: e['date'] ? new Date(e.date) : Date.now()
                             }
-                        });
-                    },
-                    Campaigns: function (campaignsService) {
-                        campaignsService.campaigns.filters = {};
-                        return campaignsService.getCampaigns();
-                    },
-                    Expenses: function () {
-                        return [];
+                        })
+                        return _data;
                     }
                     /*Channels: function (channelsService) {
                         channelsService.channels.filters = {};
                         return channelsService.getChannels();
                     }*/
                 },
-                bodyClass: 'todo'
             });
     }
 })();

@@ -2,6 +2,11 @@
   color: #353333 !important;
 }
 
+md-datepicker {
+  display: flex;
+  align-items: center;
+}
+
 md-dialog{
   overflow: hidden;
 }

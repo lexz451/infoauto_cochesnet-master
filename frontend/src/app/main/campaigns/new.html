@@ -45,7 +45,7 @@
                     </md-autocomplete>
 
                     <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
-                        ng-disabled="vm.isDisabled() || !vm.campaign.brand" md-selected-item="vm.campaign.model"
+                        ng-disabled="vm.isDisabled() " md-selected-item="vm.campaign.model"
                         md-search-text="searchTextModel"
                         md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
                         md-item-text="model.model_name" flex="25">
@@ -58,7 +58,7 @@
                     </md-autocomplete>
 
                     <md-autocomplete md-floating-label="Version" md-delay="300" md-input-name="version"
-                        md-no-cache="true" ng-disabled="vm.isDisabled() || !vm.campaign.model"
+                        md-no-cache="true" ng-disabled="vm.isDisabled()"
                         __md-selected-item-change="vm.changeVehicleVersion(vehicle,'power','gas')"
                         md-selected-item="vm.campaign.version" md-search-text="searchTextVersion"
                         md-items="version in vm.getVersions(vm.campaign.model.id, searchTextVersion)" md-min-length="0"
@@ -88,57 +88,64 @@
                                 {{ type.name }}
                             </md-option>
                         </md-select>
-
                     </md-input-container>
                     <md-input-container flex="25">
                         <label>Tipo</label>
-                        <md-select data-ng-model="vm.campaign.type" name="campaign_type">
+                        <md-select data-ng-model="vm.campaign.campaignType" name="campaign_communication_type">
                             <md-option data-ng-repeat="type in vm.campaignTypes" data-ng-value="type.id">
                                 {{ type.name }}
                             </md-option>
                         </md-select>
-
                     </md-input-container>
+
                 </div>
 
                 <div data-layout="row">
                     <md-input-container flex="25">
                         <label>Medio</label>
-                        <md-select data-ng-model="vm.campaign.status" name="campaign_status">
-                            <md-option data-ng-repeat="type in vm.campaignStatus" data-ng-value="type.id">
+                        <md-select data-ng-model="vm.campaign.communicationType" name="campaign_campaign_type">
+                            <md-option data-ng-repeat="type in vm.communicationTypes" data-ng-value="type.id">
                                 {{ type.name }}
                             </md-option>
                         </md-select>
+                    </md-input-container>
+                    <md-autocomplete flex="25" md-floating-label="{{'Origen' | translate }}" md-delay="300"
+                        md-input-name="origin" md-no-cache="true" md-min-length="0"
+                        md-selected-item="vm.campaign.origin" md-search-text="searchTextAllOrigin"
+                        md-items="origin in vm.getAllOrigins(searchTextAllOrigin)" md-item-text="origin.name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextAllOrigin">{{origin.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ningún origen con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-input-container flex="25">
 
                     </md-input-container>
                     <md-input-container flex="25">
-                        <label>Origen</label>
-                        <md-select data-ng-model="vm.campaign.type" name="campaign_type">
-                            <md-option data-ng-repeat="type in vm.campaignTypes" data-ng-value="type.id">
-                                {{ type.name }}
-                            </md-option>
-                        </md-select>
 
                     </md-input-container>
                 </div>
 
                 <div data-layout="row">
                     <md-input-container flex="25">
-                        <input type="text" name="name" data-ng-model="vm.campaign.investment"
+                        <input type="text" name="investment" data-ng-model="vm.campaign.investment"
                             placeholder="Total inversión" md-autofocus>
-
                     </md-input-container>
-                    <md-input-container flex="25">
-                        <label>Canal</label>
-                        <md-select data-ng-model="vm.campaign.channel" name="campaign_type">
-                            <md-option data-ng-repeat="type in vm.campaignTypes" data-ng-value="type.id">
-                                {{ type.name }}
-                            </md-option>
-                        </md-select>
-                        <!--<error-messages field="leadForm.client___client_segment" server-errors="vm.serverErrors">
-                        </error-messages>-->
-                    </md-input-container>
-
+                    <md-autocomplete flex="25" md-floating-label="{{'Canal' | translate }}" md-delay="300"
+                        md-input-name="channel" md-no-cache="false" md-min-length="0"
+                        ng-disabled="!vm.campaign.origin.id" md-selected-item="vm.campaign.channel"
+                        md-search-text="searchTextAllChannel"
+                        md-items="channel in vm.getAllChannels(searchTextAllChannel, vm.campaign.origin)"
+                        md-item-text="channel.name">
+                        <md-item-template>
+                            <span md-highlight-text="searchTextAllChannel">{{channel.name}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <span data-translate>No hay ningún canal con ese nombre</span>
+                        </md-not-found>
+                    </md-autocomplete>
                     <md-input-container flex="50">
                         <input type="text" name="name" data-ng-model="vm.campaign.url" placeholder="URL" md-autofocus>
                         <error-messages field="campaignForm.name" server-errors="vm.serverErrors" required>
@@ -158,7 +165,7 @@
                 <div data-layout="row" data-layout-align="start center">
                     <md-button data-debouce-click type="button" data-ng-click="vm.saveCampaign()"
                         class="send-button md-accent md-raised"
-                        data-ng-disabled="campaignForm.$invalid || !vm.campaign.id ? campaignForm.$pristine : false"
+                        data-ng-disabled="campaignForm.$invalid || campaignForm.$pristine"
                         aria-label="{{'Guardar' | translate}}">
                         <span data-translate>Guardar</span>
                     </md-button>
@@ -166,32 +173,35 @@
             </form>
         </md-content>
         <md-content class="content p-20 mt-20">
-            <div data-layout="row">
-                <md-button class="md-accent md-raised md-ink-ripple bn1" data-ng-click="vm.addExpense()">
-                    <md-icon md-font-icon="icon-plus"></md-icon>
-                    Nuevo Gasto
-                </md-button>
-            </div>
-            <div ng-repeat="expense in vm.expenses">
-                <div flex="100" layout="row" layout-xs="column">
-
-                    <md-input-container flex="25">
-                        <md-datepicker md-placeholder="Fecha" ng-model="expense.date"
-                            input-aria-labelledby="start-date"></md-datepicker>
-                    </md-input-container>
-
-                    <md-input-container flex="25">
-                        <input type="number" name="name" value="0" data-ng-model="expenses.amount" placeholder="Monto"
-                            md-autofocus>
-                    </md-input-container>
-
-                    <md-button ng-click="vm.deleteExpense($index)" ng-hide="vm.isDisabled()" class="md-mini md-warn"
-                        aria-label="{{'Borrar comentario' | translate}}">
-                        <md-icon md-font-icon="icon-delete"></md-icon>
+            <form novalidate name="expenseForm">
+                <div data-layout="row">
+                    <md-button class="md-accent md-raised md-ink-ripple bn1" data-ng-click="vm.addExpense()">
+                        <md-icon md-font-icon="icon-plus"></md-icon>
+                        Nuevo Gasto
                     </md-button>
-
+                    <md-button data-ng-disabled="campaignForm.$invalid || expenseForm.$invalid || expenseForm.$pristine" class="md-accent md-raised md-ink-ripple bn1" data-ng-click="vm.saveExpense()">
+                        Guardar
+                    </md-button>
                 </div>
-            </div>
+                <div ng-repeat="expense in vm.expenses">
+                    <div flex="100" layout="row" layout-xs="column">
+                        <md-input-container flex="25">
+                            <md-datepicker required md-placeholder="Fecha" ng-model="expense.date"
+                                input-aria-labelledby="start-date"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container flex="25">
+                            <input required type="number" name="name" value="0" data-ng-model="expense.amount"
+                                placeholder="Monto" md-autofocus>
+                        </md-input-container>
+
+                        <md-button ng-click="vm.deleteExpense($index)" ng-hide="vm.isDisabled()" class="md-mini md-warn"
+                            aria-label="{{'Borrar comentario' | translate}}">
+                            <md-icon md-font-icon="icon-delete"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </form>
         </md-content>
     </div>
 </div>

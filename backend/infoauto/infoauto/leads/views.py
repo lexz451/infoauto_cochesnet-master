@@ -126,12 +126,17 @@ class LeadGenericViewSet(GenericViewSet):
         ).order_by('last_lead_action_date')
         return super().get_queryset()
 
+
 class CampaignView(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
     serializer_class = CampaignSerializer
-    queryset = Campaign.objects.all()
+    queryset = Campaign.objects.all().order_by("startDate")
     permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['id', 'name', 'startDate', 'endDate']
+
+    @action(methods=['POST'], detail=True)
+    def addExpense(self, request, *args, **kwargs):
+        print(request)
 
 
 class LeadView(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin,
@@ -819,10 +824,10 @@ class LeadFullHistoryView(mixins.ListModelMixin, GenericViewSetAux):
         lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
 
         assert lookup_url_kwarg in self.kwargs, (
-                'Expected view %s to be called with a URL keyword argument '
-                'named "%s". Fix your URL conf, or set the `.lookup_field` '
-                'attribute on the view correctly.' %
-                (self.__class__.__name__, lookup_url_kwarg)
+            'Expected view %s to be called with a URL keyword argument '
+            'named "%s". Fix your URL conf, or set the `.lookup_field` '
+            'attribute on the view correctly.' %
+            (self.__class__.__name__, lookup_url_kwarg)
         )
 
         filter_kwargs = {self.lookup_field: self.kwargs[lookup_url_kwarg]}
@@ -944,7 +949,7 @@ class LeadCalendarView(GenericViewSet):
             qs = self.filter_queryset(self.get_queryset()).filter(
                 Q(lead__concessionaire__userconcession__user__id=self.request.user.id,
                   lead__concessionaire__userconcession__is_concessionaire_admin=True
-                  )  | Q(lead__user__id=self.request.user.id)).distinct()
+                  ) | Q(lead__user__id=self.request.user.id)).distinct()
         serializer = self.get_serializer(qs, many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
@@ -956,7 +961,7 @@ class LeadCalendarView(GenericViewSet):
             qs = self.filter_queryset(self.get_queryset()).filter(
                 Q(lead__concessionaire__userconcession__user__id=self.request.user.id,
                   lead__concessionaire__userconcession__is_concessionaire_admin=True
-                  )  | Q(lead__user__id=self.request.user.id)).distinct()
+                  ) | Q(lead__user__id=self.request.user.id)).distinct()
 
         not_attended = qs.filter(type='pending_lead').count()
         pending_task = qs.filter(type='pending_task', date__gte=timezone.now()).count()
@@ -989,7 +994,7 @@ class LeadCalendarView(GenericViewSet):
             lqs = self.filter_queryset(Lead.objects.filter(
                 Q(concessionaire__user__id=self.request.user.id,
                   concessionaire__userconcession__is_concessionaire_admin=True
-                  )  | Q(user__id=self.request.user.id)).distinct())
+                  ) | Q(user__id=self.request.user.id)).distinct())
 
         attended = lqs.filter(~Q(status='new')).count()
 

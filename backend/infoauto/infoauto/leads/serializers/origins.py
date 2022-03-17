@@ -27,4 +27,3 @@ class OriginSerializer(WritableNestedModelSerializer):
         model = Origin
         fields = ('id', 'name', 'icon', 'phone_set', 'email_set', 'available_channels', 'available_channels_data')
 
-

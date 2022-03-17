@@ -8,6 +8,7 @@ from infoauto.common.util_phone import normalize_phone
 from infoauto.leads.models.origins import Origin
 from infoauto.leads.models.concessionaires import Concessionaire
 from infoauto.source_channels.models.channels import Channel
+from rest_framework.fields import SerializerMethodField
 
 
 class SourceManager(Manager):

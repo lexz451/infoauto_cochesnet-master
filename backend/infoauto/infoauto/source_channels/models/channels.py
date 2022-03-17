@@ -6,7 +6,7 @@ from model_utils.models import TimeStampedModel
 
 
 class Channel(TimeStampedModel):
-    slug = SlugField(unique=True)
+    slug = SlugField(unique=False)
     name = CharField(max_length=255, unique=True)
 
     class Meta:

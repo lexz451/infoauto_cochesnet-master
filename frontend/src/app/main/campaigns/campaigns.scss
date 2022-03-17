@@ -6,10 +6,23 @@
         md-input-container {
             margin-right: 1rem;
             margin-left: 1rem;
-        }
-
-        .md-datepicker-input-container {
-            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            md-datepicker {
+                width: 100%;
+                padding-right: 0;
+                .md-datepicker-input-container {
+                    width: 100%;
+                }
+                .md-button.md-icon-button {
+                    width: 28px !important;
+                }        
+            }
+            md-select {
+                width: 100%;
+            }
         }
 
         ._md-datepicker-floating-label > md-datepicker .md-datepicker-button {
@@ -48,6 +61,9 @@
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0s, border 0s;
             :hover {
                 box-shadow: 0 8px 25px -8px #4e63aa;
+            }
+            &[disabled] {
+                background-color: #a7a7a7 !important;
             }
             md-icon {
                 margin-right: 1rem;

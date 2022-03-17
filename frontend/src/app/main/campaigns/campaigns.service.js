@@ -21,9 +21,11 @@
 
         return service;
 
+
         function saveCampaign(data) {
             var deferred = $q.defer();
             var _data = angular.copy(data);
+            //_data['concessionaire'] = data['concessionaire']['id'];
             if (_data.id) {
                 api.campaigns.update(_data, updateOK, saveKO);
             } else {

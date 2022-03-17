@@ -5,22 +5,31 @@
         .controller('CampaignsController', CampaignsController);
 
     /** @ngInject */
-    function CampaignsController($scope, DebounceService, currentUser, Campaigns, Campaign, Expenses, concessionairesService, campaignsService, vehiclesService, $q) {
+    function CampaignsController($location, originsService, $scope, DebounceService, currentUser, Campaigns, Campaign, Expenses, concessionairesService, campaignsService, vehiclesService, $q) {
         var vm = this;
         vm.currentUser = currentUser;
 
         vm.campaignStatus = [
             {
-                id: 0,
-                name: "Status #1"
+                id: 'on',
+                name: "Activo"
+            },
+            {
+                id: 'off',
+                name: 'Inactivo'
             }
         ]
 
         vm.campaignTypes = [
-            {
-                id: 0,
-                name: "Tipo #1"
-            }
+            { id: 'type1', name: "Tipo de Campaña #1" },
+            { id: 'type2', name: "Tipo de Campaña #2" },
+            { id: 'type3', name: "Tipo de Campaña #3" }
+        ]
+
+        vm.communicationTypes = [
+            { id: 'type1', name: "Tipo de Comunicación #1" },
+            { id: 'type2', name: "Tipo de Comunicación #2" },
+            { id: 'type3', name: "Tipo de Comunicación #3" }
         ]
 
         vm.campaigns = Campaigns
@@ -30,7 +39,7 @@
             name: "",
             offer: null,
             concessionaire: null,
-            
+
             brand: null,
             model: null,
             version: null,
@@ -43,6 +52,8 @@
 
         vm.expenses = Expenses;
 
+        console.log(Expenses);
+
         vm.saveCampaign = saveCampaign;
         vm.getConcessionaires = getConcessionaires;
         vm.getBrands = getBrands;
@@ -53,11 +64,25 @@
         vm.removeCampaign = removeCampaign;
         vm.editCampaign = editCampaign;
         vm.addExpense = addExpense;
+        vm.saveExpense = saveExpense;
         vm.deleteExpense = deleteExpense;
+        vm.getAllOrigins = getAllOrigins;
+        vm.getAllChannels = getAllChannels;
+
 
         $scope.$watch('vm.campaigns.filters', DebounceService(campaignsService.getCampaigns, 300), true);
 
         vm.q = '';
+
+        function getAllChannels(text, origin) {
+            var deferred = $q.defer();
+            if (origin && origin.available_channels.length > 0) {
+                deferred.resolve(origin.available_channels_data);
+            } else {
+                deferred.resolve([]);
+            }
+            return deferred.promise;
+        }
 
         function deleteExpense(i) {
             vm.expenses.splice(i, 1);
@@ -68,6 +93,11 @@
                 amount: null,
                 date: null
             })
+        }
+
+        function saveExpense() {
+           saveCampaign(vm.campaign);
+           campaignsService.getCampaigns();
         }
 
         function removeCampaign($e, camp) {
@@ -83,7 +113,10 @@
         }
 
         function saveCampaign() {
+            const _data = JSON.stringify(vm.expenses);
+            vm.campaign.expenses = _data;
             campaignsService.saveCampaign(vm.campaign);
+            $location.path('/campaigns/search');
         }
 
         function validateForm() {
@@ -121,6 +154,14 @@
                 deferred.resolve(models);
             });
 
+            return deferred.promise;
+        }
+
+        function getAllOrigins(text) {
+            var deferred = $q.defer();
+            originsService.getAllOrigins(text).then(function (origins) {
+                deferred.resolve(origins);
+            });
             return deferred.promise;
         }
 
