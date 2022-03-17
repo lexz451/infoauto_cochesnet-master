@@ -108,7 +108,7 @@
                     Expenses: function (Campaign) {
                         const _json = Campaign.expenses;
                         const data = JSON.parse(_json || "[]");
-                        const _data = (data || []).map(e => {
+                        const _data = (data || []).map(function (e) {
                             return {
                                 amount: e['amount'] || 0,
                                 date: e['date'] ? new Date(e.date) : Date.now()
