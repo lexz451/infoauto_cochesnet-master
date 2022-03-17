@@ -213,14 +213,14 @@
 
         /* Change Version */
         function changeVehicleVersion(vehicle, power, gas) {
-            if (vehicle.version_data) {
+            /*if (vehicle.version_data) {
                 if (vehicle.version_data.engine_power) {
                     vehicle[power] = vehicle.version_data.engine_power;
                 }
                 if (vehicle.version_data.gas_type_data && vehicle.version_data.gas_type_data.id) {
                     vehicle[gas] = vehicle.version_data.gas_type_data.id;
                 }
-            }
+            }*/
         }
 
     }
