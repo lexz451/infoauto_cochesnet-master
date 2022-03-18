@@ -33,26 +33,8 @@
         ]
 
         vm.campaigns = Campaigns
-
-        vm.defaultCamp = {
-            id: null,
-            name: "",
-            offer: null,
-            concessionaire: null,
-
-            brand: null,
-            model: null,
-            version: null,
-            status: null,
-            startDate: null,
-            endDate: null
-        }
-
         vm.campaign = Campaign
-
         vm.expenses = Expenses;
-
-        console.log(Expenses);
 
         vm.saveCampaign = saveCampaign;
         vm.getConcessionaires = getConcessionaires;
@@ -62,13 +44,11 @@
         vm.getFullNameVersion = getFullNameVersion;
         vm.copyCreate = copyCreate;
         vm.removeCampaign = removeCampaign;
-        vm.editCampaign = editCampaign;
         vm.addExpense = addExpense;
         vm.saveExpense = saveExpense;
         vm.deleteExpense = deleteExpense;
         vm.getAllOrigins = getAllOrigins;
         vm.getAllChannels = getAllChannels;
-        vm.getLeads = getLeads;
         vm.changeVehicleVersion = changeVehicleVersion;
 
 
@@ -84,17 +64,6 @@
                 }, 0);
                 vm.campaign.investment = amount;
             }
-        }
-
-        vm.q = '';
-
-        function getLeads(text) {
-            var deferred = $q.defer();
-            leadsService.getLeads().then(function (res) {
-                console.log(res);
-                deferred.resolve(res.data);
-            })
-            return deferred.promise;
         }
 
         function getAllChannels(text, origin) {
@@ -134,24 +103,23 @@
             
         }
 
-        function editCampaign($e, camp) {
-
-        }
-
         function copyCreate($e, camp) {
-
+            const copy = angular.copy(camp);
+            delete copy.id;
+            campaignsService.saveCampaign(copy).then(function () {
+                campaignsService.getCampaigns().then(function (e) {
+                    $location.path('/campaigns/search');
+                });
+            })
         }
 
         function saveCampaign() {
             const _data = JSON.stringify(vm.expenses);
             vm.campaign.expenses = _data;
-            vm.campaign.lead = vm.campaign.lead.id;
-            campaignsService.saveCampaign(vm.campaign);
-            $location.path('/campaigns/search');
-        }
-
-        function validateForm() {
-
+            campaignsService.saveCampaign(vm.campaign).then(function () {
+                $location.path('/campaigns/search');
+            });
+            
         }
 
         /* Concesionarios */
@@ -222,6 +190,8 @@
                 }
             }*/
         }
+
+        return vm;
 
     }
 })();

@@ -61,7 +61,7 @@
                 // Store the clients
                 //service.channels.data.push(response);
                 //service.channels.count ++;
-                //deferred.resolve(response);
+                deferred.resolve(response);
             }
 
             function updateOK(response) {
@@ -77,6 +77,8 @@
             function saveKO(response) {
                 deferred.reject(response);
             }
+
+            return deferred.promise;
         }
 
         function getCampaign(id) {

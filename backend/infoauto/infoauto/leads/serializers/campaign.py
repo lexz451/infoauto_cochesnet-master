@@ -17,6 +17,7 @@ class CampaignConcessionarySerializer(WritableNestedModelSerializer):
 
 class CampaignOriginSerializer(WritableNestedModelSerializer):
     available_channels = ChannelSerializer(many=True, read_only=True)
+
     class Meta:
         model = Origin
         fields = ['id', 'name', 'available_channels']
@@ -42,6 +43,7 @@ class CampaignBrandSerializer(WritableNestedModelSerializer):
 class CampaignModelSerializer(WritableNestedModelSerializer):
     name = SerializerMethodField(read_only=True)
     brand = VehicleBrandSerializer()
+
     def get_name(self, model):
         return r'Model...'
 
@@ -52,16 +54,17 @@ class CampaignModelSerializer(WritableNestedModelSerializer):
 
 class CampaignVersionSerializer(WritableNestedModelSerializer):
     name = SerializerMethodField(read_only=True)
-    vehicle_model = VehicleModelSerializer()
+    vehicle_model = VehicleModelSerializer(read_only=True)
     gas_type = GasTypeSerializer(read_only=True)
     #version_fullname = SerializerMethodField()
-    
+
     def get_name(self, model):
         return r'Model...'
 
     class Meta:
         model = VehicleVersion
-        fields = ['id', 'name', 'size', 'version_name', 'motor', 'engine_power', 'fuel', 'gearbox', 'comments', 'vehicle_model', 'gas_type']    
+        fields = ['id', 'name', 'size', 'version_name', 'motor', 'engine_power',
+                  'fuel', 'gearbox', 'comments', 'vehicle_model', 'gas_type']
 
 
 class CampaignSerializer(WritableNestedModelSerializer):
@@ -77,14 +80,13 @@ class CampaignSerializer(WritableNestedModelSerializer):
         model = Campaign
         partial = True
         fields = [
-            'lead',
-            'id', 
-            'name', 
-            'concessionaire', 
-            'origin', 'source', 
-            'brand', 
-            'model', 
-            'version', 
+            'id',
+            'name',
+            'concessionaire',
+            'origin', 'source',
+            'brand',
+            'model',
+            'version',
             'investment',
             'url',
             'offer',
@@ -93,5 +95,9 @@ class CampaignSerializer(WritableNestedModelSerializer):
             'communicationType',
             'campaignType',
             'channel',
-            'expenses'
-            ]
+            'expenses',
+            'utm_campaign',
+            'utm_source',
+            'utm_content',
+            'campaingId'
+        ]

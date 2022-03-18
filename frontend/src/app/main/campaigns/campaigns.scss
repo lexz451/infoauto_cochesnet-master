@@ -1,5 +1,8 @@
 #campaignsNew,
 #campaignsSearch {
+    md-content {
+        overflow: unset !important;
+    }
     .content-card {
         margin: 1rem;
 
@@ -29,8 +32,19 @@
             top: 0;
         }
 
+        ._md-datepicker-floating-label._md-datepicker-has-calendar-icon > label:not(.md-no-float):not(.md-container-ignore) {
+            right: unset !important;
+            width: unset !important;
+            left: 35px;
+            bottom: 40px;
+        }
+
         .md-button.md-icon-button {
             width: 24px !important;
+        }
+
+        .pagination .md-button.md-icon-button {
+            width: unset !important;
         }
 
         .send-button {

@@ -14,9 +14,9 @@
 
                         <form name="leadForm" class="md-inline-form ms-form-wizard-form full-width p-20" novalidate>
 
-                            <div layout="row" layout-align="start center" >
+                            <div layout="row" layout-align="start center">
 
-                               
+
 
                                 <!--<div class="fullwidth"
                                      ng-include="'app/main/leads/views/edit/status.html'">
@@ -35,13 +35,21 @@
                                     </div>
                                 </div>-->
 
-                                <div style="margin-left: auto;" layout="row" layout-align="end end" class="save__button mb-50">
+                                <div style="margin-left: auto;" layout="row" layout-align="end end"
+                                    class=" mb-50">
                                     <div layout="row" layout-align="start center">
+                                        <md-button ng-click="vm.changeStatus(vm.lead,'end')" data-debouce-click
+                                            ng-hide="vm.isDisabled()"
+                                            data-ng-if="hasPermission('leads','PATCH') && vm.canEdit() && vm.lead.id"
+                                            aria-label="{{'Cerrar Lead' | translate}}" class="close-btn">
+                                            Cerrar Lead
+                                        </md-button>
                                         <md-button ng-click="vm.openSaveLeadDialog()" data-debouce-click
-                                                   ng-hide="vm.isDisabled()"
-                                                   data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
-                                                   aria-label="{{'Guardar' | translate}}" class="md-fab">
+                                            ng-hide="vm.isDisabled()"
+                                            data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
+                                            aria-label="{{'Guardar' | translate}}" class="save-btn">
                                             <md-icon md-font-icon="icon-content-save"></md-icon>
+                                            Guardar
                                         </md-button>
                                     </div>
                                 </div>
@@ -50,59 +58,57 @@
                             <div layout="row" layout-align="space-between start" layout-wrap>
                                 <div flex="100" flex-xs="100" data-layout="column" data-layout-align="start start">
 
-                                    <div class="fullwidth mb-20" ng-if="vm.isOpenFinishLeadBox || vm.lead.status_end_datetime"
-                                         ng-include="'app/main/leads/views/edit/finish-lead.html'">
-                                        <!--include form finish lead-->
-                                    </div>
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/client.html'">
+                                   
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/client.html'">
                                         <!--include client-->
                                     </div>
 
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/vehicle.html'">
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/vehicle.html'">
                                         <!--include vehicle-->
                                     </div>
 
                                     <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/appraisals.html'">
+                                    ng-if="vm.isOpenFinishLeadBox || vm.lead.status_end_datetime"
+                                    ng-include="'app/main/leads/views/edit/finish-lead.html'">
+                                    <!--include form finish lead-->
+                                </div>
+
+                                    <div class="fullwidth mb-20"
+                                        ng-include="'app/main/leads/views/edit/appraisals.html'">
                                         <!--include appraisals-->
                                     </div>
 
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/tags.html'">
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/tags.html'">
                                         <!--include tags-->
                                     </div>
 
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/request.html'">
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/request.html'">
                                         <!--include request-->
                                     </div>
 
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/tracing.html'">
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/tracing.html'">
                                         <!--include tracing-->
                                     </div>
 
-                                    <div class="fullwidth mb-20"
-                                         ng-include="'app/main/leads/views/edit/notes.html'">
+                                    <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/notes.html'">
                                         <!--include notes-->
                                     </div>
 
                                     <div class="fullwidth mb-20" ng-if="vm.lead.lead_managements.length>0"
-                                         ng-include="'app/main/leads/views/edit/lead_managements.html'">
+                                        ng-include="'app/main/leads/views/edit/lead_managements.html'">
                                         <!--include lead_managements-->
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div style="margin-left: auto;" layout="row" layout-align="end end" class="save__button mb-50">
+                            <div style="margin-left: auto;" layout="row" layout-align="end end"
+                                class="save__button mb-50">
                                 <div layout="row" layout-align="start center">
                                     <md-button ng-click="vm.openSaveLeadDialog()" data-debouce-click
-                                               ng-hide="vm.isDisabled()"
-                                               data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
-                                               aria-label="{{'Guardar' | translate}}" class="md-fab">
+                                        ng-hide="vm.isDisabled()"
+                                        data-ng-if="hasPermission('leads','PATCH') && vm.canEdit()"
+                                        aria-label="{{'Guardar' | translate}}" class="md-fab">
                                         <md-icon md-font-icon="icon-content-save"></md-icon>
                                     </md-button>
                                 </div>
@@ -118,29 +124,30 @@
                     </md-tab-label>
                     <md-tab-body>
                         <form class="p-20">
-                            <div class="fullwidth mb-20"
-                                 ng-include="'app/main/leads/views/edit/vehicle.html'">
+                            <div class="fullwidth mb-20" ng-include="'app/main/leads/views/edit/vehicle.html'">
                                 <!--include vehicle-->
                             </div>
 
-                            <iframe id="iframe-ad-link" ng-if="vm.iframeAdLink" src="{{vm.trustSrc(vm.iframeAdLink)}}"></iframe>
+                            <iframe id="iframe-ad-link" ng-if="vm.iframeAdLink"
+                                src="{{vm.trustSrc(vm.iframeAdLink)}}"></iframe>
                         </form>
                     </md-tab-body>
                 </md-tab>
 
-                <md-tab ng-if="((vm.lead.client.phone && vm.lead.client.phone.length > 8) || (vm.lead.client.email && vm.lead.client.email.length > 5)) &&
+                <md-tab
+                    ng-if="((vm.lead.client.phone && vm.lead.client.phone.length > 8) || (vm.lead.client.email && vm.lead.client.email.length > 5)) &&
                         (vm.leads.new.count>0 || vm.leads.attended.count>0 || vm.leads.commercial_management.count>0 || vm.leads.tracing.count>0 || vm.leads.end.count>0)">
-                  <md-tab-label>
-                    <span data-translate>Coincidentes</span>
-                  </md-tab-label>
-                  <md-tab-body>
-                    <div class="p-20" id="scrumboard">
-                      <div class="fullwidth" style="height: 80vh"
-                           ng-include="'app/main/leads/views/board/board-columns.html'">
-                        <!--include columns-->
-                      </div>
-                    </div>
-                  </md-tab-body>
+                    <md-tab-label>
+                        <span data-translate>Coincidentes</span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="p-20" id="scrumboard">
+                            <div class="fullwidth" style="height: 80vh"
+                                ng-include="'app/main/leads/views/board/board-columns.html'">
+                                <!--include columns-->
+                            </div>
+                        </div>
+                    </md-tab-body>
                 </md-tab>
 
                 <!--<md-tab ng-if="vm.lead.concessionaire || vm.lead.source_data.concession_data" ng-init="concessionaire=vm.lead.concessionaire_data || vm.lead.source_data.concession_data">
@@ -212,22 +219,23 @@
                     <md-tab-body>
                         <div class="p-20">
                             <div class="fullwidth"
-                                 ng-include="'app/main/leads/views/edit/activity/timeline-right.html'">
+                                ng-include="'app/main/leads/views/edit/activity/timeline-right.html'">
                                 <!--include activity-->
                             </div>
                         </div>
                     </md-tab-body>
                 </md-tab>
 
-                <md-tab ng-if="vm.lead.id && vm.lead.concessionaire_data.hubspot_api_key && vm.lead.concessionaire_data.hubspot_id">
+                <md-tab
+                    ng-if="vm.lead.id && vm.lead.concessionaire_data.hubspot_api_key && vm.lead.concessionaire_data.hubspot_id">
 
                     <md-tab-label>
                         <span data-translate>Hubspot</span>
                     </md-tab-label>
                     <md-tab-body>
                         <div class="p-20">
-                                                        <md-button class="md-raised md-accent mt-10" aria-label="{{'Sincronizar' | translate}}"
-                                       data-debouce-click data-ng-click="vm.hubspot()">
+                            <md-button class="md-raised md-accent mt-10" aria-label="{{'Sincronizar' | translate}}"
+                                data-debouce-click data-ng-click="vm.hubspot()">
                                 <md-icon md-font-icon="icon-sync"></md-icon>
                                 <span data-translate>Sincronizar</span>
                             </md-button>

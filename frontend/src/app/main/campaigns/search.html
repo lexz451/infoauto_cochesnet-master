@@ -1,6 +1,6 @@
 <div id="campaignsSearch" class="page-layout carded fullwidth" data-layout="row">
     <div class="content-card" data-layout="column" data-flex>
-        <md-content class="content p-20">
+        <md-content class=" p-20">
             <div data-layout="row">
                 <md-input-container flex="50">
                     <md-icon md-svg-src="assets/icons/search.svg" class="name"></md-icon>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </md-content>
-        <md-content class="content p-20 mt-20">
+        <md-content class=" p-20 mt-20">
             <div class="campaign-item" layout="row" layout-align="start center"
                 data-dir-paginate="camp in vm.campaigns.data | itemsPerPage: 10 | orderBy:'order'"
                 data-total-items="vm.campaigns.count" data-current-page="vm.campaigns.filters.page">
@@ -114,7 +114,7 @@
                                     </md-icon>
                                 </md-button>
                                 <md-button data-layout="column" data-layout-align="start center">
-                                    <a href="/leads/{{camp.lead}}/edit">
+                                    <a href="/dashboard">
                                         <md-icon class="" title="{{'Ver en dashboard' | translate}}"
                                             md-font-icon="icon-tile-four">
                                         </md-icon>
@@ -123,7 +123,7 @@
                                 <md-button data-layout="column" data-layout-align="start center"
                                     data-ng-if="hasPermission('camp','DELETE')"
                                     data-ng-click="vm.copyCreate($event, camp)">
-                                    <md-icon class="" title="{{'Duplicar' | translate}}" md-font-icon="icon-document">
+                                    <md-icon class="" title="{{'Duplicar' | translate}}" md-font-icon="icon-content-copy">
                                     </md-icon>
                                 </md-button>
                             </div>
@@ -132,7 +132,7 @@
 
                 </div>
             </div>
-            <dir-pagination-controls class="bottomFixed"></dir-pagination-controls>
+            <dir-pagination-controls auto-hide="true" class="pagination bottomFixed"></dir-pagination-controls>
         </md-content>
     </div>
 </div>

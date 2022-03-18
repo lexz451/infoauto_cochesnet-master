@@ -28,7 +28,7 @@ CAMPAIGN_STATUS = [
 
 class Campaign(TimeStampedModel):
 
-    lead = ForeignKey('Lead', on_delete=CASCADE, related_name='campaigns', blank=True, null=True)
+    #lead = ForeignKey('Lead', on_delete=CASCADE, related_name='campaigns', blank=True, null=True)
 
     name = CharField(max_length=255, null=True, blank=True)
     # type
@@ -80,7 +80,8 @@ class Campaign(TimeStampedModel):
     sourceSystem = CharField(max_length=255, null=True, blank=True)
     legalEntityPartnerNumber = CharField(max_length=255, null=True, blank=True)
     #user = ForeignKey(User, on_delete=CASCADE)
-    utm_campaing = CharField(max_length=255, blank=True, null=True)
+    utm_campaign = CharField(max_length=255, blank=True, null=True)
     utm_source = CharField(max_length=255, blank=True, null=True)
     utm_content = CharField(max_length=255, blank=True, null=True)
+    campaingId = CharField(max_length=255, null=True, blank=True)
     

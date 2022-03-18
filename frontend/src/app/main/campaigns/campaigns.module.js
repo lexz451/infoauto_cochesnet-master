@@ -76,6 +76,20 @@
                     Campaigns: function (campaignsService) {
                         return [];
                     },
+                    Campaign: function () {
+                        return {
+                            id: null,
+                            name: null,
+                            offer: null,
+                            concessionaire: null,
+                            brand: null,
+                            model: null,
+                            version: null,
+                            status: null,
+                            startDate: null,
+                            endDate: null
+                        }
+                    },
                     Expenses: function () {
                         return [];
                     }
