@@ -87,8 +87,11 @@
 
             function getOK(response) {
                 service.campaign = response;
-                console.log(response);
-                deferred.resolve(response);
+                const camp = Object.assign(response, {
+                    startDate: new Date(response['startDate']),
+                    endDate: new Date(response['endDate'])
+                })
+                deferred.resolve(camp);
             }
 
             function getKO(response) {

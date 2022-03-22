@@ -99,5 +99,7 @@ class CampaignSerializer(WritableNestedModelSerializer):
             'utm_campaign',
             'utm_source',
             'utm_content',
-            'campaingId'
+            'campaingId',
+            'startDate',
+            'endDate'
         ]

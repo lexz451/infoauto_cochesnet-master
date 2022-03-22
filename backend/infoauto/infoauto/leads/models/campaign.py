@@ -62,7 +62,8 @@ class Campaign(TimeStampedModel):
     # expenses
     expenses = TextField(default="[]")
     # offer
-    offer = IntegerField(default=0)
+    # offer = IntegerField(default=0)
+    offer = CharField(max_length=250, blank=True, null=True)
     # url
     url = TextField(null=True, blank=True)
 
