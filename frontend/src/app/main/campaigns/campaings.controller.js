@@ -47,16 +47,40 @@
         vm.addExpense = addExpense;
         vm.saveExpense = saveExpense;
         vm.deleteExpense = deleteExpense;
+        vm.getAllModels = getAllModels;
         vm.getAllOrigins = getAllOrigins;
         vm.getAllChannels = getAllChannels;
         vm.changeVehicleVersion = changeVehicleVersion;
+        vm.resetBrand = resetBrand;
+        vm.resetModel = resetModel;
+        vm.resetFilters = resetFilters;
 
         vm.setConcessionaireFilter = setConcessionaireFilter;
         vm.setModelFilter = setModelFilter;
         vm.setBrandFilter = setBrandFilter;
 
+        vm.concessionaireFilter = null;
+        vm.brandFilter = null;
+        vm.modelFilter = null;
+
         $scope.$watch('vm.campaigns.filters', DebounceService(campaignsService.getCampaigns, 300), true);
         $scope.$watch('vm.expenses', getTotalInvestment, true);
+
+        function resetFilters() {
+            vm.campaigns.filters={};
+            vm.concessionaireFilter = null;
+            vm.brandFilter = null;
+            vm.modelFilter = null;
+        }
+
+        function resetModel() {
+            vm.campaign.version = null;
+        }
+
+        function resetBrand() {
+            vm.campaign.model = null;
+            //vm.campaign.version = null;
+        }
 
         function getTotalInvestment() {
             if (vm.expenses.length) {
@@ -163,11 +187,22 @@
         /* Models */
         function getModels(brand, searchText) {
             var deferred = $q.defer();
+            if (brand) {
+                vehiclesService.getModels(brand, searchText).then(function (models) {
+                    deferred.resolve(models);
+                });
+            } else {
+                deferred.resolve([]);
+            }
 
-            vehiclesService.getModels(brand, searchText).then(function (models) {
+            return deferred.promise;
+        }
+
+        function getAllModels(text) {
+            var deferred = $q.defer();
+            vehiclesService.getAllModels(text).then(function (models) {
                 deferred.resolve(models);
             });
-
             return deferred.promise;
         }
 
@@ -180,12 +215,16 @@
         }
 
         /* Versions */
-        function getVersions(model, searchText) {
+        function getVersions(model, searchText) {;
             var deferred = $q.defer();
 
-            vehiclesService.getVersions(model, searchText).then(function (versions) {
-                deferred.resolve(versions);
-            });
+            if (model) {
+                vehiclesService.getVersions(model, searchText).then(function (versions) {
+                    deferred.resolve(versions);
+                });
+            } else {
+                deferred.resolve([]);
+            }
 
             return deferred.promise;
         }

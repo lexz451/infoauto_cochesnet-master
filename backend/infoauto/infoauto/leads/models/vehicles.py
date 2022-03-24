@@ -224,7 +224,8 @@ GEARBOX_CHOICES = [
     # temp fix
     ('MANUAL', _('Manual')),
     ('automatic', _('Automatico')),
-    ('AUTOMATIC', _('Automatico'))
+    ('AUTOMATIC', _('Automatico')),
+    ('AUTOMATICO', _('Automatico'))
 ]
 
 

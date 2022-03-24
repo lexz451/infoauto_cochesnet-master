@@ -27,7 +27,7 @@
                    
 
                     <div data-layout="row" flex="100">
-                        <md-button data-ng-click="vm.campaigns.filters={}" style="margin-left: auto;" class="md-accent md-raised md-ink-ripple bn1">
+                        <md-button data-ng-click="vm.resetFilters()" style="margin-left: auto;" class="md-accent md-raised md-ink-ripple bn1">
                             <md-icon md-font-icon="icon-delete"></md-icon>
                             Limpiar
                         </md-button>
@@ -35,6 +35,7 @@
                 </div>
                 <div data-layout="row">
                     <md-autocomplete md-floating-label="Concesionario" md-delay="300" md-input-name="concessionaire"
+                    md-selected-item="vm.concessionaireFilter"
                     md-selected-item-change="vm.setConcessionaireFilter(concessionaire)"
                     md-no-cache="true" 
                     md-min-length="0" 
@@ -51,6 +52,7 @@
                 </md-autocomplete>
                 <md-autocomplete md-floating-label="Marca" md-delay="300" md-input-name="brand" md-no-cache="true"
                     ng-disabled="vm.isDisabled()" md-selected-item-change="vm.setBrandFilter(brand)"
+                    md-selected-item="vm.brandFilter"
                     md-search-text="searchTextBrand" flex="25" md-items="brand in vm.getBrands(searchTextBrand)"
                     md-min-length="0" md-item-text="brand.name">
                     <md-item-template>
@@ -62,9 +64,10 @@
                 </md-autocomplete>
 
                 <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()" md-selected-item="vm.setModelFilter(model)"
+                    ng-disabled="vm.isDisabled()" md-selected-item-change="vm.setModelFilter(model)"
+                    md-selected-item="vm.modelFilter"
                     md-search-text="searchTextModel"
-                    md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
+                    md-items="model in vm.getAllModels(searchTextModel)" md-min-length="0"
                     md-item-text="model.model_name" flex="25">
                     <md-item-template>
                         <span md-highlight-text="searchTextModel">{{model.model_name}}</span>

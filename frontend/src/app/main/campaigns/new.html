@@ -32,9 +32,18 @@
                     </md-not-found>
                 </md-autocomplete>
 
-                <md-autocomplete md-floating-label="Marca" md-delay="300" md-input-name="brand" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()" md-selected-item="vm.campaign.brand" md-search-text="searchTextBrand"
-                    flex="25" md-items="brand in vm.getBrands(searchTextBrand)" md-min-length="0"
+                <md-autocomplete 
+                    md-floating-label="Marca" 
+                    md-delay="300" 
+                    md-input-name="brand" 
+                    md-no-cache="true"
+                    ng-disabled="vm.isDisabled()" 
+                    md-selected-item="vm.campaign.brand"
+                    md-selected-item-change="vm.resetBrand()"
+                    md-search-text="searchTextBrand"
+                    flex="25" 
+                    md-items="brand in vm.getBrands(searchTextBrand)" 
+                    md-min-length="0"
                     md-item-text="brand.name">
                     <md-item-template>
                         <span md-highlight-text="searchTextBrand">{{brand.name}}</span>
@@ -45,7 +54,9 @@
                 </md-autocomplete>
 
                 <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
-                    ng-disabled="vm.isDisabled() " md-selected-item="vm.campaign.model" md-search-text="searchTextModel"
+                    ng-disabled="vm.isDisabled() || !vm.campaign.brand" 
+                    md-selected-item-change="vm.resetModel()"
+                    md-selected-item="vm.campaign.model" md-search-text="searchTextModel"
                     md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
                     md-item-text="model.model_name" flex="25">
                     <md-item-template>
@@ -57,7 +68,7 @@
                 </md-autocomplete>
 
                 <md-autocomplete md-floating-label="Version" md-delay="300" md-input-name="version" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()"
+                    ng-disabled="vm.isDisabled() || !vm.campaign.model"
                     md-selected-item-change="vm.changeVehicleVersion(vehicle,'power','gas')"
                     md-selected-item="vm.campaign.version" md-search-text="searchTextVersion"
                     md-items="version in vm.getVersions(vm.campaign.model.id, searchTextVersion)" md-min-length="0"
