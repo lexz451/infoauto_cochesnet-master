@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
+import hashlib
+import json
 import time
 
 import requests
@@ -460,42 +462,58 @@ class LeadSerializer(WritableNestedModelSerializer):
         old_user = self.instance.user
         instance = super().update(instance, validated_data)
         self.send_user_notification(old_user=old_user)
-        #self.sendPM(data=self.instance)
+        self.sendPM(data=self.instance)
         return instance
 
     def sendPM(self, data=None):
         print("Sending PM")
         c_id = self.instance.concessionaire.id
-        client_name=self.instance.client.name
-        client_phone=self.instance.client.phone
-        lead_id = self.instance.id
-        allowed = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 68, 79, 81, 83, 99, 123]
+        allowed = [1, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 68, 79, 81, 83, 99, 123]
         if (c_id in allowed):
-            MAX_RETRY = 3
-            attemp = 0
-            while attemp < MAX_RETRY:
-                url = "https://drivim.vozipcenter.com"
-                headers = {}
-                payload = {
-                    "modificable": True,
-                    "grupo": "GR Call Center",
-                    "nombre": client_name,
-                    "numero": client_phone,
-                    "bd": "BBDD",
-                    "campos":
+
+            appKey = 'SAILS'
+            consumerKey = '1r9qsfhwmkywvyllxexuw5j54'
+            consumerSecret = 'CO12345CO'
+
+            url = 'https://drivim.vozipcenter.com/nuevo_contacto'
+            method = 'POST'
+
+            client_name = self.instance.client.name
+            client_phone = self.instance.client.phone
+            lead_id = self.instance.id
+
+            local_time = time.time()
+            server_time = int(requests.get('https://misuri.vozipcenter.com/api/time').text)
+            diff = server_time - local_time
+
+            payload = {
+                "modificable": True,
+                "grupo": "GR Call Center",
+                "nombre": client_name,
+                "numero": client_phone,
+                "bd": "BBDD",
+                "campos":
                     {
-                        "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id} /edit",
+                        "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit",
                     }
-                }
-                r = requests.post(url, data=payload, headers=headers)
-                if r.status_code == 200:
-                    attemp = MAX_RETRY
-                    print("Success PM")
-                else:
-                    attemp += 1
-                    print("Failed")
-                    time.sleep(5)
-        return
+            }
+            timestamp = str(time.time() - diff)
+            data = hashlib.md5(json.dumps(payload).encode('utf8')).digest()
+            # data = json.dumps(payload)
+            sha1 = hashlib.sha1(f'{consumerSecret}+{consumerKey}+{method}+{url}+{data}+{timestamp}'.encode('utf8')).digest()
+            signature = f'$1${sha1}'
+            headers = {
+                'Content-Type': 'application/json',
+                'CC-Application': appKey,
+                'CC-Timestamp': timestamp,
+                'CC-Consumer': consumerKey,
+                'CC-Signature': signature
+            }    
+            r = requests.post(url, data=payload, headers=headers)
+            if (r.status_code == 200):
+                print('PN: Contacto creado')
+            else:
+                print('PN: Fail: ' + str(r.status_code) + str(r.content))    
 
     def send_user_notification(self, old_user=None):
         if (not old_user or (self.instance.user != old_user)) and self.context.get("request") and self.instance.user:

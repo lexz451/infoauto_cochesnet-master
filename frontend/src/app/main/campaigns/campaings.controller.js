@@ -50,6 +50,9 @@
         vm.getAllOrigins = getAllOrigins;
         vm.getAllChannels = getAllChannels;
         vm.changeVehicleVersion = changeVehicleVersion;
+        vm.setConcessionaireFilter = setConcessionaireFilter;
+        vm.setModelFilter = setModelFilter;
+        vm.setBrandFilter = setBrandFilter;
 
 
         $scope.$watch('vm.campaigns.filters', DebounceService(campaignsService.getCampaigns, 300), true);
@@ -69,7 +72,7 @@
         function getAllChannels(text, origin) {
             var deferred = $q.defer();
             if (origin && origin.available_channels.length > 0) {
-                deferred.resolve(origin.available_channels);
+                deferred.resolve(origin.available_channels_data || origin.available_channels);
             } else {
                 deferred.resolve([]);
             }
@@ -120,6 +123,18 @@
                 $location.path('/campaigns/search');
             });
             
+        }
+
+        function setConcessionaireFilter(item) {
+            vm.campaigns.filters.concessionaire = item.id;
+        }
+
+        function setBrandFilter(item) {
+            vm.campaigns.filters.brand = item.id;
+        }
+
+        function setModelFilter(item) {
+            vm.campaigns.filters.model = item.id;
         }
 
         /* Concesionarios */

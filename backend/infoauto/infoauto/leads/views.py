@@ -132,7 +132,8 @@ class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.Retri
     queryset = Campaign.objects.all().order_by("startDate")
     permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['id', 'name', 'startDate', 'endDate']
+    filterset_fields = ['id', 'name', 'startDate', 'endDate', 'concessionaire', 'brand', 'model', 'status']
+    search_fields=['name']
 
     @action(methods=['POST'], detail=True)
     def addExpense(self, request, *args, **kwargs):

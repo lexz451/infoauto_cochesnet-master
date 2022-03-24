@@ -4,7 +4,7 @@
             <div data-layout="row">
                 <md-input-container flex="50">
                     <md-icon md-svg-src="assets/icons/search.svg" class="name"></md-icon>
-                    <input type="text" name="name" data-ng-model="vm.campaigns.filters.name"
+                    <input type="text" name="name" data-ng-model="vm.campaigns.filters.search"
                         placeholder="Busqueda por nombre de la campaña" md-autofocus>
                 </md-input-container>
                 <a href="/campaigns/new" style="margin-left: auto;text-decoration: none !important;">
@@ -35,8 +35,11 @@
                 </div>
                 <div data-layout="row">
                     <md-autocomplete md-floating-label="Concesionario" md-delay="300" md-input-name="concessionaire"
-                    md-no-cache="true" md-min-length="0" flex="25"
-                    md-selected-item="vm.campaigns.filters.concessionaire" md-search-text="searchTextConcessionaire"
+                    md-selected-item-change="vm.setConcessionaireFilter(concessionaire)"
+                    md-no-cache="true" 
+                    md-min-length="0" 
+                    flex="25"
+                    md-search-text="searchTextConcessionaire"
                     md-items="concessionaire in vm.getConcessionaires(searchTextConcessionaire)"
                     md-item-text="concessionaire.name">
                     <md-item-template>
@@ -47,7 +50,7 @@
                     </md-not-found>
                 </md-autocomplete>
                 <md-autocomplete md-floating-label="Marca" md-delay="300" md-input-name="brand" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()" md-selected-item="vm.campaigns.filters.brand"
+                    ng-disabled="vm.isDisabled()" md-selected-item-change="vm.setBrandFilter(brand)"
                     md-search-text="searchTextBrand" flex="25" md-items="brand in vm.getBrands(searchTextBrand)"
                     md-min-length="0" md-item-text="brand.name">
                     <md-item-template>
@@ -59,7 +62,7 @@
                 </md-autocomplete>
 
                 <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()" md-selected-item="vm.campaigns.filters.model"
+                    ng-disabled="vm.isDisabled()" md-selected-item-modal="vm.setModelFilter(model)"
                     md-search-text="searchTextModel"
                     md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
                     md-item-text="model.model_name" flex="25">
