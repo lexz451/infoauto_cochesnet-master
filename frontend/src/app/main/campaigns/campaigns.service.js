@@ -11,7 +11,10 @@
             campaigns: {
                 data: [],
                 count: 0,
-                filters: {}
+                filters: {
+                    startDate: null,
+                    endDate: null
+                }
             },
             campaign: {},
             getCampaigns: getCampaigns,

@@ -86,11 +86,11 @@
                 <md-input-container flex="25">
                     <label>Fecha comienzo</label>
                     <md-datepicker md-autofocus name="startDate" ng-placeholder="Fecha comienzo"
-                        ng-model="vm.campaign.startDate"></md-datepicker>
+                        ng-model="vm.campaign.startDate" ng-change="vm.campaign.endDate=null"></md-datepicker>
                 </md-input-container>
                 <md-input-container flex="25">
                     <label>Fecha finalización</label>
-                    <md-datepicker md-autofocus name="endDate" ng-placeholder="Fecha finalización"
+                    <md-datepicker md-autofocus md-min-date="vm.campaign.startDate" name="endDate" ng-placeholder="Fecha finalización"
                         ng-model="vm.campaign.endDate"></md-datepicker>
                 </md-input-container>
                 <md-input-container flex="25">

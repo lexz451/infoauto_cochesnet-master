@@ -47,8 +47,9 @@
     };
 
     $mdDateLocaleProvider.formatDate = function (date) {
-      var m = moment(date);
-      return m.isValid() ? m.format('D/M/YYYY') : '';
+      return date ? moment(date).format('D/M/YYYY') : '';
+      /*var m = moment(date);
+      return m.isValid() ? m.format('D/M/YYYY') : '';*/
     };
 
     paginationTemplateProvider.setPath('app/utils/templates/dirPagination.tpl.html');

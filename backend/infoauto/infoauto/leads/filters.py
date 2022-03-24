@@ -8,7 +8,7 @@ from django_filters.rest_framework import FilterSet, DateTimeFilter as BaseDateT
     NumberFilter
 
 from infoauto.leads.lead_master import LeadMaster
-from infoauto.leads.models import Lead, Task
+from infoauto.leads.models import Lead, Task, Campaign
 from infoauto.leads.models.lead_management import LeadManagement
 from infoauto.leads.models.leads import LeadAction, LeadCalendar
 
@@ -32,6 +32,13 @@ class LeadMasterFilter(FilterSet):
         fields = {
             'user': ['exact']
         }
+
+class CampaignFilter(FilterSet):
+    start_date_from = DateTimeFilter('startDate', lookup_expr='gte')
+    end_date_to = DateTimeFilter('endDate', lookup_expr='lte')
+    class Meta:
+        model = Campaign
+        fields = ['startDate', 'endDate', 'concessionaire', 'brand', 'model', 'status']
 
 class LeadFilter(FilterSet):
 

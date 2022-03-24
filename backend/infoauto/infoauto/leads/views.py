@@ -30,7 +30,7 @@ from rest_framework.viewsets import GenericViewSet as GenericViewSetAux
 
 from infoauto.common.permissions import IsAdminUser
 from infoauto.leads.filters import LeadFilter, LeadColsFilter, LeadActionFilter, LeadManagementFilter, \
-    LeadCalendarFilter, LeadMasterFilter, TaskFilter
+    LeadCalendarFilter, LeadMasterFilter, TaskFilter, CampaignFilter
 from infoauto.leads.models import LEAD_RESULT, LEAD_STATUS_NEW
 from infoauto.leads.models.leads import LeadAction, LeadCalendar, INTEGRATED, NOT_HBS_API_KEY, LeadWhatsAppMessage
 from infoauto.leads.serializers.core import LeadTaskCreateSerializer, CommonTaskSerializer
@@ -124,7 +124,7 @@ class LeadGenericViewSet(GenericViewSet):
         self.queryset = self.queryset.annotate(
             last_lead_action_date=RawSQL(self.raw_sql, params=())
         ).order_by('last_lead_action_date')
-        return super().get_queryset()
+        return super().get_queryset()      
 
 
 class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
@@ -134,6 +134,7 @@ class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.Retri
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['id', 'name', 'startDate', 'endDate', 'concessionaire', 'brand', 'model', 'status']
     search_fields=['name']
+    filter_class=CampaignFilter
 
     @action(methods=['POST'], detail=True)
     def addExpense(self, request, *args, **kwargs):

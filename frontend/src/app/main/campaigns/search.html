@@ -17,15 +17,14 @@
             <div class="filters mt-20">
                 <div data-layout="row" style="display: flex; align-items: center;">
                     <md-input-container flex="20">
-                        <md-datepicker md-placeholder="Fecha comienzo" ng-model="vm.campaigns.filters.startDate"
+                        <md-datepicker md-placeholder="Fecha comienzo" ng-model="vm.campaigns.filters.start_date_from"
                             input-aria-labelledby="start-date"></md-datepicker>
                     </md-input-container>
                     <md-input-container flex="20">
-                        <md-datepicker md-placeholder="Fecha finalización" ng-model="vm.campaigns.filters.endDate"
+                        <md-datepicker md-placeholder="Fecha finalización" ng-model="vm.campaigns.filters.end_date_to"
                             input-aria-labelledby="end-date"></md-datepicker>
                     </md-input-container>
                    
-
                     <div data-layout="row" flex="100">
                         <md-button data-ng-click="vm.resetFilters()" style="margin-left: auto;" class="md-accent md-raised md-ink-ripple bn1">
                             <md-icon md-font-icon="icon-delete"></md-icon>
