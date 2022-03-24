@@ -475,7 +475,7 @@ class LeadSerializer(WritableNestedModelSerializer):
             consumerKey = '1r9qsfhwmkywvyllxexuw5j54'
             consumerSecret = 'CO12345CO'
 
-            url = 'https://drivim.vozipcenter.com/nuevo_contacto'
+            url = 'https://drivim.vozipcenter.com'
             method = 'POST'
 
             client_name = self.instance.client.name

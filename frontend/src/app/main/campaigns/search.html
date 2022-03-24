@@ -62,7 +62,7 @@
                 </md-autocomplete>
 
                 <md-autocomplete md-floating-label="Modelo" md-delay="300" md-input-name="model" md-no-cache="true"
-                    ng-disabled="vm.isDisabled()" md-selected-item-modal="vm.setModelFilter(model)"
+                    ng-disabled="vm.isDisabled()" md-selected-item="vm.setModelFilter(model)"
                     md-search-text="searchTextModel"
                     md-items="model in vm.getModels(vm.campaign.brand.id, searchTextModel)" md-min-length="0"
                     md-item-text="model.model_name" flex="25">

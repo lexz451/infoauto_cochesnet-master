@@ -88,8 +88,8 @@
             function getOK(response) {
                 service.campaign = response;
                 const camp = Object.assign(response, {
-                    startDate: new Date(response['startDate']),
-                    endDate: new Date(response['endDate'])
+                    startDate: response['startDate'] ? new Date(response['startDate']) : null,
+                    endDate: response['endDate'] ? new Date(response['endDate']) : null
                 })
                 deferred.resolve(camp);
             }

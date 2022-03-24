@@ -50,10 +50,10 @@
         vm.getAllOrigins = getAllOrigins;
         vm.getAllChannels = getAllChannels;
         vm.changeVehicleVersion = changeVehicleVersion;
+
         vm.setConcessionaireFilter = setConcessionaireFilter;
         vm.setModelFilter = setModelFilter;
         vm.setBrandFilter = setBrandFilter;
-
 
         $scope.$watch('vm.campaigns.filters', DebounceService(campaignsService.getCampaigns, 300), true);
         $scope.$watch('vm.expenses', getTotalInvestment, true);
@@ -126,15 +126,15 @@
         }
 
         function setConcessionaireFilter(item) {
-            vm.campaigns.filters.concessionaire = item.id;
+            vm.campaigns.filters.concessionaire = item ? item.id : null;
         }
 
         function setBrandFilter(item) {
-            vm.campaigns.filters.brand = item.id;
+            vm.campaigns.filters.brand = item ? item.id : null;
         }
 
         function setModelFilter(item) {
-            vm.campaigns.filters.model = item.id;
+            vm.campaigns.filters.model = item ? item.id : null;
         }
 
         /* Concesionarios */
