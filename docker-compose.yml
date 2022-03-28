@@ -76,29 +76,29 @@ services:
       - db
 
   # Celery worker Service
-  #celeryworker:
-  #  <<: *backend
-  #  container_name: infoauto-celeryworker
-  #  image: infoauto_celeryworker
-  #  ports: []
-  #  command: celery -A infoauto.taskapp.celery worker -l INFO
+  celeryworker:
+    <<: *backend
+    container_name: infoauto-celeryworker
+    image: infoauto_celeryworker
+    ports: []
+    command: celery -A infoauto.taskapp.celery worker -l INFO
 
   # Celery beat Service
-  #celerybeat:
-  #  <<: *backend
-  #  container_name: infoauto-celerybeat
-  #  image: infoauto_celerybeat
-  #  ports: []
-  #  command: celery -A infoauto.taskapp.celery beat -l INFO --pidfile="/tmp/celerybeat.pid"
+  celerybeat:
+    <<: *backend
+    container_name: infoauto-celerybeat
+    image: infoauto_celerybeat
+    ports: []
+    command: celery -A infoauto.taskapp.celery beat -l INFO --pidfile="/tmp/celerybeat.pid"
     
   # Celery flower web client
-  #flower:
-  #  <<: *backend
-  #  container_name: infoauto-celeryflower
-  #  image: infoauto_flower
-  #  ports:
-  #    - "5555:5555"
-  #  command: celery flower --broker=redis://redis:6379
+  flower:
+    <<: *backend
+    container_name: infoauto-celeryflower
+    image: infoauto_flower
+    ports:
+      - "5555:5555"
+    command: celery flower --broker=redis://redis:6379
 
 volumes:
   mysql-data:

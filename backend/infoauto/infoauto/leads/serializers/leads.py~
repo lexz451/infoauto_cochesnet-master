@@ -488,7 +488,7 @@ class LeadSerializer(WritableNestedModelSerializer):
 
             payload = {
                 "modificable": True,
-                "grupo": "MARCADOR",
+                "grupo": "GR Call Center",
                 "nombre": client_name,
                 "numero": client_phone,
                 "bd": "BBDD",
