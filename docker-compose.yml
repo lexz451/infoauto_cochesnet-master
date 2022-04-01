@@ -49,8 +49,8 @@ services:
     command: /start
     restart: always
     ports:
-      - "3000:3000"
       - "3001:3001"
+      - "3000:3000"
     volumes:
       - ./frontend:/code
 
@@ -67,7 +67,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - '8080:80'
+      - '8081:80'
     environment:
       PMA_HOST: db
     env_file:
@@ -89,7 +89,7 @@ services:
     container_name: infoauto-celerybeat
     image: infoauto_celerybeat
     ports: []
-    command: celery -A infoauto.taskapp.celery beat -l INFO --pidfile="/tmp/celerybeat.pid"
+    command: celery -A infoauto.taskapp.celery beat -l INFO --pidfile="/tmp/celerybeat1.pid"
     
   # Celery flower web client
   flower:

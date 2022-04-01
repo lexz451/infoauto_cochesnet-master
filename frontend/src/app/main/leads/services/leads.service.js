@@ -251,7 +251,18 @@
                 if(lead.vehicles[i].version_data && lead.vehicles[i].version_data.id){
                     lead.vehicles[i].version+="___"+lead.vehicles[i].version_data.id;
                 }
-
+		if (lead.vehicles[i].rejection_reason == "") {
+                    lead.vehicles[i].rejection_reason = null;
+                }
+		if (lead.vehicles[i].segment == "") {
+                    lead.vehicles[i].segment = "other";
+                }
+		if (!lead.vehicles[i].purchase_method) {
+		    lead.vehicles[i].purchase_method = "count";	
+		}
+		if (!lead.vehicles[i].purchase_description) {
+                    lead.vehicles[i].purchase_description = "";
+                }
             }
 
             for (var i in lead.appraisals) {
