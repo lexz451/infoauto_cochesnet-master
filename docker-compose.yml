@@ -59,7 +59,7 @@ services:
       context: ./frontend
       dockerfile: ./compose/Dockerfile
     command: /start
-    restart: always
+    restart: on-failure
     ports:
       - "3001:3001"
     volumes:
