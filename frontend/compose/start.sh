@@ -3,4 +3,5 @@
 set -o errexit
 set -o nounset
 
-gulp serve:docker
+gulp build
+#gulp serve:docker
