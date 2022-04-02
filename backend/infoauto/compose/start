@@ -3,5 +3,5 @@
 set -o errexit
 set -o nounset
 
-python manage.py migrate || exit 1
-python manage.py runserver 0.0.0.0:8000 # --poll 10000
+#python manage.py migrate
+python manage.py test --nomigrations runserver 0.0.0.0:8000 # --poll 10000

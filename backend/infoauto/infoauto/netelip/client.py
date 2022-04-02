@@ -56,7 +56,7 @@ class UbunetToken(object):
     def get_token():
         params = {
             'email': 'sclemente@info-auto.es',
-            'password': 'soSYm1Pc3+rp'
+            'password': 'U=UWB?nPy&8&D0)'
         }
         response = requests.post(url=UbunetToken.base_url, json=params)
         # print(response.content)
