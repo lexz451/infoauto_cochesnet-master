@@ -9,20 +9,53 @@ from infoauto.leads.models import Concessionaire, Origin, Note, VehicleBrand, Ve
 from model_utils.models import TimeStampedModel
 
 COMMUNICATION_TYPES = [
-    ('type1', "Tipo de Comunicación #1"),
-    ('type2', "Tipo de Comunicación #2"),
-    ('type3', "Tipo de Comunicación #3")
+    ('email', "Email"),
+    ('phone', "Phone"),
+    ('letter', "Letter"),
+    ('other', "Other"),
+    ('messaging_services', "Messaging Service"),
+    ('sms', "SMS"),
+    ('in_car', "In Car")
 ]
 
 CAMPAIGN_TYPES = [
-    ('type1', "Tipo de Campaña #1"),
-    ('type2', "Tipo de Campaña #2"),
-    ('type3', "Tipo de Campaña #3")
+    ('display', "Display"),
+    ('email', "Email"),
+    ('banner', "Internet / Banner"),
+    ('mailing', "Mailing / Flyer"),
+    ('promo', "Promotion"),
+    ('radio', "Radio"),
+    ('tele', "Telemarketing"),
+    ('event', "Event"),
+    ('other', "Other"),
+    ('ads', "Banner Ads"),
+    ('referral', "Referral Program"),
+    ('enterprise', "Enterprise")
 ]
 
 CAMPAIGN_STATUS = [
-    ('on', "Activo"),
-    ('off', "Inactivo")
+    ('planned', "Planned"),
+    ('in_progress', "In Progress"),
+    ('completed', "Completed"),
+    ('postponed_change', "Postponed - Change of Plan"),
+    ('postponed_not_performed', "Postponed - Not Performed"),
+    ('aborted', "Aborted")
+]
+
+BRAND_RANGES = [
+    ("all", "ALL"),
+    ("bmw_car", "BMW_CAR"),
+    ("bmwi_car", "BMWI_CAR"),
+    ("bmw_motor", "BMW_MOTORCYCLE"),
+    ("mini_car", "MINI_CAR")
+]
+
+RSPCRM_ORIGINS = [
+    ("retail_campaign", "Retail Campaign"),
+    ("wholesale_car_campaign", "Wholesale Car Campaign"),
+    ("wholesale_motor_campaign", "Wholesale Motorcycle Campaign"),
+    ("service_campaign", "Service Campaign"),
+    ("ext_aftersales_system", "External Aftersales System")
 ]
 
 
@@ -32,11 +65,11 @@ class Campaign(TimeStampedModel):
 
     name = CharField(max_length=255, null=True, blank=True)
     # type
-    campaignType = CharField(max_length=255,choices=CAMPAIGN_TYPES, null=True)
+    campaignType = CharField(max_length=255,choices=CAMPAIGN_TYPES, null=True, blank=True)
     # status
-    status = CharField(max_length=255,choices=CAMPAIGN_STATUS, null=True)
+    status = CharField(max_length=255,choices=CAMPAIGN_STATUS, null=True, blank=True)
     # communicationType
-    communicationType = CharField(max_length=255,choices=COMMUNICATION_TYPES, null=True)
+    communicationType = CharField(max_length=255,choices=COMMUNICATION_TYPES, null=True, blank=True)
     # startDate
     startDate = DateTimeField(default=None, null=True)
     # endDate
@@ -66,13 +99,16 @@ class Campaign(TimeStampedModel):
     offer = CharField(max_length=250, blank=True, null=True)
     # url
     url = TextField(null=True, blank=True)
+    # brandRange
+    brandRange = CharField(max_length=255, choices=BRAND_RANGES, null=True, blank=True)
+    # //
+    RSPCRM_origin = CharField(max_length=255,choices=RSPCRM_ORIGINS, null=True, blank=True)
 
     # Fields
 
     # Hidden fields
     RSPCRM_campaingId = CharField(max_length=255, null=True, blank=True)
-    RSPCRM_origin = CharField(max_length=255, null=True, blank=True)
-    brandRange = CharField(max_length=255, null=True, blank=True)
+    
     distributionBranch = CharField(max_length=255, null=True, blank=True)
     isActive = BooleanField(default=False)
     key = CharField(max_length=255, null=True, blank=True)

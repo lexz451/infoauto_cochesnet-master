@@ -10,7 +10,6 @@ var app = express();
 app.use(
   proxyMiddleware("/api/**/*.json", {
     target: "http://localhost:3000",
-    // target: 'http://192.168.2.15:3000',
     secure: false,
     pathRewrite: {
       "^/api": "/",
