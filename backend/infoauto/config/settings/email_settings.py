@@ -22,7 +22,7 @@ EMAIL_USE_TLS = True
 
 # lead_user_asign
 NL_EMAIL_HOST_USER = "vomotorscoring@info-auto.es"
-NL_EMAIL_HOST_PASSWORD = "smartmotorlead@@"
+NL_EMAIL_HOST_PASSWORD = "ZuXgLU.rxymY"
 
 SMTP_CONFIG = {
     "default": {
