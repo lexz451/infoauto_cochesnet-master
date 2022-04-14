@@ -494,7 +494,7 @@ class LeadSerializer(WritableNestedModelSerializer):
                 "bd": "BBDD",
                 "campos":
                     {
-                        "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit",
+                        "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit"
                     }
             }
             timestamp = str(time.time() - diff)
