@@ -454,7 +454,12 @@ class LeadSerializer(WritableNestedModelSerializer):
         instance = super().create(validated_data)
         self.instance = instance
         self.send_user_notification()
-        self.sendPM(data=self.instance)
+        c_id = self.instance.concessionaire.id
+        c_ids = [1, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 68, 79, 81, 83, 99, 123]
+        if (c_id in c_ids):
+            print('-------------------------------------------------')
+            print(f'Sending PN request for concessionaire id: {c_id}')
+            self.sendPN()
         # return self.post_create(instance)
         return instance
 
@@ -462,58 +467,58 @@ class LeadSerializer(WritableNestedModelSerializer):
         old_user = self.instance.user
         instance = super().update(instance, validated_data)
         self.send_user_notification(old_user=old_user)
-        self.sendPM(data=self.instance)
+        # self.sendPN(data=self.instance)
         return instance
 
-    def sendPM(self, data=None):
-        print("Sending PM")
-        c_id = self.instance.concessionaire.id
-        allowed = [1, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 68, 79, 81, 83, 99, 123]
-        if (c_id in allowed):
+    def sendPN(self):
+        appKey = 'SAILS'
+        consumerKey = '1r9qsfhwmkywvyllxexuw5j54'
+        consumerSecret = "CO12345CO"
+        url = 'https://drivim.vozipcenter.com/api/nuevo_contacto'
+        method = 'POST'
 
-            appKey = 'SAILS'
-            consumerKey = '1r9qsfhwmkywvyllxexuw5j54'
-            consumerSecret = 'CO12345CO'
+        client_name = self.instance.client.name
+        client_phone = self.instance.client.phone
+        lead_id = self.instance.id
+        
+        local_time = time.time()
+        server_time = int(requests.get('https://drivim.vozipcenter.com/api/time').text)
+        diff = server_time - local_time
 
-            url = 'https://drivim.vozipcenter.com'
-            method = 'POST'
-
-            client_name = self.instance.client.name
-            client_phone = self.instance.client.phone
-            lead_id = self.instance.id
-
-            local_time = time.time()
-            server_time = int(requests.get('https://misuri.vozipcenter.com/api/time').text)
-            diff = server_time - local_time
-
-            payload = {
-                "modificable": True,
-                "grupo": "MARCADOR",
-                "nombre": client_name,
-                "numero": client_phone,
-                "bd": "BBDD",
-                "campos":
-                    {
-                        "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit"
-                    }
+        data = {
+            "modificable": True,
+            "grupo": "MARCADOR",
+            "nombre": client_name,
+            "numero": client_phone,
+            "bd": "BBDD",
+            "campos": {
+                "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit"
             }
-            timestamp = str(time.time() - diff)
-            data = hashlib.md5(json.dumps(payload).encode('utf8')).digest()
-            # data = json.dumps(payload)
-            sha1 = hashlib.sha1(f'{consumerSecret}+{consumerKey}+{method}+{url}+{data}+{timestamp}'.encode('utf8')).digest()
-            signature = f'$1${sha1}'
-            headers = {
-                'Content-Type': 'application/json',
-                'CC-Application': appKey,
-                'CC-Timestamp': timestamp,
-                'CC-Consumer': consumerKey,
-                'CC-Signature': signature
-            }    
-            r = requests.post(url, data=payload, headers=headers)
-            if (r.status_code == 200):
-                print('PN: Contacto creado')
-            else:
-                print('PN: Fail: ' + str(r.status_code) + str(r.content))    
+        }
+
+        print(f'PN payload: {data}')
+
+        payload = json.dumps(data).replace(" ", "")
+
+        timestamp = str(time.time() + diff)
+
+        sha1_payload = f"{consumerSecret}+{consumerKey}+{method}+{url}+{payload}+{timestamp}".encode('utf-8')
+
+        sha1 = hashlib.sha1(sha1_payload).hexdigest()
+
+        signature = "$1$" + sha1
+
+        headers = {
+            "Content-Type": "application/json",
+            "CC-Application": appKey,
+            "CC-Timestamp": timestamp,
+            "CC-Signature": signature,
+            "CC-Consumer": consumerKey
+        }
+
+        req = requests.post(url=url, data=payload, headers=headers)
+        print(f'PN response: {req.text}')
+        print('-------------------------------------------------')
 
     def send_user_notification(self, old_user=None):
         if (not old_user or (self.instance.user != old_user)) and self.context.get("request") and self.instance.user:
