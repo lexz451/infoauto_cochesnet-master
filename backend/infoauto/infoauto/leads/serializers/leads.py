@@ -461,6 +461,7 @@ class LeadSerializer(WritableNestedModelSerializer):
             print(f'Sending PN request for concessionaire id: {c_id}')
             self.sendPN()
         # return self.post_create(instance)
+        self.checkWATIEligible()
         return instance
 
     def update(self, instance, validated_data):
@@ -468,7 +469,83 @@ class LeadSerializer(WritableNestedModelSerializer):
         instance = super().update(instance, validated_data)
         self.send_user_notification(old_user=old_user)
         # self.sendPN(data=self.instance)
+        # self.checkWATIEligible()
         return instance
+
+    def checkWATIEligible(self):
+        self.sendWSTemplate()
+        return
+
+    def sendWSTemplate(self):
+        #
+        wati_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MTY2MzQ3NS0xMmZmLTQwZjEtYTZmNy0wOTk3OWZmYTFmOTkiLCJ1bmlxdWVfbmFtZSI6InNjbGVtZW50ZUBpbmZvLWF1dG8uZXMiLCJuYW1laWQiOiJzY2xlbWVudGVAaW5mby1hdXRvLmVzIiwiZW1haWwiOiJzY2xlbWVudGVAaW5mby1hdXRvLmVzIiwiYXV0aF90aW1lIjoiMDQvMjEvMjAyMiAwNTozNDoxMSIsImRiX25hbWUiOiI3MzI1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQURNSU5JU1RSQVRPUiIsImV4cCI6MjUzNDAyMzAwODAwLCJpc3MiOiJDbGFyZV9BSSIsImF1ZCI6IkNsYXJlX0FJIn0.5wj6dBMcOabSz-UmjhMdbkXE3qRGpKN16DoOMfdB1m4'
+        wati_url = 'https://live-server-7325.wati.io'
+
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {wati_token}"
+        }
+
+        client_phone = self.instance.client.phone
+        client_name = self.instance.client.name
+        client_id = self.instance.client.id
+        lead_id = self.instance.id
+
+        client_phone = client_phone.replace('+', '')
+
+        addContact = {
+            "name": client_name,
+            "customParams": [
+                {
+                    "name": "lead_id",
+                    "value": lead_id
+                },
+                {
+                    "name": "client_id",
+                    "value": client_id
+                }
+            ]
+        }
+
+        addContactData = json.dumps(addContact)
+
+        addContactUrl = f"{wati_url}/api/v1/addContact/{client_phone}"
+        
+        resContact = requests.post(url=addContactUrl, data=addContactData, headers=headers)
+        if (resContact.ok):
+            print("WATI contact created!. Continue...")
+            print(resContact.text)
+        else:
+            print("Error creating WATI contact (halting execution!):")
+            print(resContact.text)
+            return    
+
+        sendTemplateUrl = f"{wati_url}/api/v1/sendTemplateMessage?whatsappNumber={client_phone}"
+        sendTemplate = {
+            "template_name": "posventa_llamadasperdidas",
+            "broadcast_name": f"posventa_llamadasperdidas_lead_{client_phone}",
+            "parameters": [
+                {
+                    "name": "lead_id",
+                    "value": lead_id
+                },
+                {
+                    "name": "client_id",
+                    "value": client_id
+                }
+            ]
+        }
+
+        sendTemplateData = json.dumps(sendTemplate)
+
+        res = requests.post(url=sendTemplateUrl, data=sendTemplateData, headers=headers)
+        if (res.ok):
+            print("WATI Template sent!")
+            print(res.text)
+        else:
+            print(f"Error sending WATI template:")
+            print(res.text)
+        return
 
     def sendPN(self):
         appKey = 'SAILS'

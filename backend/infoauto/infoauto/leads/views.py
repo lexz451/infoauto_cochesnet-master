@@ -1,3 +1,4 @@
+from crypt import methods
 import datetime
 import json
 from tempfile import NamedTemporaryFile
@@ -51,6 +52,8 @@ from .serializers.lead_importer_serializers import LeadImporterSerializer
 from .utils import special_date_ranges, create_excel_template, add_value_to_excel, add_column_to_excel
 
 from rest_framework.serializers import ValidationError
+from rest_framework import viewsets
+from rest_framework.parsers import JSONParser
 from hubspot3 import Hubspot3
 from hubspot3.error import HubspotConflict, HubspotNotFound, HubspotBadRequest
 
@@ -98,6 +101,12 @@ class GenericViewSet(GenericViewSetAux):
                 self.permission_classes = [Or(IsAdminUser, IsConcessionaireAdmin)]
                 self.check_permissions(request)
 
+class WatiHookView(viewsets.ViewSet):
+    @action(methods=['POST'], detail=False)
+    def hit(self, request, **kwargs):
+        print(request.data)
+        #print(request.method)
+        return Response('CC')
 
 class LeadGenericViewSet(GenericViewSet):
     raw_sql = '''

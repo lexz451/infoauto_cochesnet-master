@@ -20,7 +20,7 @@ from infoauto.concessionaires.views import UserConcessionView, PhoneView, Conces
     ConcessionDashboardEmail
 from infoauto.infodata_client.views import InfodataIncomingCallView
 from infoauto.leads.views import LeadView, TaskView, GasTypeView, LeadCols, ACDView, OriginView, LeadFullHistoryView, \
-    LeadActionView, LeadCalendarView, LeadImporterView, LeadWhastAppMessageView, CampaignView
+    LeadActionView, LeadCalendarView, LeadImporterView, LeadWhastAppMessageView, CampaignView, WatiHookView
 from infoauto.leads_public.views import PublicLeadView
 from infoauto.source_channels.views import ChannelView, SourceView
 from infoauto.users.views import AuthenticationView, UserView, HistoricalSessionWithHistoricView, SFAView
@@ -81,6 +81,7 @@ router.register(r'appraisal', AppraisalView, base_name='appraisal')
 router.register(r'lead_importer', LeadImporterView, base_name='lead_importer')
 router.register(r'lead_whatsapp_message', LeadWhastAppMessageView, base_name='lead_whatsapp_message')
 router.register(r'campaigns', CampaignView, base_name='campaigns')
+router.register(r'watihook', WatiHookView, base_name='watihook')
 
 
 urlpatterns = [
