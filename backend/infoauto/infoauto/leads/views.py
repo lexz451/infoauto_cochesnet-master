@@ -106,13 +106,6 @@ class WatiHookView(viewsets.ViewSet):
     def hit(self, request, **kwargs):
         print('WATI webhook received. Processing...')
         print(request.data)
-        data = json.loads(request.data)
-        if (data.eventType == 'sentMessageREPLIED'):
-            print('Event: sentMessageREPLIED')
-            client_phone = data.waId
-            print(f'Client phone is: {client_phone}')
-        else:
-            print('Ignoring invalid event type.')    
         #print(request.method)
         return Response('Processing...')
 
