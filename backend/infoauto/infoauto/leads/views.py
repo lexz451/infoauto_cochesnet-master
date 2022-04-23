@@ -102,11 +102,19 @@ class GenericViewSet(GenericViewSetAux):
                 self.check_permissions(request)
 
 class WatiHookView(viewsets.ViewSet):
-    @action(methods=['POST'], detail=False)
+    @action(methods=['POST', 'GET'], detail=False)
     def hit(self, request, **kwargs):
+        print('WATI webhook received. Processing...')
         print(request.data)
+        data = json.loads(request.data)
+        if (data.eventType == 'sentMessageREPLIED'):
+            print('Event: sentMessageREPLIED')
+            client_phone = data.waId
+            print(f'Client phone is: {client_phone}')
+        else:
+            print('Ignoring invalid event type.')    
         #print(request.method)
-        return Response('CC')
+        return Response('Processing...')
 
 class LeadGenericViewSet(GenericViewSet):
     raw_sql = '''
