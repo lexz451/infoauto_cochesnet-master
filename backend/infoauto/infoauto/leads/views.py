@@ -2,6 +2,7 @@ from crypt import methods
 import datetime
 import json
 from tempfile import NamedTemporaryFile
+from time import time
 
 from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
@@ -14,6 +15,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
+from infoauto.leads.serializers.comment import CommentSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -56,12 +58,15 @@ from rest_framework import viewsets
 from rest_framework.parsers import JSONParser
 from hubspot3 import Hubspot3
 from hubspot3.error import HubspotConflict, HubspotNotFound, HubspotBadRequest
+from infoauto.leads.models import Comment
 
 import base64
 import xlsxwriter
 import json
 import io
 import xlrd
+
+import requests
 
 
 def model_clone(instance, avoid=None, set_none=None):
@@ -101,13 +106,72 @@ class GenericViewSet(GenericViewSetAux):
                 self.permission_classes = [Or(IsAdminUser, IsConcessionaireAdmin)]
                 self.check_permissions(request)
 
+
 class WatiHookView(viewsets.ViewSet):
+
+    def find_contact(self, wa_id):
+        wati_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MTY2MzQ3NS0xMmZmLTQwZjEtYTZmNy0wOTk3OWZmYTFmOTkiLCJ1bmlxdWVfbmFtZSI6InNjbGVtZW50ZUBpbmZvLWF1dG8uZXMiLCJuYW1laWQiOiJzY2xlbWVudGVAaW5mby1hdXRvLmVzIiwiZW1haWwiOiJzY2xlbWVudGVAaW5mby1hdXRvLmVzIiwiYXV0aF90aW1lIjoiMDQvMjEvMjAyMiAwNTozNDoxMSIsImRiX25hbWUiOiI3MzI1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQURNSU5JU1RSQVRPUiIsImV4cCI6MjUzNDAyMzAwODAwLCJpc3MiOiJDbGFyZV9BSSIsImF1ZCI6IkNsYXJlX0FJIn0.5wj6dBMcOabSz-UmjhMdbkXE3qRGpKN16DoOMfdB1m4'
+        wati_url = 'https://live-server-7325.wati.io'
+
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {wati_token}"
+        }
+
+        contactsUrl = f"{wati_url}/api/v1/getContacts"
+        contactsReq = requests.get(url=contactsUrl, headers=headers)
+
+        if (contactsReq.ok):
+            contacts = contactsReq.json()
+            contact_list = contacts['contact_list']
+            full_contact = next((c for c in contact_list if c['wAid'] == wa_id), None)
+            if (full_contact is None):
+                print(f'No contact matching waId: {wa_id} was found')
+                return None
+            else:
+                print('Found matching contact')
+                return full_contact
+        else:
+            print('Get Contacts request error:')
+            print(contactsReq.text)
+            return None
+
     @action(methods=['POST', 'GET'], detail=False)
     def hit(self, request, **kwargs):
         print('WATI webhook received. Processing...')
-        print(request.data)
-        #print(request.method)
+        wa_id = request.data['waId']
+
+        contact = self.find_contact(wa_id=wa_id)
+
+        if (contact is not None):
+            params = contact['customParams']
+
+            lead_param = next((x for x in params if x['name'] == 'lead_id'), None)
+            if (lead_param is None):
+                print('Missing custom param lead_id from contact data. Halting execution...')
+            else:
+                lead_id = lead_param['value']
+                if (lead_id is None):
+                    print('Missing custom param lead_id from contact data. Halting execution...')
+                    return
+                else:
+                    lead = Lead.objects.get(id=lead_id)
+                    if (lead is None):
+                        print('No lead contact associated with contact found. Check params')
+                    else:
+                        text = request.data['text']
+                        type = request.data['eventType']
+                        full_name = contact['fullName']
+                        origin = "whatsapp"
+                        timestamp = datetime.datetime.now(tz=None)
+                        comment = Comment(origin=origin, event_type=type, text=text, contact_name=full_name, timestamp=timestamp, wa_id=wa_id)
+                        comment.save()
+                        lead.comments.add(comment)
+                        lead.save()
+                        return Response('Processed!')
+        # print(request.method)
         return Response('Processing...')
+
 
 class LeadGenericViewSet(GenericViewSet):
     raw_sql = '''
@@ -134,7 +198,7 @@ class LeadGenericViewSet(GenericViewSet):
         self.queryset = self.queryset.annotate(
             last_lead_action_date=RawSQL(self.raw_sql, params=())
         ).order_by('last_lead_action_date')
-        return super().get_queryset()      
+        return super().get_queryset()
 
 
 class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, GenericViewSet):
@@ -143,8 +207,8 @@ class CampaignView(mixins.ListModelMixin, mixins.DestroyModelMixin, mixins.Retri
     permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['id', 'name', 'startDate', 'endDate', 'concessionaire', 'brand', 'model', 'status']
-    search_fields=['name']
-    filter_class=CampaignFilter
+    search_fields = ['name']
+    filter_class = CampaignFilter
 
     @action(methods=['POST'], detail=True)
     def addExpense(self, request, *args, **kwargs):
@@ -1202,7 +1266,12 @@ class LeadImporterView(GenericViewSet):
 
         raise ValidationError({"detail": _("Debe añadir un fichero con formato xlsx, ")})
 
-
+class CommentsView(mixins.ListModelMixin, GenericViewSet):
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+    permission_classes = (IsAuthenticated,)
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['id', 'lead__id']
 class LeadWhastAppMessageView(mixins.CreateModelMixin,
                               mixins.UpdateModelMixin,
                               mixins.ListModelMixin,

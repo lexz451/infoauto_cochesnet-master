@@ -94,6 +94,10 @@
                                         <!--include notes-->
                                     </div>
 
+                                    <div class="fullwidth mb-20" ng-if="!!vm.lead.id" ng-include="'app/main/leads/views/edit/comments.html'">
+                                        <!--include notes-->
+                                    </div>
+
                                     <div class="fullwidth mb-20" ng-if="vm.lead.lead_managements.length>0"
                                         ng-include="'app/main/leads/views/edit/lead_managements.html'">
                                         <!--include lead_managements-->

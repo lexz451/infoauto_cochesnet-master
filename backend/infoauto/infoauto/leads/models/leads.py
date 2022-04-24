@@ -23,6 +23,7 @@ from infoauto.leads.models.common import phone_regex
 from infoauto.leads.models.concessionaires import Concessionaire, Phone, Email
 from infoauto.leads.models.tasks import Request, Task
 from infoauto.leads.models.vehicles import Vehicle
+from infoauto.leads.models.comment import Comment
 from infoauto.source_channels.models import Source, Channel
 from infoauto.tags_app.models import Tag
 
@@ -175,6 +176,7 @@ class Lead(TimeStampedModel):
 
     finish_date = DateTimeField(blank=True, null=True)
     note = ManyToManyField(Note, blank=True)
+    comments = ManyToManyField(Comment, blank=True)
     score = CharField(max_length=255, choices=SCORE_CHOICES, blank=True, null=True)
     mail_content = TextField(blank=True, null=True)
     lead_task_date = DateTimeField(blank=True, null=True, help_text=_("Keep first task date to do. "

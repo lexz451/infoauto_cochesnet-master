@@ -4,7 +4,7 @@ from rest_framework.fields import CharField, DateTimeField
 
 class HistorySerializer(serializers.Serializer):
     history_date = DateTimeField()
-    history_user = CharField(source='history_user.username')
+    history_user = CharField(source='history_user.username', allow_null=True)
     history_change_reason = CharField()
     history_type = CharField()
 

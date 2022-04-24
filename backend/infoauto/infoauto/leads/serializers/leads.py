@@ -8,6 +8,7 @@ import requests
 
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from infoauto.leads.serializers.comment import CommentSerializer
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -247,6 +248,7 @@ class LeadSerializer(WritableNestedModelSerializer):
     user_data = ComplexUserCreateSerializer(read_only=True, source='user')
     pending_tasks = BooleanField(read_only=True)
     note = NoteSerializer(allow_null=True, many=True, required=False)
+    comments = CommentSerializer(allow_null=True, many=True,read_only=True)
     first_task_date = DateTimeField(read_only=True)
     concessionaire_data = ConcessionaireSerializer(read_only=True, source='concessionaire', )
     nsa = CharField(read_only=True)
@@ -281,6 +283,7 @@ class LeadSerializer(WritableNestedModelSerializer):
             'request_type',
             'request_notes',
             'note',
+            'comments',
             'end_date',
             'user',
             'user_data',
