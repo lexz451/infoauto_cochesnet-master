@@ -3,6 +3,6 @@
 set -o errexit
 set -o nounset
 
-gulp server
+#gulp server
 
-#gulp serve:docker
+gulp serve:docker
