@@ -10,7 +10,8 @@ DJANGO_SECRET_KEY = 'tha3vahrahmae8EeJei7ohzaev9chu'
 SECRET_KEY = DJANGO_SECRET_KEY
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 #ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['http://krart.testing.intelligenia.com'])
-ALLOWED_HOSTS = ['localhost','smartmotorlead.net', 'www.smartmotorlead.net', 'crmcochesnet.info-auto.es', 'sail.artificialintelligencelead.com']
+#ALLOWED_HOSTS = ['localhost','smartmotorlead.net', 'www.smartmotorlead.net', 'crmcochesnet.info-auto.es', 'sail.artificialintelligencelead.com']
+ALLOWED_HOSTS = ['*']
 DEBUG = False
 
 CACHES = {
