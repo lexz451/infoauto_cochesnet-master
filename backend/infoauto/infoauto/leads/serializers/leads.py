@@ -476,7 +476,12 @@ class LeadSerializer(WritableNestedModelSerializer):
         return instance
 
     def checkWATIEligible(self):
-        self.sendWSTemplate()
+        lead = self.instance
+        status = lead.status
+        status_call = lead.status_call
+        source_id = lead.source.id
+        if (status == 'new' and status_call == 'not_attended' and source_id == 2504):
+            self.sendWSTemplate()
         return
 
     def sendWSTemplate(self):
