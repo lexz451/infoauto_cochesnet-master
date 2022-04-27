@@ -1,18 +1,17 @@
 version: '3'
 
 services:
-
   # Backend Service
   backend: &backend
     image: infoauto-backend
     container_name: infoauto-backend
     build:
-      context: ./backend/infoauto
+      context: infoauto
       dockerfile: ./compose/Dockerfile
     restart: always
     command: /start
     volumes:
-      - ./backend/infoauto:/code
+      - ./infoauto:/code
       - /app/.ipython
     ports:
       - "8000:8000"
@@ -20,9 +19,7 @@ services:
       - db
       - redis
     env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.mysql
-
+      - .env
   # Database Service
   db:
     container_name: infoauto-database
@@ -30,8 +27,7 @@ services:
       context: ./db
       dockerfile: ./compose/Dockerfile
     env_file:
-      - ./.envs/.local/.mysql
-    
+      - .env
     restart: on-failure
     volumes:
      - mysql-data:/var/lib/mysql
@@ -40,19 +36,19 @@ services:
       - "3333:3306"
 
   # Frontend Service 
-  frontend:
-    image: infoauto-frontend
-    container_name: infoauto-frontend
-    build:
-      context: ./frontend
-      dockerfile: ./compose/Dockerfile
-    command: /start
-    restart: on-failure
-    ports:
-      - "3000:3000"
-      - "3001:3001"
-    volumes:
-      - ./frontend:/code
+  #frontend:
+  #  image: infoauto-frontend
+  #  container_name: infoauto-frontend
+  #  build:
+  #    context: ./frontend
+  #    dockerfile: ./compose/Dockerfile
+  #  command: /start
+  #  restart: on-failure
+  #  ports:
+  #    - "3000:3000"
+  #    - "3001:3001"
+  #  volumes:
+  #    - ./frontend:/code
 
 
   # Redis Service
@@ -71,7 +67,7 @@ services:
     environment:
       PMA_HOST: db
     env_file:
-      - ./.envs/.local/.mysql
+      - .env
     depends_on:
       - db
 

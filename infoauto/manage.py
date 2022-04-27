@@ -7,13 +7,10 @@ env = environ.Env()
 
 if __name__ == "__main__":
 
-    IS_DOCKER = env.bool('USE_DOCKER', default=False)
-    DEBUG = env.bool('DEBUG', default=False)
+    # IS_DOCKER = env.bool('USE_DOCKER', default=False)
+    # DEBUG = env.bool('DEBUG', default=False)
 
-    if not IS_DOCKER:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
-    else:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.docker")    
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.docker")
 
     try:
         from django.core.management import execute_from_command_line

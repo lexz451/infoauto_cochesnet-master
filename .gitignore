@@ -12,9 +12,9 @@ frontend/.tmp/
 frontend/dist
 frontend/*.png
 frontend/.bower-tmp/
-/backend/infoauto/config/settings/local.py
-/backend/infoauto/celerybeat-schedule
-/backend/infoauto/celerybeat.pid
+/infoauto/config/settings/local.py
+/infoauto/celerybeat-schedule
+/infoauto/celerybeat.pid
 
-/backend/infoauto/infoauto/media/
+/infoauto/infoauto/media/
 frontend.old
