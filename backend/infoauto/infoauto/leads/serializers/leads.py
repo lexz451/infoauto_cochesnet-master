@@ -480,7 +480,7 @@ class LeadSerializer(WritableNestedModelSerializer):
         status = lead.status
         status_call = lead.status_call
         source_id = lead.source.id
-        if (status == 'new' and status_call == 'not_attended' and source_id == 2504):
+        if (status == 'new' and source_id == 2504):
             self.sendWSTemplate()
         return
 
