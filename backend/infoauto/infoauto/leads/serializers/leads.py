@@ -562,9 +562,14 @@ class LeadSerializer(WritableNestedModelSerializer):
         url = 'https://drivim.vozipcenter.com/api/nuevo_contacto'
         method = 'POST'
 
-        client_name = self.instance.client.name
-        client_phone = self.instance.client.phone
-        client_phone = client_phone.replace('+', '00')
+        client_name = str(self.instance.client.name)
+        client_phone = str(self.instance.client.phone)
+
+        if (client_phone.startswith('+')):
+            client_phone = client_phone.replace('+', '00')
+        elif (not client_phone.startswith('00')):
+            client_phone = f'00{client_phone}'
+
         lead_id = self.instance.id
         
         local_time = time.time()
