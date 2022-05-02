@@ -43,6 +43,7 @@ services:
   frontend:
     image: infoauto-frontend
     container_name: infoauto-frontend
+    platform: linux/amd64
     build:
       context: ./frontend
       dockerfile: ./compose/Dockerfile
