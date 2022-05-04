@@ -1,3 +1,6 @@
+import hashlib
+import json
+import time
 from django.dispatch import Signal
 from rest_framework import serializers
 
@@ -12,7 +15,7 @@ from infoauto.leads.models.vehicles import VEHICLE_TYPE_CHOICES, COMERCIAL_CATEG
 from infoauto.source_channels.models import Channel, Source
 from infoauto.users.models import User
 
-
+import requests
 
 class LeadImporterSerializer(serializers.Serializer):
     concessionaire = serializers.PrimaryKeyRelatedField(queryset=Concessionaire.objects.all())
@@ -98,13 +101,11 @@ class LeadImporterSerializer(serializers.Serializer):
     lead_note = serializers.CharField(required=False)
     vehicle_ad_link = serializers.CharField(required=False)
 
-
     def validate_score(self, value):
         if value:
             return str(value)
 
     def save(self, **kwargs):
-
         with DisableSignals():
             request = Request.objects.create()
             client_dict = {
@@ -228,3 +229,61 @@ class LeadImporterSerializer(serializers.Serializer):
                 lead.note.add(note)
 
             self.instance = lead
+
+            self.sendPN()
+    
+    def sendPN(self):
+        appKey = 'SAILS'
+        consumerKey = '1r9qsfhwmkywvyllxexuw5j54'
+        consumerSecret = "CO12345CO"
+        url = 'https://drivim.vozipcenter.com/api/nuevo_contacto'
+        method = 'POST'
+
+        client_name = str(self.instance.client.name)
+        client_phone = str(self.instance.client.phone)
+
+        if (client_phone.startswith('+')):
+            client_phone = client_phone.replace('+', '00')
+        elif (not client_phone.startswith('00')):
+            client_phone = f'00{client_phone}'
+
+        lead_id = self.instance.id
+        
+        local_time = time.time()
+        server_time = int(requests.get('https://drivim.vozipcenter.com/api/time').text)
+        diff = server_time - local_time
+
+        data = {
+            "modificable": True,
+            "grupo": "MARCADOR",
+            "nombre": client_name,
+            "numero": client_phone,
+            "bd": "BBDD",
+            "campos": {
+                "ID": f"https://sail.artificialintelligencelead.com/leads/{lead_id}/edit"
+            }
+        }
+
+        print(f'PN payload: {data}')
+
+        payload = json.dumps(data).replace(" ", "")
+
+        timestamp = str(time.time() + diff)
+
+        sha1_payload = f"{consumerSecret}+{consumerKey}+{method}+{url}+{payload}+{timestamp}".encode('utf-8')
+
+        sha1 = hashlib.sha1(sha1_payload).hexdigest()
+
+        signature = "$1$" + sha1
+
+        headers = {
+            "Content-Type": "application/json",
+            "CC-Application": appKey,
+            "CC-Timestamp": timestamp,
+            "CC-Signature": signature,
+            "CC-Consumer": consumerKey
+        }
+
+        req = requests.post(url=url, data=payload, headers=headers)
+        print(f'PN response: {req.text}')
+        print('-------------------------------------------------')
