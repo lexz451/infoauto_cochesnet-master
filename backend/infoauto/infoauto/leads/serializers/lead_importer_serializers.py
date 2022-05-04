@@ -230,7 +230,12 @@ class LeadImporterSerializer(serializers.Serializer):
 
             self.instance = lead
 
-            self.sendPN()
+            c_id = self.instance.concessionaire.id
+            c_ids = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 68, 79, 81, 83, 99, 123]
+            if (c_id in c_ids):
+                print('-------------------------------------------------')
+                print(f'Sending PN request for concessionaire id: {c_id}')
+                self.sendPN()
     
     def sendPN(self):
         appKey = 'SAILS'
